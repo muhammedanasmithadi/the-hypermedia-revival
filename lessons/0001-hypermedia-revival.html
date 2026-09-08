@@ -201,8 +201,7 @@
 
   <div class="loop reveal" id="loop" role="group" aria-label="The hypermedia loop, one step at a time">
     <noscript>
-      <style>.loop-controls { display: none; }</style>
-      <p class="loop-noscript">Static view: the loop is fixed here. Enable JavaScript to step through it.</p>
+      <p class="loop-noscript">Static view: the loop is fixed here. Enable JavaScript to watch it run.</p>
     </noscript>
     <div class="loop-steps" id="loop-steps">
       <div class="loop-step on"><div class="ls-t">Request</div><div class="ls-s">user picks a control</div></div>
@@ -213,11 +212,7 @@
       <div class="loop-arrow" aria-hidden="true">→</div>
       <div class="loop-step"><div class="ls-t">Next document</div><div class="ls-s">server advances state</div></div>
     </div>
-    <div class="loop-caption" id="loop-caption" aria-live="polite">The user clicks a link or a button. The browser turns that control into a request to the server.</div>
-    <div class="loop-controls">
-      <button class="loop-btn primary" id="loop-next" type="button">Advance the loop »</button>
-      <button class="loop-btn" id="loop-reset" type="button">Reset</button>
-    </div>
+    <div class="loop-caption" id="loop-caption">The user clicks a link or a button. The browser turns that control into a request to the server.</div>
   </div>
 
   <div class="prose">
@@ -543,10 +538,11 @@
   ];
   var tray = document.getElementById('loop-steps');
   var cap = document.getElementById('loop-caption');
-  var next = document.getElementById('loop-next');
-  var reset = document.getElementById('loop-reset');
+  var widget = document.getElementById('loop');
   var cur = 0;
-  if (!tray || !cap) return;
+  var timer = null;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!tray || !cap || reduced) return;
 
   function paint() {
     var nodes = tray.querySelectorAll('.loop-step');
@@ -556,14 +552,31 @@
     cap.textContent = steps[cur].c;
   }
 
-  if (next) next.addEventListener('click', function () {
-    cur = (cur + 1) % steps.length;
-    paint();
-  });
-  if (reset) reset.addEventListener('click', function () {
-    cur = 0;
-    paint();
-  });
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  function play() {
+    if (timer || reduced) return;
+    timer = setInterval(function () {
+      cur = (cur + 1) % steps.length;
+      paint();
+    }, 2400);
+  }
+
+  paint();
+  widget.addEventListener('pointerenter', stop);
+  widget.addEventListener('pointerleave', play);
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        e.isIntersecting ? play() : stop();
+      });
+    }, { threshold: 0.3 });
+    obs.observe(widget);
+  } else {
+    play();
+  }
 })();
 
 </script>

@@ -78,8 +78,7 @@
 
   <div class="timeline-widget reveal" id="timeline" role="group" aria-label="The arc: from two words in 1965 to a data-only contract in 2011">
     <noscript>
-      <style>.timeline-controls { display: none; }</style>
-      <p class="loop-noscript">Static view: all beats are shown. Enable JavaScript to step through them.</p>
+      <p class="loop-noscript">Static view: all beats are shown. Enable JavaScript to watch the years pass.</p>
     </noscript>
     <ol class="timeline">
       <li>
@@ -118,11 +117,7 @@
         </span>
       </li>
     </ol>
-    <div class="timeline-caption" id="timeline-caption" aria-live="polite">Step through the years. Watch who holds the next move.</div>
-    <div class="timeline-controls">
-      <button class="loop-btn primary" id="timeline-next" type="button">Advance the years »</button>
-      <button class="loop-btn" id="timeline-reset" type="button">Start over</button>
-    </div>
+    <div class="timeline-caption" id="timeline-caption">Step through the years. Watch who holds the next move.</div>
   </div>
 
   <div class="prose">
@@ -282,27 +277,62 @@
   ];
   var widget = document.getElementById('timeline');
   var cap = document.getElementById('timeline-caption');
-  var next = document.getElementById('timeline-next');
-  var reset = document.getElementById('timeline-reset');
-  var cur = -1;
-  if (!widget || !cap) return;
+  var REST = 'Step through the years. Watch who holds the next move.';
+  var i = -1;
+  var timer = null;
+  var played = false;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!widget || !cap || reduced) return;
 
-  function paint() {
+  function render() {
     var nodes = widget.querySelectorAll('li');
-    for (var i = 0; i < nodes.length; i++) {
-      nodes[i].classList.toggle('on', i === cur);
+    for (var n = 0; n < nodes.length; n++) {
+      nodes[n].classList.toggle('on', n === i);
     }
-    cap.textContent = cur >= 0 ? steps[cur].c : 'Step through the years. Watch who holds the next move.';
+    cap.textContent = i >= 0 ? steps[i].c : REST;
   }
 
-  if (next) next.addEventListener('click', function () {
-    cur = (cur + 1) % steps.length;
-    paint();
-  });
-  if (reset) reset.addEventListener('click', function () {
-    cur = -1;
-    paint();
-  });
+  function stop() {
+    if (timer) { clearTimeout(timer); timer = null; }
+  }
+
+  function tick() {
+    i++;
+    render();
+    timer = i >= steps.length - 1
+      ? setTimeout(finish, 2400)
+      : setTimeout(tick, 2400);
+  }
+
+  function finish() {
+    timer = null;
+    i = -1;
+    render();
+    played = true;
+  }
+
+  function play() {
+    if (played || timer) return;
+    tick();
+  }
+
+  widget.addEventListener('pointerenter', stop);
+  widget.addEventListener('pointerleave', play);
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          play();
+          obs.unobserve(e.target);
+        } else {
+          stop();
+        }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(widget);
+  } else {
+    play();
+  }
 })();
 </script>
 </body>

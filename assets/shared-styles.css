@@ -1052,35 +1052,6 @@ table.matrix .fit-weak {
   border-radius: 6px;
 }
 
-.loop-controls {
-  display: flex;
-  gap: 0.6em;
-  margin-top: 0.6em;
-}
-
-.loop-btn {
-  font: inherit;
-  font-size: 0.85em;
-  padding: 0.4em 1.1em;
-  border-radius: 6px;
-  border: 1px solid #3a3a3a;
-  background: #262626;
-  color: #d6d6d6;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.loop-btn.primary {
-  border-color: var(--brand);
-  background: #1f3352;
-  color: #ffffff;
-}
-
-.loop-btn:hover {
-  border-color: var(--brand);
-  color: #ffffff;
-}
-
 /* ---------- Timeline (widget 4) ---------- */
 
 .timeline-widget {
@@ -1169,12 +1140,6 @@ table.matrix .fit-weak {
   color: #c9c9c9;
   font-size: 0.98em;
   padding: 0 0.2em;
-}
-
-.timeline-controls {
-  display: flex;
-  gap: 0.6em;
-  margin-top: 0.6em;
 }
 
 /* ---------- Section link (footer navigation) ---------- */
