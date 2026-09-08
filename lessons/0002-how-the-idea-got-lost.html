@@ -76,43 +76,54 @@
     <p>Run your eye down the rail. At each stop, ask who holds the next move.</p>
   </div>
 
-  <ol class="timeline reveal" aria-label="The arc: from two words in 1965 to a data-only contract in 2011">
-    <li>
-      <span class="t-dot" aria-hidden="true"></span>
-      <span class="t-body">
-        <span class="t-year">1965</span>
-        <span class="t-line"><strong>Nelson names it</strong><span class="t-note">Two words: hypertext, and media that join.</span></span>
-      </span>
-    </li>
-    <li>
-      <span class="t-dot" aria-hidden="true"></span>
-      <span class="t-body">
-        <span class="t-year">1989</span>
-        <span class="t-line"><strong>CERN proposes it</strong><span class="t-note">Linked documents, read by a client nobody owns.</span></span>
-      </span>
-    </li>
-    <li>
-      <span class="t-dot" aria-hidden="true"></span>
-      <span class="t-body">
-        <span class="t-year">2000</span>
-        <span class="t-line"><strong>REST gets a name</strong><span class="t-note">Fielding ties the pattern to the web in his dissertation.</span></span>
-      </span>
-    </li>
-    <li>
-      <span class="t-dot" aria-hidden="true"></span>
-      <span class="t-body">
-        <span class="t-year">2005</span>
-        <span class="t-line"><strong>The AJAX turn</strong><span class="t-note">Pages update in place; the word API replaces the word server.</span></span>
-      </span>
-    </li>
-    <li>
-      <span class="t-dot" aria-hidden="true"></span>
-      <span class="t-body">
-        <span class="t-year">2011</span>
-        <span class="t-line"><strong>Contract-first</strong><span class="t-note">Swagger fixes the shape; HATEOAS shrinks to a links array.</span></span>
-      </span>
-    </li>
-  </ol>
+  <div class="timeline-widget reveal" id="timeline" role="group" aria-label="The arc: from two words in 1965 to a data-only contract in 2011">
+    <noscript>
+      <style>.timeline-controls { display: none; }</style>
+      <p class="loop-noscript">Static view: all beats are shown. Enable JavaScript to step through them.</p>
+    </noscript>
+    <ol class="timeline">
+      <li>
+        <span class="t-dot" aria-hidden="true"></span>
+        <span class="t-body">
+          <span class="t-year">1965</span>
+          <span class="t-line"><strong>Nelson names it</strong><span class="t-note">Two words: hypertext, and media that join.</span></span>
+        </span>
+      </li>
+      <li>
+        <span class="t-dot" aria-hidden="true"></span>
+        <span class="t-body">
+          <span class="t-year">1989</span>
+          <span class="t-line"><strong>CERN proposes it</strong><span class="t-note">Linked documents, read by a client nobody owns.</span></span>
+        </span>
+      </li>
+      <li>
+        <span class="t-dot" aria-hidden="true"></span>
+        <span class="t-body">
+          <span class="t-year">2000</span>
+          <span class="t-line"><strong>REST gets a name</strong><span class="t-note">Fielding ties the pattern to the web in his dissertation.</span></span>
+        </span>
+      </li>
+      <li>
+        <span class="t-dot" aria-hidden="true"></span>
+        <span class="t-body">
+          <span class="t-year">2005</span>
+          <span class="t-line"><strong>The AJAX turn</strong><span class="t-note">Pages update in place; the word API replaces the word server.</span></span>
+        </span>
+      </li>
+      <li>
+        <span class="t-dot" aria-hidden="true"></span>
+        <span class="t-body">
+          <span class="t-year">2011</span>
+          <span class="t-line"><strong>Contract-first</strong><span class="t-note">Swagger fixes the shape; HATEOAS shrinks to a links array.</span></span>
+        </span>
+      </li>
+    </ol>
+    <div class="timeline-caption" id="timeline-caption" aria-live="polite">Step through the years. Watch who holds the next move.</div>
+    <div class="timeline-controls">
+      <button class="loop-btn primary" id="timeline-next" type="button">Advance the years »</button>
+      <button class="loop-btn" id="timeline-reset" type="button">Start over</button>
+    </div>
+  </div>
 
   <div class="prose">
     <p>Now the detour. Enterprise software wants reliable conversations, so it freezes
@@ -156,7 +167,19 @@
     shrinks to a JSON field of links. A link you must already know is a note, not a
     control. Strawman &ldquo;REST&rdquo; comes to mean facts alone, spelled with
     verbs.</p>
+  </div>
 
+  <figure class="code-block reveal">
+    <figcaption class="code-title"><span>facts alone, spelled with verbs</span><span class="code-lang">json</span></figcaption>
+    <pre tabindex="0">{ <span class="tok-a">"balance"</span>: 40,
+  <span class="tok-a">"links"</span>: [
+    <span class="tok-s">"GET /account"</span>,
+    <span class="tok-s">"GET /transactions"</span>
+  ]
+}</pre>
+  </figure>
+
+  <div class="prose">
     <p>Fielding watches and objects on the public record. In 2008 he writes the piece
     Section 01 quoted: REST APIs must be hypertext-driven. The name survives its
     author. The behavior does not.</p>
@@ -173,10 +196,7 @@
   </div>
 
   <div class="prose">
-    <p>Now the two stories stand side by side. The terminal never stopped working;
-    the industry built a parallel path and forgot why it existed.</p>
-
-    <p>Ask what each decade actually bought. Which parts of the JSON decade were
+    <p>With both columns on the table, which parts of the JSON decade were
     necessity, and which were fashion?</p>
 
     <p>That is Section 03, where both architectures sit on the same table, weighed in
@@ -250,6 +270,39 @@
     });
   }, { threshold: 0 });
   [].forEach.call(els, function (el) { obs.observe(el); });
+})();
+
+(function timeline() {
+  var steps = [
+    { c: 'The next move is unowned: anyone may carry it, or not.' },
+    { c: 'The document carries the next move; a link reads itself.' },
+    { c: 'REST puts a name on it: controls must travel with the facts.' },
+    { c: 'AJAX moves the next move into the client\'s code.' },
+    { c: 'The contract takes the next move out of the document.' }
+  ];
+  var widget = document.getElementById('timeline');
+  var cap = document.getElementById('timeline-caption');
+  var next = document.getElementById('timeline-next');
+  var reset = document.getElementById('timeline-reset');
+  var cur = -1;
+  if (!widget || !cap) return;
+
+  function paint() {
+    var nodes = widget.querySelectorAll('li');
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].classList.toggle('on', i === cur);
+    }
+    cap.textContent = cur >= 0 ? steps[cur].c : 'Step through the years. Watch who holds the next move.';
+  }
+
+  if (next) next.addEventListener('click', function () {
+    cur = (cur + 1) % steps.length;
+    paint();
+  });
+  if (reset) reset.addEventListener('click', function () {
+    cur = -1;
+    paint();
+  });
 })();
 </script>
 </body>
