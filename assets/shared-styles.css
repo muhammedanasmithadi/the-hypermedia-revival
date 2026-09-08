@@ -1227,7 +1227,7 @@ table.matrix .fit-weak {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.8em;
+  top: calc(0.4em + (1.6em - 6px) / 2);
   width: 6px;
   height: 6px;
   border-radius: 50%;
