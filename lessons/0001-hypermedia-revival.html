@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#top">Skip to content</a>
+
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="topbar">
@@ -29,7 +31,7 @@
   architecture. It is the architecture we still build on, mostly without its name.
   Click the machines; they teach the ideas.</p>
   <p class="byline">
-    <span>working draft 0.2</span>
+    <span>revision 1</span>
     <span>section 1 of 6</span>
     <span>no frameworks, no hype</span>
   </p>
@@ -37,12 +39,12 @@
 
 <div class="article">
 
-<section id="s1" class="section">
+<section id="the-machine-that-prints-its-own-manual" class="section">
 
   <div class="section-head">
     <p class="kicker">Section 01</p>
     <h2>The machine that prints its own manual
-      <a href="#s1" class="hanchor" aria-label="Anchor">
+      <a href="#the-machine-that-prints-its-own-manual" class="hanchor" aria-label="Section 01 anchor">
         <svg width="14" height="14" viewBox="0 0 32 32" fill="none" aria-hidden="true">
           <circle cx="12" cy="12" r="6.5" stroke="#5B9CF7" stroke-width="2.6"></circle>
           <circle cx="20" cy="20" r="6.5" stroke="#5B9CF7" stroke-width="2.6"></circle>
@@ -67,7 +69,7 @@
     be the whole web.</p>
   </div>
 
-  <div class="kiosk reveal" id="kiosk" aria-label="A small terminal that changes its options as you act">
+  <div class="kiosk reveal" id="kiosk" role="group" aria-label="A small terminal that changes its options as you act">
     <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
     <div class="kiosk-head">
       <span>terminal · training unit</span>
@@ -101,7 +103,7 @@
     reply type.</p>
   </div>
 
-  <div class="experiment reveal" id="exp" aria-label="Experiment: choose a reply type and ask a server for your balance">
+  <div class="experiment reveal" id="exp" role="group" aria-label="Experiment: choose a reply type and ask a server for your balance">
     <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
     <div class="x-bar">
       <span class="x-reqline" id="x-reqline">GET <a href="#exp">/account/balance</a></span>
@@ -197,10 +199,21 @@
     repeating. Read it as a sentence, then step through it yourself.</p>
   </div>
 
-  <div class="loop reveal" id="loop" aria-label="The hypermedia loop, one step at a time">
-    <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
-    <div class="loop-steps" id="loop-steps"></div>
-    <div class="loop-caption" id="loop-caption" aria-live="polite"></div>
+  <div class="loop reveal" id="loop" role="group" aria-label="The hypermedia loop, one step at a time">
+    <noscript>
+      <style>.loop-controls { display: none; }</style>
+      <p class="loop-noscript">Static view: the loop is fixed here. Enable JavaScript to step through it.</p>
+    </noscript>
+    <div class="loop-steps" id="loop-steps">
+      <div class="loop-step on"><div class="ls-t">Request</div><div class="ls-s">user picks a control</div></div>
+      <div class="loop-arrow" aria-hidden="true">→</div>
+      <div class="loop-step"><div class="ls-t">Document</div><div class="ls-s">facts + controls</div></div>
+      <div class="loop-arrow" aria-hidden="true">→</div>
+      <div class="loop-step"><div class="ls-t">Choice</div><div class="ls-s">user selects a move</div></div>
+      <div class="loop-arrow" aria-hidden="true">→</div>
+      <div class="loop-step"><div class="ls-t">Next document</div><div class="ls-s">server advances state</div></div>
+    </div>
+    <div class="loop-caption" id="loop-caption" aria-live="polite">The user clicks a link or a button. The browser turns that control into a request to the server.</div>
     <div class="loop-controls">
       <button class="loop-btn primary" id="loop-next" type="button">Advance the loop »</button>
       <button class="loop-btn" id="loop-reset" type="button">Reset</button>
@@ -255,7 +268,7 @@
 </main>
 
 <footer class="doc-footer">
-  <p class="closing">working draft · sections built one by one · dev preview</p>
+  <p class="closing">sections built one by one · revision 1</p>
 </footer>
 
 <script>
@@ -273,7 +286,7 @@
   window.addEventListener('resize', onScroll);
   onScroll();
 
-  var sec = document.getElementById('s1');
+  var sec = document.getElementById('the-machine-that-prints-its-own-manual');
   if (sec && 'IntersectionObserver' in window) {
     var k = sec.querySelector('.section-head .kicker');
     var h = sec.querySelector('.section-head h2');
@@ -521,8 +534,6 @@
 })();
 
 (function loop() {
-  var el = document.getElementById('loop');
-  if (!el) return;
   var steps = [
     { t: 'Request', s: 'user picks a control', c: 'The user clicks a link or a button. The browser turns that control into a request to the server.' },
     { t: 'Document', s: 'facts + controls', c: 'The server reads the current state and answers with one document: the facts, and the controls those facts allow.' },
@@ -534,54 +545,26 @@
   var next = document.getElementById('loop-next');
   var reset = document.getElementById('loop-reset');
   var cur = 0;
+  if (!tray || !cap) return;
 
   function paint() {
-    tray.innerHTML = '';
-    steps.forEach(function (s, i) {
-      var st = document.createElement('div');
-      st.className = 'loop-step' + (i === cur ? ' on' : '');
-      st.innerHTML = '<div class="ls-t"></div><div class="ls-s"></div>';
-st.querySelector('.ls-t').textContent = s.t;
-        st.querySelector('.ls-s').textContent = s.s;
-        tray.appendChild(st);
-        if (i < steps.length - 1) {
-          var ar = document.createElement('div');
-          ar.className = 'loop-arrow';
-          ar.setAttribute('aria-hidden', 'true');
-          ar.textContent = '→';
-          tray.appendChild(ar);
-        }
-    });
+    var nodes = tray.querySelectorAll('.loop-step');
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].classList.toggle('on', i === cur);
+    }
     cap.textContent = steps[cur].c;
   }
 
-  next.addEventListener('click', function () {
+  if (next) next.addEventListener('click', function () {
     cur = (cur + 1) % steps.length;
     paint();
   });
-  reset.addEventListener('click', function () {
+  if (reset) reset.addEventListener('click', function () {
     cur = 0;
     paint();
   });
-
-  paint();
 })();
 
-/* DEV ONLY (auto reload; remove before shipping). */
-(function liveReload() {
-  var last = null;
-  setInterval(function () {
-    fetch(location.href, { cache: 'no-store' })
-      .then(function (r) { return r.headers.get('Last-Modified'); })
-      .then(function (m) {
-        if (m && m !== last) {
-          if (last !== null) location.reload();
-          last = m;
-        }
-      })
-      .catch(function () {});
-  }, 1000);
-})();
 </script>
 </body>
 </html>

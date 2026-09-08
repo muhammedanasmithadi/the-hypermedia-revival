@@ -134,6 +134,25 @@ strong {
 
 /* ---------- Reading progress ---------- */
 
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -999em;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 0.75rem;
+  background: var(--bg);
+  color: var(--ink-strong);
+  border: 1px solid var(--brand);
+  border-radius: 6px;
+  padding: 0.4em 0.9em;
+  font-size: 0.95em;
+  text-decoration: none;
+}
+
 .progress {
   position: fixed;
   top: 0;
@@ -1022,6 +1041,15 @@ table.matrix .fit-weak {
   color: #c9c9c9;
   font-size: 0.98em;
   padding: 0 0.2em;
+}
+
+.loop-noscript {
+  margin: 0 0 1em 0;
+  padding: 0.5em 0.9em;
+  font-size: 0.9em;
+  color: #9a9a9a;
+  border: 1px dashed #3a3a3a;
+  border-radius: 6px;
 }
 
 .loop-controls {
