@@ -6,6 +6,12 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#171717">
 <meta name="description" content="How hypermedia began, and how industry replaced it with data-only APIs. Section 02 tells both sides of the story.">
+<link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0002-how-the-idea-got-lost.html">
+<meta property="og:site_name" content="Hypermedia Teach">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hypermedia: the architecture we forgot">
+<meta property="og:description" content="How hypermedia began, and how industry replaced it with data-only APIs. Section 02 tells both sides of the story.">
+<meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0002-how-the-idea-got-lost.html">
 <title>Hypermedia: the architecture we forgot</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232052bb'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='17' font-weight='600' text-anchor='middle' fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
@@ -78,7 +84,7 @@
 
   <div class="timeline-widget reveal" id="timeline" role="group" aria-label="The arc: from two words in 1965 to a data-only contract in 2011">
     <noscript>
-      <p class="loop-noscript">Static view: all beats are shown. Enable JavaScript to watch the years pass.</p>
+      <p class="widget-noscript">Static view: all beats are shown. Enable JavaScript to watch the years pass.</p>
     </noscript>
     <ol class="timeline">
       <li>
@@ -246,23 +252,15 @@
 
 (function reveal() {
   var els = document.querySelectorAll('.reveal');
+  function show(el) { el.classList.add('in'); }
   if (!('IntersectionObserver' in window)) {
-    [].forEach.call(els, function (el) { el.classList.add('in'); });
+    [].forEach.call(els, show);
     return;
   }
-  var bad = [];
-  [].forEach.call(els, function (el) { bad.push(el); });
-  function force() {
-    bad.forEach(function (el) { el.classList.add('in'); });
-    bad = [];
-  }
-  window.addEventListener('load', function () { setTimeout(force, 2500); });
   var obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) {
-        e.target.classList.add('in');
-        var i = bad.indexOf(e.target);
-        if (i >= 0) bad.splice(i, 1);
+        show(e.target);
         obs.unobserve(e.target);
       }
     });
@@ -335,7 +333,6 @@
   var facts = [];
   var pool, check, again, res;
   var selected = null;
-  var checked = false;
   if (!root || !head || !cols || uls.length < 2) return;
 
   Array.prototype.forEach.call(uls[0].querySelectorAll('li'), function (li) {
@@ -362,6 +359,7 @@
     b.type = 'button';
     b.className = 'chip';
     b.textContent = f.txt;
+    li.chip = b;
     b.addEventListener('click', function () {
       li.classList.remove('ok', 'bad');
       if (li.parentNode === pool) {
@@ -388,6 +386,7 @@
     if (!selected || selected.parentNode !== pool) return;
     selected.classList.remove('selected');
     col.querySelector('ul').appendChild(selected);
+    selected.chip.focus();
     selected = null;
     root.classList.remove('sorting');
   }
@@ -399,7 +398,6 @@
   }
 
   function render() {
-    checked = false;
     clearSel();
     clearErrAll();
     root.classList.remove('sorting');
@@ -415,7 +413,16 @@
   cols.parentNode.insertBefore(pool, cols);
 
   Array.prototype.forEach.call(cols.querySelectorAll('.ledger-col'), function (col) {
+    col.setAttribute('tabindex', '0');
+    col.setAttribute('role', 'group');
+    col.setAttribute('aria-label', col.querySelector('.ledger-col-name').textContent + ' column');
     col.addEventListener('click', function () { placeInto(col); });
+    col.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        placeInto(col);
+      }
+    });
   });
 
   var bar = document.createElement('div');
@@ -438,7 +445,7 @@
 
   var hint = document.createElement('span');
   hint.className = 'ledger-hint';
-  hint.textContent = 'select a reason, then choose a column';
+  hint.textContent = 'select a reason, then choose a column (click or Enter)';
   head.appendChild(hint);
 
   check.addEventListener('click', function () {
@@ -453,7 +460,6 @@
         li.classList.toggle('bad', !ok);
       });
     }
-    checked = true;
     res.textContent = placed === 0
       ? 'Place the reasons first.'
       : right === facts.length

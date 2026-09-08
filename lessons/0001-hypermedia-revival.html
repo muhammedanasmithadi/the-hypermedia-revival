@@ -6,6 +6,12 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#171717">
 <meta name="description" content="A short, plain, interactive explanation of hypermedia: documents that carry their own controls.">
+<link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0001-hypermedia-revival.html">
+<meta property="og:site_name" content="Hypermedia Teach">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hypermedia: the architecture the web was built on">
+<meta property="og:description" content="A short, plain, interactive explanation of hypermedia: documents that carry their own controls.">
+<meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0001-hypermedia-revival.html">
 <title>Hypermedia: the architecture the web was built on</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232052bb'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='17' font-weight='600' text-anchor='middle' fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
@@ -76,7 +82,7 @@
       <span class="k-now" id="kiosk-state-label">welcome</span>
     </div>
     <div class="kiosk-screen">
-      <div class="k-title" id="kiosk-title" aria-live="polite">Card payment terminal</div>
+      <div class="k-title" id="kiosk-title">Card payment terminal</div>
       <div class="k-msg" id="kiosk-msg">This little machine shows you only what you may do right now.</div>
       <div class="k-note" id="kiosk-note" aria-live="polite"></div>
     </div>
@@ -201,7 +207,7 @@
 
   <div class="loop reveal" id="loop" role="group" aria-label="The hypermedia loop, one step at a time">
     <noscript>
-      <p class="loop-noscript">Static view: the loop is fixed here. Enable JavaScript to watch it run.</p>
+      <p class="widget-noscript">Static view: the loop is fixed here. Enable JavaScript to watch it run.</p>
     </noscript>
     <div class="loop-steps" id="loop-steps">
       <div class="loop-step on"><div class="ls-t">Request</div><div class="ls-s">user picks a control</div></div>
@@ -298,23 +304,15 @@
 
 (function reveal() {
   var els = document.querySelectorAll('.reveal');
+  function show(el) { el.classList.add('in'); }
   if (!('IntersectionObserver' in window)) {
-    [].forEach.call(els, function (el) { el.classList.add('in'); });
+    [].forEach.call(els, show);
     return;
   }
-  var bad = [];
-  [].forEach.call(els, function (el) { bad.push(el); });
-  function force() {
-    bad.forEach(function (el) { el.classList.add('in'); });
-    bad = [];
-  }
-  window.addEventListener('load', function () { setTimeout(force, 2500); });
   var obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) {
-        e.target.classList.add('in');
-        var i = bad.indexOf(e.target);
-        if (i >= 0) bad.splice(i, 1);
+        show(e.target);
         obs.unobserve(e.target);
       }
     });
@@ -345,6 +343,9 @@
   function act(b) {
     note.textContent = '';
     note.classList.remove('show');
+    var keepFocus = document.activeElement &&
+      (keys.contains(document.activeElement) ||
+       document.activeElement.id === 'kiosk-reset');
     if (b.leave) b.leave();
     setBal();
     var next = typeof b.next === 'function' ? b.next() : b.next;
@@ -362,6 +363,10 @@
       keys.appendChild(tag);
     });
     if (b.note) flash(text(b.note));
+    if (keepFocus) {
+      var firstBtn = keys.querySelector('button');
+      if (firstBtn) firstBtn.focus();
+    }
   }
 
   var states = {
