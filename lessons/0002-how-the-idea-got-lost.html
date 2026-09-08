@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#171717">
+<meta name="description" content="How hypermedia began, and how industry replaced it with data-only APIs. Section 02 tells both sides of the story.">
+<title>Hypermedia: the architecture we forgot</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232052bb'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='17' font-weight='600' text-anchor='middle' fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="../assets/shared-styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Back to top">Hypermedia</a>
+  <span class="cur-section" id="cur-section" aria-live="polite">Section 02 · How the idea got lost</span>
+</header>
+
+<main class="doc" id="top">
+
+<header class="masthead">
+  <p class="post-date">September 2026</p>
+  <h1>Hypermedia: the architecture <em>we forgot</em></h1>
+  <p class="dek">The web shipped with facts and controls in one document. Then the
+  industry spent a decade separating them. This section tells how the idea began,
+  what replaced it, and what the exchange left behind.</p>
+  <p class="byline">
+    <span>revision 1</span>
+    <span>section 2 of 6</span>
+    <span>no frameworks, no hype</span>
+  </p>
+</header>
+
+<div class="article">
+
+<section id="how-the-idea-got-lost" class="section">
+
+  <div class="section-head">
+    <p class="kicker">Section 02</p>
+    <h2>How the idea got lost
+      <a href="#how-the-idea-got-lost" class="hanchor" aria-label="Section 02 anchor">
+        <svg width="14" height="14" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="6.5" stroke="#5B9CF7" stroke-width="2.6"></circle>
+          <circle cx="20" cy="20" r="6.5" stroke="#5B9CF7" stroke-width="2.6"></circle>
+          <path d="M9.5 22.5 L22.5 9.5" stroke="#5B9CF7" stroke-width="2.6"></path>
+        </svg>
+      </a>
+    </h2>
+  </div>
+
+  <div class="prose">
+    <p class="lede">The loop you stepped through did not appear in 2020. Someone invented
+    it in 1965, someone named it in 2000, and half of an industry forgot it by 2011.
+    This section walks that path, and it ends asking what was actually lost.</p>
+
+    <p>Ted Nelson coined two words in 1965: hypertext, and the broader idea,
+    hypermedia. Branching text. Media that join. Documents that point at other
+    documents, forever.</p>
+
+    <p>In 1989 Tim Berners-Lee turned that thought into a working system at CERN.
+    HTML carried the facts; links and forms carried the controls. The client stayed
+    generic, and no one owned the screen.</p>
+
+    <p>In 2000 Roy Fielding named that style in his doctoral dissertation: REST.
+    Section 01 quoted his words. Here is the part most copies missed: the controls
+    must travel with the facts, or the architecture is not REST.</p>
+  </div>
+
+  <div class="prose">
+    <p>Fix the dates in a line, then read the beats from top to bottom.</p>
+  </div>
+
+  <ol class="timeline reveal" aria-label="The arc: from two words in 1965 to a data-only contract in 2011">
+    <li>
+      <span class="t-year">1965</span>
+      <span class="t-line"><strong>Nelson names it</strong><span class="t-note">Two words: hypertext, and media that join.</span></span>
+    </li>
+    <li>
+      <span class="t-year">1989</span>
+      <span class="t-line"><strong>CERN builds it</strong><span class="t-note">Documents with built-in controls; no one owns the client.</span></span>
+    </li>
+    <li>
+      <span class="t-year">2000</span>
+      <span class="t-line"><strong>REST gets a name</strong><span class="t-note">Fielding ties the pattern to the web in his dissertation.</span></span>
+    </li>
+    <li>
+      <span class="t-year">2005</span>
+      <span class="t-line"><strong>The AJAX turn</strong><span class="t-note">Pages update in place; the word API replaces the word server.</span></span>
+    </li>
+    <li>
+      <span class="t-year">2011</span>
+      <span class="t-line"><strong>Contract-first</strong><span class="t-note">OpenAPI fixes the shape; HATEOAS shrinks to a links array.</span></span>
+    </li>
+  </ol>
+
+  <div class="prose">
+    <p>Then came the detour. Enterprise software in the 2000s wanted reliability, so
+    it standardized the conversation into rigid contracts. A schema described every
+    message; a stack generated the code. The server answered with data, never with
+    the next move.</p>
+
+    <p>In 2005 the shift happened inside a page, invisibly. AJAX let a site update in
+    place without a reload, and the word &ldquo;API&rdquo; replaced
+    &ldquo;server&rdquo; in ordinary talk. Nobody voted to stop sending controls. Each
+    request quietly chose data instead.</p>
+
+    <p>Name the reasons plainly before judging. Native apps needed a server that
+    spoke their language. Screens wanted movement that full reloads could not give.
+    Separate teams wanted contracts they could test. Each reason made sense on its
+    own.</p>
+
+    <p>The loss happened in how the word got used. Fielding&rsquo;s acronym, HATEOAS,
+    shrank to a JSON field of links. A link you must already know is a note, not a
+    control. Strawman &ldquo;REST&rdquo; came to mean facts alone, spelled with
+    verbs.</p>
+
+    <p>Fielding watched and objected on the public record. In 2008 he wrote the piece
+    Section 01 quoted: REST APIs must be hypertext-driven. The name survived its
+    author. The behavior did not.</p>
+
+    <p>2011 sealed the bargain. OpenAPI standardized the shape of the conversation,
+    field by field. Teams received exact expectations and gave up the open-ended
+    loop. The document that carried controls ceded to the schema that described
+    data.</p>
+
+    <p>One thread never died. Documentation sites, forums, and plain web apps kept
+    the original loop running, decade after decade. A new wave of tooling, htmx and
+    Hotwire among it, re-learned what the terminal always knew: send the document,
+    let it carry the moves.</p>
+  </div>
+
+  <div class="prose">
+    <p>Now the two stories stand side by side. The terminal never stopped working;
+    the industry built a parallel path and forgot why it existed.</p>
+
+    <p>Ask what each decade actually bought. Which parts of the JSON decade were
+    necessity, and which were fashion?</p>
+
+    <p>That is Section 03, where both architectures sit on the same table, weighed in
+    the open.</p>
+
+    <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
+    by Carson Gross, Adam Stepinski, and Deniz Akşimşek, continues this history.</p>
+  </div>
+
+</section>
+
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  <a class="section-link" href="0001-hypermedia-revival.html">← Back to section 01: the machine that prints its own manual</a>
+  <p class="closing">sections built one by one · revision 1</p>
+</footer>
+
+<script>
+(function chrome() {
+  var progress = document.getElementById('progress');
+  var cur = document.getElementById('cur-section');
+  var doc = document.documentElement;
+
+  function onScroll() {
+    var h = doc.scrollHeight - window.innerHeight;
+    var p = h > 0 ? doc.scrollTop / h : 0;
+    progress.style.width = (p * 100).toFixed(1) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  var sec = document.getElementById('how-the-idea-got-lost');
+  if (sec && 'IntersectionObserver' in window) {
+    var k = sec.querySelector('.section-head .kicker');
+    var h = sec.querySelector('.section-head h2');
+    cur.textContent = (k ? k.textContent + ' · ' : '') + (h ? h.childNodes[0].textContent.trim() : '');
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        cur.classList.toggle('is-active', e.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    obs.observe(sec);
+  }
+})();
+
+(function reveal() {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    [].forEach.call(els, function (el) { el.classList.add('in'); });
+    return;
+  }
+  var bad = [];
+  [].forEach.call(els, function (el) { bad.push(el); });
+  function force() {
+    bad.forEach(function (el) { el.classList.add('in'); });
+    bad = [];
+  }
+  window.addEventListener('load', function () { setTimeout(force, 2500); });
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        var i = bad.indexOf(e.target);
+        if (i >= 0) bad.splice(i, 1);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0 });
+  [].forEach.call(els, function (el) { obs.observe(el); });
+})();
+</script>
+</body>
+</html>
