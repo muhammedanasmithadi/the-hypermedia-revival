@@ -85,7 +85,7 @@
         <span class="t-dot" aria-hidden="true"></span>
         <span class="t-body">
           <span class="t-year">1965</span>
-          <span class="t-line"><strong>Nelson names it</strong><span class="t-note">Two words: hypertext, and media that join.</span></span>
+          <span class="t-line"><strong>Nelson names it</strong><span class="t-note">Two words: hypertext, and the same idea with audio and video.</span></span>
         </span>
       </li>
       <li>
@@ -121,37 +121,39 @@
   </div>
 
   <div class="prose">
-    <p>Now the detour. Enterprise software wants reliable conversations, so it freezes
+    <p>Now the driver. Enterprise software wants reliable conversations, so it freezes
     them into contracts. A schema describes every message; a stack generates the code.
     Servers answer with data, never with the next move.</p>
 
     <p>In 2005 the shift happens inside a page, invisibly. AJAX lets a site update in
     place without a reload, and the word &ldquo;API&rdquo; replaces
-    &ldquo;server&rdquo; in ordinary talk. Nobody votes to stop sending controls. Each
-    request quietly chooses data instead.</p>
+    &ldquo;server&rdquo; in ordinary talk. JSON parses natively in JavaScript, so the
+    browser reads data without a document&rsquo;s controls. Nobody votes to stop sending
+    controls. Each request quietly chooses data instead.</p>
 
-    <p>You tap a native app, and it speaks an app&rsquo;s language. You watch a screen
+    <p>By 2008 you tap a native app, and it speaks an app&rsquo;s language. You watch a
+    screen
     animate where a full reload cannot follow. Teams that work separately want
     contracts they can test. Each reason holds on its own.</p>
   </div>
 
-  <div class="ledger reveal" role="group" aria-label="The JSON decade, sorted into what earned its place and what became habit">
-    <div class="ledger-head">the JSON decade · sorted with the loop in view</div>
+  <div class="ledger reveal" id="ledger" role="group" aria-label="The JSON decade, sorted into what earned its place and what became habit">
+    <div class="ledger-head"><span class="ledger-title">the JSON decade · sorted with the loop in view</span></div>
     <div class="ledger-cols">
       <div class="ledger-col">
         <div class="ledger-col-name">Necessity</div>
         <ul>
-          <li>native apps, speaking an app&rsquo;s language</li>
-          <li>screens that animate in place</li>
-          <li>a contract both sides can test</li>
+          <li data-side="n">native apps, speaking an app&rsquo;s language</li>
+          <li data-side="n">screens that animate in place</li>
+          <li data-side="n">a contract both sides can test</li>
         </ul>
       </div>
       <div class="ledger-col">
         <div class="ledger-col-name">Fashion</div>
         <ul>
-          <li>answers that carry data, never the next move</li>
-          <li>a spec kept outside the document</li>
-          <li>clients that must be told again and shipped</li>
+          <li data-side="f">answers that carry data, never the next move</li>
+          <li data-side="f">a spec kept outside the document</li>
+          <li data-side="f">clients that must be told again and shipped</li>
         </ul>
       </div>
     </div>
@@ -160,7 +162,7 @@
   <div class="prose">
     <p>The loss happens in how the word gets used. Fielding&rsquo;s acronym, HATEOAS,
     shrinks to a JSON field of links. A link you must already know is a note, not a
-    control. Strawman &ldquo;REST&rdquo; comes to mean facts alone, spelled with
+    control. REST comes to mean a straw man: facts alone, spelled with
     verbs.</p>
   </div>
 
@@ -180,7 +182,8 @@
     author. The behavior does not.</p>
 
     <p>2011 seals the bargain. Swagger standardizes the shape of the conversation,
-    field by field. Renamed OpenAPI in 2016, it still gates the conversation today.
+    field by field. A decade of WSDL had worn the industry down; a plain testable shape
+    came as relief. Renamed OpenAPI in 2016, it still gates the conversation today.
     Teams receive exact expectations and give up the open-ended loop. The document
     carrying controls cedes to the schema describing data.</p>
 
@@ -333,6 +336,144 @@
   } else {
     play();
   }
+})();
+
+(function ledger() {
+  var root = document.getElementById('ledger');
+  var head = root && root.querySelector('.ledger-head');
+  var cols = root && root.querySelector('.ledger-cols');
+  var uls = cols ? cols.querySelectorAll('.ledger-col ul') : [];
+  var facts = [];
+  var pool, check, again, res;
+  var selected = null;
+  var checked = false;
+  if (!root || !head || !cols || uls.length < 2) return;
+
+  Array.prototype.forEach.call(uls[0].querySelectorAll('li'), function (li) {
+    facts.push({ txt: li.textContent.trim(), side: 'n' });
+  });
+  Array.prototype.forEach.call(uls[1].querySelectorAll('li'), function (li) {
+    facts.push({ txt: li.textContent.trim(), side: 'f' });
+  });
+  uls.forEach(function (ul) { ul.innerHTML = ''; });
+
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function chipFor(f) {
+    var li = document.createElement('li');
+    li.className = 'ledger-item';
+    li.dataset.side = f.side;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = f.txt;
+    b.addEventListener('click', function () {
+      li.classList.remove('ok', 'bad');
+      if (li.parentNode === pool) {
+        if (selected) selected.classList.remove('selected');
+        selected = li;
+        li.classList.add('selected');
+        root.classList.add('sorting');
+      } else {
+        clearSel();
+        pool.appendChild(li);
+        root.classList.remove('sorting');
+      }
+    });
+    li.appendChild(b);
+    return li;
+  }
+
+  function clearSel() {
+    if (selected) selected.classList.remove('selected');
+    selected = null;
+  }
+
+  function placeInto(col) {
+    if (!selected || selected.parentNode !== pool) return;
+    selected.classList.remove('selected');
+    col.querySelector('ul').appendChild(selected);
+    selected = null;
+    root.classList.remove('sorting');
+  }
+
+  function clearErrAll() {
+    root.querySelectorAll('.ledger-item').forEach(function (li) {
+      li.classList.remove('ok', 'bad');
+    });
+  }
+
+  function render() {
+    checked = false;
+    clearSel();
+    clearErrAll();
+    root.classList.remove('sorting');
+    uls.forEach(function (ul) { ul.innerHTML = ''; });
+    pool.innerHTML = '';
+    shuffle(facts).forEach(function (f) { pool.appendChild(chipFor(f)); });
+    res.textContent = '';
+  }
+
+  pool = document.createElement('ul');
+  pool.className = 'ledger-pool';
+  pool.setAttribute('aria-label', 'Reasons to sort: select one, then choose a column');
+  cols.parentNode.insertBefore(pool, cols);
+
+  Array.prototype.forEach.call(cols.querySelectorAll('.ledger-col'), function (col) {
+    col.addEventListener('click', function () { placeInto(col); });
+  });
+
+  var bar = document.createElement('div');
+  bar.className = 'ledger-controls';
+  check = document.createElement('button');
+  check.type = 'button';
+  check.className = 'ledger-btn primary';
+  check.textContent = 'Check my sort';
+  again = document.createElement('button');
+  again.type = 'button';
+  again.className = 'ledger-btn';
+  again.textContent = 'Start over';
+  res = document.createElement('div');
+  res.className = 'ledger-result';
+  res.setAttribute('aria-live', 'polite');
+  bar.appendChild(check);
+  bar.appendChild(again);
+  root.appendChild(bar);
+  root.appendChild(res);
+
+  var hint = document.createElement('span');
+  hint.className = 'ledger-hint';
+  hint.textContent = 'select a reason, then choose a column';
+  head.appendChild(hint);
+
+  check.addEventListener('click', function () {
+    var placed = 0, right = 0;
+    for (var u = 0; u < uls.length; u++) {
+      var want = u === 0 ? 'n' : 'f';
+      Array.prototype.forEach.call(uls[u].querySelectorAll('li'), function (li) {
+        placed++;
+        var ok = li.dataset.side === want;
+        right += ok ? 1 : 0;
+        li.classList.toggle('ok', ok);
+        li.classList.toggle('bad', !ok);
+      });
+    }
+    checked = true;
+    res.textContent = placed === 0
+      ? 'Place the reasons first.'
+      : right === facts.length
+        ? '6 of 6. Necessity and fashion, weighed in the open.'
+        : right + ' of ' + facts.length + ' in the right column.';
+  });
+
+  again.addEventListener('click', render);
+  render();
 })();
 </script>
 </body>

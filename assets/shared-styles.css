@@ -1206,6 +1206,128 @@ table.matrix .fit-weak {
   padding-bottom: 0.5em;
 }
 
+.ledger-title {
+  display: inline-block;
+}
+
+.ledger-hint {
+  display: none;
+  font-size: 0.9em;
+  color: #8a8a8a;
+}
+
+.js .ledger-hint {
+  display: inline;
+}
+
+.ledger-pool {
+  list-style: none;
+  margin: 0;
+  padding: 0.8em 1em 0.4em 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  border-bottom: 1px solid #333333;
+}
+
+.ledger-item {
+  list-style: none;
+}
+
+.chip {
+  font: inherit;
+  font-size: 0.85em;
+  padding: 0.45em 0.9em;
+  border-radius: 999px;
+  border: 1px solid #3a3a3a;
+  background: #262626;
+  color: #d6d6d6;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--brand);
+}
+
+.ledger-item.selected .chip {
+  border-color: var(--link-hover);
+  background: #20385c;
+  color: #ffffff;
+}
+
+.ledger-col li.ledger-item {
+  padding: 0.2em 0;
+}
+
+.ledger-col li.ledger-item::before {
+  content: none;
+}
+
+.ledger-item.ok .chip {
+  border-color: #2e7d32;
+  background: #1c2f1f;
+  color: #a5d6a7;
+}
+
+.ledger-item.bad .chip {
+  border-color: #a03434;
+  background: #3a1f1f;
+  color: #e8a0a0;
+}
+
+.ledger.sorting .ledger-col {
+  cursor: pointer;
+}
+
+.ledger.sorting .ledger-col:hover {
+  background: #22262c;
+}
+
+.ledger-controls {
+  display: flex;
+  gap: 0.6em;
+  flex-wrap: wrap;
+  padding: 0.9em 1em 0.1em 1em;
+}
+
+.ledger-result {
+  padding: 0.4em 1em 1em 1em;
+  font-size: 0.9em;
+  color: #c9c9c9;
+  min-height: 1.2em;
+}
+
+.ledger-btn {
+  font: inherit;
+  font-size: 0.85em;
+  padding: 0.45em 1.1em;
+  border-radius: 6px;
+  border: 1px solid #3a3a3a;
+  background: #262626;
+  color: #d6d6d6;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.ledger-btn.primary {
+  border-color: var(--brand);
+  background: #1f3352;
+  color: #ffffff;
+}
+
+.ledger-btn:hover {
+  border-color: var(--brand);
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .ledger-btn {
+    transition: none;
+  }
+}
+
 .ledger-col ul {
   list-style: none;
   margin: 0;
