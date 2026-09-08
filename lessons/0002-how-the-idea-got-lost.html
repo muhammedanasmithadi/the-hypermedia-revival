@@ -283,7 +283,6 @@
   var REST = 'Step through the years. Watch who holds the next move.';
   var i = -1;
   var timer = null;
-  var played = false;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!widget || !cap || reduced) return;
 
@@ -300,22 +299,13 @@
   }
 
   function tick() {
-    i++;
+    i = (i + 1) % steps.length;
     render();
-    timer = i >= steps.length - 1
-      ? setTimeout(finish, 2400)
-      : setTimeout(tick, 2400);
-  }
-
-  function finish() {
-    timer = null;
-    i = -1;
-    render();
-    played = true;
+    timer = setTimeout(tick, 2400);
   }
 
   function play() {
-    if (played || timer) return;
+    if (timer) return;
     tick();
   }
 
@@ -326,7 +316,6 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) {
           play();
-          obs.unobserve(e.target);
         } else {
           stop();
         }
