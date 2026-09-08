@@ -1098,8 +1098,8 @@ table.matrix .fit-weak {
 .timeline li::before {
   content: "";
   position: absolute;
-  left: -0.55em;
-  top: 1.15em;
+  left: -6px;
+  top: 0.96em;
   width: 10px;
   height: 10px;
   border-radius: 50%;
