@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#171717">
+<meta name="description" content="A short, plain, interactive explanation of hypermedia: documents that carry their own controls.">
+<title>Hypermedia: the architecture the web was built on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232052bb'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='17' font-weight='600' text-anchor='middle' fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="../assets/shared-styles.css">
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Back to top">Hypermedia</a>
+  <span class="cur-section" id="cur-section" aria-live="polite">Section 01 · The machine that prints its own manual</span>
+</header>
+
+<main class="doc" id="top">
+
+<header class="masthead">
+  <p class="post-date">September 2026</p>
+  <h1>Hypermedia: the architecture <em>the web was built on</em></h1>
+  <p class="dek">A short, plain, interactive explanation of the web&rsquo;s original
+  architecture. It is the architecture we still build on, mostly without its name.
+  Click the machines; they teach the ideas.</p>
+  <p class="byline">
+    <span>working draft 0.2</span>
+    <span>section 1 of 6</span>
+    <span>no frameworks, no hype</span>
+  </p>
+</header>
+
+<div class="article">
+
+<section id="s1" class="section">
+
+  <div class="section-head">
+    <p class="kicker">Section 01</p>
+    <h2>The machine that prints its own manual
+      <a href="#s1" class="hanchor" aria-label="Anchor">
+        <svg width="14" height="14" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="6.5" stroke="#5B9CF7" stroke-width="2.6"></circle>
+          <circle cx="20" cy="20" r="6.5" stroke="#5B9CF7" stroke-width="2.6"></circle>
+          <path d="M9.5 22.5 L22.5 9.5" stroke="#5B9CF7" stroke-width="2.6"></path>
+        </svg>
+      </a>
+    </h2>
+  </div>
+
+  <div class="prose">
+    <p class="lede">Here is a machine you have never met: a card payment terminal at
+    a supermarket checkout. You are a stranger to it. You have no manual, no training,
+    and no intention of reading one.</p>
+
+    <p>You begin anyway. You insert the card, tap the screen, and the terminal offers
+    exactly the moves it allows right now, and nothing else. Choose one, and the next
+    screen shows the moves that remain. It never shows you a move you cannot take. It
+    never hands you the manual in full.</p>
+
+    <p>Recognize the pattern? You just described links and forms. Every web page runs on
+    them. Hold that thought, and first operate the machine. This terminal is pretending to
+    be the whole web.</p>
+  </div>
+
+  <div class="kiosk reveal" id="kiosk" aria-label="A small terminal that changes its options as you act">
+    <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
+    <div class="kiosk-head">
+      <span>terminal · training unit</span>
+      <span class="k-now" id="kiosk-state-label">welcome</span>
+    </div>
+    <div class="kiosk-screen">
+      <div class="k-title" id="kiosk-title" aria-live="polite">Card payment terminal</div>
+      <div class="k-msg" id="kiosk-msg">This little machine shows you only what you may do right now.</div>
+      <div class="k-note" id="kiosk-note" aria-live="polite"></div>
+    </div>
+    <div class="kiosk-keys" id="kiosk-keys"></div>
+    <div class="kiosk-meta">
+      <span class="kiosk-balance" id="kiosk-balance" aria-live="polite">balance: $40</span>
+      <button class="kiosk-reset" type="button" id="kiosk-reset">start over</button>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Notice what the terminal does. It holds the rules, not you. It shows cash-out
+    options only after it knows your balance. Deposit ten dollars, and it rebuilds your
+    menu; a withdrawal it refused before now appears. The terminal prints its own
+    manual, one screen at a time, and it prints each page only when you can act on it.</p>
+
+    <p>The web is the same machine, run at a distance. A website is a server
+    with a screen you hold. When it answers, the reply carries <strong>both</strong> the
+    facts and the actions in one body: the balance and the buttons.</p>
+
+    <p>Before you run the experiment, make a guess. The server knows your balance:
+    forty dollars. Two kinds of reply exist. One returns the fact alone. One returns the
+    fact with the buttons. Which one works without instructions? Answer now, then choose a
+    reply type.</p>
+  </div>
+
+  <div class="experiment reveal" id="exp" aria-label="Experiment: choose a reply type and ask a server for your balance">
+    <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
+    <div class="x-bar">
+      <span class="x-reqline" id="x-reqline">GET <a href="#exp">/account/balance</a></span>
+      <span class="x-reqnote" id="x-reqnote" aria-live="polite"></span>
+      <span class="x-mode" role="group" aria-label="Reply mode">
+        <button class="x-mode-btn on" data-mode="json" type="button" aria-pressed="true">JSON</button>
+        <button class="x-mode-btn" data-mode="html" type="button" aria-pressed="false">HTML</button>
+      </span>
+    </div>
+    <div class="x-body" id="x-body"></div>
+  </div>
+
+  <div class="prose">
+    <p>Both replies carry the same fact: forty dollars. The toggle switches between them
+    at any time. Only one arrives with its own controls. That reply is a
+    <strong>document</strong>. The word for documents like this one is
+    <strong>hypermedia</strong>.</p>
+
+    <p>Define it properly once, while the two replies are still on screen. A hypermedia
+    system sends <strong>information and controls together, in one document</strong>, so
+    the document teaches you what to do through the buttons it carries. The controls
+    are links, buttons, and forms. The industry name for controls that
+    drive the application forward is HATEOAS: hypermedia as the engine of application
+    state.</p>
+
+    <p>Look at the other reply. A raw JSON number carries one fact and no
+    controls. To use it, the <em>client</em> must already know the moves, from a spec or
+    from a conversation no one wrote down. The manual has moved off the document and into
+    the code that receives it, where it stays until someone updates it.</p>
+
+    <p>Browse a GitHub repository and you hold documents with buttons. Ask its API
+    and you get JSON.</p>
+
+    <p>If your balance changes at midnight, which client survives? The one that reads
+    documents. It does what the next page offers. The JSON client must be told again, and
+    rebuilt, and shipped. You have now watched it twice: the terminal changed its menu,
+    and the server changed its reply.</p>
+  </div>
+
+  <div class="prose">
+    <p>The machine that prints its own manual has a name and an architect. Roy Fielding
+    described it in his doctoral dissertation in 2000, then again in 2008. By then the
+    industry had borrowed his word, REST, and attached it to a very different machine.</p>
+
+    <p>Here is his definition, in his own words. You already performed it twice: in the
+    terminal, and in the experiment.</p>
+  </div>
+
+  <figure class="figure-quote reveal" role="group" aria-label="Quote from Roy Fielding">
+    <blockquote cite="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-718">
+      <p>When I say hypertext, I mean the simultaneous presentation of information and controls such that
+        the information becomes the affordance through which the user (or automaton)
+        obtains choices and selects actions.</p>
+    </blockquote>
+    <figcaption>
+      <span class="who">Roy Fielding</span> in a comment on
+      <cite>REST APIs must be hypertext-driven</cite> (2008) ·
+      <a href="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-718" rel="noopener">read the comment</a>
+    </figcaption>
+  </figure>
+
+  <div class="prose">
+    <p>He defines hypertext, not hypermedia. Hypermedia is the same idea with audio and
+    video in the mix. Most working systems drop the distinction, and this page does
+    too.</p>
+  </div>
+
+  <div class="prose">
+    <p>Look at the source link above. It is a control inside the very document that is
+    explaining controls to you. The page teaches by doing. Its quote carries its own next
+    move. Here is the markup behind it:</p>
+  </div>
+
+  <figure class="code-block reveal">
+    <figcaption class="code-title"><span>the markup behind the quote</span><span class="code-lang">html</span></figcaption>
+    <pre tabindex="0"><span class="tok-k">&lt;figure</span> <span class="tok-a">class</span>=<span class="tok-s">"figure-quote"</span><span class="tok-k">&gt;</span>
+  <span class="tok-k">&lt;blockquote</span> <span class="tok-a">cite</span>=<span class="tok-s">"https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-718"</span><span class="tok-k">&gt;</span>
+    <span class="tok-k">&lt;p&gt;</span>When I say hypertext, I mean the simultaneous presentation of information and controls…<span class="tok-k">&lt;/p&gt;</span>
+  <span class="tok-k">&lt;/blockquote&gt;</span>
+  <span class="tok-k">&lt;figcaption&gt;</span>Roy Fielding in a comment on <span class="tok-k">&lt;cite&gt;</span>REST APIs must be hypertext-driven<span class="tok-k">&lt;/cite&gt;</span> (2008)<span class="tok-k">&lt;/figcaption&gt;</span>
+<span class="tok-k">&lt;/figure&gt;</span></pre>
+  </figure>
+
+  <div class="prose">
+    <p>One link tells the browser what it may do next. No manual required. The document
+    knows its own controls, by construction.</p>
+
+    <p>Count the plain controls on this page: the section anchor, the GET line above,
+    the source link. The browser resolves each one by itself. The page runs no custom
+    code for these controls. That is the whole job.</p>
+
+    <p>Now take a wider view. Everything a hypermedia application does is one loop,
+    repeating. Read it as a sentence, then step through it yourself.</p>
+  </div>
+
+  <div class="loop reveal" id="loop" aria-label="The hypermedia loop, one step at a time">
+    <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
+    <div class="loop-steps" id="loop-steps"></div>
+    <div class="loop-caption" id="loop-caption" aria-live="polite"></div>
+    <div class="loop-controls">
+      <button class="loop-btn primary" id="loop-next" type="button">Advance the loop »</button>
+      <button class="loop-btn" id="loop-reset" type="button">Reset</button>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Request. Document. Choice. Next document. The machine advances its own state only
+    when it answers you, and nothing else drives a hypermedia application.</p>
+
+    <p>Three ideas survive this section, and the rest of this document builds on them:</p>
+  </div>
+
+  <div class="takeaways reveal">
+    <div class="takeaway">
+      <span class="num">01</span>
+      <strong>The document is the point of contact.</strong>
+      The interface is delivered, not rebuilt.
+    </div>
+    <div class="takeaway">
+      <span class="num">02</span>
+      <strong>The server is the logical center.</strong>
+      State becomes options; the client renders.
+    </div>
+    <div class="takeaway">
+      <span class="num">03</span>
+      <strong>The manual rides along.</strong>
+      The client fetches and follows; it never guesses.
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>This is a choice, not a law. Most software today answers with JSON and rebuilds
+    its own interface in the browser. It works, at the price of a client that must be
+    rewritten and shipped whenever the rules change. The same trade-off
+    buys offline apps and far richer interactivity.</p>
+
+    <p>So here is the question this document chases: the web shipped with documents
+    and controls built in. Why did half of our industry spend a decade carefully ripping
+    the controls out?</p>
+
+    <p>That is Section 02, where the idea came from and how it got lost.</p>
+
+    <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
+    by Carson Gross, Adam Stepinski, and Deniz Akşimşek, continues this section.</p>
+  </div>
+
+</section>
+
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  <p class="closing">working draft · sections built one by one · dev preview</p>
+</footer>
+
+<script>
+(function chrome() {
+  var progress = document.getElementById('progress');
+  var cur = document.getElementById('cur-section');
+  var doc = document.documentElement;
+
+  function onScroll() {
+    var h = doc.scrollHeight - window.innerHeight;
+    var p = h > 0 ? doc.scrollTop / h : 0;
+    progress.style.width = (p * 100).toFixed(1) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  var sec = document.getElementById('s1');
+  if (sec && 'IntersectionObserver' in window) {
+    var k = sec.querySelector('.section-head .kicker');
+    var h = sec.querySelector('.section-head h2');
+    cur.textContent = (k ? k.textContent + ' · ' : '') + (h ? h.childNodes[0].textContent.trim() : '');
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        cur.classList.toggle('is-active', e.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    obs.observe(sec);
+  }
+})();
+
+(function reveal() {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    [].forEach.call(els, function (el) { el.classList.add('in'); });
+    return;
+  }
+  var bad = [];
+  [].forEach.call(els, function (el) { bad.push(el); });
+  function force() {
+    bad.forEach(function (el) { el.classList.add('in'); });
+    bad = [];
+  }
+  window.addEventListener('load', function () { setTimeout(force, 2500); });
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        var i = bad.indexOf(e.target);
+        if (i >= 0) bad.splice(i, 1);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0 });
+  [].forEach.call(els, function (el) { obs.observe(el); });
+})();
+
+(function kiosk() {
+  var el = document.getElementById('kiosk');
+  if (!el) return;
+  var title = document.getElementById('kiosk-title');
+  var msg = document.getElementById('kiosk-msg');
+  var note = document.getElementById('kiosk-note');
+  var keys = document.getElementById('kiosk-keys');
+  var bal = document.getElementById('kiosk-balance');
+  var label = document.getElementById('kiosk-state-label');
+  var balance = 40;
+  var pending = 0;
+
+  function text(v) { return typeof v === 'function' ? v() : v; }
+  function setBal() { bal.textContent = 'balance: $' + balance; }
+
+  function flash(str) {
+    note.textContent = str;
+    note.classList.add('show');
+  }
+
+  function act(b) {
+    note.textContent = '';
+    note.classList.remove('show');
+    if (b.leave) b.leave();
+    setBal();
+    var next = typeof b.next === 'function' ? b.next() : b.next;
+    var s = states[next];
+    label.textContent = s.key;
+    title.textContent = s.title;
+    msg.textContent = text(s.msg);
+    keys.textContent = '';
+    s.buttons.forEach(function (btn) {
+      var tag = document.createElement('button');
+      tag.className = 'kiosk-btn';
+      tag.type = 'button';
+      tag.textContent = btn.label;
+      tag.addEventListener('click', function () { act(btn); });
+      keys.appendChild(tag);
+    });
+    if (b.note) flash(text(b.note));
+  }
+
+  var states = {
+    welcome: {
+      key: 'welcome',
+      title: 'Card payment terminal',
+      msg: 'This little machine shows you only what you may do right now.',
+      buttons: [{ label: 'Insert card', next: 'pin' }]
+    },
+    pin: {
+      key: 'pin',
+      title: 'Enter your PIN',
+      msg: 'It reads only what it needs, and only in this state.',
+      buttons: [{ label: 'OK · PIN correct', next: 'menu' }]
+    },
+    menu: {
+      key: 'menu',
+      title: 'Select an action',
+      msg: function () { return 'You have $' + balance + '. Your options follow from that.'; },
+      buttons: [
+        { label: 'Check balance', next: 'balance' },
+        { label: 'Withdraw $50', next: function () { return balance >= 50 ? 'amount50' : 'low'; },
+          note: function () { return balance >= 50 ? null : 'The machine refused: you only have $' + balance + '.'; } },
+        { label: 'Deposit $10', next: 'deposit' },
+        { label: 'Remove card', next: 'bye' }
+      ]
+    },
+    balance: {
+      key: 'balance',
+      title: 'Your balance',
+      msg: function () { return 'You have $' + balance + '. That is all this screen has to say.'; },
+      buttons: [{ label: 'Back to menu', next: 'menu' }]
+    },
+    low: {
+      key: 'low',
+      title: 'Not this time',
+      msg: function () { return 'You asked for $50, but you have $' + balance + '. No button is printed for a move the state does not allow.'; },
+      buttons: [
+        { label: 'Withdraw $20', next: 'amount20' },
+        { label: 'Deposit first', next: 'deposit' },
+        { label: 'Back to menu', next: 'menu' }
+      ]
+    },
+    amount50: {
+      key: 'withdraw',
+      title: 'Dispensing $50',
+      msg: 'The state allowed this one. Take the money.',
+      buttons: [{ label: 'Take cash',
+        next: 'after',
+        leave: function () { balance -= 50; },
+        note: function () { return 'You now have $' + balance + '.'; } }]
+    },
+    amount20: {
+      key: 'withdraw',
+      title: 'Dispensing $20',
+      msg: 'The state allowed this one. Take the money.',
+      buttons: [{ label: 'Take cash',
+        next: 'after',
+        leave: function () { balance -= 20; },
+        note: function () { return 'You now have $' + balance + '.'; } }]
+    },
+    after: {
+      key: 'paid-out',
+      title: 'Done',
+      msg: function () { return 'Your balance is now $' + balance + '. Watch the menu: your options just changed.'; },
+      buttons: [{ label: 'Back to menu', next: 'menu' }]
+    },
+    deposit: {
+      key: 'deposit',
+      title: 'Deposit $10',
+      msg: 'The menu rebuilds itself on the new balance.',
+      buttons: [
+        { label: 'Add the money',
+          next: 'menu',
+          leave: function () { balance += 10; },
+          note: function () { return 'Menu rebuilt: $' + balance + '. Withdraw $50 now appears.'; } },
+        { label: 'Cancel', next: 'menu' }
+      ]
+    },
+    bye: {
+      key: 'bye',
+      title: 'Take your card',
+      msg: 'Goodbye. Notice: the machine never let you close the account. That move was not in any menu.',
+      buttons: [{ label: 'Use it again', next: 'welcome', leave: function () { balance = 40; } }]
+    }
+  };
+
+  act({ next: 'welcome' });
+  document.getElementById('kiosk-reset').addEventListener('click', function () {
+    act({ next: 'welcome', leave: function () { balance = 40; } });
+  });
+})();
+
+(function experiment() {
+  var el = document.getElementById('exp');
+  if (!el) return;
+  var body = document.getElementById('x-body');
+  var note = document.getElementById('x-reqnote');
+  var btns = [].slice.call(document.querySelectorAll('.x-mode-btn'));
+  var mode = 'json';
+  var timer = null;
+
+  function bindActs(scope) {
+    [].forEach.call(scope.querySelectorAll('.x-act'), function (b) {
+      b.addEventListener('click', function () {
+        b.parentNode.parentNode.querySelector('.x-status').textContent =
+          b.getAttribute('data-act') + ' received · the server renders the next document';
+      });
+    });
+  }
+
+  function docMarkup() {
+    return '<div class="x-doc">' +
+      '<div class="x-doc-title">Bank of Documents</div>' +
+      '<div class="x-doc-bal">Balance: $40</div>' +
+      '<div class="x-actions">' +
+      '<button class="x-act" type="button" data-act="Deposit">Deposit</button>' +
+      '<button class="x-act" type="button" data-act="Statement">Statement</button>' +
+      '<button class="x-act" type="button" data-act="Close">Close</button>' +
+      '</div>' +
+      '<div class="x-status" aria-live="polite"></div>' +
+      '</div>';
+  }
+
+  function waiting() {
+    body.innerHTML = '<div class="x-pane"><div class="x-type">no request yet</div>' +
+      '<p>Choose a reply type to send the request.</p></div>';
+  }
+
+  function renderReply() {
+    if (mode === 'json') {
+      body.innerHTML = '<div class="x-pane"><div class="x-type">application/json</div>' +
+        '<div class="x-pre">{ "balance": 40 }</div>' +
+        '<p class="x-note">One fact. No controls. A client that receives this must already know the moves.</p></div>';
+    } else {
+      body.innerHTML = '<div class="x-pane"><div class="x-type">text/html</div>' +
+        docMarkup() +
+        '<p class="x-note">Controls came with the fact. The document names its own next moves.</p></div>';
+    }
+    bindActs(body);
+  }
+
+  function send() {
+    note.textContent = 'sending…';
+    body.innerHTML = '<div class="x-pane"><div class="x-type">in transit</div>' +
+      '<div class="x-sending">GET /account/balance …</div></div>';
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      note.textContent = '→ 200 OK · ' + (mode === 'json' ? 'application/json' : 'text/html');
+      renderReply();
+    }, 320);
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      btns.forEach(function (x) {
+        x.classList.toggle('on', x === b);
+        x.setAttribute('aria-pressed', String(x === b));
+      });
+      mode = b.getAttribute('data-mode');
+      send();
+    });
+  });
+
+  waiting();
+})();
+
+(function loop() {
+  var el = document.getElementById('loop');
+  if (!el) return;
+  var steps = [
+    { t: 'Request', s: 'user picks a control', c: 'The user clicks a link or a button. The browser turns that control into a request to the server.' },
+    { t: 'Document', s: 'facts + controls', c: 'The server reads the current state and answers with one document: the facts, and the controls those facts allow.' },
+    { t: 'Choice', s: 'user selects a move', c: 'The user picks one of the controls in the document. That pick becomes the next request.' },
+    { t: 'Next document', s: 'server advances state', c: 'The server advances its state and answers with a fresh document. The loop repeats from Request.' }
+  ];
+  var tray = document.getElementById('loop-steps');
+  var cap = document.getElementById('loop-caption');
+  var next = document.getElementById('loop-next');
+  var reset = document.getElementById('loop-reset');
+  var cur = 0;
+
+  function paint() {
+    tray.innerHTML = '';
+    steps.forEach(function (s, i) {
+      var st = document.createElement('div');
+      st.className = 'loop-step' + (i === cur ? ' on' : '');
+      st.innerHTML = '<div class="ls-t"></div><div class="ls-s"></div>';
+st.querySelector('.ls-t').textContent = s.t;
+        st.querySelector('.ls-s').textContent = s.s;
+        tray.appendChild(st);
+        if (i < steps.length - 1) {
+          var ar = document.createElement('div');
+          ar.className = 'loop-arrow';
+          ar.setAttribute('aria-hidden', 'true');
+          ar.textContent = '→';
+          tray.appendChild(ar);
+        }
+    });
+    cap.textContent = steps[cur].c;
+  }
+
+  next.addEventListener('click', function () {
+    cur = (cur + 1) % steps.length;
+    paint();
+  });
+  reset.addEventListener('click', function () {
+    cur = 0;
+    paint();
+  });
+
+  paint();
+})();
+
+/* DEV ONLY (auto reload; remove before shipping). */
+(function liveReload() {
+  var last = null;
+  setInterval(function () {
+    fetch(location.href, { cache: 'no-store' })
+      .then(function (r) { return r.headers.get('Last-Modified'); })
+      .then(function (m) {
+        if (m && m !== last) {
+          if (last !== null) location.reload();
+          last = m;
+        }
+      })
+      .catch(function () {});
+  }, 1000);
+})();
+</script>
+</body>
+</html>
