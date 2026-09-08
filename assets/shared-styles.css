@@ -1236,7 +1236,7 @@ table.matrix .fit-weak {
 
 .chip {
   font: inherit;
-  font-size: 0.85em;
+  font-size: 0.78em;
   padding: 0.45em 0.9em;
   border-radius: 999px;
   border: 1px solid #3a3a3a;
@@ -1355,7 +1355,7 @@ table.matrix .fit-weak {
   background: var(--brand);
 }
 
-@media (max-width: 560px) {
+@media (max-width: 720px) {
   .ledger-cols {
     grid-template-columns: 1fr;
   }
