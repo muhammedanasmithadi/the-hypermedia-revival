@@ -57,7 +57,7 @@
   <div class="prose">
     <p class="lede">The loop you stepped through did not appear in 2020. Someone invented
     it in 1965, someone named it in 2000, and half of an industry forgot it by 2011.
-    This section walks that path, and it ends asking what was actually lost.</p>
+    Watch who carries the next move, and where it lands.</p>
 
     <p>Ted Nelson coined two words in 1965: hypertext, and the broader idea,
     hypermedia. Branching text. Media that join. Documents that point at other
@@ -68,12 +68,12 @@
     and controls, and that mix was the part that would get lost.</p>
 
     <p>In 2000 Roy Fielding named that style in his doctoral dissertation: REST.
-    Section 01 quoted his words. Here is the part most copies missed: the controls
+    You met his words in Section 01. Here is the part most copies missed: the controls
     must travel with the facts, or the architecture is not REST.</p>
   </div>
 
   <div class="prose">
-    <p>Fix the dates in a line, then read the beats from top to bottom.</p>
+    <p>Run your eye down the rail. At each stop, ask who holds the next move.</p>
   </div>
 
   <ol class="timeline reveal" aria-label="The arc: from two words in 1965 to a data-only contract in 2011">
@@ -115,35 +115,56 @@
   </ol>
 
   <div class="prose">
-    <p>Then came the detour. Enterprise software in the 2000s wanted reliability, so
-    it standardized the conversation into rigid contracts. A schema described every
-    message; a stack generated the code. The server answered with data, never with
-    the next move.</p>
+    <p>Now the detour. Enterprise software wants reliable conversations, so it freezes
+    them into contracts. A schema describes every message; a stack generates the code.
+    Servers answer with data, never with the next move.</p>
 
-    <p>In 2005 the shift happened inside a page, invisibly. AJAX let a site update in
-    place without a reload, and the word &ldquo;API&rdquo; replaced
-    &ldquo;server&rdquo; in ordinary talk. Nobody voted to stop sending controls. Each
-    request quietly chose data instead.</p>
+    <p>In 2005 the shift happens inside a page, invisibly. AJAX lets a site update in
+    place without a reload, and the word &ldquo;API&rdquo; replaces
+    &ldquo;server&rdquo; in ordinary talk. Nobody votes to stop sending controls. Each
+    request quietly chooses data instead.</p>
 
-    <p>Name the reasons plainly before judging. Native apps needed a server that
-    spoke their language. Screens wanted movement that full reloads could not give.
-    Separate teams wanted contracts they could test. Each reason made sense on its
-    own.</p>
+    <p>You tap a native app, and it speaks an app&rsquo;s language. You watch a screen
+    animate where a full reload cannot follow. Teams that work separately want
+    contracts they can test. Each reason holds on its own.</p>
+  </div>
 
-    <p>The loss happened in how the word got used. Fielding&rsquo;s acronym, HATEOAS,
-    shrank to a JSON field of links. A link you must already know is a note, not a
-    control. Strawman &ldquo;REST&rdquo; came to mean facts alone, spelled with
+  <div class="ledger reveal" role="group" aria-label="The JSON decade, sorted into what earned its place and what became habit">
+    <div class="ledger-head">the JSON decade · sorted with the loop in view</div>
+    <div class="ledger-cols">
+      <div class="ledger-col">
+        <div class="ledger-col-name">Necessity</div>
+        <ul>
+          <li>native apps, speaking an app&rsquo;s language</li>
+          <li>screens that animate in place</li>
+          <li>a contract both sides can test</li>
+        </ul>
+      </div>
+      <div class="ledger-col">
+        <div class="ledger-col-name">Fashion</div>
+        <ul>
+          <li>answers that carry data, never the next move</li>
+          <li>a spec kept outside the document</li>
+          <li>clients that must be told again and shipped</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>The loss happens in how the word gets used. Fielding&rsquo;s acronym, HATEOAS,
+    shrinks to a JSON field of links. A link you must already know is a note, not a
+    control. Strawman &ldquo;REST&rdquo; comes to mean facts alone, spelled with
     verbs.</p>
 
-    <p>Fielding watched and objected on the public record. In 2008 he wrote the piece
-    Section 01 quoted: REST APIs must be hypertext-driven. The name survived its
-    author. The behavior did not.</p>
+    <p>Fielding watches and objects on the public record. In 2008 he writes the piece
+    Section 01 quoted: REST APIs must be hypertext-driven. The name survives its
+    author. The behavior does not.</p>
 
-    <p>2011 sealed the bargain. Swagger standardized the shape of the conversation,
+    <p>2011 seals the bargain. Swagger standardizes the shape of the conversation,
     field by field. Renamed OpenAPI in 2016, it still gates the conversation today.
-    Teams received exact expectations and gave up the open-ended
-    loop. The document that carried controls ceded to the schema that described
-    data.</p>
+    Teams receive exact expectations and give up the open-ended loop. The document
+    carrying controls cedes to the schema describing data.</p>
 
     <p>One thread never died. Documentation sites, forums, and plain web apps kept
     the original loop running, decade after decade. A new wave of tooling, htmx and
