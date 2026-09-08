@@ -1121,6 +1121,7 @@ table.matrix .fit-weak {
 }
 
 .timeline .t-body {
+  grid-column: 2;
   padding: 0.5em 0 0.9em 0;
 }
 
