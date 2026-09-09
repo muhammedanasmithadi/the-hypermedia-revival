@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://muhammedanasmithadi.github.io/the-hypermedia-revival/sitemap.xml
