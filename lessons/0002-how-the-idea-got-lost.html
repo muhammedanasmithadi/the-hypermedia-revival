@@ -42,7 +42,7 @@
   industry spent a decade separating them. This section shows how the idea began,
   what replaced it, and what the separation cost.</p>
   <p class="byline">
-    <span>revision 2</span>
+    <span>revision 3</span>
     <span>section 2 of 6</span>
   </p>
 </header>
@@ -175,13 +175,28 @@
     <p>The history claims one move happened. Below is that move in miniature. The page
     asks for the basket in code, then builds its own buttons from the reply.</p>
 
-    <figure class="code-block reveal">
-      <figcaption class="code-title"><span>the move, in today&rsquo;s shape</span><span class="code-lang">js</span></figcaption>
-      <pre tabindex="0"><code><span class="tok-k">fetch</span>(<span class="tok-s">'/basket.json'</span>)
+  </div>
+
+  <div class="explorer-lanes reveal" role="group" aria-label="The ask and the reply, side by side">
+    <div class="lane">
+      <div class="lane-head">the ask <span class="lane-mime">js</span></div>
+      <div class="lane-body">
+        <pre class="x-pre"><code><span class="tok-k">fetch</span>(<span class="tok-s">'/basket.json'</span>)
   .then(<span class="tok-k">function</span> (r) { <span class="tok-k">return</span> r.json(); })
   .then(<span class="tok-k">function</span> (basket) { render(basket); });</code></pre>
-    </figure>
+      </div>
+      <p class="lane-who">The ask lives in the client, typed when the app shipped.</p>
+    </div>
+    <div class="lane">
+      <div class="lane-head">the reply <span class="lane-mime">json</span></div>
+      <div class="lane-body">
+        <div class="x-pre">{ <span class="tok-a">"items"</span>: [ <span class="tok-s">"pear"</span>, <span class="tok-s">"cheese"</span> ] }</div>
+      </div>
+      <p class="lane-who">No buttons in here. The page builds its menu from the code.</p>
+    </div>
+  </div>
 
+  <div class="prose">
     <p>The 2005 code used a different name for the ask; the shape is the same. The
     reply carried values, not buttons. The code that calls render holds the moves.</p>
 
@@ -363,7 +378,7 @@
     <a class="section-link foot-home" href="../index.html">Course home</a>
     <a class="section-link foot-right" href="0003-two-architectures-on-the-same-table.html">Two architectures on the same table</a>
   </nav>
-  <p class="closing">sections built one by one · revision 2</p>
+  <p class="closing">sections built one by one · revision 3</p>
 </footer>
 
 <script>
