@@ -348,6 +348,16 @@ section[id] {
   scroll-margin-top: 56px;
 }
 
+h2[id]:target,
+h3[id]:target {
+  animation: target-flash 1.6s ease-out;
+}
+
+@keyframes target-flash {
+  from { background: rgba(91, 156, 247, 0.22); }
+  to { background: transparent; }
+}
+
 .hanchor .anchor-glyph {
   display: none;
   width: 1em;
@@ -584,6 +594,8 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transition: none; }
+  h2[id]:target,
+  h3[id]:target { animation: none; }
 }
 
 /* ---------- Footer ---------- */

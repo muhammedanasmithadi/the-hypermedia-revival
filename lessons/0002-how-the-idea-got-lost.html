@@ -442,6 +442,8 @@
 
   widget.addEventListener('pointerenter', stop);
   widget.addEventListener('pointerleave', play);
+  widget.addEventListener('focusin', stop);
+  widget.addEventListener('focusout', play);
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
