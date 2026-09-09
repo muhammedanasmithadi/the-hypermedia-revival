@@ -326,14 +326,28 @@ strong {
   visibility: hidden;
   text-decoration: none;
   margin-left: 0.3em;
+  color: var(--brand);
 }
 
 .section-head h2:hover .hanchor,
-.section-head h2:focus-within .hanchor {
+.section-head h2:focus-within .hanchor,
+.prose > h3:hover .hanchor,
+.prose > h3:focus-within .hanchor,
+.sources h3:hover .hanchor,
+.sources h3:focus-within .hanchor,
+.hanchor:focus {
   visibility: visible;
 }
 
+h2[id],
+h3[id],
+section[id] {
+  scroll-margin-top: 56px;
+}
+
 .hanchor svg {
+  width: 1em;
+  height: 1em;
   vertical-align: middle;
 }
 
@@ -536,6 +550,11 @@ strong {
 
 .code-block pre::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.code-block pre code {
+  font: inherit;
+  color: inherit;
 }
 
 .tok-k { color: #7aa2ff; }

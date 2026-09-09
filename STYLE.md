@@ -61,6 +61,9 @@ in *The Sense of Style*.
 - Give each section parallel subheadings. Use one imperative verb and
   one noun: Run the machine, Choose a reply. Headings signal structure
   and help scanning.
+- Give every subheading an id and a hanchor link, so each subsection is
+  addressable in the URL. Keep the icon glued to the heading text, on
+  the same line.
 - Close every section with a hidden-answer self-check. Use two or
   three short questions, with the answers inside a details element.
   Practice testing scores highest in Dunlosky's review.
