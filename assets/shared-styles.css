@@ -98,6 +98,10 @@
   --accent-deep: #1f3352;
   --ledger-hover: #22262c;
 
+  --icon-link: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10%2013a5%205%200%200%200%207.54.54l3-3a5%205%200%200%200-7.07-7.07l-1.72%201.71' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M14%2011a5%205%200%200%200-7.54-.54l-3%203a5%205%200%200%200%207.07%207.07l1.71-1.71' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-arrow-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5%2012h14' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='m13%206%206%206-6%206' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-arrow-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19%2012H5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='m11%2018-6-6%206-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
   --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --font-heading: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: Menlo, Monaco, "Andale Mono", "IBM Plex Mono", ui-monospace, monospace;
@@ -348,7 +352,9 @@ section[id] {
   width: 1em;
   height: 1em;
   vertical-align: middle;
-  color: var(--brand);
+  background-color: var(--brand);
+  -webkit-mask: var(--icon-link) no-repeat center / contain;
+  mask: var(--icon-link) no-repeat center / contain;
 }
 
 /* ---------- Prose ---------- */
@@ -781,6 +787,26 @@ table.matrix .fit-weak {
   justify-content: center;
   text-align: center;
   overflow-wrap: anywhere;
+  gap: 0.45em;
+}
+
+.doc-footer .foot-left::before,
+.doc-footer .foot-right::after {
+  content: "";
+  width: 1.1em;
+  height: 1.1em;
+  flex: 0 0 auto;
+  background-color: currentColor;
+}
+
+.doc-footer .foot-left::before {
+  -webkit-mask: var(--icon-arrow-left) no-repeat center / contain;
+  mask: var(--icon-arrow-left) no-repeat center / contain;
+}
+
+.doc-footer .foot-right::after {
+  -webkit-mask: var(--icon-arrow-right) no-repeat center / contain;
+  mask: var(--icon-arrow-right) no-repeat center / contain;
 }
 
 /* ---------- Live kiosk (widget 1) ---------- */
