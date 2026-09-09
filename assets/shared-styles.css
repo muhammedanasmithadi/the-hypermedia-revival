@@ -963,9 +963,13 @@ section[id] {
 
 .loop-arrow {
   align-self: center;
-  color: #555555;
-  font-size: 1.1em;
+  width: 1.05em;
+  height: 1.05em;
   flex: 0 0 auto;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-arrow-right) var(--icon-mask);
+  mask: var(--icon-arrow-right) var(--icon-mask);
+  color: var(--soft-dark);
 }
 
 .loop-caption {
