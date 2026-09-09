@@ -487,10 +487,9 @@ h3[id]:target {
 
 .code-block {
   margin: 1.8em 0;
-  font-size: 1.05em;
-  background-color: var(--card);
-  border-radius: 8px;
-  border: 2px solid var(--hairline);
+  background: var(--panel-deep);
+  border: 1px solid var(--line);
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -499,19 +498,23 @@ h3[id]:target {
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
-  padding: 0.5em 1em;
-  border-bottom: 1px solid var(--hairline);
-  font-size: 0.78em;
-  color: var(--soft-dark);
+  padding: 0.55em 1em;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85em;
+  color: var(--bright);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
 }
 
 .code-title .code-lang {
-  color: var(--brand);
   font-family: var(--font-mono);
+  font-weight: 400;
+  color: var(--link);
 }
 
 .code-block pre {
-  padding: 0.9em 1.1em;
+  padding: 1.1em 1.2em;
   font-family: var(--font-mono);
   font-size: 0.95em;
   line-height: 1.6;
@@ -1413,7 +1416,7 @@ h3[id]:target {
 
 .explorer-lanes {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1px;
   background: var(--line);
 }
