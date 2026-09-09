@@ -60,17 +60,18 @@
   </div>
 
   <div class="prose">
-    <p class="lede">Here is a machine you have never used: a card payment terminal at
-    a supermarket checkout. You have no manual and no training. You have no intention
-    of reading one.</p>
+    <p class="lede">Sooner or later you meet a machine you have never used: a card
+    payment terminal at a supermarket checkout. There is no manual, no training, and you
+    have no intention of reading either one. You read the screen instead.</p>
 
-    <p>You start anyway. You insert the card and tap the screen. The terminal shows
-    only the moves it allows at that moment. Choose a move, and the next screen shows
-    the moves that remain. It never offers a move you cannot take, and it never shows
-    the full manual at once.</p>
+    <p>You insert the card and tap the screen. The terminal shows only the moves it
+    allows at that moment. Choose a move, and the next screen shows the moves that
+    remain. It never offers a move you cannot take, and it never shows the full manual at
+    once.</p>
 
-    <p>You already know this pattern. You have described links and forms for years.
-    Keep that thought, and use the terminal below. It behaves like the whole web.</p>
+    <p>You already know this pattern. You have spent years on websites that behave
+    exactly this way, and you may never have given them a name. Use the terminal below
+    before we give one.</p>
   </div>
 
   <div class="kiosk reveal" id="kiosk" role="group" aria-label="A small terminal that changes its options as you act">
@@ -97,9 +98,17 @@
     refused before now appears. The terminal prints its own manual one screen at a time,
     and it prints each page only when you can act on it.</p>
 
-    <p>The web is the same machine, run at a distance. A website is a server
-    with a screen you hold. When it answers, the reply carries <strong>both</strong> the
+    <p>Keep this as the first rule of the course: operate the machine before you
+    define it. You have run the machine. Wait until the definition, and watch how much
+    faster it reads.</p>
+
+    <p>The web is the same machine, run at a distance. A website is a server with a
+    screen you hold. When it answers, the reply carries <strong>both</strong> the
     facts and the actions in one body: the balance and the buttons.</p>
+
+    <p>You might wonder why the machine keeps its options hidden. It hides them
+    because the state decides what you may do: a balance of forty dollars has no fifty
+    dollar rule. Watch the same logic travel across a network next.</p>
 
     <p>Before the experiment, make a guess. The server knows your balance:
     forty dollars. One reply carries the fact alone. One carries the fact and the
@@ -126,11 +135,26 @@
     <strong>document</strong>. The word for documents like this one is
     <strong>hypermedia</strong>.</p>
 
+  </div>
+
+  <div class="do-now" role="note" aria-label="Do it now: view the page source">
+    <p class="dn-kicker">Do it now</p>
+    <p>Press <kbd>Ctrl+U</kbd> (or <kbd>Cmd+Option+U</kbd>) to view this page&rsquo;s
+    source. The HTML tab that opens is the whole document in plain text, and every
+    button on this page is in there as a small tag. Do not read it; just notice that
+    the document describes itself.</p>
+  </div>
+
+  <div class="prose">
     <p>Define the term once, while both replies stay on screen. A hypermedia
     system sends <strong>information and controls together, in one document</strong>, so
     the document teaches you what to do through the buttons it carries. The controls
     are links, buttons, and forms. The industry calls controls that drive the
     application forward HATEOAS: hypermedia as the engine of application state.</p>
+
+    <p>You do not need the acronym cold yet. You used the idea the moment you read
+    the terminal and the experiment. The name will keep appearing through the course.
+    What matters is the shape: the controls ride with the facts.</p>
 
     <p>Now consider the other reply. A raw JSON number carries one fact and no
     controls. To use it, the <em>client</em> must already know the moves, from a spec or
@@ -198,8 +222,19 @@
     the source link. The browser resolves each one by itself. The page runs no custom
     code for these controls. That is the whole job.</p>
 
-    <p>Now consider the wider view. Everything a hypermedia application does is one loop,
-    repeating. Read the loop as a sentence, then step through it.</p>
+  </div>
+
+  <div class="do-now" role="note" aria-label="Do it now: watch the requests">
+    <p class="dn-kicker">Do it now</p>
+    <p>Open DevTools with <kbd>Ctrl+Shift+I</kbd> (or <kbd>Cmd+Option+I</kbd>),
+    choose the Network tab, and reload this page. Watch the requests appear, one
+    document and its assets at a time. That list is the loop, running on this page.
+    Close DevTools once you have seen it.</p>
+  </div>
+
+  <div class="prose">
+    <p>Now consider the wider view. Everything a hypermedia application does is one
+    loop, repeating. Read the loop as a sentence, then step through it.</p>
   </div>
 
   <div class="loop reveal" id="loop" role="group" aria-label="The hypermedia loop, one step at a time">
@@ -222,7 +257,21 @@
     <p>Request. Document. Choice. Next document. The machine advances its state only
     when it answers you, and nothing else drives a hypermedia application.</p>
 
-<p>Three ideas carry through the rest of this document.</p>   </div>
+  </div>
+
+  <div class="recap" role="group" aria-label="Section recap">
+    <p class="recap-title">The section, in review</p>
+    <ol>
+      <li>One document delivers facts and controls in a single body.</li>
+      <li>A picked control becomes a request; the browser asks the server.</li>
+      <li>The server reads state and answers with a fresh document.</li>
+      <li>The loop repeats, and nothing else drives a hypermedia application.</li>
+    </ol>
+  </div>
+
+  <div class="prose">
+    <p>Three ideas carry through the rest of this document.</p>
+  </div>
 
   <div class="takeaways reveal">
     <div class="takeaway">

@@ -65,13 +65,17 @@
     had moved to data contracts. The shift took decades, and it happened one request at
     a time.</p>
 
+    <p>Treat the dates as labels, not exam material. Do not memorize them. Keep one
+    thread instead: who held the next move, and when did the move change hands.</p>
+
     <p>In 1965, Ted Nelson coined two words: hypertext and hypermedia. Hypertext means
     text that branches. Hypermedia extends the same idea to audio and video. Both words
-    describe the same mechanism: documents that point at other documents.</p>
+    describe the same mechanism: documents that point at other documents. It took
+    twenty-four years to put that idea on a network.</p>
 
-    <p>In 1989, Tim Berners-Lee proposed these ideas in a document at CERN. He built
-    linked documents, read by a client no one owned. Those documents carried both facts
-    and controls. That mix is the part the industry later lost.</p>
+    <p>In 1989, Tim Berners-Lee did it. He proposed the idea in a document at CERN,
+    then built it: linked documents, read by a client no one owned. Those documents
+    carried both facts and controls. That mix is the part the industry later lost.</p>
 
     <p>In 2000, Roy Fielding named the style in his doctoral dissertation: REST.
     You met his words in Section 01. One part is often missed: the controls must travel
@@ -126,15 +130,23 @@
     <div class="timeline-caption" id="timeline-caption">The years pass. The note under the rail explains who holds the next move.</div>
   </div>
 
+  <div class="do-now" role="note" aria-label="Do it now: watch a shop's requests">
+    <p class="dn-kicker">Do it now</p>
+    <p>Open any shop you already use and put an item in the basket. Then open DevTools
+    with <kbd>Ctrl+Shift+I</kbd> (or <kbd>Cmd+Option+I</kbd>), choose the Network tab,
+    and look for the JSON reply. The page rebuilt its own buttons from code. The next
+    moves live in the client, not in the document.</p>
+  </div>
+
   <div class="prose">
     <p>Data contracts came from a real need. Enterprise software wants reliable
     conversations, so it freezes them into contracts. A schema describes every
     message; a stack generates the code. Servers answer with data, not with the next
     move.</p>
 
-    <p>In 2005, the shift happened inside a page. AJAX let a site update in
-    place without a reload, and the word &ldquo;API&rdquo; replaced
-    &ldquo;server&rdquo; in ordinary talk. JSON was designed as a strict subset of
+    <p>In 2005, the shift happened inside a page. AJAX, Asynchronous JavaScript and
+    XML, let a site update in place without a reload, and the word &ldquo;API&rdquo;
+    replaced &ldquo;server&rdquo; in ordinary talk. JSON was designed as a strict subset of
     JavaScript, so a browser reads a payload without any document controls. No one
     voted to stop sending controls. The move from controls to data happened request by
     request.</p>
@@ -143,6 +155,13 @@
     reload cannot follow. Separate teams found a fixed contract easier to test and
     version. A frozen schema gave teams a stable basis for versioning, and tooling
     could generate client code from it. Each of these reasons is real.</p>
+<p>A shift that holds for four separate reasons does not reverse easily.</p>
+
+    <p>Sort the decade yourself before the columns explain it. The two columns are
+    Necessity and Fashion. Nothing here is an insult; both forces are honest mechanics.
+    Necessity earns its place, and fashion follows habit. Do not reach for a definition
+    by heart. Arrange the reasons, and the pattern names itself.</p>
+
   </div>
 
   <div class="ledger reveal" id="ledger" role="group" aria-label="The JSON decade, sorted into what earned its place and what became habit">
@@ -165,6 +184,19 @@
         </ul>
       </div>
     </div>
+  </div>
+
+  <div class="recap" role="group" aria-label="Section recap">
+    <p class="recap-title">The JSON decade, in review</p>
+    <p class="recap-intro">Review what you just sorted.</p>
+    <ol>
+      <li>Necessity earns its place: native apps, animation, and testable
+      contracts.</li>
+      <li>Fashion follows habit: data without the next move, and a spec kept
+      outside the document.</li>
+      <li>The cost lands on the client, which must be rebuilt and shipped whenever
+      rules change.</li>
+    </ol>
   </div>
 
   <div class="prose">
