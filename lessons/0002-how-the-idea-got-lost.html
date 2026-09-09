@@ -21,7 +21,7 @@
 
 <a class="skip-link" href="#top">Skip to content</a>
 
-<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="progress" id="progress" role="progressbar" aria-label="reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 
 <header class="topbar">
   <a class="brand" href="#top" aria-label="Back to top">Hypermedia</a>
@@ -56,8 +56,8 @@
 
   <div class="prose">
     <p class="lede">The loop you saw in <a href="0001-hypermedia-revival.html#watch-the-loop">Section 01</a> has a history. Ted Nelson described
-    hypertext in 1965. Roy Fielding named the style REST in 2000. By 2011, many teams
-    had moved to data contracts. The shift took decades, and it happened one request at
+    hypertext in 1965. Roy Fielding named the style REST in 2000. By 2011, teams
+    were moving to data contracts. The shift took decades, and it happened one request at
     a time. This section traces the arc, weighs the reasons, and names the cost.</p>
 
     <details class="recall">
@@ -348,6 +348,7 @@
     var h = doc.scrollHeight - window.innerHeight;
     var p = h > 0 ? doc.scrollTop / h : 0;
     progress.style.width = (p * 100).toFixed(1) + '%';
+    progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
@@ -506,6 +507,7 @@
     if (!selected || selected.parentNode !== pool) return;
     selected.classList.remove('selected');
     col.querySelector('ul').appendChild(selected);
+    res.textContent = 'Placed in ' + col.querySelector('.ledger-col-name').textContent + '.';
     selected.chip.focus();
     selected = null;
     root.classList.remove('sorting');

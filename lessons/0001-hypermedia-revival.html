@@ -21,7 +21,7 @@
 
 <a class="skip-link" href="#top">Skip to content</a>
 
-<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="progress" id="progress" role="progressbar" aria-label="reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 
 <header class="topbar">
   <a class="brand" href="#top" aria-label="Back to top">Hypermedia</a>
@@ -66,7 +66,7 @@
     the pattern a name, a loop, and an architect.</p>
 
     <p>You insert the card and tap the screen. The terminal shows the moves it can
-    keep at that moment and turns down a try it cannot honour. Choose a move, and the
+    keep at that moment and refuses a try it cannot honour. Choose a move, and the
     next screen shows the moves that remain. It never shows the full manual at once.</p>
 
     <p>You already know this pattern. You have spent years on websites that behave
@@ -82,7 +82,7 @@
     </div>
     <div class="kiosk-screen">
       <div class="k-title" id="kiosk-title">Card payment terminal</div>
-      <div class="k-msg" id="kiosk-msg">This little machine shows you the moves of the moment, and says no to a try it cannot keep.</div>
+      <div class="k-msg" id="kiosk-msg">This little machine shows you the moves of the moment, and refuses a try it cannot keep.</div>
       <div class="k-note" id="kiosk-note" aria-live="polite"></div>
     </div>
     <div class="kiosk-keys" id="kiosk-keys"></div>
@@ -166,7 +166,7 @@
 
     <p>Say that definition back to yourself in two sentences, before you read on.</p>
 
-    <p>You do not need the acronym cold yet. You used the idea the moment you read
+    <p>You do not need to memorize the acronym yet. You used the idea the moment you read
     the terminal and the experiment. The name will keep appearing through the course.
     What matters is the shape: the controls ride with the facts.</p>
 
@@ -386,6 +386,7 @@
     var h = doc.scrollHeight - window.innerHeight;
     var p = h > 0 ? doc.scrollTop / h : 0;
     progress.style.width = (p * 100).toFixed(1) + '%';
+    progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
@@ -476,7 +477,7 @@
     welcome: {
       key: 'welcome',
       title: 'Card payment terminal',
-      msg: 'This little machine shows you the moves of the moment, and says no to a try it cannot keep.',
+      msg: 'This little machine shows you the moves of the moment, and refuses a try it cannot keep.',
       buttons: [{ label: 'Insert card', next: 'pin' }]
     },
     pin: {

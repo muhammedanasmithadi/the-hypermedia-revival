@@ -876,6 +876,7 @@ table.matrix .fit-weak {
   border-bottom: 1px dotted #555555;
   cursor: pointer;
   padding: 0.2em 0.2em;
+  margin-left: 0.75em;
 }
 
 .kiosk-reset:hover {
