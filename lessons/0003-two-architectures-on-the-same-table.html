@@ -21,6 +21,9 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%232052bb'/%3E%3Ctext%20x='16'%20y='22'%20font-family='Inter,Arial,sans-serif'%20font-size='17'%20font-weight='600'%20text-anchor='middle'%20fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="../assets/shared-styles.css">
+<link rel="preload" href="../assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
 
@@ -36,7 +39,7 @@
 <main class="doc" id="top">
 
 <header class="masthead">
-  <p class="post-date">September 2026</p>
+  <p class="post-date"><time datetime="2026-09">September 2026</time></p>
   <h1>Hypermedia: one feature, <em>two architectures</em></h1>
   <p class="dek">One feature, two buildings. Same clicks, same facts, different replies.
   This section puts both loops on the same table, and asks one question: who names the
@@ -47,7 +50,7 @@
   </p>
 </header>
 
-<div class="article">
+<article class="article">
 
 <section id="two-architectures-on-the-same-table" class="section">
 
@@ -158,7 +161,7 @@
 
   <figure class="code-block reveal">
     <figcaption class="code-title"><span>the reply in building A · the move rides inside the document</span><span class="code-lang">html</span></figcaption>
-    <pre tabindex="0"><code><span class="tok-k">&lt;form</span> <span class="tok-a">method</span>=<span class="tok-s">"post"</span> <span class="tok-a">action</span>=<span class="tok-s">"/account/credit"</span><span class="tok-k">&gt;</span>
+    <pre tabindex="0" role="region" aria-label="the reply in building A · the move rides inside the document"><code><span class="tok-k">&lt;form</span> <span class="tok-a">method</span>=<span class="tok-s">"post"</span> <span class="tok-a">action</span>=<span class="tok-s">"/account/credit"</span><span class="tok-k">&gt;</span>
   <span class="tok-k">&lt;input</span> <span class="tok-a">type</span>=<span class="tok-s">"hidden"</span> <span class="tok-a">name</span>=<span class="tok-s">"amount"</span> <span class="tok-a">value</span>=<span class="tok-s">"10"</span><span class="tok-k">&gt;</span>
   <span class="tok-k">&lt;button</span> <span class="tok-a">type</span>=<span class="tok-s">"submit"</span><span class="tok-k">&gt;</span>Apply the $10 credit<span class="tok-k">&lt;/button&gt;</span>
 <span class="tok-k">&lt;/form&gt;</span>
@@ -167,7 +170,7 @@
 
   <figure class="code-block reveal">
     <figcaption class="code-title"><span>the reply in building B · the value arrives, the move does not</span><span class="code-lang">json</span></figcaption>
-    <pre tabindex="0"><code>{
+    <pre tabindex="0" role="region" aria-label="the reply in building B · the value arrives, the move does not"><code>{
   <span class="tok-a">"balance"</span>: 40,
   <span class="tok-a">"credit"</span>: 10
 }</code></pre>
@@ -269,7 +272,7 @@
     <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
     by Carson Gross, Adam Stepinski, and Deniz Akşimşek, continues the comparison.</p>
 
-    <div class="sources">
+    <section class="sources">
       <h3 id="sources"><a href="#sources" class="hanchor">Sources
           <span class="anchor-glyph" aria-hidden="true"></span>
         </a>
@@ -280,12 +283,12 @@
         <li>OpenAPI Initiative, <a rel="noopener" href="https://spec.openapis.org/oas/latest">OpenAPI Specification</a> (2011 as Swagger; since 2015 as OpenAPI).</li>
         <li>Carson Gross, Adam Stepinski, and Deniz Akşimşek, <a rel="noopener" href="https://hypermedia.systems/components-of-a-hypermedia-system">&ldquo;Components of a Hypermedia System&rdquo;</a>, in <cite>hypermedia.systems</cite>.</li>
       </ul>
-    </div>
+    </section>
   </div>
 
 </section>
 
-</div>
+</article>
 
 </main>
 
@@ -298,28 +301,29 @@
 </footer>
 
 <script>
+
 (function chrome() {
-  var progress = document.getElementById('progress');
-  var cur = document.getElementById('cur-section');
-  var doc = document.documentElement;
+  const progress = document.getElementById('progress');
+  const cur = document.getElementById('cur-section');
+  const doc = document.documentElement;
 
   function onScroll() {
-    var h = doc.scrollHeight - window.innerHeight;
-    var p = h > 0 ? doc.scrollTop / h : 0;
-    progress.style.width = (p * 100).toFixed(1) + '%';
+    const h = doc.scrollHeight - window.innerHeight;
+    const p = h > 0 ? doc.scrollTop / h : 0;
+    progress.style.width = `${(p * 100).toFixed(1)}%`;
     progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
+  window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
 
-  var sec = document.getElementById('two-architectures-on-the-same-table');
+  const sec = document.getElementById('two-architectures-on-the-same-table');
   if (sec && 'IntersectionObserver' in window) {
-    var k = sec.querySelector('.section-head .kicker');
-    var h = sec.querySelector('.section-head h2');
-    cur.textContent = (k ? k.textContent + ' · ' : '') + (h ? h.childNodes[0].textContent.trim() : '');
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
+    const k = sec.querySelector('.section-head .kicker');
+    const h = sec.querySelector('.section-head h2');
+    cur.textContent = `${k ? `${k.textContent} · ` : ''}${h ? h.childNodes[0].textContent.trim() : ''}`;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
         cur.classList.toggle('is-active', e.isIntersecting);
       });
     }, { threshold: 0.05 });
@@ -328,47 +332,47 @@
 })();
 
 (function reveal() {
-  var els = document.querySelectorAll('.reveal');
+  const els = document.querySelectorAll('.reveal');
   function show(el) { el.inert = false; el.classList.add('in'); }
   if (!('IntersectionObserver' in window) ||
       (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-    [].forEach.call(els, show);
+    els.forEach(show);
     return;
   }
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
         show(e.target);
         obs.unobserve(e.target);
       }
     });
   }, { threshold: 0 });
-  [].forEach.call(els, function (el) { el.inert = true; obs.observe(el); });
+  els.forEach((el) => { el.inert = true; obs.observe(el); });
 })();
 
 (function explorer() {
-  var root = document.getElementById('explorer');
+  const root = document.getElementById('explorer');
   if (!root) return;
-  var laneA = document.getElementById('lane-a');
-  var laneB = document.getElementById('lane-b');
-  var whoA = document.getElementById('lane-a-who');
-  var whoB = document.getElementById('lane-b-who');
-  var note = document.getElementById('explorer-note');
-  var night = document.getElementById('explorer-night');
-  var reset = document.getElementById('explorer-reset');
-  var acts = [].slice.call(root.querySelectorAll('.explorer-act'));
-  var phase = 'idle';
-  var timer = null;
+  const laneA = document.getElementById('lane-a');
+  const laneB = document.getElementById('lane-b');
+  const whoA = document.getElementById('lane-a-who');
+  const whoB = document.getElementById('lane-b-who');
+  const note = document.getElementById('explorer-note');
+  const night = document.getElementById('explorer-night');
+  const reset = document.getElementById('explorer-reset');
+  const acts = Array.from(root.querySelectorAll('.explorer-act'));
+  let phase = 'idle';
+  let timer = null;
 
-  var MOVES = [
+  const MOVES = [
     { v: 'Check the balance', act: 'balance' },
     { v: 'Pay the bill', act: 'pay' },
     { v: 'View the receipt', act: 'receipt' }
   ];
 
   function docMenu(extra) {
-    return MOVES.concat(extra || []).map(function (m) {
-      return '<button class="x-act' + (m.fresh ? ' fresh' : '') + '" type="button" data-act="' + m.act + '">' + m.v + '</button>';
+    return MOVES.concat(extra || []).map((m) => {
+      return `<button class="x-act${m.fresh ? ' fresh' : ''}" type="button" data-act="${m.act}">${m.v}</button>`;
     }).join('');
   }
 
@@ -380,26 +384,26 @@
   }
 
   function bindLaneA() {
-    [].forEach.call(laneA.querySelectorAll('button[data-act]'), function (b) {
-      b.addEventListener('click', function () { act(b.getAttribute('data-act')); });
+    laneA.querySelectorAll('button[data-act]').forEach((b) => {
+      b.addEventListener('click', () => { act(b.getAttribute('data-act')); });
     });
   }
 
   function paneA(extra) {
-    return '<div class="x-doc">' +
-      '<div class="x-doc-title">Account 4027 · bank of documents</div>' +
-      '<div class="x-doc-bal">Balance: $40</div>' +
-      '<div class="x-actions">' + docMenu(extra) + '</div></div>';
+    return `<div class="x-doc">` +
+      `<div class="x-doc-title">Account 4027 · bank of documents</div>` +
+      `<div class="x-doc-bal">Balance: $40</div>` +
+      `<div class="x-actions">${docMenu(extra)}</div></div>`;
   }
 
   function paneB(json) {
-    return '<div class="x-type">application/json</div>' +
-      '<div class="x-pre">' + json + '</div>' +
-      '<div class="xt-app">' +
-      '<div class="xt-app-name">the app, drawn from the build</div>' +
-      '<div class="xt-app-menu">' + MOVES.map(function (m) {
-        return '<span class="xt-app-btn">' + m.v + '</span>';
-      }).join('') + '</div></div>';
+    return `<div class="x-type">application/json</div>` +
+      `<div class="x-pre">${json}</div>` +
+      `<div class="xt-app">` +
+      `<div class="xt-app-name">the app, drawn from the build</div>` +
+      `<div class="xt-app-menu">${MOVES.map((m) => {
+        return `<span class="xt-app-btn">${m.v}</span>`;
+      }).join('')}</div></div>`;
   }
 
   function whoNorm(act) {
@@ -431,7 +435,7 @@
     if (timer) clearTimeout(timer);
     note.textContent = '';
     waiting();
-    timer = setTimeout(function () {
+    timer = setTimeout(() => {
       if (a === 'night') {
         phase = 'night';
         night.hidden = true;
@@ -450,7 +454,7 @@
       laneA.innerHTML = paneA();
       laneB.innerHTML = paneB(jsonFor(a));
       bindLaneA();
-      var w = whoNorm(a);
+      const w = whoNorm(a);
       whoA.textContent = w[0];
       whoB.textContent = w[1];
     }, 320);
@@ -467,13 +471,14 @@
     whoB.textContent = 'Idle. Click a move to see who names it.';
   }
 
-  acts.forEach(function (b) {
-    b.addEventListener('click', function () { act(b.getAttribute('data-act')); });
+  acts.forEach((b) => {
+    b.addEventListener('click', () => { act(b.getAttribute('data-act')); });
   });
-  night.addEventListener('click', function () { act('night'); });
+  night.addEventListener('click', () => { act('night'); });
   reset.addEventListener('click', idle);
   idle();
 })();
+
 
 </script>
 </body>

@@ -21,6 +21,9 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%232052bb'/%3E%3Ctext%20x='16'%20y='22'%20font-family='Inter,Arial,sans-serif'%20font-size='17'%20font-weight='600'%20text-anchor='middle'%20fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="../assets/shared-styles.css">
+<link rel="preload" href="../assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
 
@@ -36,7 +39,7 @@
 <main class="doc" id="top">
 
 <header class="masthead">
-  <p class="post-date">September 2026</p>
+  <p class="post-date"><time datetime="2026-09">September 2026</time></p>
   <h1>Hypermedia: the architecture <em>we forgot</em></h1>
   <p class="dek">The web shipped with facts and controls in one document. Then the
   industry spent a decade separating them. This section shows how the idea began,
@@ -47,7 +50,7 @@
   </p>
 </header>
 
-<div class="article">
+<article class="article">
 
 <section id="how-the-idea-got-lost" class="section">
 
@@ -142,7 +145,7 @@
         </span>
       </li>
     </ol>
-    <div class="timeline-caption" id="timeline-caption">The years pass. The note under the rail explains who holds the next move.</div>
+    <div class="timeline-caption" id="timeline-caption" aria-live="polite">The years pass. The note under the rail explains who holds the next move.</div>
   </div>
 
   <div class="do-now" role="note" aria-label="Do it now: watch a shop's requests">
@@ -179,7 +182,7 @@
 
   <figure class="code-block reveal">
     <figcaption class="code-title"><span>the ask</span><span class="code-lang">js</span></figcaption>
-    <pre tabindex="0"><code><span class="tok-k">fetch</span>(<span class="tok-s">'/basket.json'</span>)
+    <pre tabindex="0" role="region" aria-label="the ask"><code><span class="tok-k">fetch</span>(<span class="tok-s">'/basket.json'</span>)
   .then(response =&gt; response.json())
   .then(basket =&gt; render(basket));</code></pre>
   </figure>
@@ -268,7 +271,7 @@
 
   <figure class="code-block reveal">
     <figcaption class="code-title"><span>facts alone, spelled with verbs</span><span class="code-lang">json</span></figcaption>
-    <pre tabindex="0"><code>{
+    <pre tabindex="0" role="region" aria-label="facts alone, spelled with verbs"><code>{
   <span class="tok-a">"balance"</span>: 40,
   <span class="tok-a">"links"</span>: [
     <span class="tok-s">"GET /account"</span>,
@@ -279,7 +282,7 @@
 
   <figure class="code-block reveal">
     <figcaption class="code-title"><span>what the rule means: a named next move</span><span class="code-lang">json</span></figcaption>
-    <pre tabindex="0"><code>{
+    <pre tabindex="0" role="region" aria-label="what the rule means: a named next move"><code>{
   <span class="tok-a">"balance"</span>: 40,
   <span class="tok-a">"_links"</span>: {
     <span class="tok-s">"self"</span>:          <span class="tok-s">"/account"</span>,
@@ -340,7 +343,7 @@
     <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
     by Carson Gross, Adam Stepinski, and Deniz Akşimşek, continues this history.</p>
 
-    <div class="sources">
+    <section class="sources">
       <h3 id="sources"><a href="#sources" class="hanchor">Sources
           <span class="anchor-glyph" aria-hidden="true"></span>
         </a>
@@ -353,12 +356,12 @@
         <li>Jesse James Garrett, <a rel="noopener" href="https://web.archive.org/web/20050704113844/http://adaptivepath.com/ideas/essays/archives/000385.php">&ldquo;Ajax: A New Approach to Web Applications&rdquo;</a> (2005).</li>
         <li>OpenAPI Initiative, <a rel="noopener" href="https://spec.openapis.org/oas/v3.1.0">OpenAPI Specification</a> (2011 as Swagger; since 2015 as OpenAPI).</li>
       </ul>
-    </div>
+    </section>
   </div>
 
 </section>
 
-</div>
+</article>
 
 </main>
 
@@ -373,27 +376,27 @@
 
 <script>
 (function chrome() {
-  var progress = document.getElementById('progress');
-  var cur = document.getElementById('cur-section');
-  var doc = document.documentElement;
+  const progress = document.getElementById('progress');
+  const cur = document.getElementById('cur-section');
+  const doc = document.documentElement;
 
   function onScroll() {
-    var h = doc.scrollHeight - window.innerHeight;
-    var p = h > 0 ? doc.scrollTop / h : 0;
-    progress.style.width = (p * 100).toFixed(1) + '%';
+    const h = doc.scrollHeight - window.innerHeight;
+    const p = h > 0 ? doc.scrollTop / h : 0;
+    progress.style.width = `${(p * 100).toFixed(1)}%`;
     progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
+  window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
 
-  var sec = document.getElementById('how-the-idea-got-lost');
+  const sec = document.getElementById('how-the-idea-got-lost');
   if (sec && 'IntersectionObserver' in window) {
-    var k = sec.querySelector('.section-head .kicker');
-    var h = sec.querySelector('.section-head h2');
-    cur.textContent = (k ? k.textContent + ' · ' : '') + (h ? h.childNodes[0].textContent.trim() : '');
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
+    const k = sec.querySelector('.section-head .kicker');
+    const h = sec.querySelector('.section-head h2');
+    cur.textContent = `${k ? `${k.textContent} · ` : ''}${h ? h.childNodes[0].textContent.trim() : ''}`;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
         cur.classList.toggle('is-active', e.isIntersecting);
       });
     }, { threshold: 0.05 });
@@ -402,26 +405,26 @@
 })();
 
 (function reveal() {
-  var els = document.querySelectorAll('.reveal');
+  const els = document.querySelectorAll('.reveal');
   function show(el) { el.inert = false; el.classList.add('in'); }
   if (!('IntersectionObserver' in window) ||
       (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-    [].forEach.call(els, show);
+    els.forEach(show);
     return;
   }
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
         show(e.target);
         obs.unobserve(e.target);
       }
     });
   }, { threshold: 0 });
-  [].forEach.call(els, function (el) { el.inert = true; obs.observe(el); });
+  els.forEach((el) => { el.inert = true; obs.observe(el); });
 })();
 
 (function timeline() {
-  var steps = [
+  const steps = [
     { c: 'The next move is unowned: anyone may carry it, or not.' },
     { c: 'The document carries the next move; a link reads itself.' },
     { c: 'REST puts a name on it: controls must travel with the facts.' },
@@ -429,23 +432,23 @@
     { c: 'The phone carries its own apps; the document stops being the only screen.' },
     { c: 'The contract takes the next move out of the document.' }
   ];
-  var widget = document.getElementById('timeline');
-  var cap = document.getElementById('timeline-caption');
-  var REST = 'The years pass. The note under the rail explains who holds the next move.';
-  var i = -1;
-  var timer = null;
-  var interacted = false;
-  var inView = false;
+  const widget = document.getElementById('timeline');
+  const cap = document.getElementById('timeline-caption');
+  const REST = 'The years pass. The note under the rail explains who holds the next move.';
+  let i = -1;
+  let timer = null;
+  let interacted = false;
+  let inView = false;
   function arm() { interacted = true; if (inView) play(); }
-  document.addEventListener('pointerdown', arm, { once: true });
+  document.addEventListener('pointerdown', arm, { once: true, passive: true });
   document.addEventListener('keydown', arm, { once: true });
-  document.addEventListener('touchstart', arm, { once: true });
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('touchstart', arm, { once: true, passive: true });
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!widget || !cap || reduced) return;
 
   function render() {
-    var nodes = widget.querySelectorAll('li');
-    for (var n = 0; n < nodes.length; n++) {
+    const nodes = widget.querySelectorAll('li');
+    for (let n = 0; n < nodes.length; n++) {
       nodes[n].classList.toggle('on', n === i);
     }
     cap.textContent = i >= 0 ? steps[i].c : REST;
@@ -471,8 +474,8 @@
   widget.addEventListener('focusin', stop);
   widget.addEventListener('focusout', play);
   if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
         inView = e.isIntersecting;
         if (e.isIntersecting) {
           play();
@@ -488,44 +491,44 @@
 })();
 
 (function ledger() {
-  var root = document.getElementById('ledger');
-  var head = root && root.querySelector('.ledger-head');
-  var cols = root && root.querySelector('.ledger-cols');
-  var uls = cols ? cols.querySelectorAll('.ledger-col ul') : [];
-  var facts = [];
-  var pool, check, again, res;
-  var selected = null;
+  const root = document.getElementById('ledger');
+  const head = root && root.querySelector('.ledger-head');
+  const cols = root && root.querySelector('.ledger-cols');
+  const uls = cols ? cols.querySelectorAll('.ledger-col ul') : [];
+  const facts = [];
+  let pool, check, again, res;
+  let selected = null;
   if (!root || !head || !cols || uls.length < 2) return;
 
-  Array.prototype.forEach.call(uls[0].querySelectorAll('li'), function (li) {
+  uls[0].querySelectorAll('li').forEach((li) => {
     facts.push({ txt: li.textContent.trim(), side: 'n' });
   });
-  Array.prototype.forEach.call(uls[1].querySelectorAll('li'), function (li) {
+  uls[1].querySelectorAll('li').forEach((li) => {
     facts.push({ txt: li.textContent.trim(), side: 'f' });
   });
-  Array.prototype.forEach.call(uls[2].querySelectorAll('li'), function (li) {
+  uls[2].querySelectorAll('li').forEach((li) => {
     facts.push({ txt: li.textContent.trim(), side: 'c' });
   });
-  uls.forEach(function (ul) { ul.innerHTML = ''; });
+  uls.forEach((ul) => { ul.innerHTML = ''; });
 
   function shuffle(a) {
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i]; a[i] = a[j]; a[j] = t;
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = a[i]; a[i] = a[j]; a[j] = t;
     }
     return a;
   }
 
   function chipFor(f) {
-    var li = document.createElement('li');
+    const li = document.createElement('li');
     li.className = 'ledger-item';
     li.dataset.side = f.side;
-    var b = document.createElement('button');
+    const b = document.createElement('button');
     b.type = 'button';
     b.className = 'chip';
     b.textContent = f.txt;
     li.chip = b;
-    b.addEventListener('click', function () {
+    b.addEventListener('click', () => {
       li.classList.remove('ok', 'bad');
       if (li.parentNode === pool) {
         if (selected) selected.classList.remove('selected');
@@ -551,14 +554,14 @@
     if (!selected || selected.parentNode !== pool) return;
     selected.classList.remove('selected');
     col.querySelector('ul').appendChild(selected);
-    res.textContent = 'Placed in ' + col.querySelector('.ledger-col-name').textContent + '.';
+    res.textContent = `Placed in ${col.querySelector('.ledger-col-name').textContent}.`;
     selected.chip.focus();
     selected = null;
     root.classList.remove('sorting');
   }
 
   function clearErrAll() {
-    root.querySelectorAll('.ledger-item').forEach(function (li) {
+    root.querySelectorAll('.ledger-item').forEach((li) => {
       li.classList.remove('ok', 'bad');
     });
   }
@@ -567,9 +570,9 @@
     clearSel();
     clearErrAll();
     root.classList.remove('sorting');
-    uls.forEach(function (ul) { ul.innerHTML = ''; });
+    uls.forEach((ul) => { ul.innerHTML = ''; });
     pool.innerHTML = '';
-    shuffle(facts).forEach(function (f) { pool.appendChild(chipFor(f)); });
+    shuffle(facts).forEach((f) => { pool.appendChild(chipFor(f)); });
     res.textContent = '';
   }
 
@@ -578,12 +581,12 @@
   pool.setAttribute('aria-label', 'Reasons to sort: select one, then choose a row');
   cols.parentNode.insertBefore(pool, cols);
 
-  Array.prototype.forEach.call(cols.querySelectorAll('.ledger-col'), function (col) {
+  cols.querySelectorAll('.ledger-col').forEach((col) => {
     col.setAttribute('tabindex', '0');
     col.setAttribute('role', 'group');
-    col.setAttribute('aria-label', col.querySelector('.ledger-col-name').textContent + ' row');
-    col.addEventListener('click', function () { placeInto(col); });
-    col.addEventListener('keydown', function (e) {
+    col.setAttribute('aria-label', `${col.querySelector('.ledger-col-name').textContent} row`);
+    col.addEventListener('click', () => { placeInto(col); });
+    col.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         placeInto(col);
@@ -591,7 +594,7 @@
     });
   });
 
-  var bar = document.createElement('div');
+  const bar = document.createElement('div');
   bar.className = 'ledger-controls';
   check = document.createElement('button');
   check.type = 'button';
@@ -609,19 +612,19 @@
   root.appendChild(bar);
   root.appendChild(res);
 
-  var hint = document.createElement('span');
+  const hint = document.createElement('span');
   hint.className = 'ledger-hint';
   hint.textContent = 'select a reason, then choose a row (click or Enter)';
   head.appendChild(hint);
 
-  check.addEventListener('click', function () {
-    var placed = 0, right = 0;
-    var wants = ['n', 'f', 'c'];
-    for (var u = 0; u < uls.length; u++) {
-      var want = wants[u];
-      Array.prototype.forEach.call(uls[u].querySelectorAll('li'), function (li) {
+  check.addEventListener('click', () => {
+    let placed = 0, right = 0;
+    const wants = ['n', 'f', 'c'];
+    for (let u = 0; u < uls.length; u++) {
+      const want = wants[u];
+      uls[u].querySelectorAll('li').forEach((li) => {
         placed++;
-        var ok = li.dataset.side === want;
+        const ok = li.dataset.side === want;
         right += ok ? 1 : 0;
         li.classList.toggle('ok', ok);
         li.classList.toggle('bad', !ok);
@@ -630,8 +633,8 @@
     res.textContent = placed === 0
       ? 'Place the reasons first.'
 : right === facts.length
-          ? facts.length + ' of ' + facts.length + '. Necessity, fashion, and cost, weighed in the open.'
-          : right + ' of ' + facts.length + ' right; ' + (facts.length - placed) + ' still in the tray.';
+          ? `${facts.length} of ${facts.length}. Necessity, fashion, and cost, weighed in the open.`
+          : `${right} of ${facts.length} right; ${facts.length - placed} still in the tray.`;
   });
 
   again.addEventListener('click', render);

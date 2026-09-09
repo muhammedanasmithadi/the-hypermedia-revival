@@ -21,6 +21,9 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%232052bb'/%3E%3Ctext%20x='16'%20y='22'%20font-family='Inter,Arial,sans-serif'%20font-size='17'%20font-weight='600'%20text-anchor='middle'%20fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="../assets/shared-styles.css">
+<link rel="preload" href="../assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
 
@@ -36,7 +39,7 @@
 <main class="doc" id="top">
 
 <header class="masthead">
-  <p class="post-date">September 2026</p>
+  <p class="post-date"><time datetime="2026-09">September 2026</time></p>
   <h1>Hypermedia: the architecture <em>the web was built on</em></h1>
   <p class="dek">A short, interactive explanation of the web&rsquo;s original
   architecture. We still build on it, mostly without naming it. The interactive demos
@@ -47,7 +50,7 @@
   </p>
 </header>
 
-<div class="article">
+<article class="article">
 
 <section id="the-machine-that-prints-its-own-manual" class="section">
 
@@ -238,7 +241,7 @@
 
   <figure class="code-block reveal">
     <figcaption class="code-title"><span>the markup behind the quote</span><span class="code-lang">html</span></figcaption>
-    <pre tabindex="0"><code><span class="tok-k">&lt;figure</span> <span class="tok-a">class</span>=<span class="tok-s">"figure-quote"</span><span class="tok-k">&gt;</span>
+    <pre tabindex="0" role="region" aria-label="the markup behind the quote"><code><span class="tok-k">&lt;figure</span> <span class="tok-a">class</span>=<span class="tok-s">"figure-quote"</span><span class="tok-k">&gt;</span>
   <span class="tok-k">&lt;blockquote</span> <span class="tok-a">cite</span>=<span class="tok-s">"https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-718"</span><span class="tok-k">&gt;</span>
     <span class="tok-k">&lt;p&gt;</span>When I say hypertext, I mean the simultaneous presentation of information and controls…<span class="tok-k">&lt;/p&gt;</span>
   <span class="tok-k">&lt;/blockquote&gt;</span>
@@ -263,7 +266,7 @@
 
   <figure class="code-block reveal">
     <figcaption class="code-title"><span>the request that carried this page</span><span class="code-lang">http</span></figcaption>
-    <pre tabindex="0"><code>GET /the-hypermedia-revival/lessons/0001-hypermedia-revival.html HTTP/1.1
+    <pre tabindex="0" role="region" aria-label="the request that carried this page"><code>GET /the-hypermedia-revival/lessons/0001-hypermedia-revival.html HTTP/1.1
 Host: muhammedanasmithadi.github.io</code></pre>
   </figure>
 
@@ -295,7 +298,7 @@ Host: muhammedanasmithadi.github.io</code></pre>
       <div class="loop-arrow" aria-hidden="true"></div>
       <div class="loop-step"><div class="ls-t">Next document</div><div class="ls-s">server advances state</div></div>
     </div>
-    <div class="loop-caption" id="loop-caption">The user clicks a link or a button. The browser turns that control into a request to the server.</div>
+    <div class="loop-caption" id="loop-caption" aria-live="polite">The user clicks a link or a button. The browser turns that control into a request to the server.</div>
   </div>
 
   <div class="prose">
@@ -374,7 +377,7 @@ Host: muhammedanasmithadi.github.io</code></pre>
     <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
     by Carson Gross, Adam Stepinski, and Deniz Akşimşek, continues this section.</p>
 
-    <div class="sources">
+    <section class="sources">
       <h3 id="sources"><a href="#sources" class="hanchor">Sources
           <span class="anchor-glyph" aria-hidden="true"></span>
         </a>
@@ -383,12 +386,12 @@ Host: muhammedanasmithadi.github.io</code></pre>
         <li>Roy Fielding, <a rel="noopener" href="https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">&ldquo;Architectural Styles and the Design of Network-based Software Architectures&rdquo;</a> (2000), doctoral dissertation, chapter 5.</li>
         <li>Roy Fielding, <a rel="noopener" href="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">&ldquo;REST APIs Must Be Hypertext-Driven&rdquo;</a> (2008).</li>
       </ul>
-    </div>
+    </section>
   </div>
 
 </section>
 
-</div>
+</article>
 
 </main>
 
@@ -401,28 +404,29 @@ Host: muhammedanasmithadi.github.io</code></pre>
 </footer>
 
 <script>
+
 (function chrome() {
-  var progress = document.getElementById('progress');
-  var cur = document.getElementById('cur-section');
-  var doc = document.documentElement;
+  const progress = document.getElementById('progress');
+  const cur = document.getElementById('cur-section');
+  const doc = document.documentElement;
 
   function onScroll() {
-    var h = doc.scrollHeight - window.innerHeight;
-    var p = h > 0 ? doc.scrollTop / h : 0;
-    progress.style.width = (p * 100).toFixed(1) + '%';
+    const h = doc.scrollHeight - window.innerHeight;
+    const p = h > 0 ? doc.scrollTop / h : 0;
+    progress.style.width = `${(p * 100).toFixed(1)}%`;
     progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
+  window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
 
-  var sec = document.getElementById('the-machine-that-prints-its-own-manual');
+  const sec = document.getElementById('the-machine-that-prints-its-own-manual');
   if (sec && 'IntersectionObserver' in window) {
-    var k = sec.querySelector('.section-head .kicker');
-    var h = sec.querySelector('.section-head h2');
-    cur.textContent = (k ? k.textContent + ' · ' : '') + (h ? h.childNodes[0].textContent.trim() : '');
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
+    const k = sec.querySelector('.section-head .kicker');
+    const h = sec.querySelector('.section-head h2');
+    cur.textContent = `${k ? `${k.textContent} · ` : ''}${h ? h.childNodes[0].textContent.trim() : ''}`;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
         cur.classList.toggle('is-active', e.isIntersecting);
       });
     }, { threshold: 0.05 });
@@ -431,35 +435,35 @@ Host: muhammedanasmithadi.github.io</code></pre>
 })();
 
 (function reveal() {
-  var els = document.querySelectorAll('.reveal');
+  const els = document.querySelectorAll('.reveal');
   function show(el) { el.inert = false; el.classList.add('in'); }
   if (!('IntersectionObserver' in window) ||
       (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-    [].forEach.call(els, show);
+    els.forEach(show);
     return;
   }
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
         show(e.target);
         obs.unobserve(e.target);
       }
     });
   }, { threshold: 0 });
-  [].forEach.call(els, function (el) { el.inert = true; obs.observe(el); });
+  els.forEach((el) => { el.inert = true; obs.observe(el); });
 })();
 
 (function kiosk() {
-  var el = document.getElementById('kiosk');
+  const el = document.getElementById('kiosk');
   if (!el) return;
-  var title = document.getElementById('kiosk-title');
-  var msg = document.getElementById('kiosk-msg');
-  var note = document.getElementById('kiosk-note');
-  var keys = document.getElementById('kiosk-keys');
-  var bal = document.getElementById('kiosk-balance');
-  var label = document.getElementById('kiosk-state-label');
-  var balance = 40;
-  var pending = 0;
+  const title = document.getElementById('kiosk-title');
+  const msg = document.getElementById('kiosk-msg');
+  const note = document.getElementById('kiosk-note');
+  const keys = document.getElementById('kiosk-keys');
+  const bal = document.getElementById('kiosk-balance');
+  const label = document.getElementById('kiosk-state-label');
+  let balance = 40;
+  const pending = 0;
 
   function text(v) { return typeof v === 'function' ? v() : v; }
   function setBal() { bal.textContent = 'balance: $' + balance; }
@@ -472,33 +476,33 @@ Host: muhammedanasmithadi.github.io</code></pre>
   function act(b) {
     note.textContent = '';
     note.classList.remove('show');
-    var keepFocus = document.activeElement &&
+    const keepFocus = document.activeElement &&
       (keys.contains(document.activeElement) ||
        document.activeElement.id === 'kiosk-reset');
     if (b.leave) b.leave();
     setBal();
-    var next = typeof b.next === 'function' ? b.next() : b.next;
-    var s = states[next];
+    const next = typeof b.next === 'function' ? b.next() : b.next;
+    const s = states[next];
     label.textContent = s.key;
     title.textContent = s.title;
     msg.textContent = text(s.msg);
     keys.textContent = '';
-    s.buttons.forEach(function (btn) {
-      var tag = document.createElement('button');
+    s.buttons.forEach((btn) => {
+      const tag = document.createElement('button');
       tag.className = 'kiosk-btn';
       tag.type = 'button';
       tag.textContent = btn.label;
-      tag.addEventListener('click', function () { act(btn); });
+      tag.addEventListener('click', () => { act(btn); });
       keys.appendChild(tag);
     });
     if (b.note) flash(text(b.note));
     if (keepFocus) {
-      var firstBtn = keys.querySelector('button');
+      const firstBtn = keys.querySelector('button');
       if (firstBtn) firstBtn.focus();
     }
   }
 
-  var states = {
+  const states = {
     welcome: {
       key: 'welcome',
       title: 'Card payment terminal',
@@ -514,11 +518,11 @@ Host: muhammedanasmithadi.github.io</code></pre>
     menu: {
       key: 'menu',
       title: 'Select an action',
-      msg: function () { return 'You have $' + balance + '. Your options follow from that.'; },
+      msg: () => { return `You have $${balance}. Your options follow from that.`; },
       buttons: [
         { label: 'Check balance', next: 'balance' },
-        { label: 'Withdraw $50', next: function () { return balance >= 50 ? 'amount50' : 'low'; },
-          note: function () { return balance >= 50 ? null : 'The machine refused: you only have $' + balance + '.'; } },
+        { label: 'Withdraw $50', next: () => { return balance >= 50 ? 'amount50' : 'low'; },
+          note: () => { return balance >= 50 ? null : `The machine refused: you only have $${balance}.`; } },
         { label: 'Deposit $10', next: 'deposit' },
         { label: 'Remove card', next: 'bye' }
       ]
@@ -526,13 +530,13 @@ Host: muhammedanasmithadi.github.io</code></pre>
     balance: {
       key: 'balance',
       title: 'Your balance',
-      msg: function () { return 'You have $' + balance + '. That is all this screen has to say.'; },
+      msg: () => { return `You have $${balance}. That is all this screen has to say.`; },
       buttons: [{ label: 'Back to menu', next: 'menu' }]
     },
     low: {
       key: 'refused',
       title: 'Not this time',
-      msg: function () { return 'You asked for $50, but the state allows $' + balance + '. The $50 move stays on the menu; it goes through only once the balance covers it.'; },
+      msg: () => { return `You asked for $50, but the state allows $${balance}. The $50 move stays on the menu; it goes through only once the balance covers it.`; },
       buttons: [
         { label: 'Withdraw $20', next: 'amount20' },
         { label: 'Deposit first', next: 'deposit' },
@@ -545,8 +549,8 @@ Host: muhammedanasmithadi.github.io</code></pre>
       msg: 'The state allowed this one. Take the money.',
       buttons: [{ label: 'Take cash',
         next: 'after',
-        leave: function () { balance -= 50; },
-        note: function () { return 'You now have $' + balance + '.'; } }]
+        leave: () => { balance -= 50; },
+        note: () => { return `You now have $${balance}.`; } }]
     },
     amount20: {
       key: 'dispensing',
@@ -554,13 +558,13 @@ Host: muhammedanasmithadi.github.io</code></pre>
       msg: 'The state allowed this one. Take the money.',
       buttons: [{ label: 'Take cash',
         next: 'after',
-        leave: function () { balance -= 20; },
-        note: function () { return 'You now have $' + balance + '.'; } }]
+        leave: () => { balance -= 20; },
+        note: () => { return `You now have $${balance}.`; } }]
     },
     after: {
       key: 'done',
       title: 'Done',
-      msg: function () { return 'Your balance is now $' + balance + '. Your options just changed.'; },
+      msg: () => { return `Your balance is now $${balance}. Your options just changed.`; },
       buttons: [{ label: 'Back to menu', next: 'menu' }]
     },
     deposit: {
@@ -570,8 +574,8 @@ Host: muhammedanasmithadi.github.io</code></pre>
       buttons: [
         { label: 'Add the money',
           next: 'menu',
-          leave: function () { balance += 10; },
-          note: function () { return balance >= 50 ? 'Menu rebuilt: $' + balance + '. Withdraw $50 now goes through.' : 'Menu rebuilt: $' + balance + '. Withdraw $50 still refuses until the balance allows.'; } },
+          leave: () => { balance += 10; },
+          note: () => { return balance >= 50 ? `Menu rebuilt: $${balance}. Withdraw $50 now goes through.` : `Menu rebuilt: $${balance}. Withdraw $50 still refuses until the balance allows.`; } },
         { label: 'Cancel', next: 'menu' }
       ]
     },
@@ -579,30 +583,30 @@ Host: muhammedanasmithadi.github.io</code></pre>
       key: 'goodbye',
       title: 'Take your card',
       msg: 'Goodbye. The machine never let you close the account. That move was not in any menu.',
-      buttons: [{ label: 'Use it again', next: 'welcome', leave: function () { balance = 40; } }]
+      buttons: [{ label: 'Use it again', next: 'welcome', leave: () => { balance = 40; } }]
     }
   };
 
   act({ next: 'welcome' });
-  document.getElementById('kiosk-reset').addEventListener('click', function () {
-    act({ next: 'welcome', leave: function () { balance = 40; } });
+  document.getElementById('kiosk-reset').addEventListener('click', () => {
+    act({ next: 'welcome', leave: () => { balance = 40; } });
   });
 })();
 
 (function experiment() {
-  var el = document.getElementById('exp');
+  const el = document.getElementById('exp');
   if (!el) return;
-  var body = document.getElementById('x-body');
-  var note = document.getElementById('x-reqnote');
-  var btns = [].slice.call(document.querySelectorAll('.x-mode-btn'));
-  var mode = 'json';
-  var timer = null;
+  const body = document.getElementById('x-body');
+  const note = document.getElementById('x-reqnote');
+  const btns = Array.from(document.querySelectorAll('.x-mode-btn'));
+  let mode = 'json';
+  let timer = null;
 
   function bindActs(scope) {
-    [].forEach.call(scope.querySelectorAll('.x-act'), function (b) {
-      b.addEventListener('click', function () {
+    scope.querySelectorAll('.x-act').forEach((b) => {
+      b.addEventListener('click', () => {
         b.parentNode.parentNode.querySelector('.x-status').textContent =
-          b.getAttribute('data-act') + ' received · the server renders the next document';
+          `${b.getAttribute('data-act')} received · the server renders the next document`;
       });
     });
   }
@@ -643,15 +647,15 @@ Host: muhammedanasmithadi.github.io</code></pre>
     body.innerHTML = '<div class="x-pane"><div class="x-type">in transit</div>' +
       '<div class="x-sending">GET /account/balance …</div></div>';
     clearTimeout(timer);
-    timer = setTimeout(function () {
+    timer = setTimeout(() => {
       note.textContent = '→ 200 OK · ' + (mode === 'json' ? 'application/json' : 'text/html');
       renderReply();
     }, 320);
   }
 
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      btns.forEach(function (x) {
+  btns.forEach((b) => {
+    b.addEventListener('click', () => {
+      btns.forEach((x) => {
         x.classList.toggle('on', x === b);
         x.setAttribute('aria-pressed', String(x === b));
       });
@@ -664,29 +668,29 @@ Host: muhammedanasmithadi.github.io</code></pre>
 })();
 
 (function loop() {
-  var steps = [
+  const steps = [
     { t: 'Request', s: 'user picks a control', c: 'The user clicks a link or a button. The browser turns that control into a request to the server.' },
     { t: 'Document', s: 'facts + controls', c: 'The server reads the current state and answers with one document: the facts, and the controls those facts allow.' },
     { t: 'Choice', s: 'user selects a move', c: 'The user picks one of the controls in the document. That pick becomes the next request.' },
     { t: 'Next document', s: 'server advances state', c: 'The server advances its state and answers with a fresh document. The loop repeats from Request.' }
   ];
-  var tray = document.getElementById('loop-steps');
-  var cap = document.getElementById('loop-caption');
-  var widget = document.getElementById('loop');
-  var cur = 0;
-  var timer = null;
-  var interacted = false;
-  var inView = false;
+  const tray = document.getElementById('loop-steps');
+  const cap = document.getElementById('loop-caption');
+  const widget = document.getElementById('loop');
+  let cur = 0;
+  let timer = null;
+  let interacted = false;
+  let inView = false;
   function arm() { interacted = true; if (inView) play(); }
-  document.addEventListener('pointerdown', arm, { once: true });
+  document.addEventListener('pointerdown', arm, { once: true, passive: true });
   document.addEventListener('keydown', arm, { once: true });
-  document.addEventListener('touchstart', arm, { once: true });
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('touchstart', arm, { once: true, passive: true });
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!tray || !cap || reduced) return;
 
   function paint() {
-    var nodes = tray.querySelectorAll('.loop-step');
-    for (var i = 0; i < nodes.length; i++) {
+    const nodes = tray.querySelectorAll('.loop-step');
+    for (let i = 0; i < nodes.length; i++) {
       nodes[i].classList.toggle('on', i === cur);
     }
     cap.textContent = steps[cur].c;
@@ -698,7 +702,7 @@ Host: muhammedanasmithadi.github.io</code></pre>
 
   function play() {
     if (timer || reduced || !interacted) return;
-    timer = setInterval(function () {
+    timer = setInterval(() => {
       cur = (cur + 1) % steps.length;
       paint();
     }, 1800);
@@ -710,8 +714,8 @@ Host: muhammedanasmithadi.github.io</code></pre>
   widget.addEventListener('focusin', stop);
   widget.addEventListener('focusout', play);
   if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
         inView = e.isIntersecting;
         e.isIntersecting ? play() : stop();
       });
@@ -721,6 +725,7 @@ Host: muhammedanasmithadi.github.io</code></pre>
     play();
   }
 })();
+
 
 </script>
 </body>

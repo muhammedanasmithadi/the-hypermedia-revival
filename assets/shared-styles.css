@@ -124,6 +124,7 @@ html {
   scroll-padding-top: 4rem;
   height: 100%;
   -webkit-text-size-adjust: 100%;
+  background: var(--bg);
 }
 
 body {
@@ -135,10 +136,6 @@ body {
   height: 100%;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-}
-
-html {
-  background: var(--bg);
 }
 
 b,
@@ -258,6 +255,7 @@ strong {
   line-height: 1.15;
   color: var(--ink-strong);
   padding: 0.4em 0 0.25em 0;
+  text-wrap: balance;
 }
 
 .masthead h1 em {
@@ -305,6 +303,8 @@ strong {
   margin: 3em 0 0 0;
   padding: 2em 0 1em 0;
   border-top: 1px solid var(--hairline);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 2000px;
 }
 
 .section-head {
@@ -324,6 +324,7 @@ strong {
   color: var(--ink-strong);
   padding: 0.75em 0 0.25em 0;
   line-height: 1.25;
+  text-wrap: balance;
 }
 
 .hanchor {
@@ -373,6 +374,7 @@ h3[id]:target {
 .prose p {
   padding: 0.7em 0;
   overflow-x: hidden;
+  text-wrap: pretty;
 }
 
 .prose p.lede {
@@ -436,6 +438,7 @@ h3[id]:target {
   font-weight: 600;
   line-height: 1.3;
   color: var(--ink-strong);
+  text-wrap: balance;
 }
 
 /* ---------- Blockquote ---------- */
@@ -596,9 +599,13 @@ h3[id]:target {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .reveal { opacity: 1; transition: none; }
-  h2[id]:target,
-  h3[id]:target { animation: none; }
+  .js .reveal { opacity: 1; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ---------- Footer ---------- */
@@ -1292,13 +1299,6 @@ h3[id]:target {
 .ledger-btn:hover {
   border-color: var(--brand);
   color: var(--white);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chip,
-  .ledger-btn {
-    transition: none;
-  }
 }
 
 .ledger-col ul {

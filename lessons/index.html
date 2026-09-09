@@ -21,6 +21,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%232052bb'/%3E%3Ctext%20x='16'%20y='22'%20font-family='Inter,Arial,sans-serif'%20font-size='17'%20font-weight='600'%20text-anchor='middle'%20fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
 <style>
   * { margin: 0; box-sizing: border-box; }
+  .skip-link { position: absolute; top: 0; left: -999em; z-index: 100; }
+  .skip-link:focus { left: 1rem; top: 0.75rem; background: #171717; color: #ececec; padding: 0.4em 0.8em; border-radius: 4px; text-decoration: none; font-weight: 600; }
   body { background: #171717; color: #d0d0d0; font-family: Inter, system-ui, sans-serif; line-height: 1.6; padding: 3rem 1.2rem; }
   main { max-width: 44rem; margin: 0 auto; }
   h1 { font-size: 1.8rem; color: #ececec; margin-bottom: 0.6rem; }
@@ -28,6 +30,8 @@
   .card { background: #222222; border: 2px solid #2b2b2b; border-radius: 10px; padding: 1.2em 1.4em; }
   .card a { color: #5B9CF7; font-weight: 600; text-decoration: none; }
   .card a:hover { color: #7ab0ff; text-decoration: underline; }
+  nav ul { list-style: none; padding: 0; }
+  nav ul li + li { margin-top: 1rem; }
   .arrow { color: #8a8a8a; margin-left: 0.3em; }
   p.back { margin-top: 1.4rem; font-size: 0.9rem; }
   p.back a { color: #5B9CF7; text-decoration: none; }
@@ -35,22 +39,32 @@
 </style>
 </head>
 <body>
-<main>
-  <h1>Lessons</h1>
-  <p class="status">The sections of the course appear here as they land.</p>
-  <div class="card">
-    <a href="0001-hypermedia-revival.html">01: The machine that prints its own manual</a>
-    <span class="arrow">&rarr;</span>
-  </div>
-  <div class="card" style="margin-top: 1rem;">
-    <a href="0002-how-the-idea-got-lost.html">02: How the idea got lost</a>
-    <span class="arrow">&rarr;</span>
-  </div>
-  <div class="card" style="margin-top: 1rem;">
-    <a href="0003-two-architectures-on-the-same-table.html">03: Two architectures on the same table</a>
-    <span class="arrow">&rarr;</span>
-  </div>
+<a class="skip-link" href="#top">Skip to content</a>
+<main id="top">
+  <header>
+    <h1>Lessons</h1>
+    <p class="status">The sections of the course appear here as they land.</p>
+  </header>
+  <nav aria-label="Lesson sections">
+    <ul>
+      <li class="card">
+        <a href="0001-hypermedia-revival.html">01: The machine that prints its own manual</a>
+        <span class="arrow">&rarr;</span>
+      </li>
+      <li class="card">
+        <a href="0002-how-the-idea-got-lost.html">02: How the idea got lost</a>
+        <span class="arrow">&rarr;</span>
+      </li>
+      <li class="card">
+        <a href="0003-two-architectures-on-the-same-table.html">03: Two architectures on the same table</a>
+        <span class="arrow">&rarr;</span>
+      </li>
+    </ul>
+  </nav>
   <p class="back"><a href="../index.html">&larr; Course home</a></p>
+  <footer>
+    <p style="margin-top: 1.2rem; font-size: 0.85rem; color: #8a8a8a;">A plain-language course on hypermedia architecture.</p>
+  </footer>
 </main>
 </body>
 </html>
