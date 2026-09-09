@@ -162,7 +162,8 @@
 
   <figure class="code-block reveal">
     <figcaption class="code-title"><span>the reply in building B · the value arrives, the move does not</span><span class="code-lang">json</span></figcaption>
-    <pre tabindex="0"><code>{ <span class="tok-a">"balance"</span>: 40,
+    <pre tabindex="0"><code>{
+  <span class="tok-a">"balance"</span>: 40,
   <span class="tok-a">"credit"</span>: 10
 }</code></pre>
   </figure>
@@ -321,7 +322,8 @@
 (function reveal() {
   var els = document.querySelectorAll('.reveal');
   function show(el) { el.inert = false; el.classList.add('in'); }
-  if (!('IntersectionObserver' in window)) {
+  if (!('IntersectionObserver' in window) ||
+      (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
     [].forEach.call(els, show);
     return;
   }

@@ -407,7 +407,8 @@
 (function reveal() {
   var els = document.querySelectorAll('.reveal');
   function show(el) { el.inert = false; el.classList.add('in'); }
-  if (!('IntersectionObserver' in window)) {
+  if (!('IntersectionObserver' in window) ||
+      (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
     [].forEach.call(els, show);
     return;
   }
@@ -648,6 +649,12 @@
   var widget = document.getElementById('loop');
   var cur = 0;
   var timer = null;
+  var interacted = false;
+  var inView = false;
+  function arm() { interacted = true; if (inView) play(); }
+  document.addEventListener('pointerdown', arm, { once: true });
+  document.addEventListener('keydown', arm, { once: true });
+  document.addEventListener('touchstart', arm, { once: true });
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!tray || !cap || reduced) return;
 
@@ -664,7 +671,7 @@
   }
 
   function play() {
-    if (timer || reduced) return;
+    if (timer || reduced || !interacted) return;
     timer = setInterval(function () {
       cur = (cur + 1) % steps.length;
       paint();
@@ -677,6 +684,7 @@
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
+        inView = e.isIntersecting;
         e.isIntersecting ? play() : stop();
       });
     }, { threshold: 0.3 });

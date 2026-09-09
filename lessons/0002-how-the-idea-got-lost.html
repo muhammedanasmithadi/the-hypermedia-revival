@@ -374,7 +374,8 @@
 (function reveal() {
   var els = document.querySelectorAll('.reveal');
   function show(el) { el.inert = false; el.classList.add('in'); }
-  if (!('IntersectionObserver' in window)) {
+  if (!('IntersectionObserver' in window) ||
+      (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
     [].forEach.call(els, show);
     return;
   }
@@ -402,6 +403,12 @@
   var REST = 'The years pass. The note under the rail explains who holds the next move.';
   var i = -1;
   var timer = null;
+  var interacted = false;
+  var inView = false;
+  function arm() { interacted = true; if (inView) play(); }
+  document.addEventListener('pointerdown', arm, { once: true });
+  document.addEventListener('keydown', arm, { once: true });
+  document.addEventListener('touchstart', arm, { once: true });
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!widget || !cap || reduced) return;
 
@@ -424,7 +431,7 @@
   }
 
   function play() {
-    if (timer) return;
+    if (timer || !interacted) return;
     tick();
   }
 
@@ -433,6 +440,7 @@
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
+        inView = e.isIntersecting;
         if (e.isIntersecting) {
           play();
         } else {
