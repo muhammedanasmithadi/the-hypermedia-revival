@@ -58,6 +58,19 @@ in *The Sense of Style*.
   attention. Mayer found that such details hurt learning.
 - Use dry humor; ban hype. A memorable, plain rule teaches. A slogan
   does not.
+- Give each section parallel subheadings. Use one imperative verb and
+  one noun: Run the machine, Choose a reply. Headings signal structure
+  and help scanning.
+- Close every section with a hidden-answer self-check. Use two or
+  three short questions, with the answers inside a details element.
+  Practice testing scores highest in Dunlosky's review.
+- Prompt restatement after each core definition. One line invites the
+  learner to say the idea in their own words.
+- Add cross-section recall. When a section returns to an earlier
+  idea, ask for it before you explain it again. Spaced practice
+  protects memory.
+- State exact stakes, then list reasons that multiply. If a claim
+  rests on four reasons, say so, and number them.
 
 ## Why
 
@@ -89,3 +102,13 @@ in *The Sense of Style*.
 - Full stack open course material, University of Helsinki.
 - Nielsen Norman Group, "Concise, SCANNABLE, and Objective: How to
   Write for the Web" (1997).
+- Dunlosky et al., "Improving Students' Learning With Effective
+  Learning Techniques: Promising Directions From Cognitive and
+  Educational Psychology", *Psychological Science in the Public
+  Interest* (2013). Practice testing and distributed practice rank
+  highest.
+- Atkinson, Renkl, and Merrill, "Transitioning From Studying Examples
+  to Solving Problems", *Journal of Educational Psychology* (2003).
+  Worked examples with self-explanation prompts raise transfer.
+- Google Technical Writing Two, learned lessons (audience,
+  prerequisites, big picture, figure captions).

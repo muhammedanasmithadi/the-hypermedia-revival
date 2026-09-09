@@ -63,7 +63,14 @@
     <p class="lede">The loop you saw in Section 01 has a history. Ted Nelson described
     hypertext in 1965. Roy Fielding named the style REST in 2000. By 2011, many teams
     had moved to data contracts. The shift took decades, and it happened one request at
-    a time.</p>
+    a time. This section traces the arc, weighs the reasons, and names the cost.</p>
+
+    <details class="recall">
+      <summary>Before you read on, can you name the loop in four words?</summary>
+      <p>Request. Document. Choice. Next document.</p>
+    </details>
+
+    <h3>Trace the idea</h3>
 
     <p>In 1965, Ted Nelson coined two words: hypertext and hypermedia. Hypertext means
     text that branches. Hypermedia extends the same idea to audio and video. Both words
@@ -136,6 +143,8 @@
   </div>
 
   <div class="prose">
+    <h3>Watch it drift</h3>
+
     <p>Data contracts came from a real need. Enterprise software wants reliable
     conversations, so it freezes them into contracts. A schema describes every
     message; a stack generates the code. Servers answer with data, not with the next
@@ -148,16 +157,24 @@
     voted to stop sending controls. The move from controls to data happened request by
     request.</p>
 
-    <p>By 2008, native apps were common. They animate parts of the screen that a
-    reload cannot follow. Separate teams found a fixed contract easier to test and
-    version. A frozen schema gave teams a stable basis for versioning, and tooling
-    could generate client code from it. Each of these reasons is real.</p>
-<p>A shift that holds for four separate reasons does not reverse easily.</p>
+    <p>By 2008, native apps were common. The shift held for four separate reasons,
+    and each one was real:</p>
+
+    <ol class="reasons">
+      <li>Native apps were everywhere, and each one had its own screen.</li>
+      <li>Screens animate in place, and a full reload cannot follow.</li>
+      <li>Teams found a fixed contract easier to test and to version.</li>
+      <li>Tooling could generate client code from the fixed shape.</li>
+    </ol>
+
+    <p>A shift that holds for four separate reasons does not reverse easily.</p>
+
+    <h3>Weigh the reasons</h3>
 
     <p>Sort the decade yourself before the columns explain it. The two columns are
     Necessity and Fashion. Nothing here is an insult; both forces are honest mechanics.
-    Necessity earns its place, and fashion follows habit. Do not reach for a definition
-    by heart. Arrange the reasons, and the pattern names itself.</p>
+    Necessity earns its place, and fashion follows habit. Do not try to memorize the
+    definitions. Arrange the reasons, and the pattern names itself.</p>
 
   </div>
 
@@ -197,10 +214,12 @@
   </div>
 
   <div class="prose">
-    <p>The loss shows in how the word is used. HATEOAS, Hypermedia as the Engine of
-    Application State, is the rule that the document carries the next move. In practice,
-    the acronym shrank to a JSON field of links. A link you must already know is a note,
-    not a control. In common use, REST came to mean facts alone.</p>
+    <h3>See what the name lost</h3>
+
+    <p>The loss shows in how the word is used. HATEOAS, Section 01&rsquo;s name for the
+    rule that the document carries the next move, shrank in practice to a JSON field
+    of links. A link you must already know is a note, not a control. In common use,
+    REST came to mean facts alone.</p>
   </div>
 
   <figure class="code-block reveal">
@@ -230,13 +249,37 @@
 
     <p>In 2011, Swagger fixed the shape of the conversation, field by field. A decade of
     WSDL had left the industry with complex contracts; a plain testable shape came as a
-    relief. The spec, renamed OpenAPI in 2016, still defines the conversation today.
+    relief. The spec, now under the name OpenAPI, still defines the conversation today.
     Teams receive exact expectations and give up the open-ended loop. The document that
     carried controls gave way to a schema that describes data.</p>
+
+    <h3>Check what survived</h3>
 
     <p>The older loop never completely disappeared. Documentation sites, forums, and
     plain web apps kept it running. New tooling, including htmx and Hotwire, returned to
     the same idea: send the document, and let it carry the moves.</p>
+  </div>
+
+  <div class="self-check" role="group" aria-label="Check yourself before you move on">
+    <p class="sc-title">Check yourself</p>
+    <p>Three questions. Answer each one before you open it.</p>
+    <details class="sc-item">
+      <summary>It is 2005. The cart updates without a reload. Where does the next move
+      now live?</summary>
+      <p>In the client&rsquo;s code. The page rebuilt its own buttons, so the manual moved
+      out of the document and into the JavaScript that receives the payload.</p>
+    </details>
+    <details class="sc-item">
+      <summary>A service returns JSON with a labeled _links map. Is that hypermedia in
+      Fielding&rsquo;s sense?</summary>
+      <p>Not on its own. A label a client must already know is a note, not a control.
+      Hypermedia travels with the way to act.</p>
+    </details>
+    <details class="sc-item">
+      <summary>Say what the separation cost, in one sentence.</summary>
+      <p>The client now holds the manual. Every rule change becomes a rebuild and a new
+      release.</p>
+    </details>
   </div>
 
   <div class="prose">

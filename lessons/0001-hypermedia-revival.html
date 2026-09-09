@@ -60,9 +60,12 @@
   </div>
 
   <div class="prose">
+    <h3>Run the machine</h3>
+
     <p class="lede">Sooner or later you meet a machine you have never used: a card
     payment terminal at a supermarket checkout. There is no manual, no training, and you
-    have no intention of reading either one. You read the screen instead.</p>
+    have no intention of using either. You read the screen instead. This section gives
+    the pattern a name, a loop, and an architect.</p>
 
     <p>You insert the card and tap the screen. The terminal shows only the moves it
     allows at that moment. Choose a move, and the next screen shows the moves that
@@ -110,6 +113,8 @@
     because the state decides what you may do: a balance of forty dollars has no fifty
     dollar rule. Watch the same logic travel across a network next.</p>
 
+    <h3>Choose a reply</h3>
+
     <p>Before the experiment, make a guess. The server knows your balance:
     forty dollars. One reply carries the fact alone. One carries the fact and the
     buttons. Which one can you use without instructions? Choose a reply type, then
@@ -146,11 +151,15 @@
   </div>
 
   <div class="prose">
+    <h3>Name the pattern</h3>
+
     <p>Define the term once, while both replies stay on screen. A hypermedia
     system sends <strong>information and controls together, in one document</strong>, so
     the document teaches you what to do through the buttons it carries. The controls
     are links, buttons, and forms. The industry calls controls that drive the
     application forward HATEOAS: hypermedia as the engine of application state.</p>
+
+    <p>Say that definition back to yourself in two sentences, before you read on.</p>
 
     <p>You do not need the acronym cold yet. You used the idea the moment you read
     the terminal and the experiment. The name will keep appearing through the course.
@@ -199,6 +208,8 @@
   </div>
 
   <div class="prose">
+    <h3>Read the source</h3>
+
     <p>Consider the source link above. It is a control inside the very document that is
     explaining controls to you. The page demonstrates its own subject. Its quote carries
     its own next move. Here is the markup behind it:</p>
@@ -233,6 +244,8 @@
   </div>
 
   <div class="prose">
+    <h3>Watch the loop</h3>
+
     <p>Now consider the wider view. Everything a hypermedia application does is one
     loop, repeating. Read the loop as a sentence, then step through it.</p>
   </div>
@@ -291,6 +304,28 @@
     </div>
   </div>
 
+  <div class="self-check" role="group" aria-label="Check yourself before you move on">
+    <p class="sc-title">Check yourself</p>
+    <p>Three questions. Answer each one before you open it.</p>
+    <details class="sc-item">
+      <summary>A stranger&rsquo;s page offers buttons you have never used. What lets you
+      act without calling anyone for help?</summary>
+      <p>The document arrives with its own controls, so the page teaches you the next
+      move. You read the buttons, and you act.</p>
+    </details>
+    <details class="sc-item">
+      <summary>You deposit money, and the menu grows a new button. Who decided that
+      button exists: the device in your hand, or the machine on the network?</summary>
+      <p>The machine on the network. Its state sets the rules, and the document it sends
+      carries the new button. Your device only renders it.</p>
+    </details>
+    <details class="sc-item">
+      <summary>Say the loop that drives a hypermedia application, in your own words.</summary>
+      <p>Request, document, choice, next document. Every click sends a request and gets
+      a fresh document back.</p>
+    </details>
+  </div>
+
   <div class="prose">
     <p>This is a choice, not a law. Most software today answers with JSON and rebuilds
     its own interface in the browser. It works, at the price of a client that must be
@@ -301,7 +336,7 @@
     documents and controls built in. Why did our industry spend a decade sending data
     instead of controls?</p>
 
-    <p>That is Section 02, where the idea came from and how it got lost.</p>
+    <p>That is Section 02: where the idea came from, and how it got lost.</p>
 
     <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
     by Carson Gross, Adam Stepinski, and Deniz Akşimşek, continues this section.</p>
