@@ -82,13 +82,13 @@
     </div>
     <div class="kiosk-screen">
       <div class="k-title" id="kiosk-title">Card payment terminal</div>
-      <div class="k-msg" id="kiosk-msg">This little machine shows you only what you may do right now.</div>
+      <div class="k-msg" id="kiosk-msg">This little machine shows you the moves of the moment, and says no to a try it cannot keep.</div>
       <div class="k-note" id="kiosk-note" aria-live="polite"></div>
     </div>
     <div class="kiosk-keys" id="kiosk-keys"></div>
     <div class="kiosk-meta">
       <span class="kiosk-balance" id="kiosk-balance" aria-live="polite">balance: $40</span>
-      <button class="kiosk-reset" type="button" id="kiosk-reset">start over</button>
+      <button class="kiosk-reset" type="button" id="kiosk-reset">Start over</button>
     </div>
   </div>
 
@@ -476,7 +476,7 @@
     welcome: {
       key: 'welcome',
       title: 'Card payment terminal',
-      msg: 'This little machine shows you only what you may do right now.',
+      msg: 'This little machine shows you the moves of the moment, and says no to a try it cannot keep.',
       buttons: [{ label: 'Insert card', next: 'pin' }]
     },
     pin: {
@@ -504,7 +504,7 @@
       buttons: [{ label: 'Back to menu', next: 'menu' }]
     },
     low: {
-      key: 'low',
+      key: 'refused',
       title: 'Not this time',
       msg: function () { return 'You asked for $50, but the state allows $' + balance + '. The $50 move stays on the menu; it goes through only once the balance covers it.'; },
       buttons: [
@@ -514,7 +514,7 @@
       ]
     },
     amount50: {
-      key: 'withdraw',
+      key: 'dispensing',
       title: 'Dispensing $50',
       msg: 'The state allowed this one. Take the money.',
       buttons: [{ label: 'Take cash',
@@ -523,7 +523,7 @@
         note: function () { return 'You now have $' + balance + '.'; } }]
     },
     amount20: {
-      key: 'withdraw',
+      key: 'dispensing',
       title: 'Dispensing $20',
       msg: 'The state allowed this one. Take the money.',
       buttons: [{ label: 'Take cash',
@@ -532,7 +532,7 @@
         note: function () { return 'You now have $' + balance + '.'; } }]
     },
     after: {
-      key: 'paid-out',
+      key: 'done',
       title: 'Done',
       msg: function () { return 'Your balance is now $' + balance + '. Watch the menu: your options just changed.'; },
       buttons: [{ label: 'Back to menu', next: 'menu' }]
@@ -550,7 +550,7 @@
       ]
     },
     bye: {
-      key: 'bye',
+      key: 'goodbye',
       title: 'Take your card',
       msg: 'Goodbye. Notice: the machine never let you close the account. That move was not in any menu.',
       buttons: [{ label: 'Use it again', next: 'welcome', leave: function () { balance = 40; } }]
