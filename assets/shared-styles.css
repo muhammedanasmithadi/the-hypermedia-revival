@@ -314,6 +314,7 @@ strong {
 }
 
 .section-head h2 {
+  position: relative;
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 1.8em;
@@ -345,11 +346,13 @@ section[id] {
 }
 
 .hanchor .anchor-glyph {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
   width: 1em;
   height: 1em;
   visibility: hidden;
-  margin-left: 0.3em;
-  vertical-align: middle;
   color: var(--brand);
 }
 
@@ -415,6 +418,7 @@ section[id] {
 }
 
 .prose > h3 {
+  position: relative;
   margin: 1.4em 0 0.1em 0;
   font-family: var(--font-heading);
   font-size: 1.08em;
@@ -1610,6 +1614,7 @@ table.matrix .fit-weak {
 }
 
 .sources h3 {
+  position: relative;
   margin: 0 0 0.6em 0;
   font-size: 0.95em;
   color: var(--bright);
