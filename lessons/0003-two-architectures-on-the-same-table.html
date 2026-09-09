@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#171717">
+<meta name="description" content="The same feature, built two ways: a hypermedia document or a JSON data contract. Section 03 compares both on one table.">
+<link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0003-two-architectures-on-the-same-table.html">
+<meta property="og:site_name" content="Hypermedia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Two architectures on the same table · Hypermedia: the architecture we forgot">
+<meta property="og:description" content="The same feature, built two ways: a hypermedia document or a JSON data contract. Section 03 compares both on one table.">
+<meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0003-two-architectures-on-the-same-table.html">
+<title>Two architectures on the same table · Hypermedia: the architecture we forgot</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232052bb'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='17' font-weight='600' text-anchor='middle' fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="../assets/shared-styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<div class="progress" id="progress" role="progressbar" aria-label="reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Back to top">Hypermedia</a>
+  <span class="cur-section" id="cur-section" aria-live="polite">Section 03 · Two architectures on the same table</span>
+</header>
+
+<main class="doc" id="top">
+
+<header class="masthead">
+  <p class="post-date">September 2026</p>
+  <h1>Hypermedia: one feature, <em>two architectures</em></h1>
+  <p class="dek">One feature, two buildings. Same clicks, same facts, different replies.
+  This section puts both loops on the same table, and asks one question: who names the
+  next move?</p>
+  <p class="byline">
+    <span>revision 1</span>
+    <span>section 3 of 6</span>
+  </p>
+</header>
+
+<div class="article">
+
+<section id="two-architectures-on-the-same-table" class="section">
+
+  <div class="section-head">
+    <p class="kicker">Section 03</p>
+    <h2><a href="#two-architectures-on-the-same-table" class="hanchor">Two architectures on the same table
+        <svg class="anchor-glyph" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </a>
+    </h2>
+  </div>
+
+  <div class="prose">
+    <p class="lede"><a href="0001-hypermedia-revival.html#watch-the-loop">Section 01</a> ran one loop:
+    request, document, choice, next document. <a href="0002-how-the-idea-got-lost.html">Section 02</a> traced where that
+    loop went. Now lay one feature on the table twice, once as documents and once as JSON
+    values under a contract, and compare the two with the same clicks.</p>
+
+    <details class="recall">
+      <summary>Before you read on, can you say who held the next move by the end of Section 02?</summary>
+      <p>The client. The JSON decade moved the manual off the document and into the code
+      that receives the payload.</p>
+    </details>
+
+    <h3 id="take-one-account"><a href="#take-one-account" class="hanchor">Take one account
+        <svg class="anchor-glyph" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </a>
+    </h3>
+
+    <p>One account at one bank: account 4027, with a balance of forty dollars. The bank
+    serves the same feature from two buildings. Building A answers every request with
+    text/html. Building B answers every request with application/json.</p>
+
+    <p>Both buildings start with the same three moves: check the balance, pay the bill,
+    view the receipt. Same clicks, same facts. The table has two sides, and each side
+    runs its own loop.</p>
+
+    <p>Building B has strengths this section does not test: a screen that stays live,
+    richer gestures, offline work. The comparison stays on one question: who names the
+    next move?</p>
+
+    <h3 id="run-both-loops"><a href="#run-both-loops" class="hanchor">Run both loops
+        <svg class="anchor-glyph" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </a>
+    </h3>
+
+    <p>Section 01 gave you one loop. Run it twice now, once per building, from the same
+    clicks. Each click answers with two replies. The line under each lane names who holds
+    the next move.</p>
+  </div>
+
+  <div class="explorer reveal" id="explorer" role="group" aria-label="One feature, two buildings: the same clicks, two replies">
+    <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
+    <div class="explorer-bar">
+      <span class="explorer-hint">who names the next move?</span>
+      <button class="explorer-act" type="button" data-act="balance">Check the balance</button>
+      <button class="explorer-act" type="button" data-act="pay">Pay the bill</button>
+      <button class="explorer-act" type="button" data-act="receipt">View the receipt</button>
+      <button class="explorer-night" type="button" id="explorer-night" hidden>Let a night pass</button>
+      <button class="explorer-reset" type="button" id="explorer-reset">Start over</button>
+    </div>
+    <div class="explorer-note" id="explorer-note" aria-live="polite"></div>
+    <div class="explorer-lanes">
+      <div class="lane" role="group" aria-label="Building A: text/html">
+        <div class="lane-head">Building A · <span class="lane-mime">text/html</span></div>
+        <div class="lane-body" id="lane-a"></div>
+        <p class="lane-who" id="lane-a-who" aria-live="polite"></p>
+      </div>
+      <div class="lane" role="group" aria-label="Building B: application/json">
+        <div class="lane-head">Building B · <span class="lane-mime">application/json</span></div>
+        <div class="lane-body" id="lane-b"></div>
+        <p class="lane-who" id="lane-b-who" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="do-now" role="note" aria-label="Do it now: label a building you already use">
+    <p class="dn-kicker">Do it now</p>
+    <p>Pick a page you use often. Open DevTools with <kbd>Ctrl+Shift+I</kbd> (or <kbd>Cmd+Option+I</kbd>),
+    reload, and click the page&rsquo;s own buttons. Find the JSON replies in the Network
+    tab. Now label the building: did any reply name the buttons it rendered, or did the
+    page compile them beforehand?</p>
+  </div>
+
+  <div class="recap" role="group" aria-label="Section recap">
+    <p class="recap-title">The comparison, in review</p>
+    <p class="recap-intro">Review what the two lanes just showed you.</p>
+    <ol>
+      <li>Every click got two replies, in two shapes: a document with controls, and
+      values with a contract.</li>
+      <li>The document named the next moves. The payload named none.</li>
+      <li>Building A&rsquo;s app can meet any new move the server types. Building B draws
+      its menu from the build it shipped.</li>
+      <li>Rules change instantly in one building, and after a release in the other.</li>
+    </ol>
+  </div>
+
+  <div class="prose">
+    <h3 id="read-both-replies"><a href="#read-both-replies" class="hanchor">Read both replies
+        <svg class="anchor-glyph" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </a>
+    </h3>
+
+    <p>Read the same click in both shapes. Below, the move &ldquo;apply the credit&rdquo;
+    arrives once as Building A answers and once as Building B answers. The first reply
+    carries the next move inside itself. The second carries a value, and a contract
+    beside the document explains the shape.</p>
+  </div>
+
+  <figure class="code-block reveal">
+    <figcaption class="code-title"><span>the reply in building A · the move rides inside the document</span><span class="code-lang">html</span></figcaption>
+    <pre tabindex="0"><code><span class="tok-k">&lt;form</span> <span class="tok-a">method</span>=<span class="tok-s">"post"</span> <span class="tok-a">action</span>=<span class="tok-s">"/account/credit"</span><span class="tok-k">&gt;</span>
+  <span class="tok-k">&lt;input</span> <span class="tok-a">type</span>=<span class="tok-s">"hidden"</span> <span class="tok-a">name</span>=<span class="tok-s">"amount"</span> <span class="tok-a">value</span>=<span class="tok-s">"10"</span><span class="tok-k">&gt;</span>
+  <span class="tok-k">&lt;button</span> <span class="tok-a">type</span>=<span class="tok-s">"submit"</span><span class="tok-k">&gt;</span>Apply the $10 credit<span class="tok-k">&lt;/button&gt;</span>
+<span class="tok-k">&lt;/form&gt;</span>
+<span class="tok-k">&lt;a</span> <span class="tok-a">href</span>=<span class="tok-s">"/account/4027/receipts"</span><span class="tok-k">&gt;</span>View the receipt<span class="tok-k">&lt;/a&gt;</span></code></pre>
+  </figure>
+
+  <figure class="code-block reveal">
+    <figcaption class="code-title"><span>the reply in building B · the value arrives, the move does not</span><span class="code-lang">json</span></figcaption>
+    <pre tabindex="0"><code>{ <span class="tok-a">"balance"</span>: 40,
+  <span class="tok-a">"credit"</span>: 10
+}</code></pre>
+  </figure>
+
+  <div class="prose">
+    <p>Fielding named the difference between the two in 2008. The quote below is his own
+    list of what each architecture leans on.</p>
+  </div>
+
+  <figure class="figure-quote reveal" role="group" aria-label="Quote from Roy Fielding">
+    <blockquote cite="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-742">
+      <p>REST doesn&rsquo;t eliminate the need for a clue. What REST does is concentrate that need for prior
+        knowledge into readily standardizable forms. That is the essential distinction between data-oriented and
+        control-oriented integration.</p>
+    </blockquote>
+    <figcaption>
+      <span class="who">Roy Fielding</span> in a comment on
+      <cite>REST APIs must be hypertext-driven</cite> (2008) ·
+      <a href="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-742" rel="noopener">read the comment</a>
+    </figcaption>
+  </figure>
+
+  <div class="prose">
+    <p>Data-oriented integration sends the values under a contract, and the client carries
+    the rulebook. Control-oriented integration sends the moves with the values. You do not
+    need to memorize the two names yet. Hold the shape: the moves travel inside the reply,
+    or they live in a separate document of their own.</p>
+
+    <h3 id="track-the-new-move"><a href="#track-the-new-move" class="hanchor">Track the new move
+        <svg class="anchor-glyph" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </a>
+    </h3>
+
+    <p>You let a night pass in the widget. The bank made a ten dollar credit legal.
+    Building A served the new move with the next reply: a new button, with no update to
+    the client at all. <a href="0001-hypermedia-revival.html#name-the-pattern">Section 01</a>
+    asked which client survives a midnight change. This is that change, on the table.</p>
+
+    <p>Building B served the new value with the next reply, and kept its menu. The app
+    draws the menu from the build it shipped, so the new move waits for a new release.
+    <a href="0002-how-the-idea-got-lost.html#weigh-the-reasons">Section 02</a> named this
+    exact cost: the client must be rebuilt and shipped again.</p>
+
+    <p>Fielding also said when to care. Long-lived systems that cross teams earn the
+    extra constraint; a short-lived wrapper usually does not. From the same comment: &ldquo;If
+    you don&rsquo;t see a need for the constraints, then don&rsquo;t use them. That&rsquo;s fine
+    with me as long as you don&rsquo;t call the result a REST API.&rdquo;</p>
+
+    <p>Building B keeps its strengths: richer screens, live state, offline work. The
+    comparison never claimed otherwise. It asked one question, and it answered it: the
+    moves live with the facts, or they live in the shipped client. You do not need to
+    memorize HTTP status codes yet. The wiring details do not change the answer.</p>
+
+    <h3 id="say-who-holds-it"><a href="#say-who-holds-it" class="hanchor">Say who holds it
+        <svg class="anchor-glyph" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </a>
+    </h3>
+
+    <p>Before the self-check, say the answer in your own words. Who names the next move
+    in each building?</p>
+
+    <p>Building A names it in the reply, where the server decides. Building B names it in
+    the client&rsquo;s build, where the contract decided. That is the difference Fielding
+    put in words: data-oriented integration against control-oriented integration.</p>
+  </div>
+
+  <div class="self-check" role="group" aria-label="Check yourself before you move on">
+    <p class="sc-title">Check yourself</p>
+    <p>Three questions. Answer each one before you open it.</p>
+    <details class="sc-item">
+      <summary>Two buildings, one account. Which building names the next move in its
+      reply?</summary>
+      <p>Building A. Its document carries the links and forms. Building B&rsquo;s payload
+      carries values, and the app draws the moves from its build.</p>
+    </details>
+    <details class="sc-item">
+      <summary>The bank makes a new move legal overnight. Which building shows it before
+      a new app build ships?</summary>
+      <p>Building A. The server types the new move into the next reply. Building B waits
+      for the app to be rebuilt and shipped.</p>
+    </details>
+    <details class="sc-item">
+      <summary>Say Fielding&rsquo;s distinction in your own words.</summary>
+      <p>Data-oriented integration sends the values under a contract, and the client
+      holds the moves. Control-oriented integration sends the moves with the values, in
+      the document.</p>
+    </details>
+  </div>
+
+  <div class="prose">
+    <p>The table has two sides, and the cost shows when rules change: one building types
+    the new move, the other ships it. You can now answer &ldquo;who names the next
+    move?&rdquo; for any feature, and the answer tells you where the manual lives.</p>
+
+    <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
+    by Carson Gross, Adam Stepinski, and Deniz Akşimşek, continues the comparison.</p>
+
+    <div class="sources">
+      <h3 id="sources"><a href="#sources" class="hanchor">Sources
+          <svg class="anchor-glyph" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </a>
+    </h3>
+      <ul>
+        <li>Roy Fielding, <a rel="noopener" href="https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">&ldquo;Architectural Styles and the Design of Network-based Software Architectures&rdquo;</a> (2000), doctoral dissertation, chapter 5.</li>
+        <li>Roy Fielding, <a rel="noopener" href="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-742">&ldquo;REST APIs Must Be Hypertext-Driven&rdquo;</a> (2008), and the comment thread.</li>
+        <li>OpenAPI Initiative, <a rel="noopener" href="https://spec.openapis.org/oas/latest">OpenAPI Specification</a>.</li>
+        <li>Carson Gross, Adam Stepinski, and Deniz Akşimşek, <a rel="noopener" href="https://hypermedia.systems/components-of-a-hypermedia-system">&ldquo;Components of a Hypermedia System&rdquo;</a>, in <cite>hypermedia.systems</cite>.</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  <a class="course-home" href="../index.html">Course home · Hypermedia</a>
+  <a class="section-link" href="0002-how-the-idea-got-lost.html">← Back to section 02: how the idea got lost</a>
+  <p class="closing">sections built one by one · revision 1</p>
+</footer>
+
+<script>
+(function chrome() {
+  var progress = document.getElementById('progress');
+  var cur = document.getElementById('cur-section');
+  var doc = document.documentElement;
+
+  function onScroll() {
+    var h = doc.scrollHeight - window.innerHeight;
+    var p = h > 0 ? doc.scrollTop / h : 0;
+    progress.style.width = (p * 100).toFixed(1) + '%';
+    progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  var sec = document.getElementById('two-architectures-on-the-same-table');
+  if (sec && 'IntersectionObserver' in window) {
+    var k = sec.querySelector('.section-head .kicker');
+    var h = sec.querySelector('.section-head h2');
+    cur.textContent = (k ? k.textContent + ' · ' : '') + (h ? h.childNodes[0].textContent.trim() : '');
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        cur.classList.toggle('is-active', e.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    obs.observe(sec);
+  }
+})();
+
+(function reveal() {
+  var els = document.querySelectorAll('.reveal');
+  function show(el) { el.inert = false; el.classList.add('in'); }
+  if (!('IntersectionObserver' in window)) {
+    [].forEach.call(els, show);
+    return;
+  }
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        show(e.target);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0 });
+  [].forEach.call(els, function (el) { el.inert = true; obs.observe(el); });
+})();
+
+(function explorer() {
+  var root = document.getElementById('explorer');
+  if (!root) return;
+  var laneA = document.getElementById('lane-a');
+  var laneB = document.getElementById('lane-b');
+  var whoA = document.getElementById('lane-a-who');
+  var whoB = document.getElementById('lane-b-who');
+  var note = document.getElementById('explorer-note');
+  var night = document.getElementById('explorer-night');
+  var reset = document.getElementById('explorer-reset');
+  var acts = [].slice.call(root.querySelectorAll('.explorer-act'));
+  var phase = 'idle';
+  var timer = null;
+
+  var MOVES = [
+    { v: 'Check the balance', act: 'balance' },
+    { v: 'Pay the bill', act: 'pay' },
+    { v: 'View the receipt', act: 'receipt' }
+  ];
+
+  function docMenu(extra) {
+    return MOVES.concat(extra || []).map(function (m) {
+      return '<button class="x-act' + (m.fresh ? ' fresh' : '') + '" type="button" data-act="' + m.act + '">' + m.v + '</button>';
+    }).join('');
+  }
+
+  function jsonFor(act) {
+    if (act === 'balance') return '{ "balance": 40 }';
+    if (act === 'pay') return '{ "status": "paid" }';
+    if (act === 'receipt') return '{ "receipt": "R-4027-1" }';
+    return '{ "credit": "applied" }';
+  }
+
+  function bindLaneA() {
+    [].forEach.call(laneA.querySelectorAll('button[data-act]'), function (b) {
+      b.addEventListener('click', function () { act(b.getAttribute('data-act')); });
+    });
+  }
+
+  function paneA(extra) {
+    return '<div class="x-doc">' +
+      '<div class="x-doc-title">Account 4027 · bank of documents</div>' +
+      '<div class="x-doc-bal">Balance: $40</div>' +
+      '<div class="x-actions">' + docMenu(extra) + '</div></div>';
+  }
+
+  function paneB(json) {
+    return '<div class="x-type">application/json</div>' +
+      '<div class="x-pre">' + json + '</div>' +
+      '<div class="xt-app">' +
+      '<div class="xt-app-name">the app, drawn from the build</div>' +
+      '<div class="xt-app-menu">' + MOVES.map(function (m) {
+        return '<span class="xt-app-btn">' + m.v + '</span>';
+      }).join('') + '</div></div>';
+  }
+
+  function whoNorm(act) {
+    if (act === 'pay') {
+      return ['The reply carried the paid bill, and its own moves.', 'The reply carried the status line, and no moves.'];
+    }
+    if (act === 'receipt') {
+      return ['The reply named the moves again, inside the document.', 'The app drew the menu again, from its build.'];
+    }
+    return ['The reply named three next moves.', 'The reply named no moves. The app drew them from its build.'];
+  }
+
+  function setNight() {
+    var w = whoNorm;
+    laneA.innerHTML = paneA([{ v: 'Apply the $10 credit', act: 'credit', fresh: true }]);
+    laneB.innerHTML = paneB('{ "balance": 40, "credit": 10 }');
+    bindLaneA();
+    whoA.textContent = 'The server typed a new move into the reply. No build was needed.';
+    whoB.textContent = 'The payload carried the value, not the move. The app still draws the old menu.';
+  }
+
+  function waiting() {
+    laneA.innerHTML = '<div class="x-sending">sending…</div>';
+    laneB.innerHTML = '<div class="x-sending">sending…</div>';
+    whoA.textContent = '';
+    whoB.textContent = '';
+  }
+
+  function act(a) {
+    if (timer) clearTimeout(timer);
+    note.textContent = '';
+    waiting();
+    timer = setTimeout(function () {
+      if (a === 'night') {
+        phase = 'night';
+        night.hidden = true;
+        setNight();
+        note.textContent = 'A night passed. A $10 credit became legal. Building A shipped it in the reply; Building B waits for a release.';
+        return;
+      }
+      if (phase === 'night') {
+        setNight();
+        return;
+      }
+      if (phase === 'idle') {
+        phase = 'active';
+        night.hidden = false;
+      }
+      laneA.innerHTML = paneA();
+      laneB.innerHTML = paneB(jsonFor(a));
+      bindLaneA();
+      var w = whoNorm(a);
+      whoA.textContent = w[0];
+      whoB.textContent = w[1];
+    }, 320);
+  }
+
+  function idle() {
+    if (timer) clearTimeout(timer);
+    phase = 'idle';
+    night.hidden = true;
+    note.textContent = '';
+    laneA.innerHTML = '<p class="xt-wait">The document will name the moves in the reply.</p>';
+    laneB.innerHTML = '<p class="xt-wait">The app will draw the moves from its build.</p>';
+    whoA.textContent = 'Idle. Click a move to see who names it.';
+    whoB.textContent = 'Idle. Click a move to see who names it.';
+  }
+
+  acts.forEach(function (b) {
+    b.addEventListener('click', function () { act(b.getAttribute('data-act')); });
+  });
+  night.addEventListener('click', function () { act('night'); });
+  reset.addEventListener('click', idle);
+  idle();
+})();
+
+</script>
+</body>
+</html>
