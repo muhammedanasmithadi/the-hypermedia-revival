@@ -766,32 +766,21 @@ table.matrix .fit-weak {
 }
 
 .doc-footer .foot-nav {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center;
-  gap: 1em;
+  display: flex;
+  align-items: stretch;
+  gap: 0.75em;
   max-width: var(--col-max);
   margin: 0 auto;
 }
 
 .doc-footer .foot-nav .section-link {
-  max-width: 100%;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   overflow-wrap: anywhere;
-}
-
-.doc-footer .foot-left {
-  grid-column: 1;
-  justify-self: start;
-}
-
-.doc-footer .foot-home {
-  grid-column: 2;
-  justify-self: center;
-}
-
-.doc-footer .foot-right {
-  grid-column: 3;
-  justify-self: end;
 }
 
 /* ---------- Live kiosk (widget 1) ---------- */
