@@ -34,12 +34,11 @@
   <p class="post-date">September 2026</p>
   <h1>Hypermedia: the architecture <em>we forgot</em></h1>
   <p class="dek">The web shipped with facts and controls in one document. Then the
-  industry spent a decade separating them. This section tells how the idea began,
-  what replaced it, and what the exchange left behind.</p>
+  industry spent a decade separating them. This section shows how the idea began,
+  what replaced it, and what the separation cost.</p>
   <p class="byline">
     <span>revision 1</span>
     <span>section 2 of 6</span>
-    <span>no frameworks, no hype</span>
   </p>
 </header>
 
@@ -61,26 +60,26 @@
   </div>
 
   <div class="prose">
-    <p class="lede">The loop you stepped through did not appear in 2020. Someone invented
-    it in 1965, someone named it in 2000, and by 2011 many teams had moved to data
-    contracts. These dates describe a slow shift, not a single event. Watch who carries
-    the next move, and where it lands.</p>
+    <p class="lede">The loop you saw in Section 01 has a history. Ted Nelson described
+    hypertext in 1965. Roy Fielding named the style REST in 2000. By 2011, many teams
+    had moved to data contracts. The shift took decades, and it happened one request at
+    a time.</p>
 
-    <p>Ted Nelson coined two words in 1965: hypertext, and the broader idea,
-    hypermedia. Branching text. Media that join. Documents that point at other
-    documents, forever.</p>
+    <p>In 1965, Ted Nelson coined two words: hypertext and hypermedia. Hypertext means
+    text that branches. Hypermedia extends the same idea to audio and video. Both words
+    describe the same mechanism: documents that point at other documents.</p>
 
-    <p>In 1989 Tim Berners-Lee proposed that thought in a CERN document. Linked
-    documents, read by a client nobody owned. Later, the hypertext carried both facts
-    and controls, and that mix was the part that would get lost.</p>
+    <p>In 1989, Tim Berners-Lee proposed these ideas in a document at CERN. He built
+    linked documents, read by a client no one owned. Those documents carried both facts
+    and controls. That mix is the part the industry later lost.</p>
 
-    <p>In 2000 Roy Fielding named that style in his doctoral dissertation: REST.
-    You met his words in Section 01. Here is the part most copies missed: the controls
-    must travel with the facts, or the architecture is not REST.</p>
+    <p>In 2000, Roy Fielding named the style in his doctoral dissertation: REST.
+    You met his words in Section 01. One part is often missed: the controls must travel
+    with the facts. Without that, the architecture is not REST.</p>
   </div>
 
   <div class="prose">
-    <p>Run your eye down the rail. At each stop, ask who holds the next move.</p>
+    <p>Each step in the timeline shows who holds the next move.</p>
   </div>
 
   <div class="timeline-widget reveal" id="timeline" role="group" aria-label="The arc: from two words in 1965 to a data-only contract in 2011">
@@ -124,30 +123,30 @@
         </span>
       </li>
     </ol>
-    <div class="timeline-caption" id="timeline-caption">Step through the years. Watch who holds the next move.</div>
+    <div class="timeline-caption" id="timeline-caption">The years pass. The note under the rail explains who holds the next move.</div>
   </div>
 
   <div class="prose">
-    <p>Now the driver. Enterprise software wants reliable conversations, so it freezes
-    them into contracts. A schema describes every message; a stack generates the code.
-    Servers answer with data, never with the next move.</p>
+    <p>Data contracts came from a real need. Enterprise software wants reliable
+    conversations, so it freezes them into contracts. A schema describes every
+    message; a stack generates the code. Servers answer with data, not with the next
+    move.</p>
 
-    <p>In 2005 the shift happens inside a page, invisibly. AJAX lets a site update in
-    place without a reload, and the word &ldquo;API&rdquo; replaces
+    <p>In 2005, the shift happened inside a page. AJAX let a site update in
+    place without a reload, and the word &ldquo;API&rdquo; replaced
     &ldquo;server&rdquo; in ordinary talk. JSON was designed as a strict subset of
-    JavaScript, so a browser reads a payload without any document controls. Nobody
-    votes to stop sending controls. Each request quietly chooses data instead.</p>
+    JavaScript, so a browser reads a payload without any document controls. No one
+    voted to stop sending controls. The move from controls to data happened request by
+    request.</p>
 
-    <p>By 2008 you tap a native app, and it speaks an app&rsquo;s language. You watch a
-    screen
-    animate where a full reload cannot follow. Teams that work separately want
-    contracts they can test. A frozen schema gave clients a stable basis to version
-    against, and a toolchain that generated code from it. Each reason holds on its
-    own.</p>
+    <p>By 2008, native apps were common. They animate parts of the screen that a
+    reload cannot follow. Separate teams found a fixed contract easier to test and
+    version. A frozen schema gave teams a stable basis for versioning, and tooling
+    could generate client code from it. Each of these reasons is real.</p>
   </div>
 
   <div class="ledger reveal" id="ledger" role="group" aria-label="The JSON decade, sorted into what earned its place and what became habit">
-    <div class="ledger-head"><span class="ledger-title">the JSON decade · sorted with the loop in view</span></div>
+    <div class="ledger-head"><span class="ledger-title">the JSON decade · each reason measured against the loop</span></div>
     <div class="ledger-cols">
       <div class="ledger-col">
         <div class="ledger-col-name">Necessity</div>
@@ -160,20 +159,19 @@
       <div class="ledger-col">
         <div class="ledger-col-name">Fashion</div>
         <ul>
-          <li data-side="f">data answers, never the next move</li>
+          <li data-side="f">the server answers with data, not the next move</li>
           <li data-side="f">a spec kept outside the document</li>
-          <li data-side="f">clients told again, shipped again</li>
+          <li data-side="f">the client must be rebuilt and shipped again</li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="prose">
-    <p>The loss happens in how the word gets used. HATEOAS, Hypermedia as the Engine of
-    Application State, is the rule that the document carries the next move. In practice
-    the acronym shrinks to a JSON field of links. A link you must already know is a note,
-    not a control. REST comes to mean a straw man: facts alone, spelled with
-    verbs.</p>
+    <p>The loss shows in how the word is used. HATEOAS, Hypermedia as the Engine of
+    Application State, is the rule that the document carries the next move. In practice,
+    the acronym shrank to a JSON field of links. A link you must already know is a note,
+    not a control. In common use, REST came to mean facts alone.</p>
   </div>
 
   <figure class="code-block reveal">
@@ -197,28 +195,26 @@
   </figure>
 
   <div class="prose">
-    <p>Fielding watches and objects on the public record. In 2008 he writes the piece
-    Section 01 quoted: REST APIs must be hypertext-driven. The name survives its
-    author. The behavior does not.</p>
+    <p>Fielding objected in public. In 2008 he restated the rule: REST APIs must be
+    hypertext-driven. Section 01 quoted that piece. The name outlived the author&rsquo;s
+    meaning.</p>
 
-    <p>2011 seals the bargain. Swagger standardizes the shape of the conversation,
-    field by field. A decade of WSDL had worn the industry down; a plain testable shape
-    came as relief. Renamed OpenAPI in 2016, it still gates the conversation today.
-    Teams receive exact expectations and give up the open-ended loop. The document
-    carrying controls cedes to the schema describing data.</p>
+    <p>In 2011, Swagger fixed the shape of the conversation, field by field. A decade of
+    WSDL had left the industry with complex contracts; a plain testable shape came as a
+    relief. The spec, renamed OpenAPI in 2016, still defines the conversation today.
+    Teams receive exact expectations and give up the open-ended loop. The document that
+    carried controls gave way to a schema that describes data.</p>
 
-    <p>One thread never died. Documentation sites, forums, and plain web apps kept
-    the original loop running, decade after decade. A new wave of tooling, htmx and
-    Hotwire among it, re-learned what the terminal always knew: send the document,
-    let it carry the moves.</p>
+    <p>The older loop never completely disappeared. Documentation sites, forums, and
+    plain web apps kept it running. New tooling, including htmx and Hotwire, returned to
+    the same idea: send the document, and let it carry the moves.</p>
   </div>
 
   <div class="prose">
-    <p>With both columns on the table, which parts of the JSON decade were
-    necessity, and which were fashion?</p>
+    <p>With both columns on the table, here is the question: which parts of the JSON
+    decade were necessity, and which were fashion?</p>
 
-    <p>That is Section 03, where both architectures sit on the same table, weighed in
-    the open.</p>
+    <p>Section 03 compares both architectures directly.</p>
 
     <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
     by Carson Gross, Adam Stepinski, and Deniz Akşimşek, continues this history.</p>
@@ -304,7 +300,7 @@
   ];
   var widget = document.getElementById('timeline');
   var cap = document.getElementById('timeline-caption');
-  var REST = 'Step through the years. Watch who holds the next move.';
+  var REST = 'The years pass. The note under the rail explains who holds the next move.';
   var i = -1;
   var timer = null;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -33,13 +33,12 @@
 <header class="masthead">
   <p class="post-date">September 2026</p>
   <h1>Hypermedia: the architecture <em>the web was built on</em></h1>
-  <p class="dek">A short, plain, interactive explanation of the web&rsquo;s original
-  architecture. It is the architecture we still build on, mostly without its name.
-  Click the machines; they teach the ideas.</p>
+  <p class="dek">A short, interactive explanation of the web&rsquo;s original
+  architecture. We still build on it, mostly without naming it. The interactive demos
+  below explain the ideas.</p>
   <p class="byline">
     <span>revision 1</span>
     <span>section 1 of 6</span>
-    <span>no frameworks, no hype</span>
   </p>
 </header>
 
@@ -61,18 +60,17 @@
   </div>
 
   <div class="prose">
-    <p class="lede">Here is a machine you have never met: a card payment terminal at
-    a supermarket checkout. You are a stranger to it. You have no manual, no training,
-    and no intention of reading one.</p>
+    <p class="lede">Here is a machine you have never used: a card payment terminal at
+    a supermarket checkout. You have no manual and no training. You have no intention
+    of reading one.</p>
 
-    <p>You begin anyway. You insert the card, tap the screen, and the terminal offers
-    exactly the moves it allows right now, and nothing else. Choose one, and the next
-    screen shows the moves that remain. It never shows you a move you cannot take. It
-    never hands you the manual in full.</p>
+    <p>You start anyway. You insert the card and tap the screen. The terminal shows
+    only the moves it allows at that moment. Choose a move, and the next screen shows
+    the moves that remain. It never offers a move you cannot take, and it never shows
+    the full manual at once.</p>
 
-    <p>Recognize the pattern? You just described links and forms. Every web page runs on
-    them. Hold that thought, and first operate the machine. This terminal is pretending to
-    be the whole web.</p>
+    <p>You already know this pattern. You have described links and forms for years.
+    Keep that thought, and use the terminal below. It behaves like the whole web.</p>
   </div>
 
   <div class="kiosk reveal" id="kiosk" role="group" aria-label="A small terminal that changes its options as you act">
@@ -94,19 +92,19 @@
   </div>
 
   <div class="prose">
-    <p>Notice what the terminal does. It holds the rules, not you. It shows cash-out
-    options only after it knows your balance. Deposit ten dollars, and it rebuilds your
-    menu; a withdrawal it refused before now appears. The terminal prints its own
-    manual, one screen at a time, and it prints each page only when you can act on it.</p>
+    <p>The terminal holds the rules. You do not. It shows cash-out options only after
+    it knows your balance. Deposit ten dollars, and the menu changes; an option it
+    refused before now appears. The terminal prints its own manual one screen at a time,
+    and it prints each page only when you can act on it.</p>
 
     <p>The web is the same machine, run at a distance. A website is a server
     with a screen you hold. When it answers, the reply carries <strong>both</strong> the
     facts and the actions in one body: the balance and the buttons.</p>
 
-    <p>Before you run the experiment, make a guess. The server knows your balance:
-    forty dollars. Two kinds of reply exist. One returns the fact alone. One returns the
-    fact with the buttons. Which one works without instructions? Answer now, then choose a
-    reply type.</p>
+    <p>Before the experiment, make a guess. The server knows your balance:
+    forty dollars. One reply carries the fact alone. One carries the fact and the
+    buttons. Which one can you use without instructions? Choose a reply type, then
+    compare the two.</p>
   </div>
 
   <div class="experiment reveal" id="exp" role="group" aria-label="Experiment: choose a reply type and ask a server for your balance">
@@ -123,19 +121,18 @@
   </div>
 
   <div class="prose">
-    <p>Both replies carry the same fact: forty dollars. The toggle switches between them
+    <p>Both replies carry the same fact: forty dollars. You can switch between them
     at any time. Only one arrives with its own controls. That reply is a
     <strong>document</strong>. The word for documents like this one is
     <strong>hypermedia</strong>.</p>
 
-    <p>Define it properly once, while the two replies are still on screen. A hypermedia
+    <p>Define the term once, while both replies stay on screen. A hypermedia
     system sends <strong>information and controls together, in one document</strong>, so
     the document teaches you what to do through the buttons it carries. The controls
-    are links, buttons, and forms. The industry name for controls that
-    drive the application forward is HATEOAS: hypermedia as the engine of application
-    state.</p>
+    are links, buttons, and forms. The industry calls controls that drive the
+    application forward HATEOAS: hypermedia as the engine of application state.</p>
 
-    <p>Look at the other reply. A raw JSON number carries one fact and no
+    <p>Now consider the other reply. A raw JSON number carries one fact and no
     controls. To use it, the <em>client</em> must already know the moves, from a spec or
     from a conversation no one wrote down. The manual has moved off the document and into
     the code that receives it, where it stays until someone updates it.</p>
@@ -144,17 +141,17 @@
     and you get JSON.</p>
 
     <p>If your balance changes at midnight, which client survives? The one that reads
-    documents. It does what the next page offers. The JSON client must be told again, and
-    rebuilt, and shipped. You have now watched it twice: the terminal changed its menu,
-    and the server changed its reply.</p>
+    documents survives, because it does what the next page offers. The JSON client must
+    be told again, rebuilt, and shipped. You have seen both cases now: the terminal
+    changed its menu, and the server changed its reply.</p>
   </div>
 
   <div class="prose">
     <p>The machine that prints its own manual has a name and an architect. Roy Fielding
-    described it in his doctoral dissertation in 2000, then again in 2008. By then the
-    industry had borrowed his word, REST, and attached it to a very different machine.</p>
+    described it in his doctoral dissertation in 2000, and again in 2008. By then the
+    industry had borrowed his word REST and attached it to a different machine.</p>
 
-    <p>Here is his definition, in his own words. You already performed it twice: in the
+    <p>Here is his definition, in his own words. You have already performed it twice: in the
     terminal, and in the experiment.</p>
   </div>
 
@@ -178,9 +175,9 @@
   </div>
 
   <div class="prose">
-    <p>Look at the source link above. It is a control inside the very document that is
-    explaining controls to you. The page teaches by doing. Its quote carries its own next
-    move. Here is the markup behind it:</p>
+    <p>Consider the source link above. It is a control inside the very document that is
+    explaining controls to you. The page demonstrates its own subject. Its quote carries
+    its own next move. Here is the markup behind it:</p>
   </div>
 
   <figure class="code-block reveal">
@@ -201,8 +198,8 @@
     the source link. The browser resolves each one by itself. The page runs no custom
     code for these controls. That is the whole job.</p>
 
-    <p>Now take a wider view. Everything a hypermedia application does is one loop,
-    repeating. Read it as a sentence, then step through it yourself.</p>
+    <p>Now consider the wider view. Everything a hypermedia application does is one loop,
+    repeating. Read the loop as a sentence, then step through it.</p>
   </div>
 
   <div class="loop reveal" id="loop" role="group" aria-label="The hypermedia loop, one step at a time">
@@ -222,11 +219,10 @@
   </div>
 
   <div class="prose">
-    <p>Request. Document. Choice. Next document. The machine advances its own state only
+    <p>Request. Document. Choice. Next document. The machine advances its state only
     when it answers you, and nothing else drives a hypermedia application.</p>
 
-    <p>Three ideas survive this section, and the rest of this document builds on them:</p>
-  </div>
+<p>Three ideas carry through the rest of this document.</p>   </div>
 
   <div class="takeaways reveal">
     <div class="takeaway">
@@ -250,11 +246,11 @@
     <p>This is a choice, not a law. Most software today answers with JSON and rebuilds
     its own interface in the browser. It works, at the price of a client that must be
     rewritten and shipped whenever the rules change. The same trade-off
-    buys offline apps and far richer interactivity.</p>
+    buys offline apps and richer interactivity.</p>
 
-    <p>So here is the question this document chases: the web shipped with documents
-    and controls built in. Why did our industry spend a decade sending data instead
-    of controls?</p>
+    <p>So here is the question at the center of this document: the web shipped with
+    documents and controls built in. Why did our industry spend a decade sending data
+    instead of controls?</p>
 
     <p>That is Section 02, where the idea came from and how it got lost.</p>
 
