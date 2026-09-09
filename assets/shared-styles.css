@@ -1390,6 +1390,42 @@ table.matrix .fit-weak {
   }
 }
 
+/* ---------- Sources ---------- */
+
+.sources {
+  margin-top: 2.4em;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--line);
+  font-size: 0.9em;
+}
+
+.sources h3 {
+  margin: 0 0 0.6em 0;
+  font-size: 0.95em;
+  color: var(--bright);
+}
+
+.sources ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sources li {
+  margin: 0.4em 0;
+  color: var(--ink-light);
+}
+
+.sources a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sources a:hover {
+  color: var(--link-hover);
+}
+
 /* ---------- Print ---------- */
 
 @media print {

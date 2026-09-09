@@ -62,8 +62,9 @@
 
   <div class="prose">
     <p class="lede">The loop you stepped through did not appear in 2020. Someone invented
-    it in 1965, someone named it in 2000, and half of an industry forgot it by 2011.
-    Watch who carries the next move, and where it lands.</p>
+    it in 1965, someone named it in 2000, and by 2011 many teams had moved to data
+    contracts. These dates describe a slow shift, not a single event. Watch who carries
+    the next move, and where it lands.</p>
 
     <p>Ted Nelson coined two words in 1965: hypertext, and the broader idea,
     hypermedia. Branching text. Media that join. Documents that point at other
@@ -133,14 +134,16 @@
 
     <p>In 2005 the shift happens inside a page, invisibly. AJAX lets a site update in
     place without a reload, and the word &ldquo;API&rdquo; replaces
-    &ldquo;server&rdquo; in ordinary talk. JSON parses natively in JavaScript, so the
-    browser reads data without a document&rsquo;s controls. Nobody votes to stop sending
-    controls. Each request quietly chooses data instead.</p>
+    &ldquo;server&rdquo; in ordinary talk. JSON was designed as a strict subset of
+    JavaScript, so a browser reads a payload without any document controls. Nobody
+    votes to stop sending controls. Each request quietly chooses data instead.</p>
 
     <p>By 2008 you tap a native app, and it speaks an app&rsquo;s language. You watch a
     screen
     animate where a full reload cannot follow. Teams that work separately want
-    contracts they can test. Each reason holds on its own.</p>
+    contracts they can test. A frozen schema gave clients a stable basis to version
+    against, and a toolchain that generated code from it. Each reason holds on its
+    own.</p>
   </div>
 
   <div class="ledger reveal" id="ledger" role="group" aria-label="The JSON decade, sorted into what earned its place and what became habit">
@@ -166,9 +169,10 @@
   </div>
 
   <div class="prose">
-    <p>The loss happens in how the word gets used. Fielding&rsquo;s acronym, HATEOAS,
-    shrinks to a JSON field of links. A link you must already know is a note, not a
-    control. REST comes to mean a straw man: facts alone, spelled with
+    <p>The loss happens in how the word gets used. HATEOAS, Hypermedia as the Engine of
+    Application State, is the rule that the document carries the next move. In practice
+    the acronym shrinks to a JSON field of links. A link you must already know is a note,
+    not a control. REST comes to mean a straw man: facts alone, spelled with
     verbs.</p>
   </div>
 
@@ -179,6 +183,16 @@
     <span class="tok-s">"GET /account"</span>,
     <span class="tok-s">"GET /transactions"</span>
   ]
+}</pre>
+  </figure>
+
+  <figure class="code-block reveal">
+    <figcaption class="code-title"><span>what the rule means: a named next move</span><span class="code-lang">json</span></figcaption>
+    <pre tabindex="0">{ <span class="tok-a">"balance"</span>: 40,
+  <span class="tok-a">"_links"</span>: {
+    <span class="tok-s">"self"</span>:          <span class="tok-s">"/account"</span>,
+    <span class="tok-s">"transactions"</span>: <span class="tok-s">"/account/transactions"</span>
+  }
 }</pre>
   </figure>
 
@@ -208,6 +222,18 @@
 
     <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
     by Carson Gross, Adam Stepinski, and Deniz Akşimşek, continues this history.</p>
+
+    <div class="sources">
+      <h3>Sources</h3>
+      <ul>
+        <li>Ted Nelson, <a rel="noopener" href="https://dl.acm.org/doi/10.1145/800020.808326">&ldquo;Complex Information Processing: A File Structure for the Complex, the Changing and the Indeterminate&rdquo;</a> (1965).</li>
+        <li>Tim Berners-Lee, <a rel="noopener" href="https://www.w3.org/History/1989/proposal.html">&ldquo;Information Management: A Proposal&rdquo;</a> (1989), CERN.</li>
+        <li>Roy Fielding, <a rel="noopener" href="https://ics.uci.edu/~fielding/pubs/dissertation/top.htm">&ldquo;Architectural Styles and the Design of Network-based Software Architectures&rdquo;</a> (2000), doctoral dissertation.</li>
+        <li>Roy Fielding, <a rel="noopener" href="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">&ldquo;REST APIs Must Be Hypertext-Driven&rdquo;</a> (2008).</li>
+        <li>Jesse James Garrett, <a rel="noopener" href="https://web.archive.org/web/20050704113844/http://adaptivepath.com/ideas/essays/archives/000385.php">&ldquo;Ajax: A New Approach to Web Applications&rdquo;</a> (2005).</li>
+        <li>OpenAPI Initiative, <a rel="noopener" href="https://spec.openapis.org/oas/v3.1.0">OpenAPI Specification</a> (2016&ndash;).</li>
+      </ul>
+    </div>
   </div>
 
 </section>
@@ -462,9 +488,9 @@
     }
     res.textContent = placed === 0
       ? 'Place the reasons first.'
-      : right === facts.length
-        ? '6 of 6. Necessity and fashion, weighed in the open.'
-        : right + ' of ' + facts.length + ' in the right column.';
+: right === facts.length
+          ? '6 of 6. Necessity and fashion, weighed in the open.'
+          : right + ' of ' + facts.length + ' right; ' + (facts.length - placed) + ' still in the tray.';
   });
 
   again.addEventListener('click', render);
