@@ -869,6 +869,12 @@ h3[id]:target {
   display: inline-block;
 }
 
+.lane-body .x-pre {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 .x-doc {
   border: 1px solid #3f3f3f;
   border-radius: 6px;
