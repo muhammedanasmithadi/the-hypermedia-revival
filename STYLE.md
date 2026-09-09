@@ -22,6 +22,10 @@ in *The Sense of Style*.
 - Cut. Delete a word when the sentence stays clear without it.
 - Never use an em dash. Use a comma, a colon, or a period instead.
 - No hype, slogans, or rhetorical fire. Write like a patient teacher.
+- Write complete declarative sentences. Do not use fragments for effect.
+- State the fact; do not command the reader to watch, notice, or look.
+- Plain verbs: changed, replaced, moved, answered. Do not dramatize.
+- Keep genuine questions and the word "you". They teach. Slogans do not.
 
 ## Sentence rhythm
 
