@@ -288,7 +288,6 @@ strong {
 .doc {
   max-width: var(--col-max);
   margin: 0 auto;
-  padding: 0 0 6em 0;
 }
 
 .article {
@@ -722,7 +721,7 @@ table.matrix .fit-weak {
   text-align: center;
   font-size: 0.9em;
   color: var(--soft-dark);
-  padding: 3em 0 2em 0;
+  padding: 1em 0 2em 0;
 }
 
 .doc-footer .foot-heading {
@@ -751,16 +750,47 @@ table.matrix .fit-weak {
   color: var(--link);
 }
 
-.doc-footer .course-home {
-  display: block;
-  font-size: 0.85em;
+.doc-footer .foot-nav a {
+  color: var(--white);
+}
+
+.doc-footer .foot-nav a:hover {
+  color: var(--white);
 }
 
 .doc-footer .closing {
-  margin-top: 0.8em;
+  margin-top: 1em;
   font-family: var(--font-mono);
   font-size: 0.8em;
   color: #6a6a6a;
+}
+
+.doc-footer .foot-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1em;
+  padding: 0 1em;
+}
+
+.doc-footer .foot-nav .section-link {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.doc-footer .foot-left {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.doc-footer .foot-home {
+  grid-column: 2;
+  justify-self: center;
+}
+
+.doc-footer .foot-right {
+  grid-column: 3;
+  justify-self: end;
 }
 
 /* ---------- Live kiosk (widget 1) ---------- */
@@ -1200,8 +1230,6 @@ table.matrix .fit-weak {
 /* ---------- Section link (footer navigation) ---------- */
 
 .section-link {
-  display: inline-block;
-  margin-bottom: 1.2em;
   font-size: 0.9em;
   padding: 0.5em 1.3em;
   border-radius: 6px;
