@@ -61,7 +61,7 @@
     values under a contract, and compare the two with the same clicks.</p>
 
     <details class="recall">
-      <summary>Before you read on, can you say who held the next move by the end of Section 02?</summary>
+      <summary>Before you read on, can you name the loop in four words, and say who held the next move by the end of Section 02?</summary>
       <p>The client. The JSON decade moved the manual off the document and into the code
       that receives the payload.</p>
     </details>
@@ -213,8 +213,8 @@
 
     <p>Building B keeps its strengths: richer screens, live state, offline work. The
     comparison never claimed otherwise. It asked one question, and it answered it: the
-    moves live with the facts, or they live in the shipped client. You do not need to
-    memorize HTTP status codes yet. The wiring details do not change the answer.</p>
+    moves live with the facts, or they live in the shipped client. You do not need the
+    HTTP, Hypertext Transfer Protocol, status codes yet. The wiring details do not change the answer.</p>
 
     <h3 id="say-who-holds-it"><a href="#say-who-holds-it" class="hanchor">Say who holds it
         <span class="anchor-glyph" aria-hidden="true"></span>
@@ -268,7 +268,7 @@
       <ul>
         <li>Roy Fielding, <a rel="noopener" href="https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">&ldquo;Architectural Styles and the Design of Network-based Software Architectures&rdquo;</a> (2000), doctoral dissertation, chapter 5.</li>
         <li>Roy Fielding, <a rel="noopener" href="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-742">&ldquo;REST APIs Must Be Hypertext-Driven&rdquo;</a> (2008), and the comment thread.</li>
-        <li>OpenAPI Initiative, <a rel="noopener" href="https://spec.openapis.org/oas/latest">OpenAPI Specification</a>.</li>
+        <li>OpenAPI Initiative, <a rel="noopener" href="https://spec.openapis.org/oas/latest">OpenAPI Specification</a> (2011 as Swagger; since 2015 as OpenAPI).</li>
         <li>Carson Gross, Adam Stepinski, and Deniz Akşimşek, <a rel="noopener" href="https://hypermedia.systems/components-of-a-hypermedia-system">&ldquo;Components of a Hypermedia System&rdquo;</a>, in <cite>hypermedia.systems</cite>.</li>
       </ul>
     </div>
@@ -403,7 +403,6 @@
   }
 
   function setNight() {
-    var w = whoNorm;
     laneA.innerHTML = paneA([{ v: 'Apply the $10 credit', act: 'credit', fresh: true }]);
     laneB.innerHTML = paneB('{ "balance": 40, "credit": 10 }');
     bindLaneA();

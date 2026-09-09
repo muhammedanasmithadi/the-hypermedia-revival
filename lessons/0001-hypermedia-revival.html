@@ -9,10 +9,10 @@
 <link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0001-hypermedia-revival.html">
 <meta property="og:site_name" content="Hypermedia">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The machine that prints its own manual · Hypermedia: the architecture the web was built on">
+<meta property="og:title" content="The machine that prints its own manual · Hypermedia: the architecture we forgot">
 <meta property="og:description" content="A short, plain, interactive explanation of hypermedia: documents that carry their own controls.">
 <meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0001-hypermedia-revival.html">
-<title>The machine that prints its own manual · Hypermedia: the architecture the web was built on</title>
+<title>The machine that prints its own manual · Hypermedia: the architecture we forgot</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232052bb'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='17' font-weight='600' text-anchor='middle' fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="../assets/shared-styles.css">
@@ -99,8 +99,8 @@
     and it prints each page only when you can act on it.</p>
 
     <p>Keep this as the first rule of the course: operate the machine before you
-    define it. You have run the machine. Wait until the definition, and watch how much
-    faster it reads.</p>
+    define it. You have run the machine. Wait until the definition. It reads faster after
+    the run.</p>
 
     <p>The web is the same machine, run at a distance. A website is a server with a
     screen you hold. When it answers, the reply carries <strong>both</strong> the
@@ -108,7 +108,7 @@
 
     <p>You might wonder why the machine keeps its options hidden. It hides them
     because the state decides what you may do: a balance of forty dollars has no fifty
-    dollar rule. Watch the same logic travel across a network next.</p>
+    dollar rule. The same logic now travels across a network.</p>
 
     <h3 id="choose-a-reply"><a href="#choose-a-reply" class="hanchor">Choose a reply
         <span class="anchor-glyph" aria-hidden="true"></span>
@@ -142,14 +142,17 @@
 
   </div>
 
-  <div class="do-now" role="note" aria-label="Do it now: view the page source">
+  <div class="do-now" role="note" aria-label="Do it now: view the source and the requests">
     <p class="dn-kicker">Do it now</p>
     <p>Press <kbd>Ctrl+U</kbd> (or <kbd>Cmd+Option+U</kbd> in Chrome and Safari;
     <kbd>Cmd+U</kbd> in Firefox) to view this page&rsquo;s
     source. The HTML tab that opens is this whole document in plain text. The links
     and buttons that were typed into it appear there as small tags; the demos create
-    the rest of their controls while they run. Do not read it; just notice that
-    the document describes itself.</p>
+    the rest of their controls while they run. Do not read it. The
+    document describes itself. Then open DevTools with <kbd>Ctrl+Shift+I</kbd> (or
+    <kbd>Cmd+Option+I</kbd>), choose the Network tab, and reload this page. The
+    requests appear, one document and its assets at a time. That list is the loop,
+    running on this page. Close DevTools once you have seen it.</p>
   </div>
 
   <div class="prose">
@@ -243,14 +246,6 @@
 
   </div>
 
-  <div class="do-now" role="note" aria-label="Do it now: watch the requests">
-    <p class="dn-kicker">Do it now</p>
-    <p>Open DevTools with <kbd>Ctrl+Shift+I</kbd> (or <kbd>Cmd+Option+I</kbd>),
-    choose the Network tab, and reload this page. Watch the requests appear, one
-    document and its assets at a time. That list is the loop, running on this page.
-    Close DevTools once you have seen it.</p>
-  </div>
-
   <div class="prose">
     <h3 id="watch-the-loop"><a href="#watch-the-loop" class="hanchor">Watch the loop
         <span class="anchor-glyph" aria-hidden="true"></span>
@@ -285,6 +280,7 @@
 
   <div class="recap" role="group" aria-label="Section recap">
     <p class="recap-title">The section, in review</p>
+    <p class="recap-intro">Review the section in four points.</p>
     <ol>
       <li>One document delivers facts and controls in a single body.</li>
       <li>A picked control becomes a request; the browser asks the server.</li>
@@ -358,7 +354,7 @@
         </a>
     </h3>
       <ul>
-        <li>Roy Fielding, <a rel="noopener" href="https://ics.uci.edu/~fielding/pubs/dissertation/top.htm">&ldquo;Architectural Styles and the Design of Network-based Software Architectures&rdquo;</a> (2000), doctoral dissertation.</li>
+        <li>Roy Fielding, <a rel="noopener" href="https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">&ldquo;Architectural Styles and the Design of Network-based Software Architectures&rdquo;</a> (2000), doctoral dissertation, chapter 5.</li>
         <li>Roy Fielding, <a rel="noopener" href="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">&ldquo;REST APIs Must Be Hypertext-Driven&rdquo;</a> (2008).</li>
       </ul>
     </div>
@@ -537,7 +533,7 @@
     after: {
       key: 'done',
       title: 'Done',
-      msg: function () { return 'Your balance is now $' + balance + '. Watch the menu: your options just changed.'; },
+      msg: function () { return 'Your balance is now $' + balance + '. Your options just changed.'; },
       buttons: [{ label: 'Back to menu', next: 'menu' }]
     },
     deposit: {
@@ -555,7 +551,7 @@
     bye: {
       key: 'goodbye',
       title: 'Take your card',
-      msg: 'Goodbye. Notice: the machine never let you close the account. That move was not in any menu.',
+      msg: 'Goodbye. The machine never let you close the account. That move was not in any menu.',
       buttons: [{ label: 'Use it again', next: 'welcome', leave: function () { balance = 40; } }]
     }
   };

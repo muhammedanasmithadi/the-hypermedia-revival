@@ -137,12 +137,12 @@
     <p class="dn-kicker">Do it now</p>
     <p>Open any shop you already use and put an item in the basket. Then open DevTools
     with <kbd>Ctrl+Shift+I</kbd> (or <kbd>Cmd+Option+I</kbd>), choose the Network tab,
-    and look for the JSON reply. The page rebuilt its own buttons from code. The next
+    and find the JSON reply. The page rebuilt its own buttons from code. The next
     moves live in the client, not in the document.</p>
   </div>
 
   <div class="prose">
-    <h3 id="watch-it-drift"><a href="#watch-it-drift" class="hanchor">Watch it drift
+    <h3 id="trace-the-drift"><a href="#trace-the-drift" class="hanchor">Trace the drift
         <span class="anchor-glyph" aria-hidden="true"></span>
       </a>
     </h3>
@@ -158,7 +158,7 @@
     JavaScript&rsquo;s object literals, so a browser reads a payload without any document
     controls. No one
     voted to stop sending controls. The move from controls to data happened request by
-    request.</p>
+    request. You do not need to know how AJAX works yet.</p>
 
     <p>By the late 2000s, native apps were everywhere. The shift held for four separate reasons,
     and each one was real:</p>
@@ -215,7 +215,7 @@
 
   <div class="recap" role="group" aria-label="Section recap">
     <p class="recap-title">The JSON decade, in review</p>
-    <p class="recap-intro">Review what you just sorted.</p>
+    <p class="recap-intro">Review the three rows you just sorted.</p>
     <ol>
       <li>Necessity earns its place: native apps, animation, and testable
       contracts.</li>
@@ -318,7 +318,7 @@
       <ul>
         <li>Ted Nelson, <a rel="noopener" href="https://dl.acm.org/doi/10.1145/800020.808326">&ldquo;Complex Information Processing: A File Structure for the Complex, the Changing and the Indeterminate&rdquo;</a> (1965).</li>
         <li>Tim Berners-Lee, <a rel="noopener" href="https://www.w3.org/History/1989/proposal.html">&ldquo;Information Management: A Proposal&rdquo;</a> (1989), CERN.</li>
-        <li>Roy Fielding, <a rel="noopener" href="https://ics.uci.edu/~fielding/pubs/dissertation/top.htm">&ldquo;Architectural Styles and the Design of Network-based Software Architectures&rdquo;</a> (2000), doctoral dissertation.</li>
+        <li>Roy Fielding, <a rel="noopener" href="https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">&ldquo;Architectural Styles and the Design of Network-based Software Architectures&rdquo;</a> (2000), doctoral dissertation, chapter 5.</li>
         <li>Roy Fielding, <a rel="noopener" href="https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">&ldquo;REST APIs Must Be Hypertext-Driven&rdquo;</a> (2008).</li>
         <li>Jesse James Garrett, <a rel="noopener" href="https://web.archive.org/web/20050704113844/http://adaptivepath.com/ideas/essays/archives/000385.php">&ldquo;Ajax: A New Approach to Web Applications&rdquo;</a> (2005).</li>
         <li>OpenAPI Initiative, <a rel="noopener" href="https://spec.openapis.org/oas/v3.1.0">OpenAPI Specification</a> (2011 as Swagger; since 2015 as OpenAPI).</li>
@@ -589,7 +589,7 @@
     res.textContent = placed === 0
       ? 'Place the reasons first.'
 : right === facts.length
-          ? '6 of 6. Necessity, fashion, and cost, weighed in the open.'
+          ? facts.length + ' of ' + facts.length + '. Necessity, fashion, and cost, weighed in the open.'
           : right + ' of ' + facts.length + ' right; ' + (facts.length - placed) + ' still in the tray.';
   });
 
