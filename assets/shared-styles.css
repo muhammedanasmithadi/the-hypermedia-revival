@@ -1239,24 +1239,29 @@ table.matrix .fit-weak {
 }
 
 .ledger-cols {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
 }
 
 .ledger-col {
-  padding: 1em 1.2em 1.2em 1.2em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5em 0.9em;
+  padding: 1em 1.2em;
 }
 
 .ledger-col + .ledger-col {
-  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
 }
 
 .ledger-col-name {
+  flex: 0 0 8.5em;
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.95em;
   color: var(--bright);
-  padding-bottom: 0.5em;
+  line-height: 1.6;
 }
 
 .ledger-title {
@@ -1317,6 +1322,10 @@ table.matrix .fit-weak {
 
 .ledger-col li.ledger-item::before {
   content: none;
+}
+
+.ledger-col .chip {
+  white-space: normal;
 }
 
 .ledger-item.ok .chip {
@@ -1390,38 +1399,22 @@ table.matrix .fit-weak {
 }
 
 .ledger-col ul {
+  flex: 1 1 24em;
+  min-width: 0;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 0.5em;
 }
 
 .ledger-col li {
-  position: relative;
-  padding: 0.4em 0 0.4em 1.1em;
+  padding: 0.25em 0;
   color: var(--ink-light);
   font-size: 0.92em;
 }
 
 .ledger-col li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: calc(0.4em + (1.6em - 6px) / 2 + 2px);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--brand);
-}
-
-@media (max-width: 720px) {
-  .ledger-cols {
-    grid-template-columns: 1fr;
-  }
-  .ledger-col + .ledger-col {
-    border-left: none;
-    border-top: 1px solid var(--line);
-  }
+  content: none;
 }
 
 /* ---------- Panels: do it now, recap, objectives, self-check ---------- */

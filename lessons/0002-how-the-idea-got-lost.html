@@ -178,7 +178,7 @@
       </a>
     </h3>
 
-    <p>Sort the decade yourself before the columns explain it. The three columns are
+    <p>Sort the decade yourself before the rows explain it. The three rows are
     Necessity, Fashion, and the Cost. Nothing here is an insult; all three forces are
     honest mechanics. Necessity earns its place, fashion follows habit, and cost lands
     on someone who pays it. Do not try to memorize the
@@ -302,7 +302,7 @@
   </div>
 
   <div class="prose">
-    <p>With all three columns on the table, here is the question: which parts of the JSON
+    <p>With all three rows on the table, here is the question: which parts of the JSON
     decade were necessity, which were fashion, and which was the cost?</p>
 
     <p>Section 03 compares both architectures directly.</p>
@@ -529,13 +529,13 @@
 
   pool = document.createElement('ul');
   pool.className = 'ledger-pool';
-  pool.setAttribute('aria-label', 'Reasons to sort: select one, then choose a column');
+  pool.setAttribute('aria-label', 'Reasons to sort: select one, then choose a row');
   cols.parentNode.insertBefore(pool, cols);
 
   Array.prototype.forEach.call(cols.querySelectorAll('.ledger-col'), function (col) {
     col.setAttribute('tabindex', '0');
     col.setAttribute('role', 'group');
-    col.setAttribute('aria-label', col.querySelector('.ledger-col-name').textContent + ' column');
+    col.setAttribute('aria-label', col.querySelector('.ledger-col-name').textContent + ' row');
     col.addEventListener('click', function () { placeInto(col); });
     col.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -565,7 +565,7 @@
 
   var hint = document.createElement('span');
   hint.className = 'ledger-hint';
-  hint.textContent = 'select a reason, then choose a column (click or Enter)';
+  hint.textContent = 'select a reason, then choose a row (click or Enter)';
   head.appendChild(hint);
 
   check.addEventListener('click', function () {
