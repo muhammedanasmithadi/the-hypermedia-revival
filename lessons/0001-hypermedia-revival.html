@@ -42,7 +42,7 @@
   architecture. We still build on it, mostly without naming it. The interactive demos
   below explain the ideas.</p>
   <p class="byline">
-    <span>revision 1</span>
+    <span>revision 2</span>
     <span>section 1 of 6</span>
   </p>
 </header>
@@ -144,6 +144,11 @@
     at any time. Only one arrives with its own controls. That reply is a
     <strong>document</strong>. The word for documents like this one is
     <strong>hypermedia</strong>.</p>
+
+    <p>The number beside the request line ended the same way each time: 200 OK. Two
+    hundred means the document reached you whole. That switch was one turn of the loop
+    the course names below. You do not need the other numbers yet; Section 04 names
+    them.</p>
 
   </div>
 
@@ -249,6 +254,22 @@
     line above, the source link. The browser resolves each one by itself. The page runs no custom
     code for these controls. That is the whole job.</p>
 
+  </div>
+
+  <div class="prose">
+    <p>The Network tab you opened earlier listed this page as one request. The browser
+    built that request the moment you opened the page. Here is the line it sent:</p>
+  </div>
+
+  <figure class="code-block reveal">
+    <figcaption class="code-title"><span>the request that carried this page</span><span class="code-lang">http</span></figcaption>
+    <pre tabindex="0"><code>GET /the-hypermedia-revival/lessons/0001-hypermedia-revival.html HTTP/1.1
+Host: muhammedanasmithadi.github.io</code></pre>
+  </figure>
+
+  <div class="prose">
+    <p>GET says one word: ask for. It asks the host for the document at the path. That
+    line is the first step of the loop, written down.</p>
   </div>
 
   <div class="prose">
@@ -376,7 +397,7 @@
     <a class="section-link foot-home" href="../index.html">Course home</a>
     <a class="section-link foot-right" href="0002-how-the-idea-got-lost.html">How the idea got lost</a>
   </nav>
-  <p class="closing">sections built one by one · revision 1</p>
+  <p class="closing">sections built one by one · revision 2</p>
 </footer>
 
 <script>

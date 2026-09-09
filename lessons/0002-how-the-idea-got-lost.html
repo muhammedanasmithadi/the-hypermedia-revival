@@ -42,7 +42,7 @@
   industry spent a decade separating them. This section shows how the idea began,
   what replaced it, and what the separation cost.</p>
   <p class="byline">
-    <span>revision 1</span>
+    <span>revision 2</span>
     <span>section 2 of 6</span>
   </p>
 </header>
@@ -130,6 +130,13 @@
       <li>
         <span class="t-dot" aria-hidden="true"></span>
         <span class="t-body">
+          <span class="t-year">2007</span>
+          <span class="t-line"><strong>The phone arrives</strong><span class="t-note">A screen in the pocket; its apps ship their own interface.</span></span>
+        </span>
+      </li>
+      <li>
+        <span class="t-dot" aria-hidden="true"></span>
+        <span class="t-body">
           <span class="t-year">2011</span>
           <span class="t-line"><strong>Contract-first</strong><span class="t-note">Swagger fixes the shape; HATEOAS shrinks to a links array.</span></span>
         </span>
@@ -165,11 +172,24 @@
     voted to stop sending controls. The move from controls to data happened request by
     request. You do not need to know how AJAX works yet.</p>
 
+    <p>The history claims one move happened. Below is that move in miniature. The page
+    asks for the basket in code, then builds its own buttons from the reply.</p>
+
+    <figure class="code-block reveal">
+      <figcaption class="code-title"><span>the move, in today&rsquo;s shape</span><span class="code-lang">js</span></figcaption>
+      <pre tabindex="0"><code><span class="tok-k">fetch</span>(<span class="tok-s">'/basket.json'</span>)
+  .then(<span class="tok-k">function</span> (r) { <span class="tok-k">return</span> r.json(); })
+  .then(<span class="tok-k">function</span> (basket) { render(basket); });</code></pre>
+    </figure>
+
+    <p>The 2005 code used a different name for the ask; the shape is the same. The
+    reply carried values, not buttons. The code that calls render holds the moves.</p>
+
     <p>By the late 2000s, native apps were everywhere. The shift held for four separate reasons,
     and each one was real:</p>
 
     <ol class="reasons">
-      <li>Native apps were everywhere, and each one had its own screen.</li>
+      <li>A pocket screen arrived in 2007, and each app drew its own interface.</li>
       <li>Screens animate in place, and a full reload cannot follow.</li>
       <li>Teams found a fixed contract easier to test and to version.</li>
       <li>Tooling could generate client code from the fixed shape.</li>
@@ -343,7 +363,7 @@
     <a class="section-link foot-home" href="../index.html">Course home</a>
     <a class="section-link foot-right" href="0003-two-architectures-on-the-same-table.html">Two architectures on the same table</a>
   </nav>
-  <p class="closing">sections built one by one · revision 1</p>
+  <p class="closing">sections built one by one · revision 2</p>
 </footer>
 
 <script>
@@ -401,6 +421,7 @@
     { c: 'The document carries the next move; a link reads itself.' },
     { c: 'REST puts a name on it: controls must travel with the facts.' },
     { c: 'AJAX moves the next move into the client\'s code.' },
+    { c: 'The phone carries its own apps; the document stops being the only screen.' },
     { c: 'The contract takes the next move out of the document.' }
   ];
   var widget = document.getElementById('timeline');
