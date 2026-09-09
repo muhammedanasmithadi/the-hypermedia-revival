@@ -7,12 +7,12 @@
 <meta name="theme-color" content="#171717">
 <meta name="description" content="A short, plain, interactive explanation of hypermedia: documents that carry their own controls.">
 <link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0001-hypermedia-revival.html">
-<meta property="og:site_name" content="Hypermedia Teach">
+<meta property="og:site_name" content="Hypermedia">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hypermedia: the architecture the web was built on">
+<meta property="og:title" content="The machine that prints its own manual · Hypermedia: the architecture the web was built on">
 <meta property="og:description" content="A short, plain, interactive explanation of hypermedia: documents that carry their own controls.">
 <meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0001-hypermedia-revival.html">
-<title>Hypermedia: the architecture the web was built on</title>
+<title>The machine that prints its own manual · Hypermedia: the architecture the web was built on</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232052bb'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='17' font-weight='600' text-anchor='middle' fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="../assets/shared-styles.css">
@@ -65,10 +65,9 @@
     have no intention of using either. You read the screen instead. This section gives
     the pattern a name, a loop, and an architect.</p>
 
-    <p>You insert the card and tap the screen. The terminal shows only the moves it
-    allows at that moment. Choose a move, and the next screen shows the moves that
-    remain. It never offers a move you cannot take, and it never shows the full manual at
-    once.</p>
+    <p>You insert the card and tap the screen. The terminal shows the moves it can
+    keep at that moment and turns down a try it cannot honour. Choose a move, and the
+    next screen shows the moves that remain. It never shows the full manual at once.</p>
 
     <p>You already know this pattern. You have spent years on websites that behave
     exactly this way, and you may never have given them a name. Use the terminal below
@@ -145,7 +144,8 @@
 
   <div class="do-now" role="note" aria-label="Do it now: view the page source">
     <p class="dn-kicker">Do it now</p>
-    <p>Press <kbd>Ctrl+U</kbd> (or <kbd>Cmd+Option+U</kbd>) to view this page&rsquo;s
+    <p>Press <kbd>Ctrl+U</kbd> (or <kbd>Cmd+Option+U</kbd> in Chrome and Safari;
+    <kbd>Cmd+U</kbd> in Firefox) to view this page&rsquo;s
     source. The HTML tab that opens is this whole document in plain text. The links
     and buttons that were typed into it appear there as small tags; the demos create
     the rest of their controls while they run. Do not read it; just notice that
@@ -170,7 +170,7 @@
     the terminal and the experiment. The name will keep appearing through the course.
     What matters is the shape: the controls ride with the facts.</p>
 
-    <p>Now consider the other reply. A raw JSON number carries one fact and no
+    <p>Now consider the other reply. A raw JSON reply carries one fact and no
     controls. To use it, the <em>client</em> must already know the moves, from a spec or
     from a conversation no one wrote down. The manual has moved off the document and into
     the code that receives it, where it stays until someone updates it.</p>
@@ -237,8 +237,8 @@
     <p>One link tells the browser what it may do next. No manual required. The document
     knows its own controls, by construction.</p>
 
-    <p>Count the plain controls on this page: the section anchor, the GET line above,
-    the source link. The browser resolves each one by itself. The page runs no custom
+    <p>Count the plain controls on this page: the section anchor, the GET /account/balance
+    line above, the source link. The browser resolves each one by itself. The page runs no custom
     code for these controls. That is the whole job.</p>
 
   </div>
@@ -371,6 +371,7 @@
 </main>
 
 <footer class="doc-footer">
+  <a class="course-home" href="../index.html">Course home · Hypermedia</a>
   <a class="section-link" href="0002-how-the-idea-got-lost.html">Next section: how the idea got lost →</a>
   <p class="closing">sections built one by one · revision 1</p>
 </footer>
@@ -505,7 +506,7 @@
     low: {
       key: 'low',
       title: 'Not this time',
-      msg: function () { return 'You asked for $50, but you have $' + balance + '. No button is printed for a move the state does not allow.'; },
+      msg: function () { return 'You asked for $50, but the state allows $' + balance + '. The $50 move stays on the menu; it goes through only once the balance covers it.'; },
       buttons: [
         { label: 'Withdraw $20', next: 'amount20' },
         { label: 'Deposit first', next: 'deposit' },
@@ -544,7 +545,7 @@
         { label: 'Add the money',
           next: 'menu',
           leave: function () { balance += 10; },
-          note: function () { return 'Menu rebuilt: $' + balance + '. Withdraw $50 now appears.'; } },
+          note: function () { return balance >= 50 ? 'Menu rebuilt: $' + balance + '. Withdraw $50 now goes through.' : 'Menu rebuilt: $' + balance + '. Withdraw $50 still refuses until the balance allows.'; } },
         { label: 'Cancel', next: 'menu' }
       ]
     },

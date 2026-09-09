@@ -7,12 +7,12 @@
 <meta name="theme-color" content="#171717">
 <meta name="description" content="How hypermedia began, and how industry replaced it with data-only APIs. Section 02 tells both sides of the story.">
 <link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0002-how-the-idea-got-lost.html">
-<meta property="og:site_name" content="Hypermedia Teach">
+<meta property="og:site_name" content="Hypermedia">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hypermedia: the architecture we forgot">
+<meta property="og:title" content="How the idea got lost · Hypermedia: the architecture we forgot">
 <meta property="og:description" content="How hypermedia began, and how industry replaced it with data-only APIs. Section 02 tells both sides of the story.">
 <meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0002-how-the-idea-got-lost.html">
-<title>Hypermedia: the architecture we forgot</title>
+<title>How the idea got lost · Hypermedia: the architecture we forgot</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232052bb'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='17' font-weight='600' text-anchor='middle' fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="../assets/shared-styles.css">
@@ -73,7 +73,8 @@
     <p>In 1965, Ted Nelson coined two words: hypertext and hypermedia. Hypertext means
     text that branches. Hypermedia extends the same idea to audio and video. Both words
     describe the same mechanism: documents that point at other documents. It took
-    twenty-four years to put that idea on a network.</p>
+    twenty-four years for that idea to reach the form that stuck: linked documents
+    and their controls together, on a network nobody owned.</p>
 
     <p>In 1989, Tim Berners-Lee did it. He proposed the idea in a document at CERN,
     then built it: linked documents, read by a client no one owned. Those documents
@@ -176,14 +177,15 @@
       </a>
     </h3>
 
-    <p>Sort the decade yourself before the columns explain it. The two columns are
-    Necessity and Fashion. Nothing here is an insult; both forces are honest mechanics.
-    Necessity earns its place, and fashion follows habit. Do not try to memorize the
+    <p>Sort the decade yourself before the columns explain it. The three columns are
+    Necessity, Fashion, and the Cost. Nothing here is an insult; all three forces are
+    honest mechanics. Necessity earns its place, fashion follows habit, and cost lands
+    on someone who pays it. Do not try to memorize the
     definitions. Arrange the reasons, and the pattern names itself.</p>
 
   </div>
 
-  <div class="ledger reveal" id="ledger" role="group" aria-label="The JSON decade, sorted into what earned its place and what became habit">
+  <div class="ledger reveal" id="ledger" role="group" aria-label="The JSON decade, sorted into what earned its place, what became habit, and what it cost">
     <div class="ledger-head"><span class="ledger-title">the JSON decade · each reason measured against the loop</span></div>
     <div class="ledger-cols">
       <div class="ledger-col">
@@ -199,7 +201,12 @@
         <ul>
           <li data-side="f">the server answers with data, not the next move</li>
           <li data-side="f">a spec kept outside the document</li>
-          <li data-side="f">the client must be rebuilt and shipped again</li>
+        </ul>
+      </div>
+      <div class="ledger-col">
+        <div class="ledger-col-name">The cost</div>
+        <ul>
+          <li data-side="c">the client must be rebuilt and shipped again</li>
         </ul>
       </div>
     </div>
@@ -325,6 +332,7 @@
 </main>
 
 <footer class="doc-footer">
+  <a class="course-home" href="../index.html">Course home · Hypermedia</a>
   <a class="section-link" href="0001-hypermedia-revival.html">← Back to section 01: the machine that prints its own manual</a>
   <p class="closing">sections built one by one · revision 1</p>
 </footer>
@@ -449,6 +457,9 @@
   Array.prototype.forEach.call(uls[1].querySelectorAll('li'), function (li) {
     facts.push({ txt: li.textContent.trim(), side: 'f' });
   });
+  Array.prototype.forEach.call(uls[2].querySelectorAll('li'), function (li) {
+    facts.push({ txt: li.textContent.trim(), side: 'c' });
+  });
   uls.forEach(function (ul) { ul.innerHTML = ''; });
 
   function shuffle(a) {
@@ -558,8 +569,9 @@
 
   check.addEventListener('click', function () {
     var placed = 0, right = 0;
+    var wants = ['n', 'f', 'c'];
     for (var u = 0; u < uls.length; u++) {
-      var want = u === 0 ? 'n' : 'f';
+      var want = wants[u];
       Array.prototype.forEach.call(uls[u].querySelectorAll('li'), function (li) {
         placed++;
         var ok = li.dataset.side === want;
@@ -571,7 +583,7 @@
     res.textContent = placed === 0
       ? 'Place the reasons first.'
 : right === facts.length
-          ? '6 of 6. Necessity and fashion, weighed in the open.'
+          ? '6 of 6. Necessity, fashion, and cost, weighed in the open.'
           : right + ' of ' + facts.length + ' right; ' + (facts.length - placed) + ' still in the tray.';
   });
 
