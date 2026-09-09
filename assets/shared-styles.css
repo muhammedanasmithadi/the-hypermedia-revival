@@ -323,19 +323,18 @@ strong {
 }
 
 .hanchor {
-  visibility: hidden;
+  visibility: visible;
   text-decoration: none;
-  margin-left: 0.3em;
-  color: var(--brand);
+  color: inherit;
 }
 
-.section-head h2:hover .hanchor,
-.section-head h2:focus-within .hanchor,
-.prose > h3:hover .hanchor,
-.prose > h3:focus-within .hanchor,
-.sources h3:hover .hanchor,
-.sources h3:focus-within .hanchor,
-.hanchor:focus {
+.section-head h2:hover .hanchor .anchor-glyph,
+.section-head h2:focus-within .hanchor .anchor-glyph,
+.prose > h3:hover .hanchor .anchor-glyph,
+.prose > h3:focus-within .hanchor .anchor-glyph,
+.sources h3:hover .hanchor .anchor-glyph,
+.sources h3:focus-within .hanchor .anchor-glyph,
+.hanchor:focus .anchor-glyph {
   visibility: visible;
 }
 
@@ -345,10 +344,13 @@ section[id] {
   scroll-margin-top: 56px;
 }
 
-.hanchor svg {
+.hanchor .anchor-glyph {
   width: 1em;
   height: 1em;
+  visibility: hidden;
+  margin-left: 0.3em;
   vertical-align: middle;
+  color: var(--brand);
 }
 
 /* ---------- Prose ---------- */
