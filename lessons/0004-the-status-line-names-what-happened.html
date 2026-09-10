@@ -141,7 +141,7 @@
     4xx means the request fell because of the request itself. 5xx means the server fell before it
     could answer.</p>
 
-    <p>One class answers to one client rule. A generic browser acts on the class without knowing each
+    <p>One class answers to one client rule, and a generic browser acts on the class without knowing each
     code by heart. The page you are reading did not parse a dictionary of codes. It branched on the
     first digit.</p>
 
@@ -154,15 +154,15 @@
       </a>
     </h3>
 
-    <p>The kiosk in Section 01 answered with one page for each move. Its bank would answer with codes
+    <p>The kiosk in Section 01 answered with one page for each move, and its bank would answer the same requests with codes
     too. Seven codes carry almost every reply you will read:</p>
 
-    <p><code>200 OK</code> carries a full document. Every balance page in the kiosk earned it.
+    <p><code>200 OK</code> carries a full document, and every balance page in the kiosk earned that verdict.
     <code>201 Created</code> says a move made a new resource. Open a new account and the reply names it.
     <code>204 No Content</code> says the state changed and the reply carries no body. A payment lands,
     and the balance page does not need to come again.</p>
 
-    <p><code>303 See Other</code> says the answer lives at another URI. The client follows the location
+    <p><code>303 See Other</code> says the answer lives at another URI, and the client follows the location
     the reply names. <code>304 Not Modified</code> says your stored copy is still good. The mechanics
     wait for Section 06. For now, read the verdict. <code>404 Not Found</code> says the target does not
     exist in the server state. Ask for account 4042, and no account answers. <code>500 Internal Server
