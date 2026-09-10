@@ -29,19 +29,31 @@
 }
 
 .hanchor {
-  visibility: visible;
+  position: relative;
   text-decoration: none;
   color: inherit;
 }
 
-.section-head h2:hover .hanchor .anchor-glyph,
-.section-head h2:focus-within .hanchor .anchor-glyph,
-.prose > h3:hover .hanchor .anchor-glyph,
-.prose > h3:focus-within .hanchor .anchor-glyph,
-.sources h3:hover .hanchor .anchor-glyph,
-.sources h3:focus-within .hanchor .anchor-glyph,
-.hanchor:focus .anchor-glyph {
-  display: inline-block;
+.hanchor::after {
+  content: "";
+  position: absolute;
+  left: -1.1em;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.65em;
+  height: 0.65em;
+  background-color: var(--brand);
+  -webkit-mask: var(--icon-link) var(--icon-mask);
+  mask: var(--icon-link) var(--icon-mask);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.section-head h2:hover .hanchor::after,
+.prose > h3:hover .hanchor::after,
+.sources h3:hover .hanchor::after,
+.hanchor:focus-visible::after {
+  opacity: 1;
 }
 
 h2[id],
@@ -58,16 +70,6 @@ h3[id]:target {
 @keyframes target-flash {
   from { background: rgba(91, 156, 247, 0.22); }
   to { background: transparent; }
-}
-
-.hanchor .anchor-glyph {
-  display: none;
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-  background-color: var(--brand);
-  -webkit-mask: var(--icon-link) var(--icon-mask);
-  mask: var(--icon-link) var(--icon-mask);
 }
 
 /* ---------- Prose ---------- */
