@@ -3,7 +3,7 @@
 
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const pages = [
@@ -19,6 +19,8 @@ const pages = [
 ];
 
 const widgetFiles = [
+  'assets/js/site.js',
+  'assets/js/ledger.js',
   'assets/js/widget-0001.js',
   'assets/js/widget-0002.js',
   'assets/js/widget-0003.js',
@@ -32,7 +34,9 @@ let failures = 0;
 let checked = 0;
 
 for (const file of widgetFiles) {
-  const result = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });
+  const spec = `${basename(file).replace(/\.js$/, '')}.mjs`;
+  writeFileSync(join(tmp, spec), readFileSync(file, 'utf8'));
+  const result = spawnSync(process.execPath, ['--check', join(tmp, spec)], { encoding: 'utf8' });
   if (result.status !== 0) {
     failures += 1;
     console.error(`FAIL ${file}: parse error\n${result.stderr}`);

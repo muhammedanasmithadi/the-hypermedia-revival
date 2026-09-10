@@ -40,6 +40,27 @@ for (const w of site.widgets) {
   eq(has(w.file), true, `widget file ${w.file} exists`);
 }
 
+// 1c. Every shared script named in the manifest exists.
+for (const f of site.sharedScripts) {
+  eq(has(f), true, `shared script ${f} exists`);
+}
+
+// 1d. Every widget page loads its widget as an ES module.
+for (const w of site.widgets) {
+  const file = w.file.replace('assets/js/', '');
+  const html = read(w.page);
+  eq(html.includes(`<script type="module" src="../assets/js/${file}"></script>`), true, `${w.page} loads ${file} as a module`);
+}
+
+// 1e. Every widget imports the shared scripts it relies on.
+for (const w of site.widgets) {
+  const js = read(w.file);
+  eq(js.includes("import './site.js';"), true, `${w.file} imports site.js`);
+}
+for (const f of ['assets/js/widget-0002.js', 'assets/js/widget-0005.js']) {
+  eq(read(f).includes("from './ledger.js';"), true, `${f} imports ledger.js`);
+}
+
 // 2. Canonical + og:url on every canonical-bearing page.
 const canonicalPages = [
   'index.html',
