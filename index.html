@@ -71,8 +71,15 @@
   .btn-link { color: var(--link); font-size: 0.95em; }
   .cards { list-style: none; padding: 0; margin: 0; }
   .cards li + li { margin-top: 1rem; }
+  .prose ul.cards,
+  .prose ul.cards li { margin: 0; padding: 0; }
+  .prose ul.next-list { padding: 0; margin: 0.3em 0 0; }
+  .prose ul.next-list li { margin: 0; padding: 0; }
   .card {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35em 0.4em;
     background: var(--card);
     border: 2px solid var(--hairline);
     border-radius: 10px;
@@ -82,16 +89,16 @@
   }
   .card:hover { border-color: var(--brand); }
   .card-num {
-    display: inline-block;
+    flex: 0 0 auto;
     font-family: var(--font-mono);
     font-size: 0.8em;
     color: var(--soft-dark);
-    margin-right: 0.6em;
+    margin-right: 0.2em;
   }
-  .card-title { color: var(--link); font-weight: 600; }
+  .card-title { flex: 1 1 55%; min-width: 0; color: var(--link); font-weight: 600; }
   .card:hover .card-title { color: var(--link-hover); }
   .card-blurb {
-    display: block;
+    flex: 1 0 100%;
     margin-top: 0.35em;
     font-size: 0.95em;
     color: var(--soft);
