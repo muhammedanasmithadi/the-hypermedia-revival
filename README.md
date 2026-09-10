@@ -33,11 +33,7 @@ browser. No build step, no dependencies, no framework.
 - `scripts/manifest.json` : source of truth for sections, slugs, styles, widgets, and state.
 - `scripts/check-consistency.mjs` : verifies pages and `sitemap.xml` against the manifest;
   `--write` regenerates the sitemap.
-- `scripts/generate-assets.sh` : regenerates og, hero, and favicon assets; needs
-  `assets/social/chainlink-2k.jpg` as the source mark.
 - `assets/social/` : og card, hero images, and favicon output.
-- `assets/social/chainlink-2k.jpg` : banner source for `generate-assets.sh`
-  (2752x1536, restored from git history).
 
 ## Add a section
 
@@ -51,14 +47,11 @@ browser. No build step, no dependencies, no framework.
 
 ## Run locally
 
-```sh
-python3 -m http.server 8000
-```
-
-Open `http://localhost:8000` in a browser.
+Serve the site over HTTP with any static file server, then open
+`http://localhost:8000` in a browser.
 
 ES modules fail over `file://` (browser security). Always serve the site over HTTP —
-`python3 -m http.server` or any static host.
+any static host works.
 
 ## Verify
 
