@@ -50,7 +50,7 @@
   </p>
 </header>
 
-<article class="article">
+<div class="article">
 
 <section id="how-the-idea-got-lost" class="section">
 
@@ -361,7 +361,7 @@
 
 </section>
 
-</article>
+</div>
 
 </main>
 
@@ -578,6 +578,7 @@
 
   pool = document.createElement('ul');
   pool.className = 'ledger-pool';
+  pool.setAttribute('role', 'group');
   pool.setAttribute('aria-label', 'Reasons to sort: select one, then choose a row');
   cols.parentNode.insertBefore(pool, cols);
 
