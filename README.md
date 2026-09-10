@@ -32,8 +32,8 @@ browser. No build step, no dependencies, no framework.
 - `scripts/generate-assets.sh` : regenerates og, hero, and favicon assets; needs
   `assets/social/chainlink-2k.jpg` as the source mark.
 - `assets/social/` : og card, hero images, and favicon output.
-- `assets/social/chainlink-2k.jpg` : missing source image for `generate-assets.sh`.
-  Add it, then run the script to rebuild the og card, hero, and favicon.
+- `assets/social/chainlink-2k.jpg` : banner source for `generate-assets.sh`
+  (2752x1536, restored from git history).
 
 ## Add a section
 
