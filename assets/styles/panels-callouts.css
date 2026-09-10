@@ -1,0 +1,216 @@
+/* ---------- Panels: try it now, recap, objectives, self-check ---------- */
+
+.do-now,
+.recap,
+.self-check {
+  margin: 1.6em 0;
+  padding: 0;
+  background: var(--panel-deep);
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+}
+
+.do-now .dn-kicker,
+.recap .recap-title,
+.self-check .sc-title {
+  margin: 0;
+  padding: 0.55em var(--callout-inset) 0.5em;
+  font-family: var(--font-heading);
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: var(--panel);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.do-now p:not(.dn-kicker),
+.recap .recap-intro,
+.self-check > p:not(.sc-title),
+.self-check details {
+  margin-left: var(--callout-inset);
+  margin-right: var(--callout-inset);
+}
+
+.do-now p:not(.dn-kicker) {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0.8em 0 1em;
+  color: var(--ink-light);
+}
+
+.do-now kbd {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 0.08em 0.4em;
+  border: 1px solid var(--hairline-strong);
+  border-bottom-width: 2px;
+  border-radius: 0;
+  background: var(--code-bg);
+  color: var(--ink-bright);
+  white-space: nowrap;
+}
+
+.recap .recap-intro {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0.7em 0 0.2em;
+  color: var(--ink-light);
+}
+
+.recap ol {
+  margin: 0;
+  padding: 0.4em var(--callout-inset) 0.9em;
+  list-style: none;
+  counter-reset: recap;
+}
+
+.recap li {
+  margin: 0.6em 0;
+  counter-increment: recap;
+  color: var(--ink-light);
+}
+
+.recap li::before {
+  content: counter(recap);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35em;
+  height: 1.35em;
+  margin-right: 0.65em;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  color: var(--brand);
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.recap li strong {
+  color: var(--ink);
+}
+
+.self-check > p:not(.sc-title) {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0.7em 0 0.3em;
+  color: var(--ink-light);
+}
+
+.self-check details {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0.4em 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.self-check details:first-of-type {
+  border-top: 0;
+}
+
+.self-check summary {
+  padding: 0.4em 0 0.5em;
+  color: var(--ink-strong);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.self-check summary::-webkit-details-marker {
+  display: none;
+}
+
+.self-check summary::before,
+.recall summary::before {
+  content: "";
+  display: inline-block;
+  box-sizing: border-box;
+  width: 0.45em;
+  height: 0.45em;
+  margin-right: 0.65em;
+  border-right: 2px solid var(--brand);
+  border-bottom: 2px solid var(--brand);
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+  vertical-align: middle;
+}
+
+.self-check details[open] summary::before,
+.recall[open] summary::before {
+  transform: rotate(45deg);
+}
+
+.self-check details p {
+  margin: 0;
+  padding: 0.1em 0 0.8em;
+  color: var(--ink-light);
+}
+
+.recall {
+  margin: 1.2em 0 0.4em;
+  background: var(--panel-deep);
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+}
+
+.recall summary {
+  padding: 0.6em var(--callout-inset);
+  color: var(--ink-strong);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.recall summary::-webkit-details-marker {
+  display: none;
+}
+
+.recall[open] summary::before {
+  transform: rotate(45deg);
+}
+
+.recall p {
+  margin: 0;
+  padding: 0 var(--callout-inset) 0.8em;
+  color: var(--ink-light);
+}
+
+/* ---------- Sources ---------- */
+
+.sources {
+  margin-top: 2.4em;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--line);
+  font-size: 0.9em;
+}
+
+.sources h3 {
+  margin: 0 0 0.6em 0;
+  font-size: 0.95em;
+  color: var(--bright);
+}
+
+.sources ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sources li {
+  margin: 0.4em 0;
+  color: var(--ink-light);
+}
+
+.sources a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sources a:hover {
+  color: var(--link-hover);
+}
+

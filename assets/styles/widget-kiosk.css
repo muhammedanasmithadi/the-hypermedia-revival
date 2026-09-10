@@ -1,0 +1,121 @@
+/* ---------- Live kiosk (widget 1) ---------- */
+
+.kiosk {
+  margin: 1.8em 0 0.6em 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #202020;
+  border: 2px solid var(--hairline-strong);
+}
+
+.kiosk-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.55em 1em;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.78em;
+  color: var(--ink-faint);
+}
+
+.kiosk-head .k-now {
+  color: var(--brand);
+  font-family: var(--font-mono);
+}
+
+.kiosk-screen {
+  background: #141414;
+  padding: 1.5em 1.6em;
+  min-height: 11em;
+}
+
+.kiosk-screen .k-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.06em;
+  color: var(--bright);
+}
+
+.kiosk-screen .k-msg {
+  color: var(--ink-light);
+  margin-top: 0.45em;
+  font-size: 0.95em;
+  max-width: 34em;
+}
+
+.kiosk-screen .k-note {
+  margin-top: 0.7em;
+  min-height: 0;
+  color: var(--brand);
+  font-size: 0.88em;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.kiosk-screen .k-note.show {
+  opacity: 1;
+}
+
+.kiosk-balance {
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  color: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.15em 0.5em;
+  background: var(--bg);
+}
+
+.kiosk-keys {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5em, 1fr));
+  gap: 0.6em;
+  padding: 1.1em 1.4em 1.4em 1.4em;
+  background: var(--panel-deeper);
+  border-top: 1px solid var(--panel-raise);
+}
+
+.kiosk-btn {
+  font: inherit;
+  font-size: 0.9em;
+  padding: 0.55em 0.8em;
+  border-radius: 6px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--panel-raise);
+  color: var(--ink-bright);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.kiosk-btn:hover,
+.kiosk-btn:focus-visible {
+  border-color: var(--brand);
+  color: var(--white);
+  background: #2e3440;
+}
+
+.kiosk-meta {
+  text-align: center;
+  padding: 0.7em 1em 1em 1em;
+  background: var(--panel-deeper);
+}
+
+.kiosk-reset {
+  font: inherit;
+  font-size: 0.78em;
+  color: var(--ink-faint);
+  background: none;
+  border: none;
+  border-bottom: 1px dotted #555555;
+  cursor: pointer;
+  padding: 0.2em 0.2em;
+  margin-left: 0.75em;
+}
+
+.kiosk-reset:hover {
+  color: var(--link);
+}
+

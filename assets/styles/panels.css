@@ -1,0 +1,33 @@
+/* ---------- Takeaways ---------- */
+
+.table-wrap {
+  margin: 1.8em 0;
+  overflow-x: auto;
+}
+
+.takeaways {
+  margin: 1.8em 0;
+  padding: 0;
+}
+
+.takeaways .takeaway {
+  padding: 0.9em 0;
+  border-bottom: 1px solid var(--hairline);
+  line-height: 1.6em;
+}
+
+.takeaways .takeaway:last-child {
+  border-bottom: none;
+}
+
+.takeaways .takeaway .num {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--brand);
+  margin-right: 0.5em;
+}
+
+.takeaways .takeaway strong {
+  color: var(--bright);
+}
+

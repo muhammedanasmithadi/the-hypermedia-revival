@@ -1,0 +1,79 @@
+/* ---------- Reveal on scroll ---------- */
+
+/* Highlighted for the reader, hidden only when scripting is on */
+.js .reveal {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.reveal.in {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; }
+  #timeline-replay { display: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Footer ---------- */
+
+.doc-footer {
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+  color: var(--soft-dark);
+  padding: 1em 0 2em 0;
+}
+
+.doc-footer .closing {
+  margin-top: 1em;
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--ink-faint);
+}
+
+.doc-footer .foot-nav {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75em;
+  max-width: var(--col-max);
+  margin: 0 auto;
+}
+
+.doc-footer .foot-nav .section-link {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow-wrap: anywhere;
+  gap: 0.45em;
+}
+
+.doc-footer .foot-left::before,
+.doc-footer .foot-right::after {
+  content: "";
+  width: 1.1em;
+  height: 1.1em;
+  flex: 0 0 auto;
+  background-color: currentColor;
+}
+
+.doc-footer .foot-left::before {
+  -webkit-mask: var(--icon-arrow-left) var(--icon-mask);
+  mask: var(--icon-arrow-left) var(--icon-mask);
+}
+
+.doc-footer .foot-right::after {
+  -webkit-mask: var(--icon-arrow-right) var(--icon-mask);
+  mask: var(--icon-arrow-right) var(--icon-mask);
+}
+

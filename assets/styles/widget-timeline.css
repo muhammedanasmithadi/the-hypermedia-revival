@@ -1,0 +1,122 @@
+/* ---------- Timeline (widget 4) ---------- */
+
+.timeline-widget {
+  margin: 1.8em 0;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2em 1fr;
+  column-gap: 0.6em;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: 1em;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--line);
+  transform: translateX(-50%);
+}
+
+.timeline .t-dot {
+  position: absolute;
+  left: 1em;
+  top: 1.13em;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--brand);
+  background: var(--bg);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.timeline .t-body {
+  grid-column: 2;
+  padding: 0.5em 0 0.9em 0;
+}
+
+.timeline .t-year {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  color: var(--brand);
+}
+
+.timeline .t-line strong {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--bright);
+  font-size: 1em;
+}
+
+.timeline .t-note {
+  display: block;
+  color: var(--soft);
+  font-size: 0.92em;
+  margin-top: 0.15em;
+}
+
+.timeline li.on .t-dot {
+  border-color: var(--brand);
+  background: var(--brand);
+}
+
+.timeline li.on .t-year {
+  color: var(--link-hover);
+}
+
+.timeline li.on .t-line strong {
+  color: var(--brand);
+}
+
+.timeline-caption {
+  margin-top: 0.8em;
+  min-height: 3.4em;
+  color: var(--ink-code);
+  font-size: 0.98em;
+  padding: 0 0.2em;
+}
+
+.timeline-caption-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.timeline-replay {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+/* ---------- Section link (footer navigation) ---------- */
+
+.section-link {
+  font-size: 0.9em;
+  padding: 0.5em 1.3em;
+  border-radius: 6px;
+  border: 1px solid var(--brand);
+  background: var(--accent-deep);
+  color: var(--white);
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.section-link:hover {
+  background: #27406c;
+  color: var(--white);
+  border-color: var(--link-hover);
+}
+

@@ -1,0 +1,85 @@
+/* ---------- Step-through loop (widget 3) ---------- */
+
+.loop {
+  margin: 1.8em 0 0.6em 0;
+}
+
+.loop-steps {
+  display: flex;
+  gap: 0.4em;
+  align-items: stretch;
+}
+
+.loop-step {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-deep);
+  padding: 0.75em 0.5em;
+  text-align: center;
+  opacity: 0.45;
+  transition: opacity 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.loop-step.on {
+  opacity: 1;
+  border-color: var(--brand);
+  background: #1c2a45;
+}
+
+.loop-step .ls-t {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--bright);
+}
+
+.loop-step .ls-s {
+  font-size: 0.72em;
+  color: var(--soft);
+  margin-top: 0.2em;
+}
+
+.loop-arrow {
+  align-self: center;
+  width: 1.05em;
+  height: 1.05em;
+  flex: 0 0 auto;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-arrow-right) var(--icon-mask);
+  mask: var(--icon-arrow-right) var(--icon-mask);
+  color: var(--soft-dark);
+}
+
+.loop-caption {
+  margin-top: 1em;
+  min-height: 3.4em;
+  color: var(--ink-code);
+  font-size: 0.98em;
+  padding: 0 0.2em;
+}
+
+@media (max-width: 30rem) {
+  .loop-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+  }
+  .loop-arrow {
+    display: none;
+  }
+  .loop-step {
+    flex: none;
+  }
+}
+
+.widget-noscript {
+  margin: 0 0 1em 0;
+  padding: 0.5em 0.9em;
+  font-size: 0.9em;
+  color: var(--soft);
+  border: 1px dashed var(--hairline-strong);
+  border-radius: 6px;
+}
+

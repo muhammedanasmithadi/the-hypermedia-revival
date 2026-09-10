@@ -1,0 +1,185 @@
+/* ---------- Two-lane explorer (widget 5) ---------- */
+
+.explorer {
+  margin: 1.8em 0 0.6em 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel-deep);
+  border: 2px solid var(--hairline-strong);
+}
+
+.explorer-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  flex-wrap: wrap;
+  padding: 0.8em 1em;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85em;
+}
+
+.explorer-hint {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--ink-faint);
+  margin-right: 0.4em;
+}
+
+.explorer-act {
+  font: inherit;
+  font-size: 0.85em;
+  padding: 0.4em 0.85em;
+  border-radius: 6px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--panel);
+  color: var(--soft);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.explorer-act:hover,
+.explorer-act:focus-visible {
+  color: var(--white);
+  border-color: var(--brand);
+  background: #2e3440;
+}
+
+.explorer-night {
+  font: inherit;
+  font-size: 0.85em;
+  padding: 0.4em 0.9em;
+  border-radius: 6px;
+  border: 1px dashed var(--bright);
+  background: none;
+  color: var(--bright);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.explorer-night:hover,
+.explorer-night:focus-visible {
+  border-style: solid;
+  color: var(--white);
+}
+
+.explorer-night[hidden] {
+  display: none;
+}
+
+.explorer-reset {
+  font: inherit;
+  font-size: 0.8em;
+  color: var(--ink-faint);
+  background: none;
+  border: none;
+  border-bottom: 1px dotted #555555;
+  cursor: pointer;
+  padding: 0.2em 0.2em;
+  margin-left: auto;
+}
+
+.explorer-reset:hover {
+  color: var(--link);
+}
+
+.explorer-note {
+  min-height: 1.4em;
+  padding: 0.65em 1em;
+  font-size: 0.85em;
+  color: var(--brand);
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+.explorer-lanes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+
+.lane {
+  background: var(--panel-deep);
+  padding: 0 0 1.1em 0;
+  min-width: 0;
+}
+
+.lane-head {
+  padding: 0.55em 1em;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85em;
+  color: var(--bright);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.lane-head .lane-mime {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  color: var(--link);
+}
+
+.lane-body {
+  padding: 1.1em 1.2em;
+  min-height: 9em;
+}
+
+.lane-who {
+  margin: 0 1.2em 0.4em 1.2em;
+  padding-top: 0.7em;
+  border-top: 1px dashed var(--hairline-strong);
+  font-size: 0.85em;
+  color: var(--soft);
+  min-height: 2.2em;
+}
+
+.lane-body .x-actions {
+  flex-wrap: wrap;
+}
+
+.x-act.fresh {
+  border-color: var(--bright);
+  color: var(--bright);
+}
+
+.xt-wait {
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 0.9em;
+}
+
+.xt-app {
+  margin-top: 0.8em;
+}
+
+.xt-app-name {
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.xt-app-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-top: 0.6em;
+}
+
+.xt-app-btn {
+  font-size: 0.8em;
+  padding: 0.4em 0.85em;
+  border-radius: 6px;
+  border: 1px dashed #4b5563;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 860px) {
+  .explorer-lanes {
+    grid-template-columns: 1fr;
+  }
+}
+

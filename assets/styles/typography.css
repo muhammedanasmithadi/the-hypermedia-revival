@@ -1,0 +1,256 @@
+/* ---------- Section headings (h1 + hover anchor) ---------- */
+
+.section {
+  margin: 3em 0 0 0;
+  padding: 2em 0 1em 0;
+  border-top: 1px solid var(--hairline);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 2000px;
+}
+
+.section-head {
+  padding: 0;
+}
+
+.section-head .kicker {
+  color: var(--ink-faint);
+  font-size: 0.83em;
+  padding: 0 0 0.2em 0;
+}
+
+.section-head h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.8em;
+  color: var(--ink-strong);
+  padding: 0.75em 0 0.25em 0;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.hanchor {
+  visibility: visible;
+  text-decoration: none;
+  color: inherit;
+}
+
+.section-head h2:hover .hanchor .anchor-glyph,
+.section-head h2:focus-within .hanchor .anchor-glyph,
+.prose > h3:hover .hanchor .anchor-glyph,
+.prose > h3:focus-within .hanchor .anchor-glyph,
+.sources h3:hover .hanchor .anchor-glyph,
+.sources h3:focus-within .hanchor .anchor-glyph,
+.hanchor:focus .anchor-glyph {
+  display: inline-block;
+}
+
+h2[id],
+h3[id],
+section[id] {
+  scroll-margin-top: 56px;
+}
+
+h2[id]:target,
+h3[id]:target {
+  animation: target-flash 1.6s ease-out;
+}
+
+@keyframes target-flash {
+  from { background: rgba(91, 156, 247, 0.22); }
+  to { background: transparent; }
+}
+
+.hanchor .anchor-glyph {
+  display: none;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  background-color: var(--brand);
+  -webkit-mask: var(--icon-link) var(--icon-mask);
+  mask: var(--icon-link) var(--icon-mask);
+}
+
+/* ---------- Prose ---------- */
+
+.prose p {
+  padding: 0.7em 0;
+  overflow-x: hidden;
+  text-wrap: pretty;
+}
+
+.prose p.lede {
+  font-size: 1.05em;
+  color: var(--ink-light);
+}
+
+.prose p.lede strong {
+  color: var(--ink);
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose ul,
+.prose ol {
+  padding: 0.6em 0 0.6em 1.2em;
+  margin: 0;
+}
+
+.prose li {
+  padding: 0.3em 0;
+  margin-left: 0;
+}
+
+.prose a {
+  color: var(--link);
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 0.06em;
+  transition: color 0.15s;
+}
+
+.prose a:hover {
+  color: var(--link-hover);
+}
+
+.prose a:visited {
+  color: var(--link-visited);
+}
+
+.prose code {
+  display: inline-block;
+  white-space: nowrap;
+  background: var(--code-bg);
+  font-size: 0.8em;
+  font-weight: bold;
+  line-height: 1.5em;
+  color: var(--ink-code);
+  border-radius: 0.4em;
+  padding: 0 0.4em;
+  margin: 0 0.13em;
+  font-family: var(--font-mono);
+  vertical-align: baseline;
+}
+
+.prose > h3 {
+  margin: 1.4em 0 0.1em 0;
+  font-family: var(--font-heading);
+  font-size: 1.08em;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink-strong);
+  text-wrap: balance;
+}
+
+/* ---------- Blockquote ---------- */
+
+.figure-quote {
+  margin: 1.8em 0;
+}
+
+.figure-quote blockquote {
+  margin: 0 2.2em;
+  padding-left: 1em;
+  font-style: italic;
+  position: relative;
+  border-left: 4px solid var(--hairline-strong);
+  color: var(--ink);
+  font-size: 1.02em;
+}
+
+.figure-quote blockquote p {
+  padding: 0.3em 0;
+}
+
+.figure-quote figcaption {
+  margin: 0.9em 2.2em 0;
+  padding-left: calc(1em + 4px);
+  font-size: 0.8em;
+  color: var(--soft-dark);
+}
+
+.figure-quote figcaption .who {
+  color: var(--ink-code);
+  font-weight: 500;
+}
+
+.figure-quote figcaption cite {
+  font-style: italic;
+}
+
+.figure-quote figcaption a {
+  color: var(--link);
+  text-underline-offset: 0.1em;
+  text-decoration-thickness: 0.06em;
+}
+
+.figure-quote figcaption a:hover {
+  color: var(--link-hover);
+}
+
+/* ---------- Code block ---------- */
+
+.code-block {
+  margin: 1.8em 0;
+  background: var(--panel-deep);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.code-block .code-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.55em 1em;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85em;
+  color: var(--bright);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.code-title .code-lang {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  color: var(--link);
+}
+
+.code-block pre {
+  padding: 1.1em 1.2em;
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  white-space: pre;
+  tab-size: 2;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #4a5b75 transparent;
+}
+
+.code-block pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.code-block pre::-webkit-scrollbar-thumb {
+  background: #4a5b75;
+  border-radius: 4px;
+}
+
+.code-block pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-block pre code {
+  font: inherit;
+  color: inherit;
+}
+
+.tok-k { color: #7aa2ff; }
+.tok-s { color: #9ece6a; }
+.tok-a { color: #c792ea; }
+

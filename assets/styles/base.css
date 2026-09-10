@@ -1,0 +1,73 @@
+/* ---------- Reset & base ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.2em;
+  line-height: 1.6;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+b,
+strong {
+  font-weight: 500;
+}
+
+::selection {
+  background: #1f3b6b;
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* ---------- Reading progress ---------- */
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -999em;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 0.75rem;
+  background: var(--bg);
+  color: var(--ink-strong);
+  border: 1px solid var(--brand);
+  border-radius: 6px;
+  padding: 0.4em 0.9em;
+  font-size: 0.95em;
+  text-decoration: none;
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--brand);
+  z-index: 70;
+}
+

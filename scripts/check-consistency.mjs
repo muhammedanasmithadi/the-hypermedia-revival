@@ -117,23 +117,13 @@ for (const p of live.map(slugFile)) {
   eq(html.includes('aria-live="polite"'), true, `${p} aria-live`);
 }
 
-// 8. Stylesheet arrangement (adapts through the CSS refactor).
-const loader = 'assets/styles.css';
-const legacy = 'assets/shared-styles.css';
-if (has(loader)) {
-  ok();
-  const css = read(loader);
-  const imports = [...css.matchAll(/@import\s+url\("styles\/([^"]+)\.css"\);/g)].map((m) => m[1]);
-  eq(JSON.stringify(imports), JSON.stringify(site.styles), 'styles.css import order');
-  for (const id of site.styles) eq(has(`assets/styles/${id}.css`), true, `module asset styles/${id}.css exists`);
-  for (const p of topbarPages) eq(read(p).includes('rel="stylesheet"'), true, `${p} stylesheet`); 
-} else {
-  const base = legacy.split('/').pop();
-  for (const p of topbarPages) {
-    const html = read(p);
-    eq(html.includes('rel="stylesheet"') && html.includes(base), true, `${p} stylesheet link`);
-  }
-}
+// 8. Stylesheet loader imports match the manifest; every page links it.
+ok();
+const css = read('assets/styles.css');
+const imports = [...css.matchAll(/@import\s+url\("styles\/([^"]+)\.css"\);/g)].map((m) => m[1]);
+eq(JSON.stringify(imports), JSON.stringify(site.styles), 'styles.css import order');
+for (const id of site.styles) eq(has(`assets/styles/${id}.css`), true, `module asset styles/${id}.css exists`);
+for (const p of topbarPages) eq(read(p).includes('rel="stylesheet"'), true, `${p} stylesheet link`);
 
 if (writeMode) {
   console.log(`consistency: ${checks} check(s) passed in write mode`);

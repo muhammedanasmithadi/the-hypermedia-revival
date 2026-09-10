@@ -1,0 +1,202 @@
+/* ---------- Ledger (JSON decade sort) ---------- */
+
+.ledger {
+  margin: 1.8em 0 0.6em 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel-deep);
+  border: 2px solid var(--hairline-strong);
+}
+
+.ledger-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.55em 1em;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.78em;
+  color: var(--ink-faint);
+}
+
+.ledger-cols {
+  display: flex;
+  flex-direction: column;
+}
+
+.ledger-col {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5em 0.9em;
+  padding: 1em 1.2em;
+}
+
+.ledger-col + .ledger-col {
+  border-top: 1px solid var(--line);
+}
+
+.ledger-col-name {
+  flex: 0 0 8.5em;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95em;
+  color: var(--bright);
+  line-height: 1.6;
+}
+
+.ledger-title {
+  display: inline-block;
+}
+
+.ledger-hint {
+  display: none;
+  font-size: 0.9em;
+  color: var(--ink-faint);
+}
+
+.js .ledger-hint {
+  display: inline;
+}
+
+.ledger-pool {
+  list-style: none;
+  margin: 0;
+  padding: 0.8em 1em 0.4em 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  border-bottom: 1px solid var(--line);
+}
+
+.ledger-item {
+  list-style: none;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.chip {
+  font: inherit;
+  font-size: 0.78em;
+  padding: 0.45em 0.9em;
+  border-radius: 999px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--panel);
+  color: var(--ink-soft);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--brand);
+}
+
+.ledger-item.selected .chip {
+  border-color: var(--link-hover);
+  background: #20385c;
+  color: var(--white);
+}
+
+.ledger-col li.ledger-item {
+  padding: 0;
+  font-size: 1em;
+}
+
+.ledger-col li.ledger-item::before {
+  content: none;
+}
+
+.ledger-col .chip {
+  white-space: normal;
+  max-width: 100%;
+}
+
+.ledger-pool .chip {
+  white-space: normal;
+  max-width: 100%;
+}
+
+.ledger-item.ok .chip {
+  border-color: #2e7d32;
+  background: #1c2f1f;
+  color: #a5d6a7;
+}
+
+.ledger-item.bad .chip {
+  border-color: #a03434;
+  background: #3a1f1f;
+  color: #e8a0a0;
+}
+
+.ledger.sorting .ledger-col {
+  cursor: pointer;
+}
+
+.ledger.sorting .ledger-col:hover {
+  background: var(--ledger-hover);
+}
+
+.ledger.sorting .ledger-col:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+  background: var(--ledger-hover);
+}
+
+.ledger-controls {
+  display: flex;
+  gap: 0.6em;
+  flex-wrap: wrap;
+  padding: 0.9em 1em 0.1em 1em;
+}
+
+.ledger-result {
+  padding: 0.4em 1em 1em 1em;
+  font-size: 0.9em;
+  color: var(--ink-code);
+  min-height: 1.2em;
+}
+
+.ledger-btn {
+  font: inherit;
+  font-size: 0.85em;
+  padding: 0.45em 1.1em;
+  border-radius: 6px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--panel);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.ledger-btn.primary {
+  border-color: var(--brand);
+  background: var(--accent-deep);
+  color: var(--white);
+}
+
+.ledger-btn:hover {
+  border-color: var(--brand);
+  color: var(--white);
+}
+
+.ledger-col ul {
+  flex: 1 1 24em;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.ledger-col li {
+  padding: 0.25em 0;
+  color: var(--ink-light);
+  font-size: 0.92em;
+}
+
+.ledger-col li::before {
+  content: none;
+}
+
