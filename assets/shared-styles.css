@@ -1334,26 +1334,30 @@ h3[id]:target {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1em;
+  gap: 0.6em;
   flex-wrap: wrap;
   padding: 0.8em 1em;
-  background: var(--panel-raise);
-  border-bottom: 1px solid var(--hairline);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85em;
 }
 
 .verdict-hint {
-  font-size: 0.9em;
+  font-family: var(--font-mono);
+  font-size: 0.8em;
   color: var(--ink-faint);
+  margin-right: 0.4em;
 }
 
 .verdict-reset {
   font: inherit;
-  font-size: 0.78em;
+  font-size: 0.8em;
   color: var(--ink-faint);
   background: none;
   border: none;
+  border-bottom: 1px dotted #555555;
   cursor: pointer;
-  padding: 0.25em 0.5em;
+  padding: 0.2em 0.2em;
 }
 
 .verdict-reset:hover,
@@ -1361,28 +1365,42 @@ h3[id]:target {
   color: var(--link);
 }
 
+.verdict-note {
+  min-height: 1.4em;
+  padding: 0.65em 1em;
+  font-size: 0.85em;
+  color: var(--brand);
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
 .verdict-tray {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(13em, 1fr));
   gap: 0.7em;
-  padding: 1em;
+  padding: 0.9em 1em 1.1em 1em;
+  background: var(--panel-deeper);
+  border-top: 1px solid var(--panel-raise);
 }
 
 .verdict-card {
   font: inherit;
   text-align: left;
   border: 1px solid var(--hairline-strong);
-  border-radius: 8px;
-  background: var(--panel-deep);
-  color: var(--ink);
+  border-radius: 6px;
+  background: var(--panel-raise);
+  color: var(--ink-bright);
   padding: 0.9em;
   min-height: 6.5em;
   cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
 }
 
 .verdict-card:hover,
 .verdict-card:focus-visible {
   border-color: var(--brand);
+  color: var(--white);
+  background: #2e3440;
 }
 
 .verdict-card:focus-visible {
@@ -1470,13 +1488,6 @@ h3[id]:target {
   font-size: 0.82em;
   color: var(--ink-light);
   line-height: 1.5;
-}
-
-.verdict-note {
-  padding: 0 1em 1em 1em;
-  font-size: 0.9em;
-  color: var(--brand);
-  min-height: 1.2em;
 }
 
 /* ---------- Two-lane explorer (widget 5) ---------- */
