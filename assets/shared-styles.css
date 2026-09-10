@@ -1331,16 +1331,15 @@ h3[id]:target {
   overflow-wrap: anywhere;
 }
 
+.verdict-line.active {
+  color: var(--brand);
+}
+
 .verdict-rules {
   display: flex;
   gap: 0.5em;
   flex-wrap: wrap;
   margin-top: 0.55em;
-}
-
-.verdict-rules .verdict-rule:disabled {
-  opacity: 0.4;
-  cursor: default;
 }
 
 #verdict .k-note {

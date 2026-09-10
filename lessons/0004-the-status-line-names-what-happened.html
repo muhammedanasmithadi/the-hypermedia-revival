@@ -40,11 +40,11 @@
 
 <header class="masthead">
   <p class="post-date"><time datetime="2026-09">September 2026</time></p>
-  <h1>The status line names what happened</h1>
+  <h1>Hypermedia: the three digits <em>that name what happened</em></h1>
   <p class="dek">Every reply opens with three digits that say what happened. This section reads
   the status line as a verdict, and names the five classes it answers to.</p>
   <p class="byline">
-    <span>revision 1</span>
+    <span>revision 2</span>
     <span>section 4 of 6</span>
   </p>
 </header>
@@ -95,8 +95,8 @@
     </div>
     <div class="kiosk-screen">
       <div class="k-title" id="verdict-title">the server names what happened</div>
-      <div class="k-msg" id="verdict-msg">Seven requests wait on the wire. Pick one, name the class you expect, and the station reads the HTTP, Hypertext Transfer Protocol, verdict.</div>
-      <p class="verdict-line" id="verdict-line" aria-live="polite"></p>
+      <div class="k-msg" id="verdict-msg">Seven requests wait on the wire. The station reads one and hears the class you name.</div>
+      <p class="verdict-line" id="verdict-line"></p>
       <p class="verdict-rules" id="verdict-rules" role="group" aria-label="name the class you expect"></p>
       <div class="k-note" id="verdict-note" aria-live="polite"></div>
     </div>
@@ -247,7 +247,7 @@
     <a class="section-link foot-left" href="0003-two-architectures-on-the-same-table.html">Two architectures on the same table</a>
     <a class="section-link foot-home" href="../index.html">Course home</a>
   </nav>
-  <p class="closing">sections built one by one · revision 1</p>
+  <p class="closing">sections built one by one · revision 2</p>
 </footer>
 
 <script>
@@ -319,7 +319,7 @@
     { req: 'GET /account/4027/leave', code: 303, reason: 'See Other', kind: 'look elsewhere', line: 'The answer lives at another URI. The client follows it.' },
     { req: 'GET /account/4027 (stored copy)', code: 304, reason: 'Not Modified', kind: 'keep your stored copy', line: 'Your stored copy is still good. The client keeps it.' },
     { req: 'GET /account/4042', code: 404, reason: 'Not Found', kind: 'the client erred', line: 'The server state holds no such account.' },
-    { req: 'POST /account/4027/pay', code: 500, reason: 'Internal Server Error', kind: 'the server erred', line: 'The server broke before it answered.' }
+    { req: 'GET /account/4027/statement', code: 500, reason: 'Internal Server Error', kind: 'the server erred', line: 'The server broke before it answered.' }
   ];
 
   const CLASSES = ['2xx', '3xx', '4xx', '5xx'];
@@ -330,7 +330,7 @@
 
   function buildRules() {
     rules.innerHTML = CLASSES.map((c) => {
-      return `<button type="button" class="x-mode-btn verdict-rule" data-class="${c[0]}" disabled>${c}</button>`;
+      return `<button type="button" class="x-mode-btn verdict-rule" data-class="${c[0]}">${c}</button>`;
     }).join('');
     rules.querySelectorAll('.verdict-rule').forEach((b) => {
       b.addEventListener('click', () => { choose(b.getAttribute('data-class')); });
@@ -355,7 +355,6 @@
 
   function clearRules() {
     rules.querySelectorAll('.verdict-rule').forEach((b) => {
-      b.disabled = true;
       b.classList.remove('on');
     });
   }
@@ -366,6 +365,7 @@
 
   function display(r) {
     const fd = String(r.code)[0];
+    line.classList.remove('active');
     state.textContent = `${fd}xx · ${r.kind}`;
     line.textContent = `HTTP/1.1 ${r.code} ${r.reason}`;
     msg.textContent = readCount() === REQUESTS.length
@@ -388,14 +388,17 @@
       return;
     }
     state.textContent = 'request on the wire';
+    line.classList.add('active');
     line.textContent = REQUESTS[i].req;
     note.textContent = '';
     msg.textContent = 'Name the class you expect. Then the station reads the verdict.';
-    rules.querySelectorAll('.verdict-rule').forEach((b) => { b.disabled = false; });
   }
 
   function choose(first) {
-    if (current === null) return;
+    if (current === null) {
+      note.textContent = 'No request on the wire. The station waits for a request.';
+      return;
+    }
     const r = REQUESTS[current];
     const key = keyFor(current);
     const fd = String(r.code)[0];
@@ -421,9 +424,10 @@
     named = 0;
     judged.clear();
     state.textContent = 'welcome';
+    line.classList.remove('active');
     line.textContent = '';
     note.textContent = '';
-    msg.textContent = 'Seven requests wait on the wire. Pick one, name the class you expect, and the station reads the HTTP, Hypertext Transfer Protocol, verdict.';
+    msg.textContent = 'Seven requests wait on the wire. The station reads one and hears the class you name.';
     score.textContent = 'you named 0 of 7';
     clearRules();
     buildKeys();
