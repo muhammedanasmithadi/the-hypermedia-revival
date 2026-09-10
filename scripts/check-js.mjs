@@ -10,7 +10,7 @@ const pages = [
   'index.html',
   '404.html',
   'lessons/index.html',
-  'lessons/0001-hypermedia-revival.html',
+  'lessons/0001-the-machine-that-prints-its-own-manual.html',
   'lessons/0002-how-the-idea-got-lost.html',
   'lessons/0003-two-architectures-on-the-same-table.html',
   'lessons/0004-the-status-line-names-what-happened.html',

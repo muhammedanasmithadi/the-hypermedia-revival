@@ -23,7 +23,7 @@
   ],
 
   "widgets": [
-    { "page": "lessons/0001-hypermedia-revival.html", "file": "assets/js/widget-0001.js" },
+    { "page": "lessons/0001-the-machine-that-prints-its-own-manual.html", "file": "assets/js/widget-0001.js" },
     { "page": "lessons/0002-how-the-idea-got-lost.html", "file": "assets/js/widget-0002.js" },
     { "page": "lessons/0003-two-architectures-on-the-same-table.html", "file": "assets/js/widget-0003.js" },
     { "page": "lessons/0004-the-status-line-names-what-happened.html", "file": "assets/js/widget-0004.js" },
@@ -33,7 +33,7 @@
   "sections": [
     {
       "num": 1,
-      "slug": "hypermedia-revival",
+      "slug": "the-machine-that-prints-its-own-manual",
       "title": "The machine that prints its own manual",
       "blurb": "One loop: request, document, choice, next document."
     },
