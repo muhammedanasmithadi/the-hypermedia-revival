@@ -1,11 +1,7 @@
 /* ---------- Live kiosk (widget 1) ---------- */
 
 .kiosk {
-  margin: 1.8em 0 0.6em 0;
-  border-radius: 10px;
-  overflow: hidden;
   background: #202020;
-  border: 2px solid var(--hairline-strong);
 }
 
 .kiosk-head {
@@ -78,14 +74,11 @@
 }
 
 .kiosk-btn {
-  font: inherit;
   font-size: 0.9em;
   padding: 0.55em 0.8em;
-  border-radius: 6px;
   border: 1px solid var(--hairline-strong);
   background: var(--panel-raise);
   color: var(--ink-bright);
-  cursor: pointer;
   text-align: center;
   transition: border-color 0.15s, color 0.15s, background 0.15s;
 }

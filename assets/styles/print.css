@@ -134,7 +134,7 @@
   .experiment,
   .timeline-widget,
   .loop,
-  .verdict {
+  #verdict {
     break-inside: avoid;
     page-break-inside: avoid;
   }

@@ -67,6 +67,23 @@
   background-color: currentColor;
 }
 
+.section-link {
+  font-size: 0.9em;
+  padding: 0.5em 1.3em;
+  border-radius: 6px;
+  border: 1px solid var(--brand);
+  background: var(--accent-deep);
+  color: var(--white);
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.section-link:hover {
+  background: #27406c;
+  color: var(--white);
+  border-color: var(--link-hover);
+}
+
 .doc-footer .foot-left::before {
   -webkit-mask: var(--icon-arrow-left) var(--icon-mask);
   mask: var(--icon-arrow-left) var(--icon-mask);

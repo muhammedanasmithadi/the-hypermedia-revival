@@ -151,6 +151,32 @@ eq(JSON.stringify(imports), JSON.stringify(site.styles), 'styles.css import orde
 for (const id of site.styles) eq(has(`assets/styles/${id}.css`), true, `module asset styles/${id}.css exists`);
 for (const p of topbarPages) eq(read(p).includes('rel="stylesheet"'), true, `${p} stylesheet link`);
 
+// 9. Shared head and footer chrome do not drift across sections.
+const headInvariants = [
+  '<meta property="og:site_name" content="Hypermedia">',
+  '<meta property="og:type" content="article">',
+  '<meta name="twitter:card" content="summary_large_image">',
+  '<link rel="icon" type="image/png" href="../assets/favicon-32.png">',
+  '<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">',
+  "<script>document.documentElement.classList.add('js');</script>",
+  '<link rel="stylesheet" href="../assets/styles.css">',
+  '<a class="skip-link" href="#top">Skip to content</a>',
+  '<div class="progress" id="progress" role="progressbar" aria-label="reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">'
+];
+const footInvariants = [
+  '<footer class="doc-footer">',
+  '<nav class="foot-nav" aria-label="section navigation">',
+  'Hypermedia Course · Section'
+];
+for (const s of live) {
+  const file = slugFile(s);
+  const html = read(file);
+  for (const inv of headInvariants) eq(html.includes(inv), true, `${file} head: ${inv.slice(0, 50)}`);
+  for (const inv of footInvariants) eq(html.includes(inv), true, `${file} foot: ${inv.slice(0, 40)}`);
+  eq(html.includes(`Hypermedia Course · Section ${s.num} of ${site.sections.length}`), true,
+    `${file} closing section ${s.num}`);
+}
+
 if (writeMode) {
   console.log(`consistency: ${checks} check(s) passed in write mode`);
   process.exit(0);

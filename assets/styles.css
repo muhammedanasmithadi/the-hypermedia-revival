@@ -16,8 +16,8 @@
    09 widget-stepper widget 3
    10 widget-timeline widget 4 + section links
    11 widget-ledger decade sort
-   12 widget-statusline widget 6
-   13 widget-twolane widget 5
+   12 widget-statusline verdict widget 4
+   13 widget-twolane explorer lanes widget 3 + 5
    14 panels-callouts do-now/recap/self-check/recall + sources
    15 pages home, listing, glossary
    16 print print + touch

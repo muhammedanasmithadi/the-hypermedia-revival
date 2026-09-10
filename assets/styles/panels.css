@@ -1,10 +1,5 @@
 /* ---------- Takeaways ---------- */
 
-.table-wrap {
-  margin: 1.8em 0;
-  overflow-x: auto;
-}
-
 .takeaways {
   margin: 1.8em 0;
   padding: 0;
@@ -29,5 +24,26 @@
 
 .takeaways .takeaway strong {
   color: var(--bright);
+}
+
+/* ---------- Shared widget panel shell ---------- */
+
+.widget-panel {
+  margin: 1.8em 0 0.6em 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--hairline-strong);
+}
+
+/* ---------- Shared widget button base ---------- */
+
+.kiosk-btn,
+.x-mode-btn,
+.ledger-btn,
+.explorer-act,
+.verdict-offer {
+  font: inherit;
+  border-radius: 6px;
+  cursor: pointer;
 }
 

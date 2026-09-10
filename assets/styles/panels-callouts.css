@@ -168,10 +168,6 @@
   display: none;
 }
 
-.recall[open] summary::before {
-  transform: rotate(45deg);
-}
-
 .recall p {
   margin: 0;
   padding: 0 var(--callout-inset) 0.8em;

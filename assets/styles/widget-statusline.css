@@ -54,16 +54,13 @@
 }
 
 .verdict-offer {
-  font: inherit;
   font-family: var(--font-mono);
   font-size: 0.78em;
   padding: 0.25em 0.7em;
   margin-left: 0.75em;
-  border-radius: 6px;
   border: 1px solid var(--hairline-strong);
   background: var(--panel-raise);
   color: var(--ink-bright);
-  cursor: pointer;
   transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 

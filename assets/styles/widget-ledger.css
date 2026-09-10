@@ -1,11 +1,7 @@
 /* ---------- Ledger (JSON decade sort) ---------- */
 
 .ledger {
-  margin: 1.8em 0 0.6em 0;
-  border-radius: 10px;
-  overflow: hidden;
   background: var(--panel-deep);
-  border: 2px solid var(--hairline-strong);
 }
 
 .ledger-head {
@@ -159,14 +155,11 @@
 }
 
 .ledger-btn {
-  font: inherit;
   font-size: 0.85em;
   padding: 0.45em 1.1em;
-  border-radius: 6px;
   border: 1px solid var(--hairline-strong);
   background: var(--panel);
   color: var(--ink-soft);
-  cursor: pointer;
   transition: border-color 0.15s, background 0.15s, color 0.15s;
 }
 

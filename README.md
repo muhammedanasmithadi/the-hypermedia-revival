@@ -21,9 +21,10 @@ browser. No build step, no dependencies, no framework.
 - `lessons/index.html` : section list.
 - `lessons/NNNN-<slug>.html` : the sections, in order; `<slug>` matches the manifest slug.
 - `assets/styles.css` : the one stylesheet every page includes; it imports the modules below.
+  Exception: `404.html` is self-styled by design (standalone, noindex).
 - `assets/styles/*.css` : sixteen modules — `tokens`, `base`, `chrome`, `typography`,
   `panels`, `footer`, `widget-kiosk`, `widget-experiment`, `widget-stepper`,
-  `widget-timeline`, `widget-ledger`, `widget-twolane`, `widget-statusline`,
+  `widget-timeline`, `widget-ledger`, `widget-statusline`, `widget-twolane`,
   `panels-callouts`, `pages`, `print`.
 - `assets/js/site.js` : shared chrome (reading progress, scrollspy, reveal, ticker, `sleep`).
 - `assets/js/ledger.js` : the shared ledger widget reused by sections 02 and 05.
