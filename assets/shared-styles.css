@@ -95,6 +95,8 @@
 
   --col-max: 44rem;
   --col-pad: 3rem;
+
+  --callout-inset: 1.3em;
 }
 
 /* ---------- Reset & base ---------- */
@@ -1675,7 +1677,7 @@ h3[id]:target {
 .recap .recap-title,
 .self-check .sc-title {
   margin: 0;
-  padding: 0.55em 1.3em 0.5em;
+  padding: 0.55em var(--callout-inset) 0.5em;
   font-family: var(--font-heading);
   font-size: 0.8em;
   font-weight: 600;
@@ -1690,8 +1692,8 @@ h3[id]:target {
 .recap .recap-intro,
 .self-check > p:not(.sc-title),
 .self-check details {
-  margin-left: 1.3em;
-  margin-right: 1.3em;
+  margin-left: var(--callout-inset);
+  margin-right: var(--callout-inset);
 }
 
 .do-now p:not(.dn-kicker) {
@@ -1722,7 +1724,7 @@ h3[id]:target {
 
 .recap ol {
   margin: 0;
-  padding: 0.4em 1.3em 0.9em;
+  padding: 0.4em var(--callout-inset) 0.9em;
   list-style: none;
   counter-reset: recap;
 }
@@ -1818,7 +1820,7 @@ h3[id]:target {
 }
 
 .recall summary {
-  padding: 0.6em 1.3em;
+  padding: 0.6em var(--callout-inset);
   color: var(--ink-strong);
   font-weight: 600;
   cursor: pointer;
@@ -1835,7 +1837,7 @@ h3[id]:target {
 
 .recall p {
   margin: 0;
-  padding: 0 1.3em 0.8em;
+  padding: 0 var(--callout-inset) 0.8em;
   color: var(--ink-light);
 }
 
