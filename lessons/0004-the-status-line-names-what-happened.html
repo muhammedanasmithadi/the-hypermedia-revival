@@ -79,22 +79,32 @@
       </a>
     </h3>
 
-    <p>The status line opens every HTTP, Hypertext Transfer Protocol, reply. The code is data, not
-    prose. A browser reads it without a dictionary and decides what to do next. You do not need the
-    header lines yet. The three digits carry the idea.</p>
+    <p>Every reply opens with one line you can read before the body: the status line. The line ends
+    with three digits. Without those digits, a reply could be a page, a refusal, or a broken server,
+    and you would not know which.</p>
 
-    <p>Seven requests sit below. Read each one, name the class that fits, and flip the card to read
-    the verdict. You may not know every code yet. That is the point: name the class, then check.</p>
+    <p>The station below holds seven requests. Read a request line, say which class answers, and the
+    station reads the verdict. You do not need the header lines yet.</p>
   </div>
 
-  <div class="verdict reveal" id="verdict" role="group" aria-label="Seven requests, seven verdicts: name the class, then flip the card">
+  <div class="kiosk reveal" id="verdict" role="group" aria-label="A status-line reading station: read the request, name the class, read the verdict">
     <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
-    <div class="verdict-bar">
-      <span class="verdict-hint">name the class. then flip the card.</span>
-      <button class="verdict-reset" type="button" id="verdict-reset">Start over</button>
+    <div class="kiosk-head">
+      <span>the status line · reading station</span>
+      <span class="k-now" id="verdict-state">welcome</span>
     </div>
-    <p class="verdict-note" id="verdict-note" aria-live="polite"></p>
-    <div class="verdict-tray" id="verdict-tray"></div>
+    <div class="kiosk-screen">
+      <div class="k-title" id="verdict-title">the server names what happened</div>
+      <div class="k-msg" id="verdict-msg">Seven requests wait on the wire. Pick one, name the class you expect, and the station reads the HTTP, Hypertext Transfer Protocol, verdict.</div>
+      <p class="verdict-line" id="verdict-line" aria-live="polite"></p>
+      <p class="verdict-rules" id="verdict-rules" role="group" aria-label="name the class you expect"></p>
+      <div class="k-note" id="verdict-note" aria-live="polite"></div>
+    </div>
+    <div class="kiosk-keys" id="verdict-keys"></div>
+    <div class="kiosk-meta">
+      <span class="kiosk-balance" id="verdict-score" aria-live="polite">you named 0 of 7</span>
+      <button class="kiosk-reset" type="button" id="verdict-reset">Start over</button>
+    </div>
   </div>
 
   <div class="do-now" role="note" aria-label="Do it now: read the status line of this page">
@@ -208,7 +218,7 @@
     <p>One line, three digits, five classes. You can now read what happened before you read how. The
     next sections put those digits to work. Section 05, &ldquo;Ask without harm. Repeat without
     doubt,&rdquo; asks which moves you may send twice. Section 06 shows the stored-copy handshake that
-    earned the 304 in the cards.</p>
+    earned the 304 you just read.</p>
 
     <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
     by Carson Gross, Adam Stepinski, and Deniz Akşimşek, lists the status codes in plain language.</p>
@@ -293,64 +303,135 @@
 (function verdict() {
   const root = document.getElementById('verdict');
   if (!root) return;
-  const tray = document.getElementById('verdict-tray');
+  const msg = document.getElementById('verdict-msg');
+  const line = document.getElementById('verdict-line');
+  const rules = document.getElementById('verdict-rules');
   const note = document.getElementById('verdict-note');
+  const keys = document.getElementById('verdict-keys');
+  const state = document.getElementById('verdict-state');
+  const score = document.getElementById('verdict-score');
   const reset = document.getElementById('verdict-reset');
 
-  const CARDS = [
-    { req: 'GET /account/4027', code: 200, kind: 'the request worked', line: 'The page carries the balance and its moves.' },
-    { req: 'POST /account/4027/open', code: 201, kind: 'the request worked', line: 'The move created a new resource.' },
-    { req: 'POST /account/4027/pay', code: 204, kind: 'the request worked', line: 'The reply carries no body; the balance changed.' },
-    { req: 'GET /account/4027/leave', code: 303, kind: 'look elsewhere', line: 'The answer lives at the URI the reply names.' },
-    { req: 'GET /account/4027 (stored copy)', code: 304, kind: 'keep your stored copy', line: 'Your stored copy is still good.' },
-    { req: 'GET /account/4042', code: 404, kind: 'the client erred', line: 'The server state holds no such account.' },
-    { req: 'POST /account/4027/pay', code: 500, kind: 'the server erred', line: 'The server broke before it answered.' }
+  const REQUESTS = [
+    { req: 'GET /account/4027', code: 200, reason: 'OK', kind: 'the request worked', line: 'The reply carries the balance and its moves.' },
+    { req: 'POST /account/4027/open', code: 201, reason: 'Created', kind: 'the request worked', line: 'A new resource appeared, and the reply names it.' },
+    { req: 'POST /account/4027/pay', code: 204, reason: 'No Content', kind: 'the request worked', line: 'The reply carries no body. The balance changed all the same.' },
+    { req: 'GET /account/4027/leave', code: 303, reason: 'See Other', kind: 'look elsewhere', line: 'The answer lives at another URI. The client follows it.' },
+    { req: 'GET /account/4027 (stored copy)', code: 304, reason: 'Not Modified', kind: 'keep your stored copy', line: 'Your stored copy is still good. The client keeps it.' },
+    { req: 'GET /account/4042', code: 404, reason: 'Not Found', kind: 'the client erred', line: 'The server state holds no such account.' },
+    { req: 'POST /account/4027/pay', code: 500, reason: 'Internal Server Error', kind: 'the server erred', line: 'The server broke before it answered.' }
   ];
 
-  const CLS = { 2: 'verdict-cls-2xx', 3: 'verdict-cls-3xx', 4: 'verdict-cls-4xx', 5: 'verdict-cls-5xx' };
+  const CLASSES = ['2xx', '3xx', '4xx', '5xx'];
 
-  function classLabel(code) {
-    const first = String(code)[0];
-    return `${first}xx`;
+  let current = null;
+  let named = 0;
+  const judged = new Set();
+
+  function buildRules() {
+    rules.innerHTML = CLASSES.map((c) => {
+      return `<button type="button" class="x-mode-btn verdict-rule" data-class="${c[0]}" disabled>${c}</button>`;
+    }).join('');
+    rules.querySelectorAll('.verdict-rule').forEach((b) => {
+      b.addEventListener('click', () => { choose(b.getAttribute('data-class')); });
+    });
   }
 
-  function face(c) {
-    const first = String(c.code)[0];
-    return `<span class="verdict-front">` +
-      `<span class="verdict-num">request</span>` +
-      `<span class="verdict-req">${c.req}</span>` +
-      `</span>` +
-      `<span class="verdict-back">` +
-      `<span class="verdict-code">${c.code}</span>` +
-      `<span class="verdict-class ${CLS[first]}">${classLabel(c.code)} · ${c.kind}</span>` +
-      `<span class="verdict-line">${c.line}</span>` +
-      `</span>`;
+  function buildKeys() {
+    keys.innerHTML = '';
+    REQUESTS.forEach((r, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'kiosk-btn verdict-key';
+      b.textContent = r.req;
+      b.addEventListener('click', () => { pick(i); });
+      keys.appendChild(b);
+    });
   }
 
-  CARDS.forEach((c, i) => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'verdict-card';
-    b.setAttribute('aria-expanded', 'false');
-    b.setAttribute('aria-label', `Request ${i + 1} of ${CARDS.length}: ${c.req}. Name the class, then flip the card.`);
-    b.innerHTML = face(c);
-    b.addEventListener('click', () => {
-      const open = b.getAttribute('aria-expanded') === 'true';
-      b.setAttribute('aria-expanded', open ? 'false' : 'true');
-      const first = String(c.code)[0];
-      note.textContent = open
-        ? `Card ${i + 1} sits face down again.`
-        : `Card ${i + 1} of ${CARDS.length} names ${first}xx: ${c.kind}. ${c.line}`;
-    });
-    tray.appendChild(b);
-  });
+  function keyFor(i) {
+    return keys.querySelectorAll('.verdict-key')[i];
+  }
 
-  reset.addEventListener('click', () => {
-    tray.querySelectorAll('.verdict-card').forEach((b) => {
-      b.setAttribute('aria-expanded', 'false');
+  function clearRules() {
+    rules.querySelectorAll('.verdict-rule').forEach((b) => {
+      b.disabled = true;
+      b.classList.remove('on');
     });
-    note.textContent = 'Seven cards sit face down. Name the class, then flip.';
-  });
+  }
+
+  function readCount() {
+    return keys.querySelectorAll('.verdict-key.read').length;
+  }
+
+  function display(r) {
+    const fd = String(r.code)[0];
+    state.textContent = `${fd}xx · ${r.kind}`;
+    line.textContent = `HTTP/1.1 ${r.code} ${r.reason}`;
+    msg.textContent = readCount() === REQUESTS.length
+      ? 'All seven requests have verdicts.'
+      : 'Pick the next request, or reread one above.';
+    const key = keyFor(current);
+    const hit = key.dataset.hit === 'ok';
+    note.textContent = hit
+      ? r.line
+      : `You named ${key.dataset.class}xx. The reply said ${fd}xx: ${r.kind}. ${r.line}`;
+  }
+
+  function pick(i) {
+    current = i;
+    keys.querySelectorAll('.verdict-key').forEach((b) => { b.classList.remove('active-key'); });
+    const key = keyFor(i);
+    key.classList.add('active-key');
+    if (key.classList.contains('read')) {
+      display(REQUESTS[i]);
+      return;
+    }
+    state.textContent = 'request on the wire';
+    line.textContent = REQUESTS[i].req;
+    note.textContent = '';
+    msg.textContent = 'Name the class you expect. Then the station reads the verdict.';
+    rules.querySelectorAll('.verdict-rule').forEach((b) => { b.disabled = false; });
+  }
+
+  function choose(first) {
+    if (current === null) return;
+    const r = REQUESTS[current];
+    const key = keyFor(current);
+    const fd = String(r.code)[0];
+    const wasJudged = key.classList.contains('read');
+    const prevHit = wasJudged ? key.dataset.hit === 'ok' : false;
+    const hit = fd === first;
+    key.classList.remove('read', 'ok', 'bad', 'active-key');
+    key.classList.add('read', hit ? 'ok' : 'bad');
+    key.dataset.hit = hit ? 'ok' : 'bad';
+    key.dataset.class = first;
+    if (prevHit !== hit) {
+      named += hit ? 1 : -1;
+    }
+    if (hit && !wasJudged) {
+      judged.add(current);
+    }
+    score.textContent = `you named ${named} of ${REQUESTS.length}`;
+    display(r);
+  }
+
+  function idle() {
+    current = null;
+    named = 0;
+    judged.clear();
+    state.textContent = 'welcome';
+    line.textContent = '';
+    note.textContent = '';
+    msg.textContent = 'Seven requests wait on the wire. Pick one, name the class you expect, and the station reads the HTTP, Hypertext Transfer Protocol, verdict.';
+    score.textContent = 'you named 0 of 7';
+    clearRules();
+    buildKeys();
+  }
+
+  buildRules();
+  reset.addEventListener('click', idle);
+  idle();
 })();
 
 </script>
