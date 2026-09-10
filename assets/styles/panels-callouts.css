@@ -78,7 +78,7 @@
 .recap li::before {
   content: counter(recap);
   flex: 0 0 auto;
-  margin-top: 0.27em;
+  margin-top: 0.35em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
