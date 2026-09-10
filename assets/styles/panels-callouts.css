@@ -67,6 +67,9 @@
 }
 
 .recap li {
+  display: flex;
+  gap: 0.65em;
+  align-items: baseline;
   margin: 0.6em 0;
   counter-increment: recap;
   color: var(--ink-light);
@@ -74,19 +77,18 @@
 
 .recap li::before {
   content: counter(recap);
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 1.35em;
   height: 1.35em;
-  margin-right: 0.65em;
   border: 1px solid var(--hairline-strong);
   border-radius: 50%;
   font-family: var(--font-mono);
   font-size: 0.78em;
   color: var(--brand);
   line-height: 1;
-  vertical-align: middle;
 }
 
 .recap li strong {
