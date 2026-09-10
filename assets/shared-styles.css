@@ -222,10 +222,19 @@ strong {
   color: var(--link);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 47.99rem) {
   .topbar-inner {
-    padding: 0 0.75rem;
+    padding: 0 1.25rem;
   }
+  .doc {
+    padding-inline: 1.25rem;
+  }
+  .doc-footer {
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
   .cur-section {
     font-size: 0.75em;
   }
@@ -1014,6 +1023,20 @@ h3[id]:target {
   padding: 0 0.2em;
 }
 
+@media (max-width: 30rem) {
+  .loop-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+  }
+  .loop-arrow {
+    display: none;
+  }
+  .loop-step {
+    flex: none;
+  }
+}
+
 .widget-noscript {
   margin: 0 0 1em 0;
   padding: 0.5em 0.9em;
@@ -1219,6 +1242,8 @@ h3[id]:target {
 
 .ledger-item {
   list-style: none;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .chip {
@@ -1255,6 +1280,12 @@ h3[id]:target {
 
 .ledger-col .chip {
   white-space: normal;
+  max-width: 100%;
+}
+
+.ledger-pool .chip {
+  white-space: normal;
+  max-width: 100%;
 }
 
 .ledger-item.ok .chip {
