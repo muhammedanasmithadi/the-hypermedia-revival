@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#171717">
-<meta name="description" content="Which requests may you repeat? Safe methods change no state, and idempotent methods change nothing extra. Sort HTTP, Hypertext Transfer Protocol, methods by both tests, then replay a dropped connection.">
+<meta name="description" content="Which requests may you repeat on the web? Sort the methods by harm and by repeatability, then replay a dropped connection.">
 <link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0005-ask-without-harm-repeat-without-doubt.html">
 <meta property="og:site_name" content="Hypermedia">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ask without harm. Repeat without doubt. · Hypermedia: the architecture we forgot">
-<meta property="og:description" content="Which requests may you repeat? Safe methods change no state, and idempotent methods change nothing extra. Sort HTTP, Hypertext Transfer Protocol, methods by both tests, then replay a dropped connection.">
+<meta property="og:description" content="Which requests may you repeat on the web? Sort the methods by harm and by repeatability, then replay a dropped connection.">
 <meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0005-ask-without-harm-repeat-without-doubt.html">
 <meta property="og:image" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/assets/social/og.png">
 <meta property="og:image:width" content="1200">
@@ -98,7 +98,8 @@
 
     <p>GET, HEAD, and OPTIONS are safe. GET, Hypertext Transfer Protocol&rsquo;s read verb, carries
     the document. HEAD asks for the headers only, without the body. OPTIONS asks what the server allows
-    on a resource. None of them writes.</p>
+    on a resource. None of them writes. TRACE is safe too, but servers rarely serve it. This course
+    passes it by.</p>
 
     <p>Safety protects the link. A browser may follow a GET before you click it. A preloader, a
     crawler, or a preview box all reuse one request, and none of them asks first.</p>
@@ -106,7 +107,7 @@
     <p>The fetch-app in Section 03 drew its own moves. Your browser trusts a GET to be harmless.
     Break that trust, and a blind preloader changes state without a click.</p>
 
-    <h3 id="sort-by-repeatability-too"><a href="#sort-by-repeatability-too" class="hanchor">Sort by repeatability, too
+    <h3 id="sort-by-repeatability-too"><a href="#sort-by-repeatability-too" class="hanchor">Sort the methods again, by repeatability
         <span class="anchor-glyph" aria-hidden="true"></span>
       </a>
     </h3>
@@ -118,13 +119,14 @@
     Send a payment twice, and you may be charged twice.</p>
 
     <p>The two tests separate. DELETE removes state, yet two DELETEs leave the same result. One method
-    can be unsafe and idempotent at once. Only the repeat test decides whether a blind retry is safe.</p>
+    can be unsafe and idempotent at once. Only the repeat test says whether a blind retry can double
+    the move.</p>
 
     <p>A reply can vanish. The lost reply never proves the server ignored the request. A mobile
     network, a closed lid, a crash: the server may have moved already. Repeatability protects the
     retry.</p>
 
-    <p>The ledger below sorts the same six methods once per test. Pass one asks which methods change no
+    <p>In the ledger below, we sort the same six methods once per test. Pass one asks which methods change no
     state. Pass two asks which repeat with the same effect.</p>
   </div>
 
@@ -147,7 +149,7 @@
     <div class="do-now" role="note" aria-label="Try it now: see which methods this page sent">
       <p class="dn-kicker">Try it now</p>
       <p>Open the developer tools and the Network tab. Filter by the method column, or sort on it.
-      Every request on this page is GET or OPTIONS. Nothing here tries to change state, so the browser
+      Every request on this page is a GET. Nothing here tries to change state, so the browser
       may follow any of its links without asking.</p>
     </div>
   </div>
@@ -201,12 +203,12 @@
       </a>
     </h3>
 
-    <p>RFC 9110, the HTTP, Hypertext Transfer Protocol, specification, carries a warning. A request
-    that rides an action on a safe method is a design error. Some pages bury a delete in a query
+    <p>RFC 9110, the HTTP, Hypertext Transfer Protocol, specification, puts the action on the resource
+    owner. An unsafe action must never ride on a safe method. Some pages bury a delete in a query
     string that a GET loads. A preloader may fire that GET blind.</p>
 
     <p>Keep harm off GET, and keep doubt off POST. Then a link stays a link, and a retry stays a
-    retry.</p>
+    retry. You do not need the cache handshake yet. Section 06 carries it.</p>
 
     <p>Before the check, say the answer in your own words. Which test does POST fail?</p>
 
@@ -597,6 +599,7 @@
           lane.out.textContent = cfg.done;
           lane.out.className = `lane-outcome ${cfg.kind}`;
           lane.step = 4;
+          lane.btn.textContent = 'Done';
           finished += 1;
           if (finished === LANES.length) {
             stateKey = 'recovered, differently';
