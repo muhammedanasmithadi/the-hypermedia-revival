@@ -36,3 +36,11 @@ jobs:
           node-version: 22
       - name: Check inline scripts
         run: node scripts/check-js.mjs
+
+  sitemap:
+    name: Sitemap XML check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse sitemap.xml
+        run: python3 -c 'import xml.etree.ElementTree as ET; r = ET.parse("sitemap.xml").getroot(); urls = r.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url"); assert len(urls) >= 1, "no urls"; print(f"sitemap OK: {len(urls)} url entries")'
