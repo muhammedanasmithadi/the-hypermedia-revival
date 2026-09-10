@@ -13,21 +13,45 @@
 <link rel="stylesheet" href="assets/shared-styles.css">
 <style>
   .nf-main { max-width: 36rem; margin: 0 auto; padding: 4rem 1.2rem 3rem; text-align: center; }
-  .nf-mark { width: 16rem; display: block; margin: 0 auto 1.6rem; border-radius: 10px; }
+  .nf-hero {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 20rem;
+    object-fit: cover;
+    margin: 0 0 2rem;
+  }
   .nf-code { font-family: var(--font-mono); color: var(--soft-dark); font-size: 0.9em; }
   .nf-title { font-size: 2rem; margin: 0.4rem 0; }
   .nf-text { color: var(--soft); }
-  .nf-link { display: inline-block; margin-top: 1.4rem; color: var(--link); font-weight: 600; }
+  .nf-link { margin-top: 1.4rem; }
+  .nf-arrow {
+    display: inline-block;
+    width: 1.05em;
+    height: 1.05em;
+    background-color: currentColor;
+    -webkit-mask: var(--icon-arrow-left) var(--icon-mask);
+    mask: var(--icon-arrow-left) var(--icon-mask);
+    margin-right: 0.45em;
+    vertical-align: -0.15em;
+  }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#top">Skip to content</a>
 <main class="nf-main" id="top">
-  <img class="nf-mark" src="assets/social/chainlink-2k.jpg" width="2752" height="1536" alt="">
+  <img class="nf-hero" src="assets/social/hero-1200.jpg"
+       srcset="assets/social/hero-1200.jpg 1200w, assets/social/hero-2400.jpg 2400w"
+       sizes="(min-width: 36rem) 36rem, 100vw"
+       width="1200" height="630" alt="" decoding="async">
   <p class="nf-code">HTTP/1.1 404 Not Found</p>
   <h1 class="nf-title">The page does not exist.</h1>
   <p class="nf-text">The server state holds no such page. The course home holds every move.</p>
-  <a class="nf-link" href="index.html">&larr; Course home</a>
+  <p class="nf-link">
+    <a class="section-link" href="index.html">
+      <span class="nf-arrow" aria-hidden="true"></span>Course home
+    </a>
+  </p>
 </main>
 </body>
 </html>
