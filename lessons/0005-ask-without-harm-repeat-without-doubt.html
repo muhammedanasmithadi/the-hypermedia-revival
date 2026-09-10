@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#171717">
+<meta name="description" content="Which requests may you repeat? Safe methods change no state, and idempotent methods change nothing extra. Sort HTTP, Hypertext Transfer Protocol, methods by both tests, then replay a dropped connection.">
+<link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0005-ask-without-harm-repeat-without-doubt.html">
+<meta property="og:site_name" content="Hypermedia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ask without harm. Repeat without doubt. · Hypermedia: the architecture we forgot">
+<meta property="og:description" content="Which requests may you repeat? Safe methods change no state, and idempotent methods change nothing extra. Sort HTTP, Hypertext Transfer Protocol, methods by both tests, then replay a dropped connection.">
+<meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0005-ask-without-harm-repeat-without-doubt.html">
+<meta property="og:image" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/assets/social/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ask without harm. Repeat without doubt.">
+<meta name="twitter:card" content="summary_large_image">
+<title>Ask without harm. Repeat without doubt. · Hypermedia: the architecture we forgot</title>
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="../assets/shared-styles.css">
+<link rel="preload" href="../assets/fonts/plexsans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+.lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+@media (max-width: 640px) { .lanes { grid-template-columns: 1fr; } }
+.lane { border: 1px solid var(--line); border-radius: 10px; padding: 1rem; background: var(--panel-deep); }
+.lane-title { font-weight: 700; margin: 0 0 .4rem; }
+.lane-req { font-size: .9em; color: var(--soft); margin: 0 0 .6rem; }
+.retry-log { font-family: "IBM Plex Mono", monospace; font-size: .85em; line-height: 1.6; color: var(--ink-faint); min-height: 5.5em; white-space: pre-wrap; }
+.lane-outcome { margin: 0; font-size: .95em; color: var(--ink-light); }
+.lane-outcome.warn { color: #e8a96a; }
+.lane-outcome.ok { color: #a5d6a7; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<div class="progress" id="progress" role="progressbar" aria-label="reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html" aria-label="Course home">Hypermedia</a>
+    <span class="cur-section" id="cur-section" aria-live="polite">Section 05 · Ask without harm. Repeat without doubt.</span>
+  </div>
+</header>
+
+<main class="doc" id="top">
+
+<header class="masthead">
+  <p class="post-date"><time datetime="2026-09">September 2026</time></p>
+  <h1>Hypermedia: the two tests <em>that guard your repeats</em></h1>
+  <p class="dek">A safe method changes no state. An idempotent method repeats with the same effect.
+  This section sorts six methods by both tests, then replays a dropped connection.</p>
+  <p class="byline">
+    <span>section 5 of 6</span>
+  </p>
+</header>
+
+<div class="article">
+
+<section id="ask-without-harm-repeat-without-doubt" class="section">
+
+  <div class="section-head">
+    <p class="kicker">Section 05</p>
+    <h2><a href="#ask-without-harm-repeat-without-doubt" class="hanchor">Ask without harm. Repeat without doubt.
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h2>
+  </div>
+
+  <div class="prose">
+    <p class="lede"><a href="0004-the-status-line-names-what-happened.html">Section 04</a> read what
+    happened after a move. The harder question comes before you send it: which requests may you send
+    twice? This section names two tests that keep a retry safe.</p>
+
+    <details class="recall">
+      <summary>Before you read on: in Section 03&rsquo;s fetch-built app, who decided that the GET
+      path is harmless?</summary>
+      <p>The app&rsquo;s own code decided it. The JSON payload carried no controls, so the safety
+      promise lived outside the document. This section names that gap.</p>
+    </details>
+  </div>
+
+  <div class="prose">
+    <h3 id="sort-the-methods-by-harm"><a href="#sort-the-methods-by-harm" class="hanchor">Sort the methods by harm
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h3>
+
+    <p>A safe method changes no server state. Read an account, check a balance, ask what a resource
+    allows. State stays as it was.</p>
+
+    <p>GET, HEAD, and OPTIONS are safe. GET, Hypertext Transfer Protocol&rsquo;s read verb, carries
+    the document. HEAD asks for the headers only, without the body. OPTIONS asks what the server allows
+    on a resource. None of them writes.</p>
+
+    <p>Safety protects the link. A browser may follow a GET before you click it. A preloader, a
+    crawler, or a preview box all reuse one request, and none of them asks first.</p>
+
+    <p>The fetch-app in Section 03 drew its own moves. Your browser trusts a GET to be harmless.
+    Break that trust, and a blind preloader changes state without a click.</p>
+
+    <h3 id="sort-by-repeatability-too"><a href="#sort-by-repeatability-too" class="hanchor">Sort by repeatability, too
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h3>
+
+    <p>Repeatability is the second test. Send the same move twice, and does the same state come out?
+    An idempotent method changes nothing more on the second send than on the first.</p>
+
+    <p>PUT and DELETE are idempotent. POST, Hypertext Transfer Protocol&rsquo;s write verb, is not.
+    Send a payment twice, and you may be charged twice.</p>
+
+    <p>The two tests separate. DELETE removes state, yet two DELETEs leave the same result. One method
+    can be unsafe and idempotent at once. Only the repeat test decides whether a blind retry is safe.</p>
+
+    <p>A reply can vanish. The lost reply never proves the server ignored the request. A mobile
+    network, a closed lid, a crash: the server may have moved already. Repeatability protects the
+    retry.</p>
+
+    <p>The ledger below sorts the same six methods once per test. Pass one asks which methods change no
+    state. Pass two asks which repeat with the same effect.</p>
+  </div>
+
+  <div class="ledger reveal" id="methods" role="group" aria-label="HTTP methods, sorted by harm and then by repeatability">
+    <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
+    <div class="ledger-head"><span class="ledger-title">the method ledger · one sort, two tests</span></div>
+    <div class="ledger-cols">
+      <div class="ledger-col">
+        <div class="ledger-col-name">Safe</div>
+        <ul></ul>
+      </div>
+      <div class="ledger-col">
+        <div class="ledger-col-name">Unsafe</div>
+        <ul></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <div class="do-now" role="note" aria-label="Try it now: see which methods this page sent">
+      <p class="dn-kicker">Try it now</p>
+      <p>Open the developer tools and the Network tab. Filter by the method column, or sort on it.
+      Every request on this page is GET or OPTIONS. Nothing here tries to change state, so the browser
+      may follow any of its links without asking.</p>
+    </div>
+  </div>
+
+  <div class="prose">
+    <h3 id="replay-a-dropped-connection"><a href="#replay-a-dropped-connection" class="hanchor">Replay a dropped connection
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h3>
+
+    <p>One wire, two moves, one drop. The station below sends a payment by POST and a rename by PUT.
+    Each reply never comes back. Send each move again, and watch what the second send leaves behind.</p>
+
+    <p>The promise of this section in one line: POST doubles the move, and PUT does not.</p>
+  </div>
+
+  <div class="kiosk reveal" id="retry" role="group" aria-label="A replayed connection: pay by POST, rename by PUT">
+    <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
+    <div class="kiosk-head">
+      <span>the dropped connection · replay station</span>
+      <span class="k-now" id="retry-state">standing by</span>
+    </div>
+    <div class="kiosk-screen">
+      <div class="k-title">one wire, two moves, one drop</div>
+      <div class="k-msg">Send each move, then send it again after the drop.</div>
+      <div class="lanes" id="lanes">
+        <div class="lane" id="lane-post">
+          <p class="lane-title">Pay by POST</p>
+          <p class="lane-req"><code>POST /account/4027/pay</code> &nbsp; amount=20</p>
+          <div class="retry-log" id="retry-log-post" aria-live="polite"></div>
+          <p class="lane-outcome" id="retry-out-post"></p>
+        </div>
+        <div class="lane" id="lane-put">
+          <p class="lane-title">Rename by PUT</p>
+          <p class="lane-req"><code>PUT /profile/name</code> &nbsp; name=Anas</p>
+          <div class="retry-log" id="retry-log-put" aria-live="polite"></div>
+          <p class="lane-outcome" id="retry-out-put"></p>
+        </div>
+      </div>
+    </div>
+    <div class="kiosk-keys" id="retry-keys"></div>
+    <div class="kiosk-meta">
+      <span class="kiosk-balance" id="retry-score" aria-live="polite">two moves, one connection</span>
+      <button class="kiosk-reset" type="button" id="retry-reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="prose">
+    <h3 id="keep-harm-off-harmless-asks"><a href="#keep-harm-off-harmless-asks" class="hanchor">Keep harm off harmless asks
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h3>
+
+    <p>RFC 9110, the HTTP, Hypertext Transfer Protocol, specification, carries a warning. A request
+    that rides an action on a safe method is a design error. Some pages bury a delete in a query
+    string that a GET loads. A preloader may fire that GET blind.</p>
+
+    <p>Keep harm off GET, and keep doubt off POST. Then a link stays a link, and a retry stays a
+    retry.</p>
+
+    <p>Before the check, say the answer in your own words. Which test does POST fail?</p>
+
+    <p>The repeat test. Two POSTs can move the state twice.</p>
+  </div>
+
+  <div class="recap" role="group" aria-label="Section recap">
+    <p class="recap-title">The two tests, in review</p>
+    <p class="recap-intro">Review what the sort and the replay showed you.</p>
+    <ol>
+      <li>Safe methods change no state. GET, HEAD, and OPTIONS pass that test.</li>
+      <li>Idempotent methods repeat with the same effect. PUT and DELETE pass that test.</li>
+      <li>POST fails the repeat test. Send it twice, and the move may land twice.</li>
+      <li>The two tests separate. One method can be unsafe and idempotent at once.</li>
+    </ol>
+  </div>
+
+  <div class="self-check" role="group" aria-label="Check yourself before you move on">
+    <p class="sc-title">Check yourself</p>
+    <p>Three questions follow. Answer each one before you open it.</p>
+    <details class="sc-item">
+      <summary>Which three methods pass the harm test?</summary>
+      <p>GET, HEAD, and OPTIONS. None of them changes server state.</p>
+    </details>
+    <details class="sc-item">
+      <summary>You send a payment by POST. The connection drops. A retry sends the same POST again.
+      What happens if the first one landed?</summary>
+      <p>A second charge. POST is not idempotent, so a blind retry doubles the move.</p>
+    </details>
+    <details class="sc-item">
+      <summary>You delete a row by DELETE. The first try returns 200, and the retry returns 404. Does
+      404 break idempotence?</summary>
+      <p>No. The row left on the first try. The second reply only says the row is gone.</p>
+    </details>
+  </div>
+
+  <div class="prose">
+    <p>Two tests, four passes, one repeat. The method column names what a move may do, and the status
+    line names what it did. Section 06, &ldquo;Keep the old copy. Ask if it is still good,&rdquo;
+    shows the stored-copy handshake that still makes a page fast on a slow connection.</p>
+
+    <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
+    by Carson Gross, Adam Stepinski, and Deniz Akşimşek, names the safe and idempotent corners of each
+    method plainly.</p>
+
+    <section class="sources">
+      <h3 id="sources"><a href="#sources" class="hanchor">Sources
+          <span class="anchor-glyph" aria-hidden="true"></span>
+        </a>
+      </h3>
+      <ul>
+        <li>IETF, <a rel="noopener" href="https://www.rfc-editor.org/rfc/rfc9110.html">&ldquo;HTTP Semantics&rdquo;</a> (RFC 9110, 2022), section 9.2.1: safe methods.</li>
+        <li>IETF, <a rel="noopener" href="https://www.rfc-editor.org/rfc/rfc9110.html">&ldquo;HTTP Semantics&rdquo;</a> (RFC 9110, 2022), section 9.2.2: idempotent methods.</li>
+        <li>Mozilla, <a rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">HTTP request methods</a>, in MDN Web Docs.</li>
+      </ul>
+    </section>
+  </div>
+
+</section>
+
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  <nav class="foot-nav" aria-label="section navigation">
+    <a class="section-link foot-left" href="0004-the-status-line-names-what-happened.html">The status line names what happened</a>
+    <a class="section-link foot-left" href="../index.html">Course home</a>
+  </nav>
+  <p class="closing">Hypermedia Course · Section 5 of 6</p>
+</footer>
+
+<script>
+
+(function chrome() {
+  const progress = document.getElementById('progress');
+  const cur = document.getElementById('cur-section');
+  const doc = document.documentElement;
+
+  function onScroll() {
+    const h = doc.scrollHeight - window.innerHeight;
+    const p = h > 0 ? doc.scrollTop / h : 0;
+    progress.style.width = `${(p * 100).toFixed(1)}%`;
+    progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  const sec = document.getElementById('ask-without-harm-repeat-without-doubt');
+  if (sec && 'IntersectionObserver' in window) {
+    const k = sec.querySelector('.section-head .kicker');
+    const h = sec.querySelector('.section-head h2');
+    cur.textContent = `${k ? `${k.textContent} · ` : ''}${h ? h.childNodes[0].textContent.trim() : ''}`;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        cur.classList.toggle('is-active', e.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    obs.observe(sec);
+  }
+})();
+
+(function reveal() {
+  const els = document.querySelectorAll('.reveal');
+  function show(el) { el.inert = false; el.classList.add('in'); }
+  if (!('IntersectionObserver' in window) ||
+      (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    els.forEach(show);
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        show(e.target);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0 });
+  els.forEach((el) => { el.inert = true; obs.observe(el); });
+})();
+
+(function methods() {
+  const PHASES = [
+    { cols: ['Safe', 'Unsafe'], wants: ['s', 'u'], prompt: 'Which methods may never change state?' },
+    { cols: ['Idempotent', 'Not idempotent'], wants: ['y', 'n'], prompt: 'Which methods may repeat with the same effect?' }
+  ];
+  const FACTS = [
+    { txt: 'GET · read the balance', harm: 's', rep: 'y' },
+    { txt: 'HEAD · ask for the headers only', harm: 's', rep: 'y' },
+    { txt: 'OPTIONS · ask what the server allows', harm: 's', rep: 'y' },
+    { txt: 'POST · create or pay', harm: 'u', rep: 'n' },
+    { txt: 'PUT · replace a named resource', harm: 'u', rep: 'y' },
+    { txt: 'DELETE · remove a named resource', harm: 'u', rep: 'y' }
+  ];
+  const root = document.getElementById('methods');
+  if (!root) return;
+  const head = root.querySelector('.ledger-head');
+  const cols = root.querySelectorAll('.ledger-col');
+  const uls = root.querySelectorAll('.ledger-col ul');
+  let pool, check, advance, again, res;
+  let selected = null;
+  let phase = 0;
+
+  function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function chipFor(f) {
+    const li = document.createElement('li');
+    li.className = 'ledger-item';
+    li.dataset.side = phase === 0 ? f.harm : f.rep;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = f.txt;
+    li.chip = b;
+    b.addEventListener('click', () => {
+      li.classList.remove('ok', 'bad');
+      if (li.parentNode === pool) {
+        if (selected) selected.classList.remove('selected');
+        selected = li;
+        li.classList.add('selected');
+        root.classList.add('sorting');
+      } else {
+        clearSel();
+        pool.appendChild(li);
+        root.classList.remove('sorting');
+      }
+    });
+    li.appendChild(b);
+    return li;
+  }
+
+  function clearSel() {
+    if (selected) selected.classList.remove('selected');
+    selected = null;
+  }
+
+  function clearErrAll() {
+    root.querySelectorAll('.ledger-item').forEach((li) => {
+      li.classList.remove('ok', 'bad');
+    });
+  }
+
+  function placeInto(col) {
+    if (!selected || selected.parentNode !== pool) return;
+    selected.classList.remove('selected');
+    col.querySelector('ul').appendChild(selected);
+    res.textContent = `Placed in ${col.querySelector('.ledger-col-name').textContent}.`;
+    selected.chip.focus();
+    selected = null;
+    root.classList.remove('sorting');
+  }
+
+  function render() {
+    clearSel();
+    clearErrAll();
+    root.classList.remove('sorting');
+    uls.forEach((ul) => { ul.innerHTML = ''; });
+    pool.innerHTML = '';
+    shuffle(FACTS).forEach((f) => { pool.appendChild(chipFor(f)); });
+    res.textContent = PHASES[phase].prompt;
+  }
+
+  pool = document.createElement('ul');
+  pool.className = 'ledger-pool';
+  pool.setAttribute('role', 'group');
+  pool.setAttribute('aria-label', 'Methods to sort: select one, then choose a row');
+  cols[0].parentNode.insertBefore(pool, cols[0]);
+
+  cols.forEach((col) => {
+    col.setAttribute('tabindex', '0');
+    col.setAttribute('role', 'group');
+    col.setAttribute('aria-label', `${col.querySelector('.ledger-col-name').textContent} row`);
+    col.addEventListener('click', () => { placeInto(col); });
+    col.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        placeInto(col);
+      }
+    });
+  });
+
+  const bar = document.createElement('div');
+  bar.className = 'ledger-controls';
+  check = document.createElement('button');
+  check.type = 'button';
+  check.className = 'ledger-btn primary';
+  check.textContent = 'Check my sort';
+  advance = document.createElement('button');
+  advance.type = 'button';
+  advance.className = 'ledger-btn';
+  advance.textContent = 'Now sort by repeatability';
+  advance.hidden = true;
+  again = document.createElement('button');
+  again.type = 'button';
+  again.className = 'ledger-btn';
+  again.textContent = 'Start over';
+  res = document.createElement('div');
+  res.className = 'ledger-result';
+  res.setAttribute('aria-live', 'polite');
+  bar.appendChild(check);
+  bar.appendChild(advance);
+  bar.appendChild(again);
+  root.appendChild(bar);
+  root.appendChild(res);
+
+  const hint = document.createElement('span');
+  hint.className = 'ledger-hint';
+  hint.textContent = 'select a method, then choose a row (click or Enter)';
+  head.appendChild(hint);
+
+  function setPhase(p) {
+    phase = p;
+    const ph = PHASES[p];
+    cols.forEach((col, i) => {
+      col.querySelector('.ledger-col-name').textContent = ph.cols[i];
+      col.setAttribute('aria-label', `${ph.cols[i]} row`);
+    });
+    res.textContent = ph.prompt;
+  }
+
+  check.addEventListener('click', () => {
+    let placed = 0, right = 0;
+    const wants = PHASES[phase].wants;
+    for (let u = 0; u < uls.length; u++) {
+      const want = wants[u];
+      uls[u].querySelectorAll('li').forEach((li) => {
+        placed++;
+        const ok = li.dataset.side === want;
+        right += ok ? 1 : 0;
+        li.classList.toggle('ok', ok);
+        li.classList.toggle('bad', !ok);
+      });
+    }
+    if (placed === 0) {
+      res.textContent = 'Place the methods first.';
+      return;
+    }
+    if (right === FACTS.length && placed === FACTS.length) {
+      if (phase === 0) {
+        res.textContent = '6 of 6. Safe and unsafe, told apart. Now sort by repeatability.';
+        advance.hidden = false;
+      } else {
+        res.textContent = '6 of 6. Idempotent and not, told apart.';
+      }
+    } else {
+      res.textContent = `${right} of ${FACTS.length} right; ${FACTS.length - placed} still in the tray.`;
+    }
+  });
+
+  advance.addEventListener('click', () => {
+    advance.hidden = true;
+    setPhase(1);
+    render();
+  });
+
+  again.addEventListener('click', () => {
+    advance.hidden = true;
+    setPhase(0);
+    render();
+  });
+
+  setPhase(0);
+  render();
+})();
+
+(function replay() {
+  const root = document.getElementById('retry');
+  if (!root) return;
+  const keys = document.getElementById('retry-keys');
+  const reset = document.getElementById('retry-reset');
+  const score = document.getElementById('retry-score');
+  const state = document.getElementById('retry-state');
+  const logs = {
+    post: document.getElementById('retry-log-post'),
+    put: document.getElementById('retry-log-put')
+  };
+  const outs = {
+    post: document.getElementById('retry-out-post'),
+    put: document.getElementById('retry-out-put')
+  };
+
+  const LANES = [
+    {
+      id: 'post',
+      req: 'POST /account/4027/pay',
+      body: 'amount=20',
+      lost: 'connection lost. the server may have answered before it fell.',
+      reply: '204 No Content. The bank charges again.',
+      done: 'Two charges on the account. The repeat doubled the move.',
+      kind: 'warn'
+    },
+    {
+      id: 'put',
+      req: 'PUT /profile/name',
+      body: 'name=Anas',
+      lost: 'connection lost. the server may have answered before it fell.',
+      reply: '204 No Content. The same name is set again.',
+      done: 'One value on the server. The repeat changed nothing.',
+      kind: 'ok'
+    }
+  ];
+
+  let finished = 0;
+  let stateKey = 'standing by';
+
+  function line(log, text) {
+    const d = document.createElement('div');
+    d.textContent = text;
+    log.appendChild(d);
+  }
+
+  const lanes = LANES.map((cfg) => {
+    const lane = {
+      cfg: cfg,
+      log: logs[cfg.id],
+      out: outs[cfg.id],
+      timer: null,
+      step: 0,
+      btn: document.createElement('button')
+    };
+    lane.btn.type = 'button';
+    lane.btn.className = 'kiosk-btn';
+    lane.btn.textContent = `Send: ${cfg.req}`;
+    lane.btn.addEventListener('click', () => {
+      if (lane.step === 0) {
+        line(lane.log, `> ${cfg.req}  body ${cfg.body}`);
+        lane.btn.disabled = true;
+        lane.step = 1;
+        lane.timer = setTimeout(() => {
+          line(lane.log, cfg.lost);
+          lane.btn.disabled = false;
+          lane.btn.textContent = 'Retry the move';
+          lane.step = 2;
+        }, 900);
+      } else if (lane.step === 2) {
+        line(lane.log, `> ${cfg.req}  body ${cfg.body}  (retry)`);
+        lane.btn.disabled = true;
+        lane.step = 3;
+        lane.timer = setTimeout(() => {
+          line(lane.log, cfg.reply);
+          lane.out.textContent = cfg.done;
+          lane.out.className = `lane-outcome ${cfg.kind}`;
+          lane.step = 4;
+          finished += 1;
+          if (finished === LANES.length) {
+            stateKey = 'recovered, differently';
+            state.textContent = stateKey;
+            score.textContent = 'the POST charged twice · the PUT changed once';
+          }
+        }, 700);
+      }
+    });
+    keys.appendChild(lane.btn);
+    return lane;
+  });
+
+  reset.addEventListener('click', () => {
+    lanes.forEach((lane) => {
+      clearTimeout(lane.timer);
+      lane.log.innerHTML = '';
+      lane.out.textContent = '';
+      lane.out.className = 'lane-outcome';
+      lane.btn.disabled = false;
+      lane.btn.textContent = `Send: ${lane.cfg.req}`;
+      lane.step = 0;
+    });
+    finished = 0;
+    stateKey = 'standing by';
+    state.textContent = stateKey;
+    score.textContent = 'two moves, one connection';
+  });
+})();
+
+</script>
+
+</body>
+</html>

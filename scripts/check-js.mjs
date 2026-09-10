@@ -13,7 +13,9 @@ const pages = [
   'lessons/0001-hypermedia-revival.html',
   'lessons/0002-how-the-idea-got-lost.html',
   'lessons/0003-two-architectures-on-the-same-table.html',
-  'lessons/0004-the-status-line-names-what-happened.html'
+  'lessons/0004-the-status-line-names-what-happened.html',
+  'lessons/0005-ask-without-harm-repeat-without-doubt.html',
+  'glossary.html'
 ];
 
 const scriptRe = /<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g;

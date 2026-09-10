@@ -12,7 +12,7 @@ browser. No build step, no dependencies, no framework.
 | 02 | How the idea got lost | done |
 | 03 | Two architectures on the same table | done |
 | 04 | The status line names what happened | done |
-| 05 | Ask without harm. Repeat without doubt. | next |
+| 05 | Ask without harm. Repeat without doubt. | done |
 | 06 | Keep the old copy. Ask if it is still good. | next |
 
 ## Site structure
