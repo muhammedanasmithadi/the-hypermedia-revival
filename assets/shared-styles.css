@@ -600,6 +600,7 @@ h3[id]:target {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; }
+  #timeline-replay { display: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -1105,6 +1106,19 @@ h3[id]:target {
   color: var(--ink-code);
   font-size: 0.98em;
   padding: 0 0.2em;
+}
+
+.timeline-caption-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.timeline-replay {
+  font-family: var(--font-mono);
+  white-space: nowrap;
 }
 
 /* ---------- Section link (footer navigation) ---------- */

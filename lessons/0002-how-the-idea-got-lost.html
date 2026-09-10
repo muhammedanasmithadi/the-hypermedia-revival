@@ -145,7 +145,11 @@
         </span>
       </li>
     </ol>
-    <div class="timeline-caption" id="timeline-caption" aria-live="polite">The years pass. The note under the rail explains who holds the next move.</div>
+    <div class="timeline-caption-row">
+      <div class="timeline-caption" id="timeline-caption" aria-live="polite">The years pass. The note under the rail explains who holds the next move.</div>
+      <button type="button" id="timeline-replay" class="kiosk-reset timeline-replay"
+        aria-label="Play the years again, one beat at a time.">Play again</button>
+    </div>
   </div>
 
   <div class="do-now" role="note" aria-label="Do it now: track a shop's requests">
@@ -434,6 +438,7 @@
   ];
   const widget = document.getElementById('timeline');
   const cap = document.getElementById('timeline-caption');
+  const replay = document.getElementById('timeline-replay');
   const REST = 'The years pass. The note under the rail explains who holds the next move.';
   let i = -1;
   let timer = null;
@@ -473,6 +478,14 @@
   widget.addEventListener('pointerleave', play);
   widget.addEventListener('focusin', stop);
   widget.addEventListener('focusout', play);
+  if (replay) {
+    replay.addEventListener('click', () => {
+      i = -1;
+      stop();
+      render();
+      play();
+    });
+  }
   if ('IntersectionObserver' in window) {
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
