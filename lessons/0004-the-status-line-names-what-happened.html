@@ -103,6 +103,7 @@
     <div class="kiosk-keys" id="verdict-keys"></div>
     <div class="kiosk-meta">
       <span class="kiosk-balance" id="verdict-score" aria-live="polite">you named 0 of 7</span>
+      <button class="verdict-offer" type="button" id="verdict-offer" hidden aria-label="The machine offers /account/4027. Load this request.">/account/4027</button>
       <button class="kiosk-reset" type="button" id="verdict-reset">Start over</button>
     </div>
   </div>
@@ -199,7 +200,7 @@
 
   <div class="self-check" role="group" aria-label="Check yourself before you move on">
     <p class="sc-title">Check yourself</p>
-    <p>Three questions. Answer each one before you open it.</p>
+    <p>Four questions. Answer each one before you open it.</p>
     <details class="sc-item">
       <summary>You ask for a page the server state does not hold. Which class answers?</summary>
       <p>4xx, the client error class. The state holds no such page.</p>
@@ -211,6 +212,11 @@
     <details class="sc-item">
       <summary>The terminal refused your $50 withdrawal. Which class did that refusal carry?</summary>
       <p>4xx. The client asked for something the state could not keep.</p>
+    </details>
+    <details class="sc-item">
+      <summary>A reply opens with 200. Another opens with 201. Both begin with 2. What do the last two
+      digits separate?</summary>
+      <p>The detail. 200 says the reply carries the document. 201 says a new resource appeared.</p>
     </details>
   </div>
 
@@ -311,6 +317,7 @@
   const state = document.getElementById('verdict-state');
   const score = document.getElementById('verdict-score');
   const reset = document.getElementById('verdict-reset');
+  const offer = document.getElementById('verdict-offer');
 
   const REQUESTS = [
     { req: 'GET /account/4027', code: 200, reason: 'OK', kind: 'the request worked', line: 'The reply carries the balance and its moves.' },
@@ -368,6 +375,7 @@
     line.classList.remove('active');
     state.textContent = `${fd}xx · ${r.kind}`;
     line.textContent = `HTTP/1.1 ${r.code} ${r.reason}`;
+    offer.hidden = r.code !== 404;
     msg.textContent = readCount() === REQUESTS.length
       ? 'All seven requests have verdicts.'
       : 'Pick the next request, or reread one above.';
@@ -391,6 +399,7 @@
     line.classList.add('active');
     line.textContent = REQUESTS[i].req;
     note.textContent = '';
+    offer.hidden = true;
     msg.textContent = 'Name the class you expect. Then the station reads the verdict.';
   }
 
@@ -427,6 +436,7 @@
     line.classList.remove('active');
     line.textContent = '';
     note.textContent = '';
+    offer.hidden = true;
     msg.textContent = 'Seven requests wait on the wire. The station reads one and hears the class you name.';
     score.textContent = 'you named 0 of 7';
     clearRules();
@@ -435,6 +445,7 @@
 
   buildRules();
   reset.addEventListener('click', idle);
+  offer.addEventListener('click', () => { pick(0); });
   idle();
 })();
 
