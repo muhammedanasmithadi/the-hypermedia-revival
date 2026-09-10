@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#171717">
+<meta name="description" content="Every reply names what happened in three digits. Section 04 reads the status line as a verdict you can trust.">
+<link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0004-the-status-line-names-what-happened.html">
+<meta property="og:site_name" content="Hypermedia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The status line names what happened · Hypermedia: the architecture we forgot">
+<meta property="og:description" content="Every reply names what happened in three digits. Section 04 reads the status line as a verdict you can trust.">
+<meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0004-the-status-line-names-what-happened.html">
+<meta property="og:image" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/assets/social/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The status line names what happened.">
+<meta name="twitter:card" content="summary_large_image">
+<title>The status line names what happened · Hypermedia: the architecture we forgot</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%232052bb'/%3E%3Ctext%20x='16'%20y='22'%20font-family='Inter,Arial,sans-serif'%20font-size='17'%20font-weight='600'%20text-anchor='middle'%20fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="../assets/shared-styles.css">
+<link rel="preload" href="../assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<div class="progress" id="progress" role="progressbar" aria-label="reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Back to top">Hypermedia</a>
+  <span class="cur-section" id="cur-section" aria-live="polite">Section 04 · The status line names what happened</span>
+</header>
+
+<main class="doc" id="top">
+
+<header class="masthead">
+  <p class="post-date"><time datetime="2026-09">September 2026</time></p>
+  <h1>The status line names what happened</h1>
+  <p class="dek">Every reply opens with three digits that say what happened. This section reads
+  the status line as a verdict, and names the five classes it answers to.</p>
+  <p class="byline">
+    <span>revision 1</span>
+    <span>section 4 of 6</span>
+  </p>
+</header>
+
+<div class="article">
+
+<section id="the-status-line-names-what-happened" class="section">
+
+  <div class="section-head">
+    <p class="kicker">Section 04</p>
+    <h2><a href="#the-status-line-names-what-happened" class="hanchor">The status line names what happened
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h2>
+  </div>
+
+  <div class="prose">
+    <p class="lede"><a href="0001-hypermedia-revival.html#watch-the-loop">Section 01</a> ran one flow:
+    request, document, choice, next document. <a href="0003-two-architectures-on-the-same-table.html">Section 03</a>
+    put two flows on one table. Every reply carried a verdict, and the page read it and moved on.
+    This section names the first line of every reply: the status line. The line closes with three
+    digits that tell the client what just happened.</p>
+
+    <details class="recall">
+      <summary>Before you read on, what did the terminal say when you asked it for $50 it did not hold?</summary>
+      <p>It refused. It answered &ldquo;The machine refused: you only have $40.&rdquo; That refusal
+      was a verdict, and verdicts have classes.</p>
+    </details>
+
+    <h3 id="read-the-verdict"><a href="#read-the-verdict" class="hanchor">Read the verdict
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h3>
+
+    <p>The status line opens every HTTP, Hypertext Transfer Protocol, reply. The code is data, not
+    prose. A browser reads it without a dictionary and decides what to do next. You do not need the
+    header lines yet. The three digits carry the idea.</p>
+
+    <p>Seven requests sit below. Read each one, name the class that fits, and flip the card to read
+    the verdict. You may not know every code yet. That is the point: name the class, then check.</p>
+  </div>
+
+  <div class="verdict reveal" id="verdict" role="group" aria-label="Seven requests, seven verdicts: name the class, then flip the card">
+    <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
+    <div class="verdict-bar">
+      <span class="verdict-hint">name the class. then flip the card.</span>
+      <button class="verdict-reset" type="button" id="verdict-reset">Start over</button>
+    </div>
+    <div class="verdict-tray" id="verdict-tray"></div>
+    <p class="verdict-note" id="verdict-note" aria-live="polite"></p>
+  </div>
+
+  <div class="do-now" role="note" aria-label="Do it now: read the status line of this page">
+    <p class="dn-kicker">Do it now</p>
+    <p>Open DevTools with <kbd>Ctrl+Shift+I</kbd> (or <kbd>Cmd+Option+I</kbd>), reload, and look at
+    the Network tab. Find the request for this page and read its status line: 200. Change the address
+    to a page the course does not ship, such as <code>0009-does-not-exist.html</code>, and watch the
+    next reply arrive with 404. The class tells you what happened before the body does.</p>
+  </div>
+
+  <div class="recap" role="group" aria-label="Section recap">
+    <p class="recap-title">The five classes, in review</p>
+    <p class="recap-intro">Review what the verdicts just showed you.</p>
+    <ol>
+      <li>1xx is informational. Browsers keep it out of sight.</li>
+      <li>2xx means the request worked, and state moved.</li>
+      <li>3xx means look elsewhere, or keep your stored copy.</li>
+      <li>4xx means the client asked for something the state would not give.</li>
+      <li>5xx means the server broke before it answered.</li>
+    </ol>
+  </div>
+
+  <div class="prose">
+    <h3 id="name-the-five-classes"><a href="#name-the-five-classes" class="hanchor">Name the five classes
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h3>
+
+    <p>Three digits, five classes. The first digit names the class. The other two name the detail.
+    2xx means the request worked. 3xx means the client should look elsewhere, or reuse what it keeps.
+    4xx means the request fell because of the request itself. 5xx means the server fell before it
+    could answer.</p>
+
+    <p>One class answers to one client rule. A generic browser acts on the class without knowing each
+    code by heart. The page you are reading did not parse a dictionary of codes. It branched on the
+    first digit.</p>
+
+    <p>You may wonder why a reply needs three digits and not two. The third digit lets the server say
+    more without changing the class. 200 and 201 both tell the client the request worked. One says
+    the reply carries the document; the other says a new resource appeared.</p>
+
+    <h3 id="meet-the-codes-that-matter"><a href="#meet-the-codes-that-matter" class="hanchor">Meet the codes that matter
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h3>
+
+    <p>The kiosk in Section 01 answered with one page for each move. Its bank would answer with codes
+    too. Seven codes carry almost every reply you will read:</p>
+
+    <p><code>200 OK</code> carries a full document. Every balance page in the kiosk earned it.
+    <code>201 Created</code> says a move made a new resource. Open a new account and the reply names it.
+    <code>204 No Content</code> says the state changed and the reply carries no body. A payment lands,
+    and the balance page does not need to come again.</p>
+
+    <p><code>303 See Other</code> says the answer lives at another URI. The client follows the location
+    the reply names. <code>304 Not Modified</code> says your stored copy is still good. The mechanics
+    wait for Section 06; for now, read the verdict. <code>404 Not Found</code> says the target does not
+    exist in the server state. Ask for account 4042, and no account answers. <code>500 Internal Server
+    Error</code> says the server broke while it tried to answer.</p>
+
+    <p>Treat 404 as data, not as an accident. The client asked for something the server state does not
+    hold, and the server said so plainly.</p>
+
+    <h3 id="act-on-the-class"><a href="#act-on-the-class" class="hanchor">Act on the class
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h3>
+
+    <p>The browser acts on the class, and the reply still carries its moves. <a href="0003-two-architectures-on-the-same-table.html#read-both-replies">Section 03</a>
+    showed the reply in building A with its form inside. That reply opened with a status line too:
+    200, then the document. The first digit decided the move. The document named the next click.</p>
+
+    <p>Both replies in that table were 200. The verdict does not say who owns the next move. It says
+    the request worked. <a href="0002-how-the-idea-got-lost.html#weigh-the-reasons">Section 02</a>
+    named the cost of the JSON decade. The status line stays the same on both sides of that table;
+    the body is where the moves live or leave.</p>
+
+    <p>Here is the bridge this section builds: the status line names what happened, and the document
+    names what comes next. 404 earns its place because each URI is its own state. Ask for a URI the
+    state does not hold, and the class answers for it.</p>
+
+    <h3 id="say-the-class-yourself"><a href="#say-the-class-yourself" class="hanchor">Say the class yourself
+        <span class="anchor-glyph" aria-hidden="true"></span>
+      </a>
+    </h3>
+
+    <p>Before the self-check, say the answer in your own words. Which digit names the class, and which
+    digits name the detail?</p>
+
+    <p>The first digit names the class. The last two name the detail, inside the class.</p>
+  </div>
+
+  <div class="self-check" role="group" aria-label="Check yourself before you move on">
+    <p class="sc-title">Check yourself</p>
+    <p>Three questions. Answer each one before you open it.</p>
+    <details class="sc-item">
+      <summary>You ask for a page the server state does not hold. Which class answers?</summary>
+      <p>4xx, the client error class. The state holds no such page.</p>
+    </details>
+    <details class="sc-item">
+      <summary>A move creates a new resource on the server. Which code marks the creation?</summary>
+      <p>201 Created. The move made a new resource, and the reply names it.</p>
+    </details>
+    <details class="sc-item">
+      <summary>The terminal refused your $50 withdrawal. Which class did that refusal carry?</summary>
+      <p>4xx. The client asked for something the state could not keep.</p>
+    </details>
+  </div>
+
+  <div class="prose">
+    <p>One line, three digits, five classes. You can now read what happened before you read how. The
+    next sections put those digits to work. Section 05, &ldquo;Ask without harm. Repeat without
+    doubt,&rdquo; asks which moves you may send twice. Section 06 shows the stored-copy handshake that
+    earned the 304 in the cards.</p>
+
+    <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
+    by Carson Gross, Adam Stepinski, and Deniz Akşimşek, lists the status codes in plain language.</p>
+
+    <section class="sources">
+      <h3 id="sources"><a href="#sources" class="hanchor">Sources
+          <span class="anchor-glyph" aria-hidden="true"></span>
+        </a>
+      </h3>
+      <ul>
+        <li>IETF, <a rel="noopener" href="https://www.rfc-editor.org/rfc/rfc9110.html">&ldquo;HTTP Semantics&rdquo;</a> (RFC 9110, 2022), section 15: response status codes.</li>
+        <li>IANA, <a rel="noopener" href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">HTTP Status Code Registry</a>.</li>
+        <li>Mozilla, <a rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response status codes</a>, in MDN Web Docs.</li>
+      </ul>
+    </section>
+  </div>
+
+</section>
+
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  <nav class="foot-nav" aria-label="section navigation">
+    <a class="section-link foot-left" href="0003-two-architectures-on-the-same-table.html">Two architectures on the same table</a>
+    <a class="section-link foot-home" href="../index.html">Course home</a>
+  </nav>
+  <p class="closing">sections built one by one · revision 1</p>
+</footer>
+
+<script>
+
+(function chrome() {
+  const progress = document.getElementById('progress');
+  const cur = document.getElementById('cur-section');
+  const doc = document.documentElement;
+
+  function onScroll() {
+    const h = doc.scrollHeight - window.innerHeight;
+    const p = h > 0 ? doc.scrollTop / h : 0;
+    progress.style.width = `${(p * 100).toFixed(1)}%`;
+    progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  const sec = document.getElementById('the-status-line-names-what-happened');
+  if (sec && 'IntersectionObserver' in window) {
+    const k = sec.querySelector('.section-head .kicker');
+    const h = sec.querySelector('.section-head h2');
+    cur.textContent = `${k ? `${k.textContent} · ` : ''}${h ? h.childNodes[0].textContent.trim() : ''}`;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        cur.classList.toggle('is-active', e.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    obs.observe(sec);
+  }
+})();
+
+(function reveal() {
+  const els = document.querySelectorAll('.reveal');
+  function show(el) { el.inert = false; el.classList.add('in'); }
+  if (!('IntersectionObserver' in window) ||
+      (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    els.forEach(show);
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        show(e.target);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0 });
+  els.forEach((el) => { el.inert = true; obs.observe(el); });
+})();
+
+(function verdict() {
+  const root = document.getElementById('verdict');
+  if (!root) return;
+  const tray = document.getElementById('verdict-tray');
+  const note = document.getElementById('verdict-note');
+  const reset = document.getElementById('verdict-reset');
+
+  const CARDS = [
+    { req: 'GET /account/4027', code: 200, kind: 'the request worked', line: 'The page carries the balance and its moves.' },
+    { req: 'POST /account/4027/open', code: 201, kind: 'the request worked', line: 'The move created a new resource.' },
+    { req: 'POST /account/4027/pay', code: 204, kind: 'the request worked', line: 'The reply carries no body; the balance changed.' },
+    { req: 'GET /account/4027/leave', code: 303, kind: 'look elsewhere', line: 'The answer lives at the URI the reply names.' },
+    { req: 'GET /account/4027 (stored copy)', code: 304, kind: 'keep your stored copy', line: 'Your stored copy is still good.' },
+    { req: 'GET /account/4042', code: 404, kind: 'the client erred', line: 'The server state holds no such account.' },
+    { req: 'POST /account/4027/pay', code: 500, kind: 'the server erred', line: 'The server broke before it answered.' }
+  ];
+
+  const CLS = { 2: 'verdict-cls-2xx', 3: 'verdict-cls-3xx', 4: 'verdict-cls-4xx', 5: 'verdict-cls-5xx' };
+
+  function classLabel(code) {
+    const first = String(code)[0];
+    return `${first}xx`;
+  }
+
+  function face(c) {
+    const first = String(c.code)[0];
+    return `<span class="verdict-front">` +
+      `<span class="verdict-num">request</span>` +
+      `<span class="verdict-req">${c.req}</span>` +
+      `</span>` +
+      `<span class="verdict-back">` +
+      `<span class="verdict-code">${c.code}</span>` +
+      `<span class="verdict-class ${CLS[first]}">${classLabel(c.code)} · ${c.kind}</span>` +
+      `<span class="verdict-line">${c.line}</span>` +
+      `</span>`;
+  }
+
+  CARDS.forEach((c, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'verdict-card';
+    b.setAttribute('aria-expanded', 'false');
+    b.setAttribute('aria-label', `Request ${i + 1} of ${CARDS.length}: ${c.req}. Name the class, then flip the card.`);
+    b.innerHTML = face(c);
+    b.addEventListener('click', () => {
+      const open = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded', open ? 'false' : 'true');
+      const first = String(c.code)[0];
+      note.textContent = open
+        ? `Card ${i + 1} sits face down again.`
+        : `Card ${i + 1} of ${CARDS.length} names ${first}xx: ${c.kind}. ${c.line}`;
+    });
+    tray.appendChild(b);
+  });
+
+  reset.addEventListener('click', () => {
+    tray.querySelectorAll('.verdict-card').forEach((b) => {
+      b.setAttribute('aria-expanded', 'false');
+    });
+    note.textContent = 'Seven cards sit face down. Name the class, then flip.';
+  });
+})();
+
+</script>
+</body>
+</html>

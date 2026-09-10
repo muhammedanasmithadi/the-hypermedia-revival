@@ -1320,6 +1320,165 @@ h3[id]:target {
   content: none;
 }
 
+/* ---------- Verdict cards (widget 6) ---------- */
+
+.verdict {
+  margin: 1.8em 0 0.6em 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel-deep);
+  border: 2px solid var(--hairline-strong);
+}
+
+.verdict-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  padding: 0.8em 1em;
+  background: var(--panel-raise);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.verdict-hint {
+  font-size: 0.9em;
+  color: var(--ink-faint);
+}
+
+.verdict-reset {
+  font: inherit;
+  font-size: 0.78em;
+  color: var(--ink-faint);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+}
+
+.verdict-reset:hover,
+.verdict-reset:focus-visible {
+  color: var(--link);
+}
+
+.verdict-tray {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13em, 1fr));
+  gap: 0.7em;
+  padding: 1em;
+}
+
+.verdict-card {
+  font: inherit;
+  text-align: left;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 8px;
+  background: var(--panel-deep);
+  color: var(--ink);
+  padding: 0.9em;
+  min-height: 6.5em;
+  cursor: pointer;
+}
+
+.verdict-card:hover,
+.verdict-card:focus-visible {
+  border-color: var(--brand);
+}
+
+.verdict-card:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.verdict-card .verdict-back {
+  display: none;
+}
+
+.verdict-card[aria-expanded="true"] .verdict-front {
+  display: none;
+}
+
+.verdict-card[aria-expanded="true"] .verdict-back {
+  display: block;
+}
+
+.verdict-num {
+  display: block;
+  font-size: 0.68em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.45em;
+}
+
+.verdict-req {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  color: var(--ink-light);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.verdict-code {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--ink-strong);
+  line-height: 1.1;
+}
+
+.verdict-class {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.8em;
+  margin-top: 0.45em;
+  padding: 0.12em 0.45em;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.verdict-cls-2xx {
+  border-color: #2e7d32;
+  background: #1c2f1f;
+  color: #a5d6a7;
+}
+
+.verdict-cls-3xx {
+  border-color: #b9802c;
+  background: #33260f;
+  color: #e3c07a;
+}
+
+.verdict-cls-4xx {
+  border-color: #a03434;
+  background: #3a1f1f;
+  color: #e8a0a0;
+}
+
+.verdict-cls-5xx {
+  border-color: #7b5aa6;
+  background: #2b2140;
+  color: #c4a8e8;
+}
+
+.verdict-line {
+  display: block;
+  margin-top: 0.45em;
+  font-size: 0.82em;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+.verdict-note {
+  padding: 0 1em 1em 1em;
+  font-size: 0.9em;
+  color: var(--brand);
+  min-height: 1.2em;
+}
+
 /* ---------- Two-lane explorer (widget 5) ---------- */
 
 .explorer {
