@@ -14,8 +14,11 @@
 <meta property="og:image" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/assets/social/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:alt" content="Hypermedia: the architecture we forgot.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hypermedia: the architecture we forgot">
+<meta name="twitter:description" content="A plain-language course on hypermedia systems: what the web was built to do, and why the pattern still wins.">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#171717">
 <link rel="icon" type="image/png" href="assets/favicon-32.png">
@@ -29,12 +32,51 @@
     display: block;
     width: 100%;
     height: auto;
-    max-width: 44rem;
-    margin: 0 auto 2rem;
+    max-width: 34rem;
+    margin: 0 auto;
     border-radius: 12px;
     border: 1px solid var(--hairline);
   }
-  .home-lede { margin: 0; }
+  .hero-caption {
+    margin: 0.55em auto 0;
+    max-width: 34rem;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.78em;
+    color: var(--soft);
+  }
+  .home-lede { margin: 0 0 0.85em; }
+  .who-for { font-size: 0.95em; color: var(--soft); }
+  .home-h2 {
+    margin: 1.7em 0 0.4em;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.28em;
+    color: var(--ink);
+  }
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+    margin-top: 1.3em;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--brand);
+    color: #0b0b0b;
+    font-weight: 600;
+    padding: 0.55em 1.1em;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+  .btn-primary:hover { filter: brightness(1.15); }
+  .btn-primary:focus-visible,
+  .btn-link:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
+  }
+  .btn-link { color: var(--link); font-size: 0.95em; }
   .cards { list-style: none; padding: 0; margin: 0; }
   .cards li + li { margin-top: 1rem; }
   .card {
@@ -56,16 +98,34 @@
   }
   .card-title { color: var(--link); font-weight: 600; }
   .card:hover .card-title { color: var(--link-hover); }
-  .card-arrow { color: var(--soft-dark); margin-left: 0.4em; }
+  .card-arrow {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    margin-left: 0.4em;
+    vertical-align: -0.15em;
+    background-color: var(--soft-dark);
+    -webkit-mask: var(--icon-arrow-right) var(--icon-mask);
+    mask: var(--icon-arrow-right) var(--icon-mask);
+  }
   .card-blurb {
     display: block;
     margin-top: 0.35em;
     font-size: 0.95em;
     color: var(--soft);
   }
-  .home-status { margin-top: 1.6rem; font-size: 0.92em; color: var(--soft); }
+  .home-status { margin-top: 1.4rem; font-size: 0.92em; color: var(--soft); }
   .home-status .done { color: #9ece6a; }
   .home-status .soon { color: #c792ea; }
+  .next-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.3em 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    color: var(--soft-dark);
+  }
+  .next-list li + li { margin-top: 0.35em; }
 </style>
 </head>
 <body>
@@ -88,31 +148,41 @@
     <span>course home</span>
     <span>sections 01-04 live</span>
   </p>
+  <p class="cta-row">
+    <a class="btn-primary" href="lessons/0001-hypermedia-revival.html">Begin with Section 01</a>
+    <a class="btn-link" href="#sections">or browse all sections</a>
+  </p>
 </header>
 
 <img
     class="home-hero"
     src="assets/social/hero-1200.jpg"
-    srcset="assets/social/hero-2400.jpg 2x, assets/social/hero-1200.jpg 1x"
+    srcset="assets/social/hero-1200.jpg 1200w, assets/social/hero-2400.jpg 2400w"
+    sizes="(min-width: 48rem) 34rem, 100vw"
     width="1200"
     height="630"
     alt=""
-    decoding="async">
+    decoding="async"
+    fetchpriority="high">
+<p class="hero-caption">the chain: one link after another, each holding the next move</p>
 
-<div class="article">
+<div class="article prose">
 
-<p class="prose lede home-lede">The web was built as hypermedia: documents that carry the next
-move a client can make. This course shows that loop at work, and why the industry drifted toward
-JSON-only APIs. Each section is a self-contained page, with machines you can run in your own
+<h2 class="home-h2">What this course is</h2>
+<p class="lede home-lede">The web was built as hypermedia: documents that carry the next move a
+client can make. Each section is a self-contained page, with machines you can run in your own
 browser.</p>
+<p class="who-for">For the developers who ship APIs and wonder why JSON keeps losing to a page of
+HTML.</p>
 
+<h2 class="home-h2" id="sections">The sections</h2>
 <nav aria-label="Course sections">
   <ul class="cards">
     <li>
       <a class="card" href="lessons/0001-hypermedia-revival.html">
         <span class="card-num">01</span>
         <span class="card-title">The machine that prints its own manual</span>
-        <span class="card-arrow">&rarr;</span>
+        <span class="card-arrow" aria-hidden="true"></span>
         <span class="card-blurb">One loop: request, document, choice, next document.</span>
       </a>
     </li>
@@ -120,7 +190,7 @@ browser.</p>
       <a class="card" href="lessons/0002-how-the-idea-got-lost.html">
         <span class="card-num">02</span>
         <span class="card-title">How the idea got lost</span>
-        <span class="card-arrow">&rarr;</span>
+        <span class="card-arrow" aria-hidden="true"></span>
         <span class="card-blurb">From two words in 1965 to a data-only contract in 2011.</span>
       </a>
     </li>
@@ -128,7 +198,7 @@ browser.</p>
       <a class="card" href="lessons/0003-two-architectures-on-the-same-table.html">
         <span class="card-num">03</span>
         <span class="card-title">Two architectures on the same table</span>
-        <span class="card-arrow">&rarr;</span>
+        <span class="card-arrow" aria-hidden="true"></span>
         <span class="card-blurb">The same feature, built two ways: a document or a JSON feed.</span>
       </a>
     </li>
@@ -136,7 +206,7 @@ browser.</p>
       <a class="card" href="lessons/0004-the-status-line-names-what-happened.html">
         <span class="card-num">04</span>
         <span class="card-title">The status line names what happened</span>
-        <span class="card-arrow">&rarr;</span>
+        <span class="card-arrow" aria-hidden="true"></span>
         <span class="card-blurb">Read the five classes of every reply in three digits.</span>
       </a>
     </li>
@@ -144,7 +214,13 @@ browser.</p>
 </nav>
 
 <p class="home-status"><span class="done">Done:</span> 01-04. <span class="soon">Coming:</span>
-ask without harm, repeat without doubt, keep the old copy.</p>
+ask without harm · repeat without doubt · keep the old copy.</p>
+
+<h2 class="home-h2">Coming next</h2>
+<ul class="next-list">
+  <li>05 · Ask without harm. Repeat without doubt.</li>
+  <li>06 · Keep the old copy. Ask if it is still good.</li>
+</ul>
 
 </div>
 
