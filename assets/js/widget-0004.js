@@ -1,55 +1,8 @@
+import './site.js';
 
-(function chrome() {
-  const progress = document.getElementById('progress');
-  const cur = document.getElementById('cur-section');
-  const doc = document.documentElement;
-
-  function onScroll() {
-    const h = doc.scrollHeight - window.innerHeight;
-    const p = h > 0 ? doc.scrollTop / h : 0;
-    progress.style.width = `${(p * 100).toFixed(1)}%`;
-    progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  onScroll();
-
-  const sec = document.getElementById('the-status-line-names-what-happened');
-  if (sec && 'IntersectionObserver' in window) {
-    const k = sec.querySelector('.section-head .kicker');
-    const h = sec.querySelector('.section-head h2');
-    cur.textContent = `${k ? `${k.textContent} · ` : ''}${h ? h.childNodes[0].textContent.trim() : ''}`;
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        cur.classList.toggle('is-active', e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    obs.observe(sec);
-  }
-})();
-
-(function reveal() {
-  const els = document.querySelectorAll('.reveal');
-  function show(el) { el.inert = false; el.classList.add('in'); }
-  if (!('IntersectionObserver' in window) ||
-      (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-    els.forEach(show);
-    return;
-  }
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        show(e.target);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0 });
-  els.forEach((el) => { el.inert = true; obs.observe(el); });
-})();
-
-(function verdict() {
-  const root = document.getElementById('verdict');
-  if (!root) return;
+// verdict · name the class, read the status line
+const root = document.getElementById('verdict');
+if (root) {
   const msg = document.getElementById('verdict-msg');
   const line = document.getElementById('verdict-line');
   const rules = document.getElementById('verdict-rules');
@@ -76,16 +29,16 @@
   let named = 0;
   const judged = new Set();
 
-  function buildRules() {
+  const buildRules = () => {
     rules.innerHTML = CLASSES.map((c) => {
       return `<button type="button" class="x-mode-btn verdict-rule" data-class="${c[0]}">${c}</button>`;
     }).join('');
     rules.querySelectorAll('.verdict-rule').forEach((b) => {
       b.addEventListener('click', () => { choose(b.getAttribute('data-class')); });
     });
-  }
+  };
 
-  function buildKeys() {
+  const buildKeys = () => {
     keys.innerHTML = '';
     REQUESTS.forEach((r, i) => {
       const b = document.createElement('button');
@@ -95,23 +48,19 @@
       b.addEventListener('click', () => { pick(i); });
       keys.appendChild(b);
     });
-  }
+  };
 
-  function keyFor(i) {
-    return keys.querySelectorAll('.verdict-key')[i];
-  }
+  const keyFor = (i) => keys.querySelectorAll('.verdict-key')[i];
 
-  function clearRules() {
+  const clearRules = () => {
     rules.querySelectorAll('.verdict-rule').forEach((b) => {
       b.classList.remove('on');
     });
-  }
+  };
 
-  function readCount() {
-    return keys.querySelectorAll('.verdict-key.read').length;
-  }
+  const readCount = () => keys.querySelectorAll('.verdict-key.read').length;
 
-  function display(r) {
+  const display = (r) => {
     const fd = String(r.code)[0];
     line.classList.remove('active');
     state.textContent = `${fd}xx · ${r.kind}`;
@@ -125,9 +74,9 @@
     note.textContent = hit
       ? r.line
       : `You named ${key.dataset.class}xx. The reply said ${fd}xx: ${r.kind}. ${r.line}`;
-  }
+  };
 
-  function pick(i) {
+  const pick = (i) => {
     current = i;
     keys.querySelectorAll('.verdict-key').forEach((b) => { b.classList.remove('active-key'); });
     const key = keyFor(i);
@@ -142,9 +91,9 @@
     note.textContent = '';
     offer.hidden = true;
     msg.textContent = 'Name the class you expect. Then the station reads the verdict.';
-  }
+  };
 
-  function choose(first) {
+  const choose = (first) => {
     if (current === null) {
       note.textContent = 'No request on the wire. The station waits for a request.';
       return;
@@ -167,9 +116,9 @@
     }
     score.textContent = `you named ${named} of ${REQUESTS.length}`;
     display(r);
-  }
+  };
 
-  function idle() {
+  const idle = () => {
     current = null;
     named = 0;
     judged.clear();
@@ -182,10 +131,10 @@
     score.textContent = 'you named 0 of 7';
     clearRules();
     buildKeys();
-  }
+  };
 
   buildRules();
   reset.addEventListener('click', idle);
   offer.addEventListener('click', () => { pick(0); });
   idle();
-})();
+}

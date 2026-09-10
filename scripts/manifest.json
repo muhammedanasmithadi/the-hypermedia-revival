@@ -31,6 +31,11 @@
     { "page": "lessons/0005-ask-without-harm-repeat-without-doubt.html", "file": "assets/js/widget-0005.js" }
   ],
 
+  "sharedScripts": [
+    "assets/js/site.js",
+    "assets/js/ledger.js"
+  ],
+
   "sections": [
     {
       "num": 1,

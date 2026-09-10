@@ -25,7 +25,10 @@ browser. No build step, no dependencies, no framework.
   `panels`, `footer`, `widget-kiosk`, `widget-experiment`, `widget-stepper`,
   `widget-timeline`, `widget-ledger`, `widget-twolane`, `widget-statusline`,
   `panels-callouts`, `pages`, `print`.
-- `assets/js/widget-000N.js` : one deferred script per section page.
+- `assets/js/site.js` : shared chrome (reading progress, scrollspy, reveal, ticker, `sleep`).
+- `assets/js/ledger.js` : the shared ledger widget reused by sections 02 and 05.
+- `assets/js/widget-000N.js` : one ES module per section page; it imports `site.js` (and
+  `ledger.js` where needed).
 - `scripts/manifest.json` : source of truth for sections, slugs, styles, widgets, and state.
 - `scripts/check-consistency.mjs` : verifies pages and `sitemap.xml` against the manifest;
   `--write` regenerates the sitemap.
@@ -40,7 +43,9 @@ browser. No build step, no dependencies, no framework.
 - Pick a slug for the title, and add the section to `manifest.json` `sections`.
 - Name the file `lessons/NNNN-<slug>.html` so the filename matches the slug.
 - Style the interactive part in one `assets/styles/widget-*.css` module.
-- Write the interactive script to `assets/js/widget-000N.js` and include it with `defer`.
+- Write the interactive script to `assets/js/widget-000N.js` as an ES module; every widget
+  imports `site.js`, and 02/05 also import `ledger.js`.
+- Include the widget with `<script type="module" src="../assets/js/widget-000N.js">`.
 - Run `node scripts/check-consistency.mjs --write` to refresh `sitemap.xml`.
 
 ## Run locally
@@ -50,6 +55,9 @@ python3 -m http.server 8000
 ```
 
 Open `http://localhost:8000` in a browser.
+
+ES modules fail over `file://` (browser security). Always serve the site over HTTP —
+`python3 -m http.server` or any static host.
 
 ## Verify
 
