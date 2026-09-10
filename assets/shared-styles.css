@@ -181,10 +181,21 @@ strong {
   z-index: 60;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border-bottom: 1px solid var(--hairline);
+  font-size: 1em;
+}
+
+.topbar-inner {
+  width: 100%;
+  max-width: var(--col-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0 3rem;
-  font-size: 1em;
+  padding: 0;
 }
 
 .brand {
@@ -212,8 +223,8 @@ strong {
 }
 
 @media (max-width: 640px) {
-  .topbar {
-    padding: 0 1.2rem;
+  .topbar-inner {
+    padding: 0 0.75rem;
   }
   .cur-section {
     font-size: 0.75em;
