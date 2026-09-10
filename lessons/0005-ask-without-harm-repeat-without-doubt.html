@@ -93,7 +93,7 @@
       </a>
     </h3>
 
-    <p>A safe method changes no server state. Read an account, check a balance, ask what a resource
+    <p>A safe method changes no server state. Check an account, read a balance, ask what a resource
     allows. State stays as it was.</p>
 
     <p>GET, HEAD, and OPTIONS are safe. GET, Hypertext Transfer Protocol&rsquo;s read verb, carries
@@ -101,7 +101,7 @@
     on a resource. None of them writes. TRACE is safe too, but servers rarely serve it. This course
     passes it by.</p>
 
-    <p>Safety protects the link. A browser may follow a GET before you click it. A preloader, a
+    <p>Safety protects the link, and a browser may follow a GET before you click it. A preloader, a
     crawler, or a preview box all reuse one request, and none of them asks first.</p>
 
     <p>The fetch-app in Section 03 drew its own moves. Your browser trusts a GET to be harmless.
@@ -112,17 +112,17 @@
       </a>
     </h3>
 
-    <p>Repeatability is the second test. Send the same move twice, and does the same state come out?
+    <p>Repeatability is the second test. Send the same move twice: does the same state come out?
     An idempotent method changes nothing more on the second send than on the first.</p>
 
-    <p>PUT and DELETE are idempotent. POST, Hypertext Transfer Protocol&rsquo;s write verb, is not.
+    <p>PUT and DELETE are idempotent. POST, Hypertext Transfer Protocol&rsquo;s create-or-pay verb, is not.
     Send a payment twice, and you may be charged twice.</p>
 
     <p>The two tests separate. DELETE removes state, yet two DELETEs leave the same result. One method
     can be unsafe and idempotent at once. Only the repeat test says whether a blind retry can double
     the move.</p>
 
-    <p>A reply can vanish. The lost reply never proves the server ignored the request. A mobile
+    <p>A reply can vanish, and the lost reply never proves the server ignored the request. A mobile
     network, a closed lid, a crash: the server may have moved already. Repeatability protects the
     retry.</p>
 
@@ -161,7 +161,7 @@
     </h3>
 
     <p>One wire, two moves, one drop. The station below sends a payment by POST and a rename by PUT.
-    Each reply never comes back. Send each move again, and watch what the second send leaves behind.</p>
+    Neither reply comes back. Send each move again, and watch what the second send leaves behind.</p>
 
     <p>The promise of this section in one line: POST doubles the move, and PUT does not.</p>
   </div>
@@ -170,7 +170,7 @@
     <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
     <div class="kiosk-head">
       <span>the dropped connection · replay station</span>
-      <span class="k-now" id="retry-state">standing by</span>
+      <span class="k-now" id="retry-state" aria-live="polite">standing by</span>
     </div>
     <div class="kiosk-screen">
       <div class="k-title">one wire, two moves, one drop</div>
@@ -246,7 +246,7 @@
   </div>
 
   <div class="prose">
-    <p>Two tests, four passes, one repeat. The method column names what a move may do, and the status
+    <p>Two tests, one connection. The method column names what a move may do, and the status
     line names what it did. Section 06, &ldquo;Keep the old copy. Ask if it is still good,&rdquo;
     shows the stored-copy handshake that still makes a page fast on a slow connection.</p>
 
