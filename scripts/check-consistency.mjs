@@ -35,6 +35,11 @@ for (const s of live) {
   eq(has(slugFile(s)), true, `section file ${slugFile(s)} exists`);
 }
 
+// 1b. Every widget file named in the manifest exists.
+for (const w of site.widgets) {
+  eq(has(w.file), true, `widget file ${w.file} exists`);
+}
+
 // 2. Canonical + og:url on every canonical-bearing page.
 const canonicalPages = [
   'index.html',

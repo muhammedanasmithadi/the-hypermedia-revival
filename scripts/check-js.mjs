@@ -18,14 +18,33 @@ const pages = [
   'glossary.html'
 ];
 
+const widgetFiles = [
+  'assets/js/widget-0001.js',
+  'assets/js/widget-0002.js',
+  'assets/js/widget-0003.js',
+  'assets/js/widget-0004.js',
+  'assets/js/widget-0005.js'
+];
+
 const scriptRe = /<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g;
 const tmp = mkdtempSync(join(tmpdir(), 'thr-check-js-'));
 let failures = 0;
 let checked = 0;
 
+for (const file of widgetFiles) {
+  const result = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' });
+  if (result.status !== 0) {
+    failures += 1;
+    console.error(`FAIL ${file}: parse error\n${result.stderr}`);
+  } else {
+    checked += 1;
+  }
+}
+
 for (const page of pages) {
   const html = readFileSync(page, 'utf8');
   for (const match of html.matchAll(scriptRe)) {
+    if (/\bsrc=/.test(match[0])) continue;
     const spec = `${page.replace(/[^\w]+/g, '_')}-${checked}.js`;
     writeFileSync(join(tmp, spec), match[1]);
     const result = spawnSync(process.execPath, ['--check', join(tmp, spec)], {
@@ -40,5 +59,5 @@ for (const page of pages) {
   }
 }
 
-console.log(`check-js: ${checked} inline script(s) parsed clean${failures ? `, ${failures} failed` : ''}`);
+console.log(`check-js: ${checked} script(s) parsed clean${failures ? `, ${failures} failed` : ''}`);
 process.exit(failures === 0 ? 0 : 1);
