@@ -29,31 +29,8 @@
 }
 
 .hanchor {
-  position: relative;
   text-decoration: none;
   color: inherit;
-}
-
-.hanchor::after {
-  content: "";
-  position: absolute;
-  left: -1.1em;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0.65em;
-  height: 0.65em;
-  background-color: var(--brand);
-  -webkit-mask: var(--icon-link) var(--icon-mask);
-  mask: var(--icon-link) var(--icon-mask);
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-
-.section-head h2:hover .hanchor::after,
-.prose > h3:hover .hanchor::after,
-.sources h3:hover .hanchor::after,
-.hanchor:focus-visible::after {
-  opacity: 1;
 }
 
 h2[id],
