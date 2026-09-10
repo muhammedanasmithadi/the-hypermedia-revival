@@ -4,6 +4,20 @@
    bg var(--bg) · text #D0D0D0 · headings #ECECEC · brand #5B9CF7
    ============================================================ */
 
+/* ---------- Table of contents ----------
+   01 Font faces                  12 Takeaways
+   02 Palette                     13 Reveal on scroll
+   03 Reset & base                14 Footer
+   04 Reading progress            15 Section link (footer navigation)
+   05 Top row (minimal)           16 Ledger (JSON decade sort)
+   06 Masthead (article header)   17 Two-lane explorer (widget 5)
+   07 Column & article            18 Status-line reading station (widget 6)
+   08 Section headings            19 Panels: try it now, recap, objectives, self-check
+   09 Prose                       20 Sources
+   10 Blockquote                  21 Print
+   11 Code block                  22 Touch targets
+   ============================================================ */
+
 /* ---------- Font faces ---------- */
 
 @font-face {
@@ -1400,82 +1414,6 @@ h3[id]:target {
   content: none;
 }
 
-/* ---------- Status-line reading station (widget 6) ---------- */
-
-.verdict-line {
-  font-family: var(--font-mono);
-  font-size: 0.82em;
-  color: var(--ink-light);
-  margin-top: 0.7em;
-  min-height: 1.5em;
-  overflow-wrap: anywhere;
-}
-
-.verdict-line.active {
-  color: var(--brand);
-}
-
-.verdict-rules {
-  display: flex;
-  gap: 0.5em;
-  flex-wrap: wrap;
-  margin-top: 0.55em;
-}
-
-#verdict .k-note {
-  opacity: 1;
-  min-height: 1.4em;
-}
-
-.verdict-key {
-  overflow-wrap: anywhere;
-}
-
-.verdict-key.active-key {
-  border-color: var(--link-hover);
-  background: #20385c;
-  color: var(--white);
-}
-
-.verdict-key.read {
-  opacity: 0.55;
-}
-
-.verdict-key.read.ok {
-  border-color: #2e7d32;
-  color: #a5d6a7;
-}
-
-.verdict-key.read.bad {
-  border-color: #a03434;
-  color: #e8a0a0;
-}
-
-#verdict .kiosk-keys {
-  grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr));
-}
-
-.verdict-offer {
-  font: inherit;
-  font-family: var(--font-mono);
-  font-size: 0.78em;
-  padding: 0.25em 0.7em;
-  margin-left: 0.75em;
-  border-radius: 6px;
-  border: 1px solid var(--hairline-strong);
-  background: var(--panel-raise);
-  color: var(--ink-bright);
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
-}
-
-.verdict-offer:hover,
-.verdict-offer:focus-visible {
-  border-color: var(--brand);
-  color: var(--white);
-  background: #2e3440;
-}
-
 /* ---------- Two-lane explorer (widget 5) ---------- */
 
 .explorer {
@@ -1659,6 +1597,82 @@ h3[id]:target {
   .explorer-lanes {
     grid-template-columns: 1fr;
   }
+}
+
+/* ---------- Status-line reading station (widget 6) ---------- */
+
+.verdict-line {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  color: var(--ink-light);
+  margin-top: 0.7em;
+  min-height: 1.5em;
+  overflow-wrap: anywhere;
+}
+
+.verdict-line.active {
+  color: var(--brand);
+}
+
+.verdict-rules {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+  margin-top: 0.55em;
+}
+
+#verdict .k-note {
+  opacity: 1;
+  min-height: 1.4em;
+}
+
+.verdict-key {
+  overflow-wrap: anywhere;
+}
+
+.verdict-key.active-key {
+  border-color: var(--link-hover);
+  background: #20385c;
+  color: var(--white);
+}
+
+.verdict-key.read {
+  opacity: 0.55;
+}
+
+.verdict-key.read.ok {
+  border-color: #2e7d32;
+  color: #a5d6a7;
+}
+
+.verdict-key.read.bad {
+  border-color: #a03434;
+  color: #e8a0a0;
+}
+
+#verdict .kiosk-keys {
+  grid-template-columns: repeat(auto-fill, minmax(7.5em, 1fr));
+}
+
+.verdict-offer {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  padding: 0.25em 0.7em;
+  margin-left: 0.75em;
+  border-radius: 6px;
+  border: 1px solid var(--hairline-strong);
+  background: var(--panel-raise);
+  color: var(--ink-bright);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.verdict-offer:hover,
+.verdict-offer:focus-visible {
+  border-color: var(--brand);
+  color: var(--white);
+  background: #2e3440;
 }
 
 /* ---------- Panels: try it now, recap, objectives, self-check ---------- */
