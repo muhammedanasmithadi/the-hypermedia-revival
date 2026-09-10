@@ -21,10 +21,10 @@ browser. No build step, no dependencies, no framework.
 - `lessons/index.html` : section list.
 - `lessons/NNNN-<slug>.html` : the sections, in order; `<slug>` matches the manifest slug.
 - `assets/styles.css` : the one stylesheet every page includes; it imports the modules below.
-- `assets/styles/*.css` : fifteen modules — `tokens`, `base`, `chrome`, `typography`,
+- `assets/styles/*.css` : sixteen modules — `tokens`, `base`, `chrome`, `typography`,
   `panels`, `footer`, `widget-kiosk`, `widget-experiment`, `widget-stepper`,
   `widget-timeline`, `widget-ledger`, `widget-twolane`, `widget-statusline`,
-  `panels-callouts`, `print`.
+  `panels-callouts`, `pages`, `print`.
 - `assets/js/widget-000N.js` : one deferred script per section page.
 - `scripts/manifest.json` : source of truth for sections, slugs, styles, widgets, and state.
 - `scripts/check-consistency.mjs` : verifies pages and `sitemap.xml` against the manifest;

@@ -19,7 +19,8 @@
    12 widget-statusline widget 6
    13 widget-twolane widget 5
    14 panels-callouts do-now/recap/self-check/recall + sources
-   15 print print + touch
+   15 pages home, listing, glossary
+   16 print print + touch
    ============================================================ */
 
 @import url("styles/tokens.css");
@@ -36,4 +37,5 @@
 @import url("styles/widget-statusline.css");
 @import url("styles/widget-twolane.css");
 @import url("styles/panels-callouts.css");
+@import url("styles/pages.css");
 @import url("styles/print.css");
