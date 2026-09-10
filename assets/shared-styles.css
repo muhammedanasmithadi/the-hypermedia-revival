@@ -1784,16 +1784,24 @@ h3[id]:target {
   display: none;
 }
 
-.self-check summary::before {
-  content: "\25B8";
+.self-check summary::before,
+.recall summary::before {
+  content: "";
   display: inline-block;
-  width: 1.1em;
-  color: var(--brand);
-  font-family: var(--font-mono);
+  box-sizing: border-box;
+  width: 0.45em;
+  height: 0.45em;
+  margin-right: 0.65em;
+  border-right: 2px solid var(--brand);
+  border-bottom: 2px solid var(--brand);
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+  vertical-align: middle;
 }
 
-.self-check details[open] summary::before {
-  content: "\25BE";
+.self-check details[open] summary::before,
+.recall[open] summary::before {
+  transform: rotate(45deg);
 }
 
 .self-check details p {
@@ -1821,16 +1829,8 @@ h3[id]:target {
   display: none;
 }
 
-.recall summary::before {
-  content: "\25B8";
-  display: inline-block;
-  width: 1.1em;
-  color: var(--brand);
-  font-family: var(--font-mono);
-}
-
 .recall[open] summary::before {
-  content: "\25BE";
+  transform: rotate(45deg);
 }
 
 .recall p {
