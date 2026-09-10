@@ -45,3 +45,14 @@ jobs:
       - name: Parse sitemap.xml
         run: |
           python3 -c 'import xml.etree.ElementTree as ET; r = ET.parse("sitemap.xml").getroot(); u = r.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url"); assert u, "no urls"; print(f"sitemap OK: {len(u)} url entries")'
+
+  consistency:
+    name: Site consistency check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify pages against manifest.json
+        run: node scripts/check-consistency.mjs --ci

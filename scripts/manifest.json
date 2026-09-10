@@ -1,0 +1,76 @@
+{
+  "name": "Hypermedia: the architecture we forgot",
+  "rootUrl": "https://muhammedanasmithadi.github.io/the-hypermedia-revival",
+  "ogImage": "https://muhammedanasmithadi.github.io/the-hypermedia-revival/assets/social/og.png",
+  "lastmod": "2026-09-10",
+
+  "styles": [
+    "tokens",
+    "base",
+    "chrome",
+    "typography",
+    "panels",
+    "footer",
+    "widget-kiosk",
+    "widget-experiment",
+    "widget-stepper",
+    "widget-timeline",
+    "widget-ledger",
+    "widget-statusline",
+    "widget-twolane",
+    "panels-callouts",
+    "print"
+  ],
+
+  "widgets": [
+    { "page": "lessons/0001-hypermedia-revival.html", "file": "assets/js/widget-0001.js" },
+    { "page": "lessons/0002-how-the-idea-got-lost.html", "file": "assets/js/widget-0002.js" },
+    { "page": "lessons/0003-two-architectures-on-the-same-table.html", "file": "assets/js/widget-0003.js" },
+    { "page": "lessons/0004-the-status-line-names-what-happened.html", "file": "assets/js/widget-0004.js" },
+    { "page": "lessons/0005-ask-without-harm-repeat-without-doubt.html", "file": "assets/js/widget-0005.js" }
+  ],
+
+  "sections": [
+    {
+      "num": 1,
+      "slug": "hypermedia-revival",
+      "title": "The machine that prints its own manual",
+      "blurb": "One loop: request, document, choice, next document."
+    },
+    {
+      "num": 2,
+      "slug": "how-the-idea-got-lost",
+      "title": "How the idea got lost",
+      "blurb": "From two words in 1965 to a data-only contract in 2011."
+    },
+    {
+      "num": 3,
+      "slug": "two-architectures-on-the-same-table",
+      "title": "Two architectures on the same table",
+      "blurb": "The same feature, built two ways: a document or a JSON feed."
+    },
+    {
+      "num": 4,
+      "slug": "the-status-line-names-what-happened",
+      "title": "The status line names what happened",
+      "blurb": "Read the five classes of every reply in three digits."
+    },
+    {
+      "num": 5,
+      "slug": "ask-without-harm-repeat-without-doubt",
+      "title": "Ask without harm. Repeat without doubt.",
+      "blurb": "Sort HTTP methods by harm and repeatability, then replay a dropped connection."
+    },
+    {
+      "num": 6,
+      "slug": "keep-the-old-copy-ask-if-it-is-still-good",
+      "title": "Keep the old copy. Ask if it is still good.",
+      "blurb": "Reuse a stored reply when you can, and ask the server if it is still good."
+    }
+  ],
+
+  "state": {
+    "liveMax": 5,
+    "next": 6
+  }
+}
