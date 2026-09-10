@@ -22,14 +22,19 @@ in *The Sense of Style*.
 - Cut. Delete a word when the sentence stays clear without it.
 - Never use an em dash. Use a comma, a colon, or a period instead.
 - No hype, slogans, or rhetorical fire. Write like a patient teacher.
-- Write complete declarative sentences. Do not use fragments for effect.
+- Write complete declarative sentences. Allow fragments only as deliberate
+  devices: the loop refrain and short self-check answers.
 - State the fact; do not command the reader to watch, notice, or look.
 - Plain verbs: changed, replaced, moved, answered. Do not dramatize.
 - Keep genuine questions and the word "you". They teach. Slogans do not.
+- Allow contractions in conversational scope and aside lines, never inside
+  a maxim or a quote.
 
 ## Sentence rhythm
 
 - Aim for a default near 25 words per sentence.
+- The teaching pace runs short (5-15 words). Save the 25-word default for
+  connective explanation that carries a mechanism or a reason.
 - Allow a ceiling near 40 words and a floor near five.
 - Vary the lengths. Two short sentences after one long one give the
   page a natural rhythm.

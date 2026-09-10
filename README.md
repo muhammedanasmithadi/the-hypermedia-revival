@@ -17,13 +17,13 @@ browser. No build step, no dependencies, no framework.
 
 ## Site structure
 
-- `index.html` — course home.
-- `lessons/index.html` — section list.
-- `lessons/0001…0006.html` — the sections, in order.
-- `assets/shared-styles.css` — tokens, typography, and widget styles for every page.
-- `assets/social/` — og card, hero images, and the chain-link source mark.
-- `scripts/generate-assets.sh` — regenerates og, hero, and favicon assets from the source mark.
-- `scripts/check-js.mjs` — parses every inline script on every shipped page.
+- `index.html` : course home.
+- `lessons/index.html` : section list.
+- `lessons/0001…0006.html` : the sections, in order.
+- `assets/shared-styles.css` : tokens, typography, and widget styles for every page.
+- `assets/social/` : og card, hero images, and the chain-link source mark.
+- `scripts/generate-assets.sh` : regenerates og, hero, and favicon assets from the source mark.
+- `scripts/check-js.mjs` : parses every inline script on every shipped page.
 
 ## Run locally
 
@@ -44,10 +44,10 @@ The same checks run in CI on every push and pull request to `main`
 
 ## Docs
 
-- `STYLE.md` — writing style and teaching method.
-- `MISSION.md` — why the course exists.
-- `SYLLABUS.md` — the plan for all six sections.
-- `RESOURCES.md` — sources and reading list.
+- `STYLE.md` : writing style and teaching method.
+- `MISSION.md` : why the course exists.
+- `SYLLABUS.md` : the plan for all six sections.
+- `RESOURCES.md` : sources and reading list.
 
 ## License
 
