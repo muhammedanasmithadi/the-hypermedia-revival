@@ -1940,4 +1940,66 @@ h3[id]:target {
     border-color: #888888 !important;
     color: #111111 !important;
   }
+
+  @page {
+    margin: 2cm;
+  }
+
+  body {
+    font-size: 11pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .doc,
+  .doc-footer {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  .skip-link {
+    display: none !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  .masthead,
+  .section-head {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .card,
+  .do-now,
+  .recap,
+  .recall,
+  .self-check,
+  .prose pre,
+  .code-block,
+  .ledger,
+  .kiosk,
+  .experiment,
+  .timeline-widget,
+  .loop,
+  .verdict {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  pre,
+  code,
+  kbd {
+    white-space: pre-wrap;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #333;
+  }
 }

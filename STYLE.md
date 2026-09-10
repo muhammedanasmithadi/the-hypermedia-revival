@@ -41,7 +41,7 @@ in *The Sense of Style*.
   idea.
 - Start concrete, then fade to abstract. Show the terminal before the
   loop, and the shop before the contract.
-- Add one "do it now" block per section. The action happens in the
+- Add one "try it now" block per section. The action happens in the
   learner's own browser, never on a remote service.
 - Add a recap pass after each interactive widget. Number the review
   points.

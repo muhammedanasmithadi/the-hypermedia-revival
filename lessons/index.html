@@ -28,7 +28,10 @@
   .cards { list-style: none; padding: 0; margin: 0; }
   .cards li + li { margin-top: 1rem; }
   .card {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35em 0.4em;
     background: var(--card);
     border: 2px solid var(--hairline);
     border-radius: 10px;
@@ -38,17 +41,17 @@
   }
   .card:hover { border-color: var(--brand); }
   .card-num {
-    display: inline-block;
+    flex: 0 0 auto;
     font-family: var(--font-mono);
     font-size: 0.8em;
     color: var(--soft-dark);
-    margin-right: 0.6em;
+    margin-right: 0.2em;
   }
-  .card-title { color: var(--link); font-weight: 600; }
+  .card-title { flex: 1 1 55%; min-width: 0; color: var(--link); font-weight: 600; }
   .card:hover .card-title { color: var(--link-hover); }
-  .card-arrow { color: var(--soft-dark); margin-left: 0.4em; }
+  .card-arrow { flex: 0 0 auto; margin-left: auto; color: var(--soft-dark); }
   .card-blurb {
-    display: block;
+    flex: 1 0 100%;
     margin-top: 0.35em;
     font-size: 0.95em;
     color: var(--soft);
@@ -125,6 +128,7 @@
 <footer class="doc-footer">
   <nav class="foot-nav" aria-label="section navigation">
     <a class="section-link foot-left" href="../index.html">&larr; Course home</a>
+    <a class="section-link foot-right" href="../glossary.html">Glossary</a>
   </nav>
   <p class="closing">Hypermedia Course · All Sections</p>
 </footer>
