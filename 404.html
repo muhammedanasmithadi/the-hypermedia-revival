@@ -10,10 +10,57 @@
 <meta name="theme-color" content="#171717">
 <link rel="icon" type="image/png" href="/the-hypermedia-revival/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/the-hypermedia-revival/assets/apple-touch-icon.png">
-<link rel="stylesheet" href="/the-hypermedia-revival/assets/shared-styles.css">
 <style>
-  body { display: flex; flex-direction: column; min-height: 100vh; }
-  .nf-main { max-width: 36rem; margin: auto; padding: 3rem 1.2rem; text-align: center; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #171717;
+    --ink: #d0d0d0;
+    --soft: #9a9a9a;
+    --soft-dark: #8a8a8a;
+    --brand: #5b9cf7;
+    --link-hover: #7ab0ff;
+    --accent-deep: #1f3352;
+    --white: #ffffff;
+  }
+
+  html { color-scheme: dark; }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #171717;
+    color: #d0d0d0;
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+  }
+  .skip-link:focus {
+    left: 0.75rem;
+    top: 0.75rem;
+    background: #222222;
+    border: 1px solid #5b9cf7;
+    border-radius: 6px;
+    padding: 0.4em 0.8em;
+    color: #ececec;
+    text-decoration: none;
+    z-index: 10;
+  }
+
+  .nf-main {
+    max-width: 36rem;
+    width: 100%;
+    margin: auto;
+    padding: 3rem 1.2rem;
+    text-align: center;
+  }
+
   .nf-hero {
     display: block;
     width: 100%;
@@ -22,20 +69,66 @@
     object-fit: cover;
     margin: 0 0 2rem;
   }
-  .nf-code { font-family: var(--font-mono); color: var(--soft-dark); font-size: 0.9em; }
-  .nf-title { font-size: 2rem; margin: 0.4rem 0; }
-  .nf-text { color: var(--soft); }
+
+  .nf-code {
+    font-family: Menlo, Monaco, "Andale Mono", "IBM Plex Mono", ui-monospace, monospace;
+    color: #8a8a8a;
+    font-size: 0.9em;
+  }
+
+  .nf-title {
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0.4rem 0;
+    color: #ececec;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 600;
+  }
+
+  .nf-text { color: #9a9a9a; }
+
   .nf-link { margin-top: 1.4rem; }
+
+  .section-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    padding: 0.5em 1.3em;
+    border-radius: 6px;
+    border: 1px solid #5b9cf7;
+    background: #1f3352;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .section-link:hover {
+    background: #27406c;
+    color: #ffffff;
+    border-color: #7ab0ff;
+  }
+  .section-link:focus-visible {
+    outline: 2px solid #5b9cf7;
+    outline-offset: 2px;
+  }
+
   .nf-arrow {
     display: inline-block;
     width: 1.05em;
     height: 1.05em;
     background-color: currentColor;
-    -webkit-mask: var(--icon-arrow-left) var(--icon-mask);
-    mask: var(--icon-arrow-left) var(--icon-mask);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 12H5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='m11 18-6-6 6-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 12H5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='m11 18-6-6 6-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
     margin-right: 0.45em;
     vertical-align: -0.15em;
   }
+
   @media (max-width: 40rem) {
     .nf-hero { max-height: 13rem; margin-bottom: 1.5rem; }
     .nf-main { padding: 2.5rem 1.25rem; }

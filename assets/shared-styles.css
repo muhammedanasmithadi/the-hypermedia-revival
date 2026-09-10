@@ -404,7 +404,7 @@ h3[id]:target {
 
 .prose li {
   padding: 0.3em 0;
-  margin-left: 1.5em;
+  margin-left: 0;
 }
 
 .prose a {
@@ -468,7 +468,8 @@ h3[id]:target {
 }
 
 .figure-quote figcaption {
-  margin: 0.9em 0 0 2.2em;
+  margin: 0.9em 2.2em 0;
+  padding-left: calc(1em + 4px);
   font-size: 0.8em;
   color: var(--soft-dark);
 }
@@ -2002,4 +2003,15 @@ h3[id]:target {
     font-size: 0.85em;
     color: #333;
   }
+}
+
+/* ---------- Touch targets (44px guideline, 40px floor) ---------- */
+
+.x-mode-btn,
+.kiosk-reset,
+.verdict-rule,
+.explorer-act,
+.explorer-reset,
+.chip {
+  min-height: 40px;
 }
