@@ -19,11 +19,29 @@ browser. No build step, no dependencies, no framework.
 
 - `index.html` : course home.
 - `lessons/index.html` : section list.
-- `lessons/0001…0006.html` : the sections, in order.
-- `assets/shared-styles.css` : tokens, typography, and widget styles for every page.
-- `assets/social/` : og card, hero images, and the chain-link source mark.
-- `scripts/generate-assets.sh` : regenerates og, hero, and favicon assets from the source mark.
-- `scripts/check-js.mjs` : parses every inline script on every shipped page.
+- `lessons/NNNN-<slug>.html` : the sections, in order; `<slug>` matches the manifest slug.
+- `assets/styles.css` : the one stylesheet every page includes; it imports the modules below.
+- `assets/styles/*.css` : fifteen modules — `tokens`, `base`, `chrome`, `typography`,
+  `panels`, `footer`, `widget-kiosk`, `widget-experiment`, `widget-stepper`,
+  `widget-timeline`, `widget-ledger`, `widget-twolane`, `widget-statusline`,
+  `panels-callouts`, `print`.
+- `assets/js/widget-000N.js` : one deferred script per section page.
+- `scripts/manifest.json` : source of truth for sections, slugs, styles, widgets, and state.
+- `scripts/check-consistency.mjs` : verifies pages and `sitemap.xml` against the manifest;
+  `--write` regenerates the sitemap.
+- `scripts/generate-assets.sh` : regenerates og, hero, and favicon assets; needs
+  `assets/social/chainlink-2k.jpg` as the source mark.
+- `assets/social/` : og card, hero images, and favicon output.
+- `assets/social/chainlink-2k.jpg` : missing source image for `generate-assets.sh`.
+  Add it, then run the script to rebuild the og card, hero, and favicon.
+
+## Add a section
+
+- Pick a slug for the title, and add the section to `manifest.json` `sections`.
+- Name the file `lessons/NNNN-<slug>.html` so the filename matches the slug.
+- Style the interactive part in one `assets/styles/widget-*.css` module.
+- Write the interactive script to `assets/js/widget-000N.js` and include it with `defer`.
+- Run `node scripts/check-consistency.mjs --write` to refresh `sitemap.xml`.
 
 ## Run locally
 
@@ -37,10 +55,13 @@ Open `http://localhost:8000` in a browser.
 
 ```sh
 node scripts/check-js.mjs
+node scripts/check-consistency.mjs --ci
 npx vnu-jar index.html 404.html lessons/index.html lessons/*.html
 ```
 
-The same checks run in CI on every push and pull request to `main`
+`check-consistency.mjs --write` regenerates `sitemap.xml` when a lesson changes.
+
+The same checks run in CI on every push and pull request to `main`.
 
 ## Docs
 
