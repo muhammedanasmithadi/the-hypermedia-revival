@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lessons · Hypermedia: the architecture we forgot</title>
-<meta name="description" content="The lesson sections of the course.">
+<meta name="description" content="The sections of the course: read them one by one, in order.">
 <link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/index.html">
 <meta property="og:site_name" content="Hypermedia">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lessons · Hypermedia: the architecture we forgot">
-<meta property="og:description" content="The lesson sections of the course.">
+<meta property="og:description" content="The sections of the course: read them one by one, in order.">
 <meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/index.html">
 <meta property="og:image" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/assets/social/og.png">
 <meta property="og:image:width" content="1200">
@@ -18,57 +18,114 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#171717">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%232052bb'/%3E%3Ctext%20x='16'%20y='22'%20font-family='Inter,Arial,sans-serif'%20font-size='17'%20font-weight='600'%20text-anchor='middle'%20fill='%23f8f8f8'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/shared-styles.css">
+<link rel="preload" href="../assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  * { margin: 0; box-sizing: border-box; }
-  .skip-link { position: absolute; top: 0; left: -999em; z-index: 100; }
-  .skip-link:focus { left: 1rem; top: 0.75rem; background: #171717; color: #ececec; padding: 0.4em 0.8em; border-radius: 4px; text-decoration: none; font-weight: 600; }
-  body { background: #171717; color: #d0d0d0; font-family: Inter, system-ui, sans-serif; line-height: 1.6; padding: 3rem 1.2rem; }
-  main { max-width: 44rem; margin: 0 auto; }
-  h1 { font-size: 1.8rem; color: #ececec; margin-bottom: 0.6rem; }
-  .status { color: #8a8a8a; font-size: 0.95rem; margin-bottom: 1.6rem; }
-  .card { background: #222222; border: 2px solid #2b2b2b; border-radius: 10px; padding: 1.2em 1.4em; }
-  .card a { color: #5B9CF7; font-weight: 600; text-decoration: none; }
-  .card a:hover { color: #7ab0ff; text-decoration: underline; }
-  nav ul { list-style: none; padding: 0; }
-  nav ul li + li { margin-top: 1rem; }
-  .arrow { color: #8a8a8a; margin-left: 0.3em; }
-  p.back { margin-top: 1.4rem; font-size: 0.9rem; }
-  p.back a { color: #5B9CF7; text-decoration: none; }
-  p.back a:hover { color: #7ab0ff; text-decoration: underline; }
+  .cards { list-style: none; padding: 0; margin: 0; }
+  .cards li + li { margin-top: 1rem; }
+  .card {
+    display: block;
+    background: var(--card);
+    border: 2px solid var(--hairline);
+    border-radius: 10px;
+    padding: 1.1em 1.3em;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .card:hover { border-color: var(--brand); }
+  .card-num {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    color: var(--soft-dark);
+    margin-right: 0.6em;
+  }
+  .card-title { color: var(--link); font-weight: 600; }
+  .card:hover .card-title { color: var(--link-hover); }
+  .card-arrow { color: var(--soft-dark); margin-left: 0.4em; }
+  .card-blurb {
+    display: block;
+    margin-top: 0.35em;
+    font-size: 0.95em;
+    color: var(--soft);
+  }
 </style>
 </head>
 <body>
+
 <a class="skip-link" href="#top">Skip to content</a>
-<main id="top">
-  <header>
-    <h1>Lessons</h1>
-    <p class="status">The sections of the course appear here as they land.</p>
-  </header>
-  <nav aria-label="Lesson sections">
-    <ul>
-      <li class="card">
-        <a href="0001-hypermedia-revival.html">01: The machine that prints its own manual</a>
-        <span class="arrow">&rarr;</span>
-      </li>
-      <li class="card">
-        <a href="0002-how-the-idea-got-lost.html">02: How the idea got lost</a>
-        <span class="arrow">&rarr;</span>
-      </li>
-      <li class="card">
-        <a href="0003-two-architectures-on-the-same-table.html">03: Two architectures on the same table</a>
-        <span class="arrow">&rarr;</span>
-      </li>
-      <li class="card">
-        <a href="0004-the-status-line-names-what-happened.html">04: The status line names what happened</a>
-        <span class="arrow">&rarr;</span>
-      </li>
-    </ul>
-  </nav>
-  <p class="back"><a href="../index.html">&larr; Course home</a></p>
-  <footer>
-    <p style="margin-top: 1.2rem; font-size: 0.85rem; color: #8a8a8a;">A plain-language course on hypermedia architecture.</p>
-  </footer>
+
+<header class="topbar">
+  <a class="brand" href="../index.html" aria-label="Course home">Hypermedia</a>
+  <span class="cur-section">The lesson sections</span>
+</header>
+
+<main class="doc" id="top">
+
+<header class="masthead">
+  <p class="post-date"><time datetime="2026-09">September 2026</time></p>
+  <h1>Lessons</h1>
+  <p class="dek">Read the sections in order. Each one is self-contained and runs in your own
+  browser.</p>
+  <p class="byline">
+    <span>course home</span>
+    <span>sections 01-04 live</span>
+  </p>
+</header>
+
+<div class="article">
+
+<nav aria-label="Lesson sections">
+  <ul class="cards">
+    <li>
+      <a class="card" href="0001-hypermedia-revival.html">
+        <span class="card-num">01</span>
+        <span class="card-title">The machine that prints its own manual</span>
+        <span class="card-arrow">&rarr;</span>
+        <span class="card-blurb">One loop: request, document, choice, next document.</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="0002-how-the-idea-got-lost.html">
+        <span class="card-num">02</span>
+        <span class="card-title">How the idea got lost</span>
+        <span class="card-arrow">&rarr;</span>
+        <span class="card-blurb">From two words in 1965 to a data-only contract in 2011.</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="0003-two-architectures-on-the-same-table.html">
+        <span class="card-num">03</span>
+        <span class="card-title">Two architectures on the same table</span>
+        <span class="card-arrow">&rarr;</span>
+        <span class="card-blurb">The same feature, built two ways: a document or a JSON feed.</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="0004-the-status-line-names-what-happened.html">
+        <span class="card-num">04</span>
+        <span class="card-title">The status line names what happened</span>
+        <span class="card-arrow">&rarr;</span>
+        <span class="card-blurb">Read the five classes of every reply in three digits.</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+</div>
+
 </main>
+
+<footer class="doc-footer">
+  <nav class="foot-nav" aria-label="section navigation">
+    <a class="section-link foot-left" href="../index.html">&larr; Course home</a>
+  </nav>
+  <p class="closing">sections built one by one · lessons</p>
+</footer>
+
 </body>
 </html>
