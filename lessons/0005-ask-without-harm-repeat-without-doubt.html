@@ -26,17 +26,6 @@
 <link rel="preload" href="../assets/fonts/plexsans-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
-<style>
-.lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
-@media (max-width: 640px) { .lanes { grid-template-columns: 1fr; } }
-.lane { border: 1px solid var(--line); border-radius: 10px; padding: 1rem; background: var(--panel-deep); }
-.lane-title { font-weight: 700; margin: 0 0 .4rem; }
-.lane-req { font-size: .9em; color: var(--soft); margin: 0 0 .6rem; }
-.retry-log { font-family: "IBM Plex Mono", monospace; font-size: .85em; line-height: 1.6; color: var(--ink-faint); min-height: 5.5em; white-space: pre-wrap; }
-.lane-outcome { margin: 0; font-size: .95em; color: var(--ink-light); }
-.lane-outcome.warn { color: #e8a96a; }
-.lane-outcome.ok { color: #a5d6a7; }
-</style>
 </head>
 <body>
 
@@ -180,14 +169,14 @@
     <div class="kiosk-screen">
       <div class="k-title">one wire, two moves, one drop</div>
       <div class="k-msg">Send each move, then send it again after the drop.</div>
-      <div class="lanes" id="lanes">
-        <div class="lane" id="lane-post">
+      <div class="replay-lanes" id="lanes">
+        <div class="replay-lane" id="lane-post">
           <p class="lane-title">Pay by POST</p>
           <p class="lane-req"><code>POST /account/4027/pay</code> &nbsp; amount=20</p>
           <div class="retry-log" id="retry-log-post" aria-live="polite"></div>
           <p class="lane-outcome" id="retry-out-post"></p>
         </div>
-        <div class="lane" id="lane-put">
+        <div class="replay-lane" id="lane-put">
           <p class="lane-title">Rename by PUT</p>
           <p class="lane-req"><code>PUT /profile/name</code> &nbsp; name=Anas</p>
           <div class="retry-log" id="retry-log-put" aria-live="polite"></div>
