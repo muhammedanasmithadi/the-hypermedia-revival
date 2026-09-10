@@ -32,18 +32,9 @@
     display: block;
     width: 100%;
     height: auto;
-    max-width: 34rem;
-    margin: 0 auto;
-    border-radius: 12px;
-    border: 1px solid var(--hairline);
-  }
-  .hero-caption {
-    margin: 0.55em auto 0;
-    max-width: 34rem;
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: 0.78em;
-    color: var(--soft);
+    max-height: 20rem;
+    object-fit: cover;
+    margin: 2.2rem 0 0;
   }
   .home-lede { margin: 0 0 0.85em; }
   .who-for { font-size: 0.95em; color: var(--soft); }
@@ -98,16 +89,6 @@
   }
   .card-title { color: var(--link); font-weight: 600; }
   .card:hover .card-title { color: var(--link-hover); }
-  .card-arrow {
-    display: inline-block;
-    width: 1.1em;
-    height: 1.1em;
-    margin-left: 0.4em;
-    vertical-align: -0.15em;
-    background-color: var(--soft-dark);
-    -webkit-mask: var(--icon-arrow-right) var(--icon-mask);
-    mask: var(--icon-arrow-right) var(--icon-mask);
-  }
   .card-blurb {
     display: block;
     margin-top: 0.35em;
@@ -144,13 +125,9 @@
   <h1>Hypermedia: the architecture <em>we forgot</em></h1>
   <p class="dek">A plain-language course on hypermedia systems: what the web was built to do, and
   why the pattern still wins.</p>
-  <p class="byline">
-    <span>course home</span>
-    <span>sections 01-04 live</span>
-  </p>
   <p class="cta-row">
     <a class="btn-primary" href="lessons/0001-hypermedia-revival.html">Begin with Section 01</a>
-    <a class="btn-link" href="#sections">or browse all sections</a>
+    <a class="btn-link" href="#sections">View all sections</a>
   </p>
 </header>
 
@@ -158,13 +135,12 @@
     class="home-hero"
     src="assets/social/hero-1200.jpg"
     srcset="assets/social/hero-1200.jpg 1200w, assets/social/hero-2400.jpg 2400w"
-    sizes="(min-width: 48rem) 34rem, 100vw"
+    sizes="(min-width: 48rem) 44rem, 100vw"
     width="1200"
     height="630"
     alt=""
     decoding="async"
     fetchpriority="high">
-<p class="hero-caption">the chain: one link after another, each holding the next move</p>
 
 <div class="article prose">
 
@@ -182,7 +158,7 @@ HTML.</p>
       <a class="card" href="lessons/0001-hypermedia-revival.html">
         <span class="card-num">01</span>
         <span class="card-title">The machine that prints its own manual</span>
-        <span class="card-arrow" aria-hidden="true"></span>
+        
         <span class="card-blurb">One loop: request, document, choice, next document.</span>
       </a>
     </li>
@@ -190,7 +166,7 @@ HTML.</p>
       <a class="card" href="lessons/0002-how-the-idea-got-lost.html">
         <span class="card-num">02</span>
         <span class="card-title">How the idea got lost</span>
-        <span class="card-arrow" aria-hidden="true"></span>
+        
         <span class="card-blurb">From two words in 1965 to a data-only contract in 2011.</span>
       </a>
     </li>
@@ -198,7 +174,7 @@ HTML.</p>
       <a class="card" href="lessons/0003-two-architectures-on-the-same-table.html">
         <span class="card-num">03</span>
         <span class="card-title">Two architectures on the same table</span>
-        <span class="card-arrow" aria-hidden="true"></span>
+        
         <span class="card-blurb">The same feature, built two ways: a document or a JSON feed.</span>
       </a>
     </li>
@@ -206,7 +182,7 @@ HTML.</p>
       <a class="card" href="lessons/0004-the-status-line-names-what-happened.html">
         <span class="card-num">04</span>
         <span class="card-title">The status line names what happened</span>
-        <span class="card-arrow" aria-hidden="true"></span>
+        
         <span class="card-blurb">Read the five classes of every reply in three digits.</span>
       </a>
     </li>
