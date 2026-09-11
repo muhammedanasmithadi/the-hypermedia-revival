@@ -59,6 +59,7 @@ any static host works.
 node scripts/check-js.mjs
 node scripts/check-consistency.mjs --ci
 npx vnu-jar index.html 404.html lessons/index.html lessons/*.html
+bun run scripts/check-widgets.mjs
 ```
 
 `check-consistency.mjs --write` regenerates `sitemap.xml` when a lesson changes.

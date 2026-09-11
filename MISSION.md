@@ -10,8 +10,8 @@ Teach the deep domain knowledge behind hypermedia systems, the original architec
 - A reader sees the connection between hypermedia thinking and search/real-time product design
 
 ## Constraints
-- Self-contained HTML file: no external dependencies, no build tools
-- Embark-style scrollable sections with embedded diagrams
+- Static, hand-authored pages: no external dependencies, no build tools on the page
+- Self-contained, browser-runnable sections with interactive machines
 - No technology advocacy: present the landscape, don't push a framework
 - Deep domain knowledge, not surface-level takes
 

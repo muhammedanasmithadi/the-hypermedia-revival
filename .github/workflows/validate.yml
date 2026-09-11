@@ -47,3 +47,12 @@ jobs:
           node-version: 22
       - name: Verify pages against manifest.json
         run: node scripts/check-consistency.mjs --ci
+
+  a11y:
+    name: Accessibility and widget walk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Scan pages (axe-core) and walk every widget (CDP)
+        run: bun run scripts/check-widgets.mjs

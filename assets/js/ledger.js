@@ -42,6 +42,7 @@ export function createLedger(root, config) {
     b.type = 'button';
     b.className = 'chip';
     b.textContent = f.txt;
+    b.setAttribute('aria-pressed', 'false');
     li.chip = b;
     b.addEventListener('click', () => {
       li.classList.remove('ok', 'bad');
@@ -49,6 +50,7 @@ export function createLedger(root, config) {
         if (selected) selected.classList.remove('selected');
         selected = li;
         li.classList.add('selected');
+        b.setAttribute('aria-pressed', 'true');
         root.classList.add('sorting');
       } else {
         clearSel();
@@ -61,13 +63,17 @@ export function createLedger(root, config) {
   }
 
   function clearSel() {
-    if (selected) selected.classList.remove('selected');
+    if (selected) {
+      selected.classList.remove('selected');
+      selected.chip.setAttribute('aria-pressed', 'false');
+    }
     selected = null;
   }
 
   function placeInto(col) {
     if (!selected || selected.parentNode !== pool) return;
     selected.classList.remove('selected');
+    selected.chip.setAttribute('aria-pressed', 'false');
     col.querySelector('ul').appendChild(selected);
     res.textContent = `Placed in ${col.querySelector('.ledger-col-name').textContent}.`;
     selected.chip.focus();
@@ -105,7 +111,7 @@ export function createLedger(root, config) {
 
   pool = document.createElement('ul');
   pool.className = 'ledger-pool';
-  pool.setAttribute('role', 'group');
+  pool.setAttribute('role', 'list');
   pool.setAttribute('aria-label', poolLabel);
   colsWrap.parentNode.insertBefore(pool, colsWrap);
 

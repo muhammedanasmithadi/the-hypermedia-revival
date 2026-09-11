@@ -179,7 +179,7 @@ if (exp) {
   const bindActs = (scope) => {
     scope.querySelectorAll('.x-act').forEach((b) => {
       b.addEventListener('click', () => {
-        b.parentNode.parentNode.querySelector('.x-status').textContent =
+        b.closest('.x-doc').querySelector('.x-status').textContent =
           `${b.getAttribute('data-act')} received · the server renders the next document`;
       });
     });
