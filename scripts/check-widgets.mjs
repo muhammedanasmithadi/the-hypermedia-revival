@@ -135,25 +135,31 @@ async function launchChrome() {
   const bin = findChrome();
   const cport = 9333 + Math.floor(Math.random() * 1000);
   const profile = `${process.env.TMPDIR || '/tmp'}/chrome-cdp-${process.pid}-${Date.now()}`;
+  const errFile = `${profile}.stderr`;
   const proc = spawn([bin,
     '--headless=new',
     `--remote-debugging-port=${cport}`,
+    `--remote-debugging-address=127.0.0.1`,
     '--user-data-dir=' + profile,
     '--no-sandbox',
     '--disable-dev-shm-usage',
     '--disable-gpu',
     '--hide-scrollbars',
     `--window-size=1280,2000`
-  ], { stdout: 'ignore', stderr: 'ignore' });
+  ], { stdout: 'ignore', stderr: file(errFile) });
   let list;
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 60; i++) {
     try {
       list = await (await fetch(`http://127.0.0.1:${cport}/json/list`)).json();
       if (list.some((t) => t.type === 'page')) break;
     } catch { /* chrome still booting */ }
     await sleep(100);
   }
-  if (!list) throw new Error('chrome did not open a debugging target');
+  if (!list) {
+    let stderrText = '(no stderr captured)';
+    try { stderrText = await file(errFile).text(); } catch { /* file never created */ }
+    throw new Error(`chrome did not answer on port ${cport} (binary ${bin})\n${stderrText.slice(0, 2000)}`);
+  }
   const target = list.find((t) => t.type === 'page');
   const client = await CdpClient.connect(target.webSocketDebuggerUrl);
   await client.cmd('Page.enable');
