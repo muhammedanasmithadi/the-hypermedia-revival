@@ -1,7 +1,8 @@
 /* ---------- Reveal on scroll ---------- */
 
-/* Highlighted for the reader, hidden only when scripting is on */
-.js .reveal {
+/* Highlighted for the reader. Hidden only when JS promises to reveal:
+   site.js adds .will-reveal before it arms the observer. No JS = never hidden. */
+.js .will-reveal {
   opacity: 0;
   transition: opacity 0.45s ease;
 }
@@ -12,7 +13,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .reveal { opacity: 1; }
+  .js .will-reveal, .reveal.in { opacity: 1; }
   #timeline-replay { display: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

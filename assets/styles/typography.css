@@ -98,7 +98,8 @@ h3[id]:target {
 
 .prose code {
   display: inline-block;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
   background: var(--code-bg);
   font-size: 0.8em;
   font-weight: bold;

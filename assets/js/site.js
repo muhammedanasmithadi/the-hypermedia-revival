@@ -16,17 +16,33 @@ if (progress && cur) {
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
 
-  const sec = document.querySelector('.section[id]');
-  if (sec && 'IntersectionObserver' in window) {
-    const k = sec.querySelector('.section-head .kicker');
-    const h = sec.querySelector('.section-head h2');
-    cur.textContent = `${k ? `${k.textContent} · ` : ''}${h ? h.childNodes[0].textContent.trim() : ''}`;
+  const secs = document.querySelectorAll('.section[id]');
+  if (secs.length && 'IntersectionObserver' in window) {
+    const label = (s) => {
+      const k = s.querySelector('.section-head .kicker');
+      const h = s.querySelector('.section-head h2');
+      return `${k ? `${k.textContent} · ` : ''}${h ? h.childNodes[0].textContent.trim() : ''}`;
+    };
+    const near = new Map();
+    secs.forEach((s, i) => near.set(s, i));
+    const setActive = (i) => {
+      cur.textContent = label(secs[i]);
+      cur.classList.add('is-active');
+    };
+    setActive(0);
     const obs = new IntersectionObserver((entries) => {
+      let lowest = null;
       entries.forEach((e) => {
-        cur.classList.toggle('is-active', e.isIntersecting);
+        const i = near.get(e.target);
+        if (e.isIntersecting && (lowest === null || i > lowest)) lowest = i;
       });
+      if (lowest !== null) {
+        setActive(lowest);
+      } else {
+        cur.classList.remove('is-active');
+      }
     }, { threshold: 0.05 });
-    obs.observe(sec);
+    secs.forEach((s) => obs.observe(s));
   }
 }
 
@@ -44,7 +60,7 @@ if (!('IntersectionObserver' in window) ||
       }
     });
   }, { threshold: 0 });
-  els.forEach((el) => { el.inert = true; obs.observe(el); });
+  els.forEach((el) => { el.classList.add('will-reveal'); el.inert = true; obs.observe(el); });
 }
 
 export function sleep(ms) {

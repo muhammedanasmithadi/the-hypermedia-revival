@@ -12,8 +12,9 @@
 <meta property="og:title" content="Ask without harm. Repeat without doubt. · Hypermedia: the architecture we forgot">
 <meta property="og:description" content="Which requests may you repeat on the web? Sort the methods by harm and by repeatability, then replay a dropped connection.">
 <meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0005-ask-without-harm-repeat-without-doubt.html">
-<meta property="og:image" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/assets/social/og.png">
+<meta property="og:image" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/assets/social/hero-1200.jpg">
 <meta property="og:image:width" content="1200">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Ask without harm. Repeat without doubt.">
 <meta name="twitter:card" content="summary_large_image">
@@ -23,6 +24,7 @@
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="../assets/styles.css">
 <link rel="preload" href="../assets/fonts/plexsans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plexsans-400i.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plexsans-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -83,7 +85,7 @@
     <p>A safe method changes no server state. Check an account, read a balance, ask what a resource
     allows. State stays as it was.</p>
 
-    <p>GET, HEAD, and OPTIONS are safe. GET, Hypertext Transfer Protocol&rsquo;s read verb, carries
+    <p>GET, HEAD, and OPTIONS are safe. GET, the read verb of the Hypertext Transfer Protocol, carries
     the document. HEAD asks for the headers only, without the body. OPTIONS asks what the server allows
     on a resource. None of them writes. TRACE is safe too, but servers rarely serve it. This course
     passes it by.</p>
@@ -100,7 +102,7 @@
     <p>Repeatability is the second test. Send the same move twice: does the same state come out?
     An idempotent method changes nothing more on the second send than on the first.</p>
 
-    <p>PUT and DELETE are idempotent. POST, Hypertext Transfer Protocol&rsquo;s create-or-pay verb, is not.
+    <p>PUT and DELETE are idempotent. POST, the create-or-pay verb of HTTP, is not.
     Send a payment twice, and you may be charged twice.</p>
 
     <p>The two tests separate. DELETE removes state, yet two DELETEs leave the same result. One method
@@ -184,7 +186,7 @@
     <h3 id="keep-harm-off-harmless-asks"><a href="#keep-harm-off-harmless-asks" class="hanchor">Keep harm off harmless asks</a>
     </h3>
 
-    <p>RFC 9110, the HTTP, Hypertext Transfer Protocol, specification, puts the action on the resource
+    <p>RFC 9110, the HTTP specification, puts the action on the resource
     owner. An unsafe action must never ride on a safe method. Some pages bury a delete in a query
     string that a GET loads. A preloader may fire that GET blind.</p>
 
@@ -257,7 +259,6 @@
     <a class="section-link foot-left" href="0004-the-status-line-names-what-happened.html">The status line names what happened</a>
     <a class="section-link foot-left" href="../index.html">Course home</a>
   </nav>
-  <p><a class="section-link" href="https://github.com/muhammedanasmithadi/the-hypermedia-revival" rel="noopener">Source on GitHub</a></p>
   <p class="closing">Hypermedia Course · Section 5 of 6</p>
 </footer>
 
