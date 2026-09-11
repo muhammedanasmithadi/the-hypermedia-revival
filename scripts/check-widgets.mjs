@@ -148,7 +148,7 @@ async function launchChrome() {
     `--window-size=1280,2000`
   ], { stdout: 'ignore', stderr: file(errFile) });
   let list;
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 100; i++) {
     try {
       list = await (await fetch(`http://127.0.0.1:${cport}/json/list`)).json();
       if (list.some((t) => t.type === 'page')) break;
@@ -367,7 +367,18 @@ const srv = serve();
 const base = `http://127.0.0.1:${srv.port}/`;
 
 try {
-  const { client, close } = await launchChrome(srv.port);
+  let chrome;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      chrome = await launchChrome();
+      if (chrome) break;
+    } catch (err) {
+      if (attempt === 3) throw err;
+      console.log(`chrome launch attempt ${attempt} failed (${err.message.split('\n')[0]}); retrying`);
+      await sleep(800);
+    }
+  }
+  const { client, close } = chrome;
   try {
     const inject =
       `window.clickByText = (sel, text) => {
