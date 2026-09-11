@@ -151,6 +151,28 @@ eq(JSON.stringify(imports), JSON.stringify(site.styles), 'styles.css import orde
 for (const id of site.styles) eq(has(`assets/styles/${id}.css`), true, `module asset styles/${id}.css exists`);
 for (const p of topbarPages) eq(read(p).includes('rel="stylesheet"'), true, `${p} stylesheet link`);
 
+// 8b. Every media asset referenced by HTML or the manifest exists on disk.
+const asFile = (ref, base) => {
+  // Absolute URL: strip the rootUrl prefix when it matches.
+  if (ref.startsWith(site.rootUrl)) return ref.slice(site.rootUrl.length + 1);
+  // Root-relative path like /the-hypermedia-revival/assets/...
+  if (ref.startsWith('/')) return ref.replace(/^\/[^/]+\//, '');
+  // Relative URL: resolve against the referencing page directory.
+  return base ? join(base, ref) : ref;
+};
+const assetChecks = [];
+for (const p of [...topbarPages, '404.html']) {
+  const html = read(p);
+  const base = dirname(p) === '.' ? '' : dirname(p);
+  const og = [...html.matchAll(/<meta property="og:image" content="([^"]+)">/g)].map((m) => m[1]);
+  const icons = [...html.matchAll(/<link rel="apple-touch-icon" href="([^"]+)">/g)].map((m) => m[1]);
+  for (const ref of og.concat(icons)) assetChecks.push([p, asFile(ref, base), ref]);
+}
+assetChecks.push(['manifest.json', asFile(site.ogImage, ''), site.ogImage]);
+for (const [page, file, ref] of assetChecks) {
+  eq(has(file), true, `${page} asset exists: ${file}`);
+}
+
 // 9. Shared head and footer chrome do not drift across sections.
 const headInvariants = [
   '<meta property="og:site_name" content="Hypermedia">',
