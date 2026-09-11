@@ -17,7 +17,7 @@ if (root) {
     { req: 'GET /account/4027', code: 200, reason: 'OK', kind: 'the request worked', line: 'The reply carries the balance and its moves.' },
     { req: 'POST /account/4027/open', code: 201, reason: 'Created', kind: 'the request worked', line: 'A new resource appeared, and the reply names it.' },
     { req: 'POST /account/4027/pay', code: 204, reason: 'No Content', kind: 'the request worked', line: 'The reply carries no body. The balance changed all the same.' },
-    { req: 'GET /account/4027/leave', code: 303, reason: 'See Other', kind: 'look elsewhere', line: 'The answer lives at another URI. The client follows it.' },
+    { req: 'POST /account/4027/leave', code: 303, reason: 'See Other', kind: 'look elsewhere', line: 'The answer lives at another URI. The client follows it.' },
     { req: 'GET /account/4027 (stored copy)', code: 304, reason: 'Not Modified', kind: 'keep your stored copy', line: 'Your stored copy is still good. The client keeps it.' },
     { req: 'GET /account/4042', code: 404, reason: 'Not Found', kind: 'the client erred', line: 'The server state holds no such account.' },
     { req: 'GET /account/4027/statement', code: 500, reason: 'Internal Server Error', kind: 'the server erred', line: 'The server broke before it answered.' }
@@ -104,7 +104,7 @@ if (root) {
     const wasJudged = key.classList.contains('read');
     const prevHit = wasJudged ? key.dataset.hit === 'ok' : false;
     const hit = fd === first;
-    key.classList.remove('read', 'ok', 'bad', 'active-key');
+    key.classList.remove('read', 'ok', 'bad');
     key.classList.add('read', hit ? 'ok' : 'bad');
     key.dataset.hit = hit ? 'ok' : 'bad';
     key.dataset.class = first;

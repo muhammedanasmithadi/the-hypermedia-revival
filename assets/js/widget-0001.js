@@ -227,6 +227,7 @@ if (exp) {
 const loopTray = document.getElementById('loop-steps');
 const loopCap = document.getElementById('loop-caption');
 const loopWidget = document.getElementById('loop');
+const loopBeats = document.getElementById('loop-beats');
 if (loopTray && loopCap && loopWidget) {
   const steps = [
     { t: 'Request', s: 'user picks a control', c: 'The user clicks a link or a button. The browser turns that control into a request to the server.' },
@@ -240,7 +241,14 @@ if (loopTray && loopCap && loopWidget) {
     const nodes = loopTray.querySelectorAll('.loop-step');
     nodes.forEach((node, i) => {
       node.classList.toggle('on', i === cur);
+      if (i === cur) node.setAttribute('aria-current', 'step');
+      else node.removeAttribute('aria-current');
     });
+    if (loopBeats) {
+      loopBeats.querySelectorAll('.loop-beat').forEach((b, i) => {
+        b.classList.toggle('on', i === cur);
+      });
+    }
     loopCap.textContent = steps[cur].c;
   };
 
@@ -252,5 +260,10 @@ if (loopTray && loopCap && loopWidget) {
       paint();
     }
   });
-  if (ticker) paint();
+  if (ticker || loopCap) paint();
+
+  loopTray.querySelectorAll('.loop-step').forEach((node, n) => {
+    node.addEventListener('pointerenter', () => { cur = n; paint(); });
+    node.addEventListener('focusin', () => { cur = n; paint(); });
+  });
 }

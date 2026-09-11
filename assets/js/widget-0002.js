@@ -17,12 +17,15 @@ if (widget && cap) {
   const REST = 'As the years pass, a note under each entry names who held the next move.';
   let i = -1;
 
-  const render = () => {
+  const render = (idx) => {
+    const n = idx === undefined ? i : idx;
     const nodes = widget.querySelectorAll('li');
-    nodes.forEach((node, n) => {
-      node.classList.toggle('on', n === i);
+    nodes.forEach((node, k) => {
+      node.classList.toggle('on', k === n);
+      if (k === n) node.setAttribute('aria-current', 'step');
+      else node.removeAttribute('aria-current');
     });
-    cap.textContent = i >= 0 ? steps[i].c : REST;
+    cap.textContent = n >= 0 ? steps[n].c : REST;
   };
 
   const ticker = createTicker({
@@ -34,15 +37,10 @@ if (widget && cap) {
     }
   });
 
-  const replay = document.getElementById('timeline-replay');
-  if (replay) {
-    replay.addEventListener('click', () => {
-      i = -1;
-      ticker && ticker.stop();
-      render();
-      ticker && ticker.play();
-    });
-  }
+  widget.querySelectorAll('li').forEach((node, n) => {
+    node.addEventListener('pointerenter', () => { i = n; render(); });
+    node.addEventListener('focusin', () => { i = n; render(); });
+  });
 
   if (ticker) render();
 }

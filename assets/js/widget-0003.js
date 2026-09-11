@@ -13,6 +13,8 @@ if (root) {
   const reset = document.getElementById('explorer-reset');
   const acts = Array.from(root.querySelectorAll('.explorer-act'));
   let phase = 'idle';
+  let bal = 40;
+  let creditDone = false;
   let seq = 0;
 
   const MOVES = [
@@ -40,7 +42,7 @@ if (root) {
 
   const paneA = (extra) => `<div class="x-doc">
     <div class="x-doc-title">Account 4027 · bank of documents</div>
-    <div class="x-doc-bal">Balance: $40</div>
+    <div class="x-doc-bal">Balance: $${bal}</div>
     <div class="x-actions">${docMenu(extra)}</div>
   </div>`;
 
@@ -62,11 +64,18 @@ if (root) {
   };
 
   const setNight = () => {
-    laneA.innerHTML = paneA([{ v: 'Apply the $10 credit', act: 'credit', fresh: true }]);
-    laneB.innerHTML = paneB('{ "balance": 40, "credit": 10 }');
+    const extra = creditDone
+      ? []
+      : [{ v: 'Apply the $10 credit', act: 'credit', fresh: true }];
+    laneA.innerHTML = paneA(extra);
+    laneB.innerHTML = paneB(`{ "balance": ${bal}, "credit": 10 }`);
     bindLaneA();
-    whoA.textContent = 'The server typed a new move into the reply. No build was needed.';
-    whoB.textContent = 'The payload carried the value, not the move. The app still draws the old menu.';
+    whoA.textContent = creditDone
+      ? 'The reply carried the credit and its own moves. The balance shows both.'
+      : 'The server typed a new move into the reply. No build was needed.';
+    whoB.textContent = creditDone
+      ? 'The payload carried the new value. The app applied its own copy.'
+      : 'The payload carried the value, not the move. The app still draws the old menu.';
   };
 
   const waiting = () => {
@@ -90,6 +99,18 @@ if (root) {
       return;
     }
     if (phase === 'night') {
+      if (a === 'credit') {
+        if (creditDone) {
+          setNight();
+          note.textContent = 'The credit is already in the balance.';
+          return;
+        }
+        bal = 50;
+        creditDone = true;
+        setNight();
+        note.textContent = 'The $10 credit applied. Balance is now $50, named in the reply.';
+        return;
+      }
       setNight();
       return;
     }
@@ -108,6 +129,8 @@ if (root) {
   const idle = () => {
     seq += 1;
     phase = 'idle';
+    bal = 40;
+    creditDone = false;
     night.hidden = true;
     note.textContent = '';
     laneA.innerHTML = '<p class="xt-wait">The document will name the moves in the reply.</p>';

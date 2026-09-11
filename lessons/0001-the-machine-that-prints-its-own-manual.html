@@ -25,7 +25,6 @@
 <link rel="stylesheet" href="../assets/styles.css">
 <link rel="preload" href="../assets/fonts/plexsans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plexsans-400i.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/plexsans-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -35,8 +34,8 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="../index.html" aria-label="Course home">Hypermedia</a>
-    <span class="cur-section" id="cur-section" aria-live="polite">Section 01 · The machine that prints its own manual</span>
+    <a class="brand" href="../index.html" aria-label="Hypermedia: course home">Hypermedia</a>
+    <span class="cur-section" id="cur-section">Section 01 · The machine that prints its own manual</span>
     <nav class="topnav" aria-label="Site">
       <a href="index.html">Sections</a>
       <a href="../glossary.html">Glossary</a>
@@ -44,7 +43,7 @@
   </div>
 </header>
 
-<main class="doc" id="top">
+<main class="doc" id="top" tabindex="-1">
 
 <div class="progress" id="progress" role="progressbar" aria-label="reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 
@@ -284,15 +283,20 @@ Host: muhammedanasmithadi.github.io</code></pre>
       <p class="widget-noscript">Static view: the loop is fixed here. Enable JavaScript to watch it run.</p>
     </noscript>
     <div class="loop-steps" id="loop-steps">
-      <div class="loop-step on"><div class="ls-t">Request</div><div class="ls-s">user picks a control</div></div>
+      <div class="loop-step on" tabindex="0"><div class="ls-t">Request</div><div class="ls-s">user picks a control</div></div>
       <div class="loop-arrow" aria-hidden="true"></div>
-      <div class="loop-step"><div class="ls-t">Document</div><div class="ls-s">facts + controls</div></div>
+      <div class="loop-step" tabindex="0"><div class="ls-t">Document</div><div class="ls-s">facts + controls</div></div>
       <div class="loop-arrow" aria-hidden="true"></div>
-      <div class="loop-step"><div class="ls-t">Choice</div><div class="ls-s">user selects a move</div></div>
+      <div class="loop-step" tabindex="0"><div class="ls-t">Choice</div><div class="ls-s">user selects a move</div></div>
       <div class="loop-arrow" aria-hidden="true"></div>
-      <div class="loop-step"><div class="ls-t">Next document</div><div class="ls-s">server advances state</div></div>
+      <div class="loop-step" tabindex="0"><div class="ls-t">Next document</div><div class="ls-s">server advances state</div></div>
     </div>
     <div class="loop-caption" id="loop-caption" aria-live="polite">The user clicks a link or a button. The browser turns that control into a request to the server.</div>
+    <div class="loop-controls">
+      <div class="loop-beats" id="loop-beats" aria-hidden="true">
+        <span class="loop-beat"></span><span class="loop-beat"></span><span class="loop-beat"></span><span class="loop-beat"></span>
+      </div>
+    </div>
   </div>
 
   <div class="prose">

@@ -36,7 +36,7 @@
 }
 
 .verdict-key.read {
-  opacity: 0.55;
+  opacity: 1;
 }
 
 .verdict-key.read.ok {
@@ -47,6 +47,14 @@
 .verdict-key.read.bad {
   border-color: #a03434;
   color: #e8a0a0;
+}
+
+.verdict-key.read.ok::before {
+  content: "✓  ";
+}
+
+.verdict-key.read.bad::before {
+  content: "✗  ";
 }
 
 #verdict .kiosk-keys {

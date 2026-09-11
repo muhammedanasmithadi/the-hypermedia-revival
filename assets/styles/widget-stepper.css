@@ -59,6 +59,40 @@
   padding: 0 0.2em;
 }
 
+.loop-controls {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-top: 0.75em;
+}
+
+.loop-beats {
+  display: flex;
+  gap: 0.5em;
+}
+
+.loop-beat {
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 50%;
+  border: 1px solid var(--soft-dark);
+  background: transparent;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.loop-beat.on {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+@media (max-width: 30rem) {
+  .loop-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6em;
+  }
+}
+
 @media (max-width: 30rem) {
   .loop-steps {
     display: grid;

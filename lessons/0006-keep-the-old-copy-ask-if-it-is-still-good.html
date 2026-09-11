@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#171717">
+<meta name="description" content="Reuse a stored reply when you can. When a copy turns stale, ask the server if it is still good, and keep the 304 replies small.">
+<link rel="canonical" href="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html">
+<meta property="og:site_name" content="Hypermedia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Keep the old copy. Ask if it is still good. · Hypermedia: the architecture we forgot">
+<meta property="og:description" content="Reuse a stored reply when you can. When a copy turns stale, ask the server if it is still good, and keep the 304 replies small.">
+<meta property="og:url" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html">
+<meta property="og:image" content="https://muhammedanasmithadi.github.io/the-hypermedia-revival/assets/social/hero-1200.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Keep the old copy. Ask if it is still good.">
+<meta name="twitter:card" content="summary_large_image">
+<title>Keep the old copy. Ask if it is still good. · Hypermedia: the architecture we forgot</title>
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="preload" href="../assets/fonts/plexsans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plexsans-400i.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html" aria-label="Hypermedia: course home">Hypermedia</a>
+    <span class="cur-section" id="cur-section">Section 06 · Keep the old copy. Ask if it is still good.</span>
+    <nav class="topnav" aria-label="Site">
+      <a href="index.html">Sections</a>
+      <a href="../glossary.html">Glossary</a>
+    </nav>
+  </div>
+</header>
+
+<main class="doc" id="top" tabindex="-1">
+
+<div class="progress" id="progress" role="progressbar" aria-label="reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<header class="masthead">
+  <p class="post-date"><time datetime="2026-09">September 2026</time></p>
+  <h1>Hypermedia: the handshake <em>that keeps your copy fresh</em></h1>
+  <p class="dek">A stored reply saves a wire round trip until its copy turns stale.
+  Then you ask: is it still good? This section runs the ask, and the 304 that
+  answers.</p>
+</header>
+
+<div class="article">
+
+<section id="keep-the-old-copy-ask-if-it-is-still-good" class="section">
+
+  <div class="section-head">
+    <p class="kicker">Section 06</p>
+    <h2><a href="#keep-the-old-copy-ask-if-it-is-still-good" class="hanchor">Keep the old copy. Ask if it is still good.</a>
+    </h2>
+  </div>
+
+  <div class="prose">
+    <p class="lede"><a href="0005-ask-without-harm-repeat-without-doubt.html">Section 05</a> sorted
+    the methods by harm and repeatability. This section shows how the browser keeps a copy and asks
+    the server whether the copy is still good.</p>
+
+    <details class="recall">
+      <summary>Before you read on: in Sections 01 and 03, why did the kiosk and the explorer
+      re-draw their whole screens on every move?</summary>
+      <p>Each move changed the URI or the document, so any stored copy would have gone stale.
+      Those clients did not know how to ask whether their copies still matched the server.</p>
+    </details>
+  </div>
+
+  <div class="prose">
+    <h3 id="store-the-response"><a href="#store-the-response" class="hanchor">Store the response</a>
+    </h3>
+
+    <p>Fielding adds the cache constraint to the stateless style. A response
+    is labeled cacheable or not. A cache may reuse that response data for later,
+    equivalent requests.</p>
+
+    <p>Your browser runs a cache for you. It stores reply bodies after a safe
+    request. The URI labels which replies match, so a later request to the same
+    URI may fetch the stored copy rather than the network.</p>
+
+    <p>Caching works because each URI is its own state. The server keeps no
+    session per connection. A later request to the same URI sends a copy the
+    cache kept, instead of a new reply.</p>
+
+    <h3 id="read-the-method"><a href="#read-the-method" class="hanchor">Read the method</a>
+    </h3>
+
+    <p>The method picks the default. Fielding writes that the response to a
+    retrieval request is cacheable. The response to other requests is not
+    cacheable, but control data may override the label.</p>
+
+    <p>RFC 9110 refines that rule. A GET or HEAD answer is cacheable by default.
+    A POST answer joins the cache only when the reply names the stored copy in a
+    <code>Content-Location</code> header and proves its own freshness with a date
+    or seconds. A PUT, DELETE, or OPTIONS answer stays out of the cache.</p>
+
+    <div class="do-now" role="note" aria-label="Try it now: read the response headers of this page">
+      <p class="dn-kicker">Try it now</p>
+      <p>Open the developer tools and the Network tab. Reload this page. Click
+      any request. Read its response headers. On many sites you will find
+      <code>Cache-Control</code>, <code>ETag</code>, or a date that says how
+      long a copy may stay fresh. This page's host serves only a
+      <code>Last-Modified</code> date, which is a validator, not a lifetime.</p>
+    </div>
+  </div>
+
+  <div class="prose">
+    <h3 id="check-the-freshness"><a href="#check-the-freshness" class="hanchor">Check the freshness</a>
+    </h3>
+
+    <p>RFC 9111, the HTTP caching specification, says freshness decides reuse
+    first. A cache reuses a fresh copy without asking the server. Only a stale
+    copy triggers a new request.</p>
+
+    <p>Expires sets a date. Cache-Control <code>max-age</code> sets a number of
+    seconds and wins when both appear. Together they guard the lifetime of the
+    stored copy.</p>
+
+    <p>Age counts seconds since the server or an earlier cache made or refreshed
+    the copy. As long as the age stays below the lifetime, the copy stays fresh.</p>
+
+    <h3 id="ask-the-fingerprint"><a href="#ask-the-fingerprint" class="hanchor">Ask the fingerprint</a>
+    </h3>
+
+    <p>A stale copy does not die. The cache keeps it and asks the server: is
+    this copy still good? RFC 9110 calls the answer mechanism a validator. The
+    two most common validators are an entity tag (ETag), a fingerprint the server
+    sets, and a date from <code>Last-Modified</code>.</p>
+
+    <p>The cache sends the fingerprint back in a conditional header.
+    <code>If-None-Match</code> carries the ETag. <code>If-Modified-Since</code>
+    carries the date. The server compares the two, and a match earns a small
+    reply.</p>
+  </div>
+
+  <div class="widget-panel kiosk reveal" id="cache" role="group" aria-label="A cache handshake: fetch the document, then ask if it is still good">
+    <noscript>This interactive demo needs JavaScript. The prose above carries the idea without it.</noscript>
+    <div class="kiosk-head">
+      <span>the hidden document server · ask if it changed</span>
+      <span class="k-now" id="cache-state" aria-live="polite">no stored copy</span>
+    </div>
+    <div class="kiosk-screen">
+      <div class="k-title">one document, one fingerprint</div>
+      <div class="k-msg">Fetch the document. Fetch it again while the copy stays fresh, then let an hour pass and ask once more.</div>
+      <div class="cache-pair">
+        <div class="cache-box" role="group" aria-label="server side">
+          <div class="cache-box-head">
+            <span class="cache-lbl">server holds</span>
+            <span class="cache-doc-tag" id="server-tag">ETag &quot;v1&quot;</span>
+          </div>
+          <p class="cache-box-body" id="server-body">Wind 14 km/h, from the west. Clouds pass.</p>
+        </div>
+        <div class="cache-box gone" id="cache-client-box" role="group" aria-label="your stored copy">
+          <div class="cache-box-head">
+            <span class="cache-lbl">your browser holds</span>
+            <span class="cache-doc-tag" id="cache-client-tag">no copy</span>
+          </div>
+          <p class="cache-box-body" id="cache-client-body">&mdash;</p>
+        </div>
+      </div>
+      <div class="cache-log" id="cache-log" aria-live="polite"></div>
+    </div>
+    <div class="kiosk-keys" id="cache-keys">
+      <button class="kiosk-btn" type="button" id="cache-fetch">Fetch the document</button>
+      <button class="kiosk-btn" type="button" id="cache-aging">Let an hour pass</button>
+      <button class="kiosk-btn" type="button" id="cache-change">Change the server state</button>
+    </div>
+    <div class="kiosk-meta">
+      <span class="kiosk-balance" id="cache-meta" aria-live="polite">stored copy: none</span>
+      <button class="kiosk-reset" type="button" id="cache-reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="prose">
+    <h3 id="get-304-keep-the-copy"><a href="#get-304-keep-the-copy" class="hanchor">Get 304, keep the copy</a>
+    </h3>
+
+    <p>A matching fingerprint earns a 304, Not Modified. The reply carries no
+    body. The client keeps its stored copy and refreshes its age. The next fetch
+    starts the clock again.</p>
+
+    <p>A 200 replaces the copy. A 304 keeps it. The difference saves time over
+    slow links and keeps cached pages fast on the mobile web.</p>
+
+    <p>The kiosk in Section 01 and the explorer in Section 03 re-rendered
+    documents on every move. Ask why those clients did not cache. Each move
+    changed the URI or the document, so the stored copy would have gone stale.</p>
+
+    <p>Section 05 sorted the safe and idempotent corners of each method. This
+    section adds the store-and-ask handshake. Together they make a page that
+    stays fast while it stays correct.</p>
+
+    <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
+    by Carson Gross, Adam Stepinski, and Deniz Akşimşek, traces the same
+    constraints from a builder&rsquo;s view.</p>
+
+    <section class="sources">
+      <h3 id="sources"><a href="#sources" class="hanchor">Sources</a>
+      </h3>
+      <ul>
+        <li>R. Fielding, <a rel="noopener" href="https://roy.gbiv.com/pubs/dissertation/rest_arch_style.htm">&ldquo;Architectural Styles and the Design of Network-based Software Architectures&rdquo;</a> (PhD thesis, 2000), section 5.1.4: cache.</li>
+        <li>IETF, <a rel="noopener" href="https://www.rfc-editor.org/rfc/rfc9110.html">&ldquo;HTTP Semantics&rdquo;</a> (RFC 9110, 2022), section 8.8.3: ETag, section 13.1.2: If-None-Match, section 15.4.5: 304.</li>
+        <li>IETF, <a rel="noopener" href="https://www.rfc-editor.org/rfc/rfc9111.html">&ldquo;HTTP Caching&rdquo;</a> (RFC 9111, 2022), section 4.2: freshness, section 4.3: validation.</li>
+        <li>Mozilla, <a rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching">HTTP caching</a>, in MDN Web Docs.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="recap" role="group" aria-label="Section recap">
+    <p class="recap-title">The handshake, in review</p>
+    <p class="recap-intro">Review what the fetch and the conditional ask showed you.</p>
+    <ol>
+      <li>A cache stores reply bodies and reuses them for later, equivalent requests.</li>
+      <li>Freshness decides reuse first. Expires or max-age set the lifetime; Age counts elapsed seconds.</li>
+      <li>A fresh copy never asks the server. A stale copy does.</li>
+      <li>An ETag fingerprints a version; If-None-Match sends it back.</li>
+      <li>A match earns 304, no body; the client keeps its copy and refreshes its age.</li>
+    </ol>
+  </div>
+
+  <div class="self-check" role="group" aria-label="Check yourself before you move on">
+    <p class="sc-title">Check yourself</p>
+    <p>Three questions follow. Answer each one before you open it.</p>
+    <details class="sc-item">
+      <summary>Your browser stored a page at 12:00 with Cache-Control max-age 600. You request
+      it again at 12:05. Does the browser ask the server?</summary>
+      <p>No. 600 seconds is ten minutes, so the copy stays fresh until 12:10, and five
+      minutes is below the lifetime.</p>
+    </details>
+    <details class="sc-item">
+      <summary>The copy turns stale at 12:20. What does the browser send to ask if it is still
+      good?</summary>
+      <p>It sends If-None-Match carrying the ETag it stored, or If-Modified-Since
+      carrying a date, so the server can compare.</p>
+    </details>
+    <details class="sc-item">
+      <summary>The server has the same ETag. It answers 304, Not Modified, with no body. What does
+      the browser do with its copy?</summary>
+      <p>It keeps the copy as valid and refreshes its age so the next freshness
+      window starts again.</p>
+    </details>
+  </div>
+
+</section>
+
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  <nav class="foot-nav" aria-label="section navigation">
+    <a class="section-link foot-left" href="0005-ask-without-harm-repeat-without-doubt.html">Ask without harm. Repeat without doubt.</a>
+    <a class="section-link foot-left" href="../index.html">Course home</a>
+  </nav>
+  <p class="closing">Hypermedia Course · Section 6 of 6</p>
+</footer>
+
+<script type="module" src="../assets/js/widget-0006.js"></script>
+
+</body>
+</html>

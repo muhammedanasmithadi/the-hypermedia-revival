@@ -151,7 +151,7 @@ h3[id]:target {
 
 .figure-quote figcaption .who {
   color: var(--ink-code);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .figure-quote figcaption cite {

@@ -112,7 +112,7 @@ cached copy would go stale.
 ## Sources to cite
 
 - Fielding, "Architectural Styles and the Design of Network-based
-  Software Architectures", 2000. Chapter 5.1.3 covers the cache
+  Software Architectures", 2000. Chapter 5.1.4 covers the cache
   constraint. Chapter 5.1.5 defines the uniform interface: resource
   identification, representations, self-descriptive messages, and
   hypermedia as the engine of application state.

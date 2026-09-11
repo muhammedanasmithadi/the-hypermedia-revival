@@ -53,6 +53,7 @@ export function createLedger(root, config) {
         b.setAttribute('aria-pressed', 'true');
         root.classList.add('sorting');
       } else {
+        if (selected) return;
         clearSel();
         pool.appendChild(li);
         root.classList.remove('sorting');
@@ -117,8 +118,8 @@ export function createLedger(root, config) {
 
   cols.forEach((col) => {
     col.setAttribute('tabindex', '0');
-    col.setAttribute('role', 'group');
-    col.setAttribute('aria-label', `${col.querySelector('.ledger-col-name').textContent} row`);
+    col.setAttribute('role', 'button');
+    col.setAttribute('aria-label', `Place the selected card in the ${col.querySelector('.ledger-col-name').textContent} row`);
     col.addEventListener('click', () => { placeInto(col); });
     col.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {

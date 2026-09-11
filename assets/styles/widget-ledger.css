@@ -126,6 +126,14 @@
   color: #e8a0a0;
 }
 
+.ledger-item.ok .chip::before {
+  content: "✓  ";
+}
+
+.ledger-item.bad .chip::before {
+  content: "✗  ";
+}
+
 .ledger.sorting .ledger-col {
   cursor: pointer;
 }

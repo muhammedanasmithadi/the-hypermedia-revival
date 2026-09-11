@@ -24,7 +24,6 @@
 <link rel="stylesheet" href="assets/styles.css">
 <link rel="preload" href="assets/fonts/plexsans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/plexsans-400i.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/plexsans-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -34,7 +33,7 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="index.html" aria-label="Course home">Hypermedia</a>
+    <a class="brand" href="index.html" aria-label="Hypermedia: course home">Hypermedia</a>
     <span class="cur-section">Glossary</span>
     <nav class="topnav" aria-label="Site">
       <a href="lessons/index.html">Sections</a>
@@ -43,7 +42,7 @@
   </div>
 </header>
 
-<main class="doc" id="top">
+<main class="doc" id="top" tabindex="-1">
 
 <header class="masthead">
   <p class="post-date"><time datetime="2026-09">September 2026</time></p>
@@ -90,9 +89,28 @@
     <a class="gl-term-link" href="lessons/0004-the-status-line-names-what-happened.html#name-the-five-classes">Learned in Section 04</a>
   </dd>
 
+  <dt id="status-200">200, OK</dt>
+  <dd>The reply that names success. The request worked and the reply body carries
+    the result.
+    <a class="gl-term-link" href="lessons/0004-the-status-line-names-what-happened.html#name-the-five-classes">Learned in Section 04</a>
+  </dd>
+
+  <dt id="status-404">404, Not Found</dt>
+  <dd>The reply the server sends when no document matches the URL. It names a
+    permanent absence, so the browser can cache it long.
+    <a class="gl-term-link" href="lessons/0004-the-status-line-names-what-happened.html#name-the-five-classes">Learned in Section 04</a>
+  </dd>
+
+  <dt id="status-500">500, Internal Server Error</dt>
+  <dd>The reply the server sends when the request is fine but the server itself
+    failed. The client can safely repeat the request later.
+    <a class="gl-term-link" href="lessons/0004-the-status-line-names-what-happened.html#name-the-five-classes">Learned in Section 04</a>
+  </dd>
+
   <dt id="safe-method">Safe method</dt>
-  <dd>A method that must never change server state. GET, HEAD, and OPTIONS are safe.
-    The server can repeat them freely.
+  <dd>A method that never causes the server to change state. GET, HEAD,
+    OPTIONS, and TRACE are safe, though servers often turn TRACE off. The
+    client can repeat safe methods freely.
     <a class="gl-term-link" href="lessons/0005-ask-without-harm-repeat-without-doubt.html#sort-the-methods-by-harm">Learned in Section 05</a>
   </dd>
 
@@ -100,6 +118,66 @@
   <dd>A method that may change server state, but repeating it produces the same
     result as doing it once. GET, HEAD, PUT, DELETE, and OPTIONS are idempotent.
     <a class="gl-term-link" href="lessons/0005-ask-without-harm-repeat-without-doubt.html#sort-by-repeatability-too">Learned in Section 05</a>
+  </dd>
+
+  <dt id="validator">Validator</dt>
+  <dd>Metadata that shows whether a stored copy still matches the server. The
+    two common forms are an ETag and a modification date.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#ask-the-fingerprint">Learned in Section 06</a>
+  </dd>
+
+  <dt id="etag">ETag</dt>
+  <dd>An entity tag: a fingerprint the server sets on a version of a
+    document. If-None-Match carries it back on a later ask.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#ask-the-fingerprint">Learned in Section 06</a>
+  </dd>
+
+  <dt id="not-modified">304, Not Modified</dt>
+  <dd>The reply that says your stored copy is still good. It carries no body,
+    so it costs less than a 200.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#get-304-keep-the-copy">Learned in Section 06</a>
+  </dd>
+
+  <dt id="fresh">Fresh</dt>
+  <dd>A stored copy that still has time left on its age allowance. A client can
+    use a fresh copy without asking the server.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#check-the-freshness">Learned in Section 06</a>
+  </dd>
+
+  <dt id="stale">Stale</dt>
+  <dd>A stored copy whose age allowance has run out. Before using a stale copy,
+    the client must revalidate it against the server.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#check-the-freshness">Learned in Section 06</a>
+  </dd>
+
+  <dt id="cache-control">Cache-Control</dt>
+  <dd>A header a server sends to tell clients and caches how long a copy may
+    stay fresh. It carries directives such as max-age.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#check-the-freshness">Learned in Section 06</a>
+  </dd>
+
+  <dt id="max-age">max-age</dt>
+  <dd>A directive in Cache-Control that sets the freshness lifetime in seconds.
+    The countdown starts when the server sends the copy.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#check-the-freshness">Learned in Section 06</a>
+  </dd>
+
+  <dt id="expires">Expires</dt>
+  <dd>An older header that names a clock time when the copy goes stale. Max-age
+    replaces it, because it avoids clock-sync problems.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#check-the-freshness">Learned in Section 06</a>
+  </dd>
+
+  <dt id="age">Age</dt>
+  <dd>A header that names how many seconds the copy has already spent in a
+    cache. A client compares it with max-age to judge freshness.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#check-the-freshness">Learned in Section 06</a>
+  </dd>
+
+  <dt id="last-modified">Last-Modified</dt>
+  <dd>A validator that names the moment the server last changed the document.
+    The client sends it back as If-Modified-Since when it revalidates.
+    <a class="gl-term-link" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html#ask-the-fingerprint">Learned in Section 06</a>
   </dd>
 
 </dl>

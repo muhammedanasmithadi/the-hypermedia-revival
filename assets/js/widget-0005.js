@@ -72,7 +72,6 @@ if (retryRoot) {
 
   let finished = 0;
   let stateKey = 'standing by';
-  let seq = 0;
 
   const line = (log, text) => {
     const d = document.createElement('div');
@@ -86,19 +85,20 @@ if (retryRoot) {
       log: logs[cfg.id],
       out: outs[cfg.id],
       step: 0,
+      seq: 0,
       btn: document.createElement('button')
     };
     lane.btn.type = 'button';
     lane.btn.className = 'kiosk-btn';
     lane.btn.textContent = `Send: ${cfg.req}`;
     lane.btn.addEventListener('click', async () => {
-      const mine = ++seq;
+      const mine = ++lane.seq;
       if (lane.step === 0) {
         line(lane.log, `> ${cfg.req}  body ${cfg.body}`);
         lane.btn.disabled = true;
         lane.step = 1;
         await sleep(900);
-        if (mine !== seq) return;
+        if (mine !== lane.seq) return;
         line(lane.log, cfg.lost);
         lane.btn.disabled = false;
         lane.btn.textContent = 'Retry the move';
@@ -108,7 +108,7 @@ if (retryRoot) {
         lane.btn.disabled = true;
         lane.step = 3;
         await sleep(700);
-        if (mine !== seq) return;
+        if (mine !== lane.seq) return;
         line(lane.log, cfg.reply);
         lane.out.textContent = cfg.done;
         lane.out.className = `lane-outcome ${cfg.kind}`;
@@ -127,8 +127,8 @@ if (retryRoot) {
   });
 
   reset.addEventListener('click', () => {
-    seq += 1;
     lanes.forEach((lane) => {
+      lane.seq += 1;
       lane.log.innerHTML = '';
       lane.out.textContent = '';
       lane.out.className = 'lane-outcome';

@@ -17,10 +17,11 @@
    10 widget-timeline widget 4 + section links
    11 widget-ledger decade sort
    12 widget-statusline verdict widget 4
-   13 widget-twolane explorer lanes widget 3 + 5
-   14 panels-callouts do-now/recap/self-check/recall + sources
-   15 pages home, listing, glossary
-   16 print print + touch
+13 widget-twolane explorer lanes widget 3 + 5
+    14 widget-cache cache handshake widget 6
+    15 panels-callouts do-now/recap/self-check/recall + sources
+    16 pages home, listing, glossary
+    17 print print + touch
    ============================================================ */
 
 @import url("styles/tokens.css");
@@ -36,6 +37,7 @@
 @import url("styles/widget-ledger.css");
 @import url("styles/widget-statusline.css");
 @import url("styles/widget-twolane.css");
+@import url("styles/widget-cache.css");
 @import url("styles/panels-callouts.css");
 @import url("styles/pages.css");
 @import url("styles/print.css");

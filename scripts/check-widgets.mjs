@@ -23,7 +23,8 @@ const PAGES = [
   'lessons/0002-how-the-idea-got-lost.html',
   'lessons/0003-two-architectures-on-the-same-table.html',
   'lessons/0004-the-status-line-names-what-happened.html',
-  'lessons/0005-ask-without-harm-repeat-without-doubt.html'
+  'lessons/0005-ask-without-harm-repeat-without-doubt.html',
+  'lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html'
 ];
 
 const MIME = {
@@ -276,6 +277,23 @@ const WIDGETS = {
       await c.eval(`clickByText('.x-act', 'Deposit')`);
       const status = await c.eval(`document.querySelector('.x-status').textContent`);
       assert(status.includes('Deposit received'), 'experiment: control → status');
+    },
+    async (c) => {
+      const ev = (n) => `document.querySelectorAll('.loop-step')[${n}].dispatchEvent(new PointerEvent('pointerenter'))`;
+      const on = () => `document.querySelector('.loop-step.on .ls-t').textContent`;
+      await c.eval(`document.dispatchEvent(new PointerEvent('pointerdown')); document.querySelectorAll('.loop-step')[1].dispatchEvent(new PointerEvent('pointerenter'));`);
+      const on2 = await c.eval(on());
+      assert(on2 === 'Document', 'loop: pointer advances to Document', on2);
+      const cur2 = await c.eval(`document.getElementById('loop-beats').querySelector('.loop-beat.on') !== null`);
+      assert(cur2 === true, 'loop: beat indicator tracks the step');
+      const ac = await c.eval(`document.querySelector('.loop-step.on').getAttribute('aria-current')`);
+      assert(ac === 'step', 'loop: aria-current marks the active step', ac);
+      await c.eval(ev(1));
+      const cap = await c.eval(`document.querySelectorAll('.loop-step.on')[0] !== undefined`);
+      assert(cap === true, 'loop: pointer back to Document keeps one active');
+      await c.eval(ev(0));
+      const on3 = await c.eval(on());
+      assert(on3 === 'Request', 'loop: pointer returns to Request', on3);
     }
   ],
   'lessons/0002-how-the-idea-got-lost.html': [
@@ -305,6 +323,19 @@ const WIDGETS = {
       const nb = await c.eval(`document.getElementById('lane-b').textContent`);
       assert(na.includes('Apply the $10 credit'), 'explorer: night pass adds credit to A');
       assert(!nb.includes('Apply the $10 credit'), 'explorer: night pass leaves B without the move', nb.slice(0, 120));
+      await c.eval(`clickByText('#lane-a .x-act', 'Apply the $10 credit')`);
+      await c.eval(`sleepP(400)`);
+      const na2 = await c.eval(`document.getElementById('lane-a').textContent`);
+      assert(na2.includes('Balance: $50'), 'explorer: credit raises balance to 50', na2.slice(0, 80));
+      const nb2 = await c.eval(`document.getElementById('lane-b').textContent`);
+      assert(nb2.includes('"balance": 50'), 'explorer: B shows the new value', nb2.slice(0, 80));
+      await c.eval(`clickByText('#lane-a .x-act', 'Check the balance')`);
+      await c.eval(`sleepP(400)`);
+      const na3 = await c.eval(`document.getElementById('lane-a').textContent`);
+      assert(na3.includes('Balance: $50'), 'explorer: credit stays after later move', na3.slice(0, 80));
+      await c.eval(`document.getElementById('explorer-reset').click()`);
+      const na4 = await c.eval(`document.getElementById('lane-a-who').textContent`);
+      assert(na4.includes('Idle'), 'explorer: reset returns to idle', na4);
     }
   ],
   'lessons/0004-the-status-line-names-what-happened.html': [
@@ -358,6 +389,88 @@ const WIDGETS = {
       await c.eval(`document.getElementById('retry-reset').click()`);
       const sc2 = await c.eval(`document.getElementById('retry-score').textContent`);
       assert(sc2.includes('two moves, one connection'), 'retry: reset restores score');
+    },
+    async (c) => {
+      await c.eval(`clickByText('.kiosk-btn', 'Send: POST /account/4027/pay')`);
+      await c.eval(`sleepP(100)`);
+      await c.eval(`clickByText('.kiosk-btn', 'Send: PUT /profile/name')`);
+      await c.eval(`sleepP(1000)`);
+      const btnP = await c.eval(`document.getElementById('retry-log-post').textContent`);
+      const btnU = await c.eval(`document.getElementById('retry-log-put').textContent`);
+      assert(btnP.includes('connection lost') && btnU.includes('connection lost'),
+        'retry: interleaved lanes both lose connection', btnP + ' / ' + btnU);
+      await c.eval(`clickByText('#retry-keys .kiosk-btn', 'Retry the move')`);
+      await c.eval(`sleepP(800)`);
+      await c.eval(`clickByText('#retry-keys .kiosk-btn', 'Retry the move')`);
+      await c.eval(`sleepP(800)`);
+      const outA = await c.eval(`document.getElementById('retry-out-post').textContent`);
+      const outB = await c.eval(`document.getElementById('retry-out-put').textContent`);
+      assert(outA.includes('Two charges'), 'retry: interleaved POST doubles', outA);
+      assert(outB.includes('changed nothing'), 'retry: interleaved PUT keeps', outB);
+      await c.eval(`document.getElementById('retry-reset').click()`);
+    }
+  ],
+  'lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html': [
+    async (c) => {
+      // First fetch: no stored copy -> 200 with body and ETag v1
+      await c.eval(`document.getElementById('cache-fetch').click()`);
+      await c.eval(`sleepP(500)`);
+      const body1 = await c.eval(`document.getElementById('cache-client-body').textContent`);
+      assert(body1.includes('Wind 14'), 'cache: first fetch returns body');
+      const tag1 = await c.eval(`document.getElementById('cache-client-tag').textContent`);
+      assert(tag1.includes('v1'), 'cache: first fetch stores ETag v1');
+      const state1 = await c.eval(`document.getElementById('cache-state').textContent`);
+      assert(state1.includes('fresh'), 'cache: first fetch leaves copy fresh', state1);
+
+      // Second fetch: still fresh -> served from cache, no request
+      await c.eval(`document.getElementById('cache-fetch').click()`);
+      await c.eval(`sleepP(500)`);
+      const body2 = await c.eval(`document.getElementById('cache-client-body').textContent`);
+      assert(body2.includes('Wind 14'), 'cache: fresh fetch keeps the old copy');
+      const log2 = await c.eval(`[...document.querySelectorAll('#cache-log div')].map((d) => d.textContent).join(' ')`);
+      assert(log2.includes('served from cache'), 'cache: fresh fetch serves from cache');
+      const reqs2 = await c.eval(`[...document.querySelectorAll('#cache-log div.req')].length`);
+      assert(reqs2 === 1, 'cache: fresh fetch sends no request', String(reqs2));
+
+      // Let an hour pass: copy turns stale by age alone
+      await c.eval(`document.getElementById('cache-aging').click()`);
+      const state3 = await c.eval(`document.getElementById('cache-state').textContent`);
+      assert(state3.includes('stale'), 'cache: hour pass makes copy stale', state3);
+      const staleBox3 = await c.eval(`document.getElementById('cache-client-box').classList.contains('stale')`);
+      assert(staleBox3 === true, 'cache: stale box marked on age');
+
+      // Third fetch: stale + unchanged server -> 304, keeps copy, back to fresh
+      await c.eval(`document.getElementById('cache-fetch').click()`);
+      await c.eval(`sleepP(500)`);
+      const body3 = await c.eval(`document.getElementById('cache-client-body').textContent`);
+      assert(body3.includes('Wind 14'), 'cache: 304 keeps the old copy');
+      const log3 = await c.eval(`[...document.querySelectorAll('#cache-log div')].map((d) => d.textContent).join(' ')`);
+      assert(log3.includes('304'), 'cache: stale fetch returns 304');
+      const state3b = await c.eval(`document.getElementById('cache-state').textContent`);
+      assert(state3b.includes('fresh'), 'cache: 304 refreshes age to fresh', state3b);
+
+      // Let an hour pass again, then change server state
+      await c.eval(`document.getElementById('cache-aging').click()`);
+      await c.eval(`document.getElementById('cache-change').click()`);
+      const srvTag = await c.eval(`document.getElementById('server-tag').textContent`);
+      assert(srvTag.includes('v2'), 'cache: change rotates to v2');
+
+      // Fourth fetch: stale + mismatch -> 200 with new body
+      await c.eval(`document.getElementById('cache-fetch').click()`);
+      await c.eval(`sleepP(500)`);
+      const body4 = await c.eval(`document.getElementById('cache-client-body').textContent`);
+      assert(body4.includes('Rain'), 'cache: mismatched stale fetch gets v2 body');
+      const tag4 = await c.eval(`document.getElementById('cache-client-tag').textContent`);
+      assert(tag4.includes('v2'), 'cache: v2 body stored with tag v2');
+      const log4 = await c.eval(`[...document.querySelectorAll('#cache-log div')].map((d) => d.textContent).join(' ')`);
+      assert(log4.includes('200 OK'), 'cache: mismatch earns 200');
+
+      // Reset: clears state
+      await c.eval(`document.getElementById('cache-reset').click()`);
+      const tagReset = await c.eval(`document.getElementById('cache-client-tag').textContent`);
+      assert(tagReset.includes('no copy'), 'cache: reset clears stored copy');
+      const stateReset = await c.eval(`document.getElementById('cache-state').textContent`);
+      assert(stateReset.includes('no stored copy'), 'cache: reset resets state');
     }
   ]
 };

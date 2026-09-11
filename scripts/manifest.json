@@ -18,6 +18,7 @@
     "widget-ledger",
     "widget-statusline",
     "widget-twolane",
+    "widget-cache",
     "panels-callouts",
     "pages",
     "print"
@@ -28,7 +29,8 @@
     { "page": "lessons/0002-how-the-idea-got-lost.html", "file": "assets/js/widget-0002.js" },
     { "page": "lessons/0003-two-architectures-on-the-same-table.html", "file": "assets/js/widget-0003.js" },
     { "page": "lessons/0004-the-status-line-names-what-happened.html", "file": "assets/js/widget-0004.js" },
-    { "page": "lessons/0005-ask-without-harm-repeat-without-doubt.html", "file": "assets/js/widget-0005.js" }
+    { "page": "lessons/0005-ask-without-harm-repeat-without-doubt.html", "file": "assets/js/widget-0005.js" },
+    { "page": "lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html", "file": "assets/js/widget-0006.js" }
   ],
 
   "sharedScripts": [
@@ -76,7 +78,6 @@
   ],
 
   "state": {
-    "liveMax": 5,
-    "next": 6
+    "liveMax": 6
   }
 }

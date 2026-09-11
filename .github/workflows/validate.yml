@@ -24,7 +24,8 @@ jobs:
           lessons/0001-the-machine-that-prints-its-own-manual.html lessons/0002-how-the-idea-got-lost.html
           lessons/0003-two-architectures-on-the-same-table.html
           lessons/0004-the-status-line-names-what-happened.html
-          lessons/0005-ask-without-harm-repeat-without-doubt.html glossary.html
+          lessons/0005-ask-without-harm-repeat-without-doubt.html
+          lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html glossary.html
 
   js:
     name: Inline script check

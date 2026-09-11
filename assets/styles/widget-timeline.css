@@ -88,17 +88,9 @@
   padding: 0 0.2em;
 }
 
-.timeline-caption-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5em;
-}
-
-.timeline-replay {
-  font-family: var(--font-mono);
-  white-space: nowrap;
+.timeline li:hover .t-dot,
+.timeline li:focus-visible .t-dot {
+  background: var(--brand);
 }
 
 /* ---------- Section link (footer navigation, defined in footer.css) ---------- */

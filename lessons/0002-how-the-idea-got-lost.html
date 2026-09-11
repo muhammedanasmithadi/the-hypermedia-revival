@@ -25,7 +25,6 @@
 <link rel="stylesheet" href="../assets/styles.css">
 <link rel="preload" href="../assets/fonts/plexsans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plexsans-400i.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/plexsans-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -35,8 +34,8 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="../index.html" aria-label="Course home">Hypermedia</a>
-    <span class="cur-section" id="cur-section" aria-live="polite">Section 02 · How the idea got lost</span>
+    <a class="brand" href="../index.html" aria-label="Hypermedia: course home">Hypermedia</a>
+    <span class="cur-section" id="cur-section">Section 02 · How the idea got lost</span>
     <nav class="topnav" aria-label="Site">
       <a href="index.html">Sections</a>
       <a href="../glossary.html">Glossary</a>
@@ -44,13 +43,13 @@
   </div>
 </header>
 
-<main class="doc" id="top">
+<main class="doc" id="top" tabindex="-1">
 
 <div class="progress" id="progress" role="progressbar" aria-label="reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 
 <header class="masthead">
   <p class="post-date"><time datetime="2026-09">September 2026</time></p>
-  <h1>Hypermedia: the architecture <em>we forgot</em></h1>
+  <h1>Hypermedia: how the idea <em>got lost</em></h1>
   <p class="dek">The web shipped with facts and controls in one document. Then the
   industry spent a decade separating them. This section shows how the idea began,
   what replaced it, and what the separation cost.</p>
@@ -105,42 +104,42 @@
       <p class="widget-noscript">Static view: all beats are shown. Enable JavaScript to watch the years pass.</p>
     </noscript>
     <ol class="timeline">
-      <li>
+      <li tabindex="0">
         <span class="t-dot" aria-hidden="true"></span>
         <span class="t-body">
           <span class="t-year">1965</span>
           <span class="t-line"><strong>Nelson names it</strong><span class="t-note">Two words: hypertext, and the same idea with audio and video.</span></span>
         </span>
       </li>
-      <li>
+      <li tabindex="0">
         <span class="t-dot" aria-hidden="true"></span>
         <span class="t-body">
           <span class="t-year">1989</span>
           <span class="t-line"><strong>CERN proposes it</strong><span class="t-note">Linked documents, read by a client nobody owns.</span></span>
         </span>
       </li>
-      <li>
+      <li tabindex="0">
         <span class="t-dot" aria-hidden="true"></span>
         <span class="t-body">
           <span class="t-year">2000</span>
           <span class="t-line"><strong>REST gets a name</strong><span class="t-note">Fielding ties the pattern to the web in his dissertation.</span></span>
         </span>
       </li>
-      <li>
+      <li tabindex="0">
         <span class="t-dot" aria-hidden="true"></span>
         <span class="t-body">
           <span class="t-year">2005</span>
           <span class="t-line"><strong>The AJAX, Asynchronous JavaScript and XML, turn</strong><span class="t-note">Pages update in place; the word API replaces the word server.</span></span>
         </span>
       </li>
-      <li>
+      <li tabindex="0">
         <span class="t-dot" aria-hidden="true"></span>
         <span class="t-body">
           <span class="t-year">2007</span>
           <span class="t-line"><strong>The phone arrives</strong><span class="t-note">A screen in the pocket; its apps ship their own interface.</span></span>
         </span>
       </li>
-      <li>
+      <li tabindex="0">
         <span class="t-dot" aria-hidden="true"></span>
         <span class="t-body">
           <span class="t-year">2011</span>
@@ -148,11 +147,7 @@
         </span>
       </li>
     </ol>
-    <div class="timeline-caption-row">
-      <div class="timeline-caption" id="timeline-caption" aria-live="polite">As the years pass, a note under each entry names who held the next move.</div>
-      <button type="button" id="timeline-replay" class="kiosk-reset timeline-replay"
-        aria-label="Play the years again, one beat at a time.">Play again</button>
-    </div>
+    <div class="timeline-caption" id="timeline-caption" aria-live="polite">As the years pass, a note under each entry names who held the next move.</div>
   </div>
 
   <div class="do-now" role="note" aria-label="Try it now: track a shop's requests">

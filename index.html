@@ -26,7 +26,6 @@
 <link rel="stylesheet" href="assets/styles.css">
 <link rel="preload" href="assets/fonts/plexsans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/plexsans-400i.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/plexsans-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/plexmono-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -36,7 +35,7 @@
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#top" aria-label="Back to top">Hypermedia</a>
+    <a class="brand" href="#top" aria-label="Hypermedia: back to top">Hypermedia</a>
     <span class="cur-section">Hypermedia Course</span>
     <nav class="topnav" aria-label="Site">
       <a href="lessons/index.html">Sections</a>
@@ -45,7 +44,7 @@
   </div>
 </header>
 
-<main class="doc" id="top">
+<main class="doc" id="top" tabindex="-1">
 
 <header class="masthead">
   <p class="post-date"><time datetime="2026-09">September 2026</time></p>
@@ -65,7 +64,7 @@
     sizes="(min-width: 48rem) 44rem, 100vw"
     width="1200"
     height="630"
-    alt=""
+    alt="Hypermedia: the architecture we forgot. A cover illustration of linked documents across a network."
     decoding="async"
     fetchpriority="high">
 
@@ -115,20 +114,18 @@ browser.</p>
       <a class="card" href="lessons/0005-ask-without-harm-repeat-without-doubt.html">
         <span class="card-num">05</span>
         <span class="card-title">Ask without harm. Repeat without doubt.</span>
-        
         <span class="card-blurb">Sort HTTP methods by harm and repeatability, then replay a dropped connection.</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html">
+        <span class="card-num">06</span>
+        <span class="card-title">Keep the old copy. Ask if it is still good.</span>
+        <span class="card-blurb">Reuse a stored reply when you can, and ask the server if it is still good.</span>
       </a>
     </li>
   </ul>
 </nav>
-
-<p class="home-status"><span class="done">Done:</span> 01-05. <span class="soon">Coming:</span>
-06 · Keep the old copy. Ask if it is still good. (caching, validators, and the 304 handshake)</p>
-
-<h2 class="home-h2">Coming next</h2>
-<ul class="next-list">
-  <li>06 · Keep the old copy. Ask if it is still good.</li>
-</ul>
 
 </div>
 

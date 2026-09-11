@@ -110,10 +110,9 @@ if (writeMode) {
 
 // 5. Home status block.
 const home = read('index.html');
-eq(home.includes(`<span class="done">Done:</span> 01-${pad2(site.state.liveMax)}`), true, 'home Done range');
-eq(home.includes('Coming:'), true, 'home Coming marker');
-const next = site.sections.find((s) => s.num === site.state.next);
-eq(home.includes(`<li>${pad2(site.state.next)} · ${next.title}</li>`), true, 'home next list item');
+eq(home.includes('home-status'), false, 'home has no status block');
+eq(home.includes('Coming:'), false, 'home has no Coming marker');
+eq(home.includes('next-list'), false, 'home has no next list');
 
 // 6. Lessons index: byline + cards.
 const lessons = read('lessons/index.html');

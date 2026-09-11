@@ -15,6 +15,7 @@ const pages = [
   'lessons/0003-two-architectures-on-the-same-table.html',
   'lessons/0004-the-status-line-names-what-happened.html',
   'lessons/0005-ask-without-harm-repeat-without-doubt.html',
+  'lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html',
   'glossary.html'
 ];
 
@@ -25,7 +26,8 @@ const widgetFiles = [
   'assets/js/widget-0002.js',
   'assets/js/widget-0003.js',
   'assets/js/widget-0004.js',
-  'assets/js/widget-0005.js'
+  'assets/js/widget-0005.js',
+  'assets/js/widget-0006.js'
 ];
 
 const scriptRe = /<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g;
