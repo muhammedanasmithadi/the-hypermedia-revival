@@ -111,8 +111,11 @@
       <p>Open the developer tools and the Network tab. Reload this page. Click
       any request. Read its response headers. On many sites you will find
       <code>Cache-Control</code>, <code>ETag</code>, or a date that says how
-      long a copy may stay fresh. This page's host serves only a
-      <code>Last-Modified</code> date, which is a validator, not a lifetime.</p>
+      long a copy may stay fresh. Read this page's response headers. This deployment
+      sends <code>Cache-Control: max-age=600</code>, an <code>ETag</code>, and a
+      <code>Last-Modified</code> date. The cache control sets the lifetime: ten minutes.
+      <code>ETag</code> and <code>Last-Modified</code> are validators, not lifetimes.
+      The widget below runs a separate one-hour simulation.</p>
     </div>
   </div>
 

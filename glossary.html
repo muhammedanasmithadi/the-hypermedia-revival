@@ -96,8 +96,9 @@
   </dd>
 
   <dt id="status-404">404, Not Found</dt>
-  <dd>The reply the server sends when no document matches the URL. It names a
-    permanent absence, so the browser can cache it long.
+  <dd>The reply the server sends when no current representation matches the URL. It does
+    not say whether the absence is temporary or permanent. A server uses 410 when it
+    knows the absence is permanent.
     <a class="gl-term-link" href="lessons/0004-the-status-line-names-what-happened.html#name-the-five-classes">Learned in Section 04</a>
   </dd>
 

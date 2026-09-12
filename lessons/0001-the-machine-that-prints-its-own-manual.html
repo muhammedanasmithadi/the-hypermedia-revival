@@ -256,7 +256,8 @@
 
   <div class="prose">
     <p>The Network tab you opened earlier listed this page as one request. The browser
-    built that request the moment you opened the page. Here is the line it sent:</p>
+    built that request the moment you opened the page. Here is the line it sent, in the
+    HTTP/1.1 wire format:</p>
   </div>
 
   <figure class="code-block reveal">
@@ -267,7 +268,9 @@ Host: muhammedanasmithadi.github.io</code></pre>
 
   <div class="prose">
     <p>GET says one word: ask for. It asks the host for the document at the path. That
-    line is the first step of the loop, written down.</p>
+    line is the first step of the loop, written down. Some sites now speak HTTP/2,
+    which sends the method and path as pseudo-fields, not as a text line. This course
+    prints HTTP/1.1 wire text because it reads clearly by hand.</p>
   </div>
 
   <div class="prose">

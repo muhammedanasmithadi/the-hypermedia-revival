@@ -66,6 +66,14 @@ bun run scripts/check-widgets.mjs
 
 The same checks run in CI on every push and pull request to `main`.
 
+## Report a problem
+
+Found an error, a broken interaction, or a claim that does not match the RFCs? Open an
+issue at <https://github.com/muhammedanasmithadi/the-hypermedia-revival/issues>.
+
+Pull requests for fixes are welcome. Before you open one, run the checks under Verify
+and follow the writing rules in `STYLE.md`.
+
 ## Docs
 
 - `STYLE.md` : writing style and teaching method.

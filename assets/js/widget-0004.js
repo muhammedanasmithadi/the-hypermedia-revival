@@ -135,6 +135,6 @@ if (root) {
 
   buildRules();
   reset.addEventListener('click', idle);
-  offer.addEventListener('click', () => { pick(0); });
+  offer.addEventListener('click', () => { pick(0); keyFor(0).focus(); });
   idle();
 }

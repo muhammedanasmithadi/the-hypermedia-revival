@@ -17,6 +17,11 @@ if (root) {
   let creditDone = false;
   let seq = 0;
 
+  const focusSuccessor = () => {
+    const next = laneA.querySelector('button[data-act="credit"]') || laneA.querySelector('.x-act');
+    if (next) next.focus();
+  };
+
   const MOVES = [
     { v: 'Check the balance', act: 'balance' },
     { v: 'Pay the bill', act: 'pay' },
@@ -96,6 +101,7 @@ if (root) {
       night.hidden = true;
       setNight();
       note.textContent = 'A night passed. A $10 credit became legal. Building A shipped it in the reply; Building B waits for a release.';
+      focusSuccessor();
       return;
     }
     if (phase === 'night') {
@@ -103,15 +109,18 @@ if (root) {
         if (creditDone) {
           setNight();
           note.textContent = 'The credit is already in the balance.';
+          focusSuccessor();
           return;
         }
         bal = 50;
         creditDone = true;
         setNight();
         note.textContent = 'The $10 credit applied. Balance is now $50, named in the reply.';
+        focusSuccessor();
         return;
       }
       setNight();
+      focusSuccessor();
       return;
     }
     if (phase === 'idle') {

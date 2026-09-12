@@ -68,8 +68,9 @@
     <p class="lede"><a href="0001-the-machine-that-prints-its-own-manual.html#watch-the-loop">Section 01</a> ran one flow:
     request, document, choice, next document. <a href="0003-two-architectures-on-the-same-table.html">Section 03</a>
     put two flows on one table. Every reply carried a verdict, and the page read it and moved on.
-    This section names the first line of every reply: the status line. The line opens with the
-    protocol version, then the three-digit code, then a short reason phrase.</p>
+    This section names the first line of an HTTP/1.1 reply: the status line. The line opens
+    with the protocol version, then the three-digit code, then a short reason phrase.
+    HTTP/2 carries only the code, in a pseudo-field named <code>:status</code>.</p>
 
     <details class="recall">
       <summary>Before you read on, what did the terminal say when you asked it for $50 it did not hold?</summary>
@@ -80,7 +81,7 @@
     <h3 id="read-the-verdict"><a href="#read-the-verdict" class="hanchor">Read the verdict</a>
     </h3>
 
-    <p>Every HTTP, Hypertext Transfer Protocol, reply opens with one line you can read before the
+    <p>Every HTTP/1.1 reply opens with one line you can read before the
     body: the status line. The three-digit code sits between the version and the reason phrase.
     Without those digits, a reply could be a page, a refusal, or a broken server,
     and you would not know which.</p>
@@ -110,10 +111,10 @@
     </div>
   </div>
 
-  <div class="do-now" role="note" aria-label="Try it now: read the status line of this page">
+  <div class="do-now" role="note" aria-label="Try it now: read the status code of this page">
     <p class="dn-kicker">Try it now</p>
     <p>Open DevTools with <kbd>Ctrl+Shift+I</kbd> (or <kbd>Cmd+Option+I</kbd>), reload, and read
-    the Network tab. Find the request for this page and read its status line: 200. Change the address
+    the Network tab. Find the request for this page and read its status code: 200. Change the address
     to a page the course does not ship, such as <code>0009-does-not-exist.html</code>. The next
     reply arrives with 404. The class tells you what happened before the body does.</p>
   </div>
