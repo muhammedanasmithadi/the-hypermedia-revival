@@ -230,6 +230,13 @@ h3[id]:target {
   color: inherit;
 }
 
+@media (max-width: 47.99rem) {
+  .code-block pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}
+
 .tok-k { color: #7aa2ff; }
 .tok-s { color: #9ece6a; }
 .tok-a { color: #c792ea; }
