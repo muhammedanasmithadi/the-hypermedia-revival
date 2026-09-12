@@ -73,7 +73,7 @@
 
 .loop-beat {
   width: 0.7em;
-  height: 0.7em;
+  aspect-ratio: 1;
   border-radius: 50%;
   border: 1px solid var(--soft-dark);
   background: transparent;

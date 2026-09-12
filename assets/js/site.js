@@ -47,9 +47,9 @@ if (progress && cur) {
 }
 
 const els = document.querySelectorAll('.reveal');
-const show = (el) => { el.inert = false; el.classList.add('in'); };
+const show = (el) => { el.classList.add('in'); };
 if (!('IntersectionObserver' in window) ||
-    (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false)) {
   els.forEach(show);
 } else {
   const obs = new IntersectionObserver((entries) => {
@@ -60,7 +60,11 @@ if (!('IntersectionObserver' in window) ||
       }
     });
   }, { threshold: 0 });
-  els.forEach((el) => { el.classList.add('will-reveal'); el.inert = true; obs.observe(el); });
+  els.forEach((el) => { el.classList.add('will-reveal'); obs.observe(el); });
+  document.addEventListener('focusin', (e) => {
+    const el = e.target.closest('.reveal');
+    if (el && !el.classList.contains('in')) show(el);
+  });
 }
 
 export function sleep(ms) {
@@ -74,7 +78,7 @@ export function createTicker(options) {
     onStep
   } = options;
   if (!widget) return null;
-  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
   if (reduced) return null;
 
   let timer = null;

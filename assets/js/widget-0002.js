@@ -17,9 +17,9 @@ if (widget && cap) {
   const REST = 'As the years pass, a note under each entry names who held the next move.';
   let i = -1;
 
+  const nodes = widget.querySelectorAll('li');
   const render = (idx) => {
     const n = idx === undefined ? i : idx;
-    const nodes = widget.querySelectorAll('li');
     nodes.forEach((node, k) => {
       node.classList.toggle('on', k === n);
       if (k === n) node.setAttribute('aria-current', 'step');
@@ -37,7 +37,7 @@ if (widget && cap) {
     }
   });
 
-  widget.querySelectorAll('li').forEach((node, n) => {
+  nodes.forEach((node, n) => {
     node.addEventListener('pointerenter', () => { i = n; render(); });
     node.addEventListener('focusin', () => { i = n; render(); });
   });

@@ -11,7 +11,7 @@ if (root) {
   const note = document.getElementById('explorer-note');
   const night = document.getElementById('explorer-night');
   const reset = document.getElementById('explorer-reset');
-  const acts = Array.from(root.querySelectorAll('.explorer-act'));
+  const acts = [...root.querySelectorAll('.explorer-act')];
   let phase = 'idle';
   let bal = 40;
   let creditDone = false;
@@ -36,7 +36,7 @@ if (root) {
 
   const bindLaneA = () => {
     laneA.querySelectorAll('button[data-act]').forEach((b) => {
-      b.addEventListener('click', () => { act(b.getAttribute('data-act')); });
+      b.addEventListener('click', () => { act(b.dataset.act); });
     });
   };
 
@@ -140,7 +140,7 @@ if (root) {
   };
 
   acts.forEach((b) => {
-    b.addEventListener('click', () => { act(b.getAttribute('data-act')); });
+    b.addEventListener('click', () => { act(b.dataset.act); });
   });
   night.addEventListener('click', () => { act('night'); });
   reset.addEventListener('click', idle);

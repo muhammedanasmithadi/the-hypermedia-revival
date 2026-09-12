@@ -34,7 +34,7 @@ if (root) {
       return `<button type="button" class="x-mode-btn verdict-rule" data-class="${c[0]}">${c}</button>`;
     }).join('');
     rules.querySelectorAll('.verdict-rule').forEach((b) => {
-      b.addEventListener('click', () => { choose(b.getAttribute('data-class')); });
+      b.addEventListener('click', () => { choose(b.dataset.class); });
     });
   };
 

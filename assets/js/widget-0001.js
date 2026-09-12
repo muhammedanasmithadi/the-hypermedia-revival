@@ -156,7 +156,7 @@ const exp = document.getElementById('exp');
 if (exp) {
   const body = document.getElementById('x-body');
   const note = document.getElementById('x-reqnote');
-  const btns = Array.from(document.querySelectorAll('.x-mode-btn'));
+  const btns = [...document.querySelectorAll('.x-mode-btn')];
   let mode = 'json';
   let seq = 0;
 
@@ -180,7 +180,7 @@ if (exp) {
     scope.querySelectorAll('.x-act').forEach((b) => {
       b.addEventListener('click', () => {
         b.closest('.x-doc').querySelector('.x-status').textContent =
-          `${b.getAttribute('data-act')} received · the server renders the next document`;
+          `${b.dataset.act} received · the server renders the next document`;
       });
     });
   };
@@ -215,7 +215,7 @@ if (exp) {
         x.classList.toggle('on', x === b);
         x.setAttribute('aria-pressed', String(x === b));
       });
-      mode = b.getAttribute('data-mode');
+      mode = b.dataset.mode;
       send();
     });
   });
