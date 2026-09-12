@@ -17,7 +17,7 @@ browser. No build step, no dependencies, no framework.
 
 ## Site structure
 
-- `index.html` : course home.
+- `index.html` : home.
 - `lessons/index.html` : section list.
 - `lessons/NNNN-<slug>.html` : the sections, in order; `<slug>` matches the manifest slug.
 - `assets/styles.css` : the one stylesheet every page includes; it imports the modules below.

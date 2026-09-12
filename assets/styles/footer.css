@@ -29,7 +29,7 @@
   text-align: center;
   font-size: 0.9em;
   color: var(--soft-dark);
-  padding: 1em 0 2em 0;
+  padding-block: 1em 2em;
 }
 
 .doc-footer .closing {
@@ -41,32 +41,35 @@
 
 .doc-footer .foot-nav {
   display: flex;
+  flex-direction: column;
   align-items: stretch;
-  gap: 0.75em;
+  gap: 0.5em;
   max-width: var(--col-max);
   margin: 0 auto;
 }
 
-@media (max-width: 640px) {
-  .doc-footer .foot-nav {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .doc-footer .foot-nav .section-link {
-    flex: 1 1 auto;
-  }
-}
-
 .doc-footer .foot-nav .section-link {
-  flex: 1 1 0;
+  flex: 0 0 auto;
+  width: 100%;
   min-width: 0;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  overflow-wrap: normal;
+  gap: 0.5em;
+}
+
+.doc-footer .foot-nav .section-link.foot-home {
   justify-content: center;
   text-align: center;
-  overflow-wrap: anywhere;
-  gap: 0.45em;
+}
+
+.doc-footer .foot-num {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--ink-light);
 }
 
 .doc-footer .foot-left::before,
@@ -101,6 +104,7 @@
 }
 
 .doc-footer .foot-right::after {
+  margin-left: auto;
   -webkit-mask: var(--icon-arrow-right) var(--icon-mask);
   mask: var(--icon-arrow-right) var(--icon-mask);
 }
