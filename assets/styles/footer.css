@@ -47,6 +47,17 @@
   margin: 0 auto;
 }
 
+@media (max-width: 640px) {
+  .doc-footer .foot-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .doc-footer .foot-nav .section-link {
+    flex: 1 1 auto;
+  }
+}
+
 .doc-footer .foot-nav .section-link {
   flex: 1 1 0;
   min-width: 0;
