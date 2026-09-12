@@ -307,6 +307,13 @@ const WIDGETS = {
       await c.eval(`clickByText('.ledger-col-name', 'Necessity')`);
       const p1 = await c.eval(`document.querySelector('.ledger-result').textContent`);
       assert(p1.includes('Placed in Necessity'), 'ledger02: place chip', p1);
+    },
+    async (c) => {
+      await c.eval(`document.dispatchEvent(new PointerEvent('pointerdown')); document.querySelectorAll('.timeline li')[2].dispatchEvent(new PointerEvent('pointerenter'));`);
+      const on = await c.eval(`document.querySelector('.timeline li.on') ? document.querySelector('.timeline li.on .t-line strong').textContent : ''`);
+      assert(on === 'REST gets a name', 'timeline: pointer advances the active step', on);
+      const cur = await c.eval(`document.querySelector('.timeline li.on').getAttribute('aria-current')`);
+      assert(cur === 'step', 'timeline: active step carries aria-current', String(cur));
     }
   ],
   'lessons/0003-two-architectures-on-the-same-table.html': [
@@ -352,6 +359,23 @@ const WIDGETS = {
       assert(/You named 2xx/.test(n2), 'verdict: wrong class', n2);
       const s2 = await c.eval(`document.getElementById('verdict-score') ? document.getElementById('verdict-score').textContent : ''`);
       assert(s2.includes('1 of 7'), 'verdict: score holds');
+
+      // 303 See Other flow: POST + 3xx naming, offer offered only on 404
+      await c.eval(`clickByText('.verdict-key', 'POST /account/4027/leave')`);
+      await c.eval(`clickByText('.verdict-rule', '3xx')`);
+      const n3 = await c.eval(`document.getElementById('verdict-line').textContent`);
+      assert(n3.includes('303 See Other'), 'verdict: 303 named on the line', n3);
+      const st3 = await c.eval(`document.getElementById('verdict-state').textContent`);
+      assert(st3.includes('3xx'), 'verdict: 303 class named in state', st3);
+      const off1 = await c.eval(`document.getElementById('verdict-offer').hidden`);
+      assert(off1 === true, 'verdict: offer hidden for non-404', String(off1));
+      await c.eval(`clickByText('.verdict-key', 'GET /account/4042')`);
+      await c.eval(`clickByText('.verdict-rule', '4xx')`);
+      const off2 = await c.eval(`document.getElementById('verdict-offer').hidden`);
+      assert(off2 === false, 'verdict: offer shown for 404', String(off2));
+      await c.eval(`document.getElementById('verdict-offer').click()`);
+      const act = await c.eval(`document.querySelector('.verdict-key.active-key').textContent`);
+      assert(act.includes('GET /account/4027'), 'verdict: offer loads the offered request', act);
     }
   ],
   'lessons/0005-ask-without-harm-repeat-without-doubt.html': [
