@@ -9,8 +9,9 @@ if (progress && cur) {
   const onScroll = () => {
     const h = doc.scrollHeight - window.innerHeight;
     const p = h > 0 ? doc.scrollTop / h : 0;
-    progress.style.width = `${(p * 100).toFixed(1)}%`;
-    progress.setAttribute('aria-valuenow', (p * 100).toFixed(1));
+    const pct = (p * 100).toFixed(1);
+    progress.style.setProperty('--progress', `${pct}%`);
+    progress.setAttribute('aria-valuenow', pct);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
