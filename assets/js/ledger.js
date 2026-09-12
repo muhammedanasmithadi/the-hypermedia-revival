@@ -118,7 +118,7 @@ export function createLedger(root, config) {
 
   cols.forEach((col) => {
     col.setAttribute('tabindex', '0');
-    col.setAttribute('role', 'button');
+    col.setAttribute('role', 'group');
     col.setAttribute('aria-label', `Place the selected card in the ${col.querySelector('.ledger-col-name').textContent} row`);
     col.addEventListener('click', () => { placeInto(col); });
     col.addEventListener('keydown', (e) => {
@@ -192,6 +192,8 @@ export function createLedger(root, config) {
       advance.hidden = true;
       setPhase(phaseIdx + 1);
       render();
+      const first = pool.querySelector('.chip');
+      if (first) first.focus();
     });
   }
 
@@ -199,6 +201,8 @@ export function createLedger(root, config) {
     if (advance) advance.hidden = true;
     setPhase(0);
     render();
+    const first = pool.querySelector('.chip');
+    if (first) first.focus();
   });
 
   setPhase(0);

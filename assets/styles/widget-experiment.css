@@ -125,6 +125,7 @@
 
 .x-doc .x-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5em;
   margin-top: 0.9em;
 }
