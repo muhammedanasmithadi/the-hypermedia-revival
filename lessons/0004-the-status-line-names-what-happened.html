@@ -50,7 +50,7 @@
 <header class="masthead">
   <p class="post-date"><time datetime="2026-09">September 2026</time></p>
   <h1>Hypermedia: the three digits <em>that name what happened</em></h1>
-  <p class="dek">Every reply opens with three digits that say what happened. This section reads
+  <p class="dek">Every reply carries three digits that say what happened. This section reads
   the status line as a verdict, and names the five classes it answers to.</p>
 </header>
 
@@ -83,8 +83,8 @@
 
     <p>Every HTTP/1.1 reply opens with one line you can read before the
     body: the status line. The three-digit code sits between the version and the reason phrase.
-    Without those digits, a reply could be a page, a refusal, or a broken server,
-    and you would not know which.</p>
+    Without those digits, a reply could be a page, a refusal, or a broken server.
+    You would not know which.</p>
 
     <p>The station below holds seven requests. Read a request line, say which class answers, and the
     station reads the verdict. You do not need the header lines yet.</p>
@@ -140,7 +140,7 @@
     4xx means the request fell because of the request itself. 5xx means the server fell before it
     could answer.</p>
 
-    <p>One class answers to one client rule, and a generic browser acts on the class without knowing each
+    <p>One class answers to one client rule. A generic browser acts on the class without knowing each
     code by heart. The page you are reading did not parse a dictionary of codes. It branched on the
     first digit.</p>
 
@@ -151,7 +151,8 @@
     <h3 id="meet-the-codes-that-matter"><a href="#meet-the-codes-that-matter" class="hanchor">Meet the codes that matter</a>
     </h3>
 
-    <p>The kiosk in Section 01 answered with one page for each move, and its bank would answer the same requests with codes
+    <p>The kiosk in Section 01 answered with one page for each move. Its bank would answer the
+    same requests with codes
     too. Seven codes carry almost every reply you will read:</p>
 
     <p><code>200 OK</code> carries a full document, and every balance page in the kiosk earned that verdict.
@@ -177,8 +178,8 @@
 
     <p>Both replies in that table were 200. The verdict does not say where the manual lives. It says
     the request worked. <a href="0002-how-the-idea-got-lost.html#weigh-the-reasons">Section 02</a>
-    named the cost of the JSON decade. The status line stays the same on both sides of that table;
-    the body is where the moves live or leave.</p>
+    named the cost of the JSON decade. The status line stays the same on both sides of that table.
+    The body is where the moves live or leave.</p>
 
     <p>Here is the bridge this section builds: the status line names what happened, and the document
     names what comes next. 404 earns its place because each URI is its own state. Ask for a URI the

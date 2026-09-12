@@ -84,8 +84,9 @@
     <a class="gl-term-link" href="lessons/0001-the-machine-that-prints-its-own-manual.html#name-the-pattern">Learned in Section 01</a>
   </dd>
 <dt id="status-line">Status line</dt>
-  <dd>The first line of every HTTP reply. It carries the three-digit code and the
-    reason phrase that name what happened.
+  <dd>The first line of an HTTP/1.1 reply. It carries the three-digit code and
+    the reason phrase that name what happened. HTTP/2 carries only the code,
+    in a <code>:status</code> pseudo-field.
     <a class="gl-term-link" href="lessons/0004-the-status-line-names-what-happened.html#name-the-five-classes">Learned in Section 04</a>
   </dd>
 
@@ -104,7 +105,7 @@
 
   <dt id="status-500">500, Internal Server Error</dt>
   <dd>The reply the server sends when the request is fine but the server itself
-    failed. The client can safely repeat the request later.
+    failed. The client can safely repeat a safe request later.
     <a class="gl-term-link" href="lessons/0004-the-status-line-names-what-happened.html#name-the-five-classes">Learned in Section 04</a>
   </dd>
 

@@ -87,7 +87,7 @@
     equivalent requests.</p>
 
     <p>Your browser runs a cache for you. It stores reply bodies after a safe
-    request. The URI labels which replies match, so a later request to the same
+    request. The URI labels which replies match. A later request to the same
     URI may fetch the stored copy rather than the network.</p>
 
     <p>Caching works because each URI is its own state. The server keeps no
@@ -102,9 +102,9 @@
     cacheable, but control data may override the label.</p>
 
     <p>RFC 9110 refines that rule. A GET or HEAD answer is cacheable by default.
-    A POST answer joins the cache only when the reply names the stored copy in a
-    <code>Content-Location</code> header and proves its own freshness with a date
-    or seconds. A PUT, DELETE, or OPTIONS answer stays out of the cache.</p>
+    A POST answer joins the cache only when the reply meets two conditions. The reply names
+    the stored copy in a <code>Content-Location</code> header. It proves its own freshness
+    with a date or seconds. A PUT, DELETE, or OPTIONS answer stays out of the cache.</p>
 
     <div class="do-now" role="note" aria-label="Try it now: read the response headers of this page">
       <p class="dn-kicker">Try it now</p>
@@ -139,8 +139,8 @@
 
     <p>A stale copy does not die. The cache keeps it and asks the server: is
     this copy still good? RFC 9110 calls the answer mechanism a validator. The
-    two most common validators are an entity tag (ETag), a fingerprint the server
-    sets, and a date from <code>Last-Modified</code>.</p>
+    two most common validators are an entity tag and a date. The tag, an ETag, is
+    a fingerprint the server sets. The date comes from <code>Last-Modified</code>.</p>
 
     <p>The cache sends the fingerprint back in a conditional header.
     <code>If-None-Match</code> carries the ETag. <code>If-Modified-Since</code>
@@ -170,7 +170,7 @@
             <span class="cache-lbl">your browser holds</span>
             <span class="cache-doc-tag" id="cache-client-tag">no copy</span>
           </div>
-          <p class="cache-box-body" id="cache-client-body">&mdash;</p>
+          <p class="cache-box-body" id="cache-client-body">none</p>
         </div>
       </div>
       <div class="cache-log" id="cache-log" aria-live="polite"></div>
@@ -205,9 +205,9 @@
     section adds the store-and-ask handshake. Together they make a page that
     stays fast while it stays correct.</p>
 
-    <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>,
-    by Carson Gross, Adam Stepinski, and Deniz Akşimşek, traces the same
-    constraints from a builder&rsquo;s view.</p>
+    <p>The companion book <a href="https://hypermedia.systems" rel="noopener">hypermedia.systems</a>
+    traces the same constraints from a builder&rsquo;s view. Its authors are
+    Carson Gross, Adam Stepinski, and Deniz Akşimşek.</p>
 
     <section class="sources">
       <h3 id="sources"><a href="#sources" class="hanchor">Sources</a>

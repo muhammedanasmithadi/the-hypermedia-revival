@@ -104,8 +104,8 @@
   <div class="prose">
     <p>The terminal holds the rules. You do not. It shows cash-out options only after
     it knows your balance. Deposit ten dollars, and the menu changes; an option it
-    refused before now appears. The terminal prints its own manual one screen at a time,
-    and it prints each page only when you can act on it.</p>
+    refused before now appears. The terminal prints its own manual one screen at a time. It prints each page
+    only when you can act on it.</p>
 
     <p>Keep this as the first rule of the course: operate the machine before you
     define it. You have run the machine. Wait until the definition. It reads faster after
@@ -116,7 +116,7 @@
     facts and the actions in one body: the balance and the buttons.</p>
 
     <p>You might wonder why the machine keeps its options hidden. It hides them
-    because the state decides what you may do: a balance of forty dollars has no fifty
+    because the state decides what you may do. A balance of forty dollars has no fifty
     dollar rule. The same logic now travels across a network.</p>
 
     <h3 id="choose-a-reply"><a href="#choose-a-reply" class="hanchor">Choose a reply</a>
@@ -172,8 +172,8 @@
     </h3>
 
     <p>Define the term once, while both replies stay on screen. A hypermedia
-    system sends <strong>information and controls together, in one document</strong>, so
-    the document teaches you what to do through the buttons it carries. The controls
+    system sends <strong>information and controls together, in one document</strong>.
+    The document teaches you what to do through the buttons it carries. The controls
     are links, buttons, and forms. The industry calls controls that drive the
     application forward HATEOAS: hypermedia as the engine of application state.</p>
 
@@ -184,7 +184,8 @@
     What matters is the shape: the controls ride with the facts.</p>
 
     <p>Now consider the other reply, the raw JSON, JavaScript Object Notation, reply that carries one
-    fact and no controls. To use it, the <em>client</em> must already know the moves, from a
+    fact and no controls. To use it, the <em>client</em> must already know the moves.
+    The moves come from a
     spec or from a conversation no one wrote down. The manual has moved off the document and
     into the receiving code. It stays there until someone changes the code.</p>
 
@@ -202,8 +203,8 @@
     described it in his doctoral dissertation in 2000, and again in 2008. By then the
     industry had borrowed his word REST, Representational State Transfer, and attached it to a different machine.</p>
 
-    <p>Here is his definition, in his own words, and you've already performed it twice: in the
-    terminal, and in the experiment.</p>
+    <p>Here is his definition, in his own words. You have already performed it twice,
+    in the terminal, and in the experiment.</p>
   </div>
 
   <figure class="figure-quote reveal" aria-label="Quote from Roy Fielding">
@@ -269,7 +270,8 @@ Host: muhammedanasmithadi.github.io</code></pre>
   <div class="prose">
     <p>GET says one word: ask for. It asks the host for the document at the path. That
     line is the first step of the loop, written down. Some sites now speak HTTP/2,
-    which sends the method and path as pseudo-fields, not as a text line. This course
+    which sends the method and path as pseudo-fields named <code>:method</code> and <code>:path</code>,
+    not as a text line. This course
     prints HTTP/1.1 wire text because it reads clearly by hand.</p>
   </div>
 
