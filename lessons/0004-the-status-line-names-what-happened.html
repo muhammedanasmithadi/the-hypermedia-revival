@@ -86,7 +86,7 @@
     Without those digits, a reply could be a page, a refusal, or a broken server.
     You would not know which.</p>
 
-    <p>The station below holds seven requests. Read a request line, say which class answers, and the
+    <p>The station below holds eight requests. Read a request line, say which class answers, and the
     station reads the verdict. You do not need the header lines yet.</p>
   </div>
 
@@ -98,14 +98,14 @@
     </div>
     <div class="kiosk-screen">
       <div class="k-title" id="verdict-title">the server names what happened</div>
-      <div class="k-msg" id="verdict-msg">Seven requests wait on the wire. The station reads one and hears the class you name.</div>
+      <div class="k-msg" id="verdict-msg">Eight requests wait on the wire. The station reads one and hears the class you name.</div>
       <p class="verdict-line" id="verdict-line"></p>
       <p class="verdict-rules" id="verdict-rules" role="group" aria-label="name the class you expect"></p>
       <div class="k-note" id="verdict-note" aria-live="polite"></div>
     </div>
     <div class="kiosk-keys" id="verdict-keys"></div>
     <div class="kiosk-meta">
-      <span class="kiosk-balance" id="verdict-score" aria-live="polite">you named 0 of 7</span>
+      <span class="kiosk-balance" id="verdict-score" aria-live="polite">you named 0 of 8</span>
       <button class="verdict-offer" type="button" id="verdict-offer" hidden>Load /account/4027</button>
       <button class="kiosk-reset" type="button" id="verdict-reset">Start over</button>
     </div>
@@ -153,9 +153,11 @@
 
     <p>The kiosk in Section 01 answered with one page for each move. Its bank would answer the
     same requests with codes
-    too. Seven codes carry almost every reply you will read:</p>
+    too. Eight codes carry almost every reply you will read:</p>
 
-    <p><code>200 OK</code> carries a full document, and every balance page in the kiosk earned that verdict.
+    <p><code>103 Early Hints</code> says the server sent a preview while it worked. The real
+    verdict follows in a second reply.
+    <code>200 OK</code> carries a full document, and every balance page in the kiosk earned that verdict.
     <code>201 Created</code> says a move made a new resource. Open a new account and the reply names it.
     <code>204 No Content</code> says the state changed and the reply carries no body. A payment lands,
     and the balance page does not need to come again.</p>

@@ -351,14 +351,14 @@ const WIDGETS = {
       await c.eval(`clickByText('.verdict-rule', '2xx')`);
       const n1 = await c.eval(`document.getElementById('verdict-note') ? document.getElementById('verdict-note').textContent : ''`);
       const s1 = await c.eval(`document.getElementById('verdict-score') ? document.getElementById('verdict-score').textContent : ''`);
-      assert(n1.includes('The reply carries the balance') && s1.includes('1 of 7'),
+      assert(n1.includes('The reply carries the balance') && s1.includes('1 of 8'),
         'verdict: correct class', n1 + ' | ' + s1);
       await c.eval(`clickByText('.verdict-key', 'GET /account/4042')`);
       await c.eval(`clickByText('.verdict-rule', '2xx')`);
       const n2 = await c.eval(`document.getElementById('verdict-note') ? document.getElementById('verdict-note').textContent : ''`);
       assert(/You named 2xx/.test(n2), 'verdict: wrong class', n2);
       const s2 = await c.eval(`document.getElementById('verdict-score') ? document.getElementById('verdict-score').textContent : ''`);
-      assert(s2.includes('1 of 7'), 'verdict: score holds');
+      assert(s2.includes('1 of 8'), 'verdict: score holds');
 
       // 303 See Other flow: POST + 3xx naming, offer offered only on 404
       await c.eval(`clickByText('.verdict-key', 'POST /account/4027/leave')`);
@@ -376,6 +376,22 @@ const WIDGETS = {
       await c.eval(`document.getElementById('verdict-offer').click()`);
       const act = await c.eval(`document.querySelector('.verdict-key.active-key').textContent`);
       assert(act.includes('GET /account/4027'), 'verdict: offer loads the offered request', act);
+
+      // 103 Early Hints: the 1xx class is offered and names the preview
+      await c.eval(`clickByText('.verdict-key', 'GET /account/4027/hints')`);
+      await c.eval(`clickByText('.verdict-rule', '1xx')`);
+      const n4 = await c.eval(`document.getElementById('verdict-line').textContent`);
+      assert(n4.includes('103 Early Hints'), 'verdict: 103 named on the line', n4);
+      const st4 = await c.eval(`document.getElementById('verdict-state').textContent`);
+      assert(st4.includes('1xx'), 'verdict: 1xx class named in state', st4);
+      const lit = await c.eval(`[...document.querySelectorAll('.verdict-rule.on')].map((x) => x.textContent)`);
+      assert(lit.length === 1 && lit[0] === '1xx', 'verdict: named class button lights up', JSON.stringify(lit));
+      await c.eval(`clickByText('.verdict-key', 'GET /account/4027')`);
+      const lit2 = await c.eval(`[...document.querySelectorAll('.verdict-rule.on')].map((x) => x.textContent)`);
+      assert(lit2.length === 0, 'verdict: new request clears the named class', JSON.stringify(lit2));
+      await c.eval(`document.getElementById('verdict-reset').click()`);
+      const s3 = await c.eval(`document.getElementById('verdict-score').textContent`);
+      assert(s3.includes('0 of 8'), 'verdict: reset zeroes the score', s3);
     }
   ],
   'lessons/0005-ask-without-harm-repeat-without-doubt.html': [

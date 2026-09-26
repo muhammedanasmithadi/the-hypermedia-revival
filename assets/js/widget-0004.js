@@ -20,10 +20,11 @@ if (root) {
     { req: 'POST /account/4027/leave', code: 303, reason: 'See Other', kind: 'look elsewhere', line: 'The answer lives at another URI. The client follows it.' },
     { req: 'GET /account/4027 (stored copy)', code: 304, reason: 'Not Modified', kind: 'keep your stored copy', line: 'Your stored copy is still good. The client keeps it.' },
     { req: 'GET /account/4042', code: 404, reason: 'Not Found', kind: 'the client erred', line: 'The server state holds no such account.' },
-    { req: 'GET /account/4027/statement', code: 500, reason: 'Internal Server Error', kind: 'the server erred', line: 'The server broke before it answered.' }
+    { req: 'GET /account/4027/statement', code: 500, reason: 'Internal Server Error', kind: 'the server erred', line: 'The server broke before it answered.' },
+    { req: 'GET /account/4027/hints', code: 103, reason: 'Early Hints', kind: 'a preview, not the verdict', line: 'The server sent a preview. The real verdict follows in a second reply.' }
   ];
 
-  const CLASSES = ['2xx', '3xx', '4xx', '5xx'];
+  const CLASSES = ['1xx', '2xx', '3xx', '4xx', '5xx'];
 
   let current = null;
   let named = 0;
@@ -34,7 +35,7 @@ if (root) {
       return `<button type="button" class="x-mode-btn verdict-rule" data-class="${c[0]}">${c}</button>`;
     }).join('');
     rules.querySelectorAll('.verdict-rule').forEach((b) => {
-      b.addEventListener('click', () => { choose(b.dataset.class); });
+      b.addEventListener('click', () => { choose(b.dataset.class, b); });
     });
   };
 
@@ -67,7 +68,7 @@ if (root) {
     line.textContent = `HTTP/1.1 ${r.code} ${r.reason}`;
     offer.hidden = r.code !== 404;
     msg.textContent = readCount() === REQUESTS.length
-      ? 'All seven requests have verdicts.'
+      ? 'All eight requests have verdicts.'
       : 'Pick the next request, or reread one above.';
     const key = keyFor(current);
     const hit = key.dataset.hit === 'ok';
@@ -81,6 +82,7 @@ if (root) {
     keys.querySelectorAll('.verdict-key').forEach((b) => { b.classList.remove('active-key'); });
     const key = keyFor(i);
     key.classList.add('active-key');
+    clearRules();
     if (key.classList.contains('read')) {
       display(REQUESTS[i]);
       return;
@@ -93,11 +95,12 @@ if (root) {
     msg.textContent = 'Name the class you expect. Then the station reads the verdict.';
   };
 
-  const choose = (first) => {
+  const choose = (first, btn) => {
     if (current === null) {
       note.textContent = 'No request on the wire. The station waits for a request.';
       return;
     }
+    rules.querySelectorAll('.verdict-rule').forEach((x) => { x.classList.toggle('on', x === btn); });
     const r = REQUESTS[current];
     const key = keyFor(current);
     const fd = String(r.code)[0];
@@ -127,8 +130,8 @@ if (root) {
     line.textContent = '';
     note.textContent = '';
     offer.hidden = true;
-    msg.textContent = 'Seven requests wait on the wire. The station reads one and hears the class you name.';
-    score.textContent = 'you named 0 of 7';
+    msg.textContent = 'Eight requests wait on the wire. The station reads one and hears the class you name.';
+    score.textContent = `you named 0 of ${REQUESTS.length}`;
     clearRules();
     buildKeys();
   };
