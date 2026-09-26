@@ -1,19 +1,21 @@
-# Syllabus: Sections 04 to 06
+# Syllabus: sections 04 to 06, as shipped
 
-This file plans the next three lesson sections. Each section becomes one
-self-contained HTML file under `lessons/`. Every section follows
-`STYLE.md` and uses the shared widget chrome from sections 01 to 03.
+This file plans lesson sections 04 to 06 and records what each one became.
+Every section is one self-contained HTML file under `lessons/`. Every section
+follows `STYLE.md` and reuses the shared widget chrome from sections 01 to 03.
+All three shipped on 2026-09-12.
 
 ## Where the course stands
 
-- 01: The machine that prints its own manual.
-- 02: How the idea got lost.
-- 03: Two architectures on the same table.
-- 04 to 06: planned here.
+- 01: The machine that prints its own manual. Shipped.
+- 02: How the idea got lost. Shipped.
+- 03: Two architectures on the same table. Shipped.
+- 04 to 06: shipped, and recorded below.
 
 ## Section 04: The status line names what happened
 
 Working title: the server's one-line verdict.
+Shipped as `lessons/0004-the-status-line-names-what-happened.html`.
 
 ### The facts to teach
 
@@ -32,10 +34,15 @@ Working title: the server's one-line verdict.
 
 ### The widget
 
-Plan: "Read the verdict". A tray of scenario cards, each like the kiosk
-moves. The learner reads a request, names the class, and the card flips
-to the real code. Recap numbers the classes. Self-check uses the
-hidden-answer detail element.
+Ships as "Read the verdict", a status-line reading station built from
+`assets/js/widget-0004.js` and `assets/styles/widget-statusline.css`. Eight
+request buttons wait on the wire. The learner picks one, names the class the
+reply carries, and the station prints the status line, for example
+`HTTP/1.1 303 See Other`. Five class buttons cover 1xx through 5xx, so the
+station matches the five classes the prose teaches. Naming 4xx on
+`GET /account/4042` reveals an offer button that loads `GET /account/4027`
+again, which shows the 3xx follow in the same run. Recap numbers the five
+classes. The self-check uses four hidden-answer details.
 
 ### Cross-section recall
 
@@ -45,6 +52,7 @@ learner match that refusal to 4xx before section 04 explains the class.
 ## Section 05: Ask without harm. Repeat without doubt.
 
 Working title: safe and idempotent moves.
+Shipped as `lessons/0005-ask-without-harm-repeat-without-doubt.html`.
 
 ### The facts to teach
 
@@ -63,10 +71,14 @@ Working title: safe and idempotent moves.
 
 ### The widget
 
-Plan: "Sort the methods". Two trays sort method cards into safe and
-unsafe, then again into idempotent and not. A second pass replays a
-lost connection. The learner sees a repeated POST charge twice and a
-repeated PUT leave the same state.
+Ships as "Sort the methods", in two stations. The first is the shared ledger
+from `assets/js/ledger.js`, the same widget section 02 uses. It sorts six
+method cards into Safe and Unsafe, then again into Idempotent and Not
+idempotent. A wrong placement is allowed and explained, so the learner can
+learn from it, and "Check my sort" scores partial work. The second station is
+the dropped connection. It sends a payment by POST and a rename by PUT, loses
+both replies, and replays each move. The POST lane charges twice, and the PUT
+lane lands once.
 
 ### Cross-section recall
 
@@ -77,6 +89,7 @@ document, owns the moves.
 ## Section 06: Keep the old copy. Ask if it is still good.
 
 Working title: caching, validators, and the 304 handshake.
+Shipped as `lessons/0006-keep-the-old-copy-ask-if-it-is-still-good.html`.
 
 ### The facts to teach
 
@@ -96,11 +109,16 @@ Working title: caching, validators, and the 304 handshake.
 
 ### The widget
 
-Plan: "Ask if it changed". A hidden server in the page owns a document
-and its ETag. The learner clicks to fetch twice. The first click earns
-200 with the full body. The second click sends `If-None-Match` and
-earns 304 with an empty body. A change button rotates the ETag, so the
-next fetch earns 200 again. The learner reads the handshake in the log.
+Ships as "Ask if it changed", a hidden server in the page built from
+`assets/js/widget-0006.js` and `assets/styles/widget-cache.css`. It owns one
+weather document and its ETag. Three buttons drive it. "Fetch the document"
+earns a 200 and stores the copy. A second fetch while that copy is fresh is
+served from the cache and sends no request at all, which teaches freshness
+before validation. "Let an hour pass" ages the copy past its max-age, and the
+next fetch sends `If-None-Match` and earns a 304 with no body.
+"Change the server state" rotates the ETag from v1 to v2, so the next fetch
+after that earns a 200 and the new body. The learner reads the handshake in the
+log.
 
 ### Cross-section recall
 
@@ -109,25 +127,31 @@ on every move. Ask why those documents are not cached clients. Let the
 learner spot that each move changes the URI or the document, so the
 cached copy would go stale.
 
-## Sources to cite
+## Sources, as the sections cite them
 
 - Fielding, "Architectural Styles and the Design of Network-based
   Software Architectures", 2000. Chapter 5.1.4 covers the cache
   constraint. Chapter 5.1.5 defines the uniform interface: resource
   identification, representations, self-descriptive messages, and
-  hypermedia as the engine of application state.
+  hypermedia as the engine of application state. The sections link
+  <https://roy.gbiv.com/pubs/dissertation/rest_arch_style.htm>.
 - RFC 9110, HTTP Semantics, June 2022. Section 9.2.1 defines safe
   methods. Section 9.2.2 defines idempotent methods. Section 15 lists
   the status codes. Section 15.4.5 covers 304 Not Modified. Section
   8.8.3 defines ETag. Section 13 covers conditional requests.
 - RFC 9111, HTTP Caching, June 2022. Section 3 covers response
   storage. Section 4.2 covers freshness. Section 4.3 covers validation.
+- RFC 8297, Early Hints, 2017. Section 04 names 103 from this
+  specification.
 - IANA HTTP Status Code Registry, for the full code list.
+- MDN Web Docs, the HTTP status, methods, and caching pages, as a
+  second voice on each specification.
 
-## Build notes
+## Build notes, as applied
 
 - Each section reuses the shared reveal, progress, and caption chrome.
-- Add the foot navigation link to the next section when it lands.
-- Add a card on `lessons/index.html` when a section ships.
-- Keep every widget self-contained. No section may call a remote
-  service. The simulation server lives inside the page.
+- Each section carries the foot navigation link to the next section.
+- Each section has a card on `lessons/index.html` and on the home page,
+  and the blurbs match `scripts/manifest.json` word for word.
+- Every widget is self-contained. No section calls a remote service.
+  The simulation server lives inside the page.

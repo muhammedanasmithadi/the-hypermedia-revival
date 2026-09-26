@@ -68,8 +68,8 @@ in *The Sense of Style*.
   and help scanning.
 - Give every subheading an id and a hanchor link, so each subsection is
   addressable in the URL. The heading text is the link; no icon is shown.
-- Close every section with a hidden-answer self-check. Use two or
-  three short questions, with the answers inside a details element.
+- Close every section with a hidden-answer self-check. Use two to four
+  short questions, with the answers inside a details element.
   Practice testing scores highest in Dunlosky's review.
 - Prompt restatement after each core definition. One line invites the
   learner to say the idea in their own words.

@@ -5,10 +5,24 @@
 ### Primary Sources
 - [Roy Fielding's Dissertation: "Architectural Styles and the Design of Network-based Software Architectures" (2000)](https://ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf)
   The origin of REST. Chapter 5 defines the architectural style. Use for: HATEOAS definition, REST constraints, hypermedia architecture.
-- [Ted Nelson's "Literary Machines" (1981)](https://en.wikipedia.org/wiki/Literary_Machines)
+- [The same dissertation, HTML edition](https://roy.gbiv.com/pubs/dissertation/rest_arch_style.htm)
+  The version sections 01 to 06 cite. Use for: per-section citation links.
+- [Ted Nelson's "Literary Machines" (1981)](https://en.wikipedia.org/wiki/Project_Xanadu)
   Coined "hypertext" and "hypermedia." Use for: historical context of hypertext vision.
 - [The Original HTTP/1.0 Spec (RFC 1945)](https://www.ietf.org/rfc/rfc1945.txt)
   The protocol that instantiated Fielding's hypermedia architecture. Use for: understanding what HTTP was designed to do.
+
+### Specs the Sections Cite
+- [RFC 9110: HTTP Semantics (2022)](https://www.rfc-editor.org/rfc/rfc9110.html)
+  Section 9.2.1 safe methods, 9.2.2 idempotent methods, 15 status codes, 8.8.3 ETag, 13 conditional requests. Cited by sections 04, 05, and 06.
+- [RFC 9111: HTTP Caching (2022)](https://www.rfc-editor.org/rfc/rfc9111.html)
+  Section 3 response storage, 4.2 freshness, 4.3 validation. Cited by section 06.
+- [RFC 8297: Early Hints (2017)](https://www.rfc-editor.org/rfc/rfc8297.html)
+  Defines 103. Cited by section 04.
+- [IANA HTTP Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
+  The full code list. Cited by section 04.
+- [MDN Web Docs: HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+  The status, methods, and caching pages. The second voice each section cites beside the RFCs.
 
 ### Analysis & Criticism
 - [Two-Bit History: "Roy Fielding's Misappropriated REST Dissertation" (2020)](https://twobithistory.org/2020/06/28/rest.html)

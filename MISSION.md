@@ -5,9 +5,12 @@ Teach the deep domain knowledge behind hypermedia systems, the original architec
 
 ## Success looks like
 - A reader understands what HATEOAS actually means and why Fielding designed it
-- A reader can articulate the tradeoffs between HTML-over-the-wire, server components, and JSON SDUI
+- A reader can describe the loop: request, document, choice, next document
+- A reader can weigh a document-driven design against a JSON feed for the same feature
+- A reader can read a reply: the status line, its five classes, and the codes that matter
+- A reader can sort a method by safety and by idempotence, and say when a retry is safe
+- A reader can describe the cache handshake: freshness first, then the 304 that keeps the copy
 - A reader can evaluate whether their next project actually needs a client-side framework
-- A reader sees the connection between hypermedia thinking and search/real-time product design
 
 ## Constraints
 - Static, hand-authored pages: no external dependencies, no build tools on the page
